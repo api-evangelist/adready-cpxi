@@ -1,0 +1,13 @@
+generated: '2026-07-17'
+method: searched
+probe: true
+source: https://trust.digitalremedy.com/
+url: https://trust.digitalremedy.com/
+certifications:
+- SOC 2
+evidence:
+- source: https://trust.digitalremedy.com/
+  keywords:
+  - soc 2
+  - soc2
+  - trust center

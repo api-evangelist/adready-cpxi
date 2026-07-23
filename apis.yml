@@ -1,8 +1,24 @@
 aid: adready-cpxi
+accessModel:
+  pricing: unknown
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Unknown
+  confidence: low
+  source: []
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/adready-cpxi.png
 name: AdReady (CPXi)
-description: 'AdReady (CPXi) is a company surfaced as a portfolio company of bain-capital-ventures and
-  added to the API Evangelist network as a stub for enrichment. Sector: commerce. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: 'AdReady is a digital advertising execution brand now operated by Digital Remedy (formerly
+  CPX Interactive / CPXi). Digital Remedy runs an omnichannel advertising platform (AdReady+) for agencies,
+  brands and media companies, covering campaign planning, programmatic/CTV/DOOH execution, measurement
+  and attribution, with a RemyAI assistant and 100+ martech API integrations. AdReady originated as a
+  Seattle self-serve ad-building tool and was acquired by CPXi in 2013; the brand and platform are today
+  part of Digital Remedy. This company profile is maintained in the API Evangelist network; Digital Remedy
+  publishes no public developer API or documentation portal, but does operate a SOC 2 trust center.'
 url: https://raw.githubusercontent.com/api-evangelist/adready-cpxi/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -12,10 +28,15 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-18'
 tags:
 - Company
 - Commerce
+- Advertising
+- AdTech
+- Marketing
+- Programmatic
+- Media
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -23,5 +44,24 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: TrustCenter
+  url: security/adready-cpxi-trust-center.yml
+- type: Compliance
+  url: https://trust.digitalremedy.com/
+- type: DomainSecurity
+  url: security/adready-cpxi-domain-security.yml
 - type: Website
   url: https://www.digitalremedy.com/platform/
+- type: Login
+  url: https://platform.digitalremedy.com/
+- type: Blog
+  url: https://www.digitalremedy.com/blog/
+- type: Support
+  url: https://www.digitalremedy.com/contact-us/
+- type: PrivacyPolicy
+  url: https://www.digitalremedy.com/privacy-policy/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence
