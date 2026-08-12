@@ -1,0 +1,518 @@
+generated: '2026-08-12'
+method: derived
+status: candidate
+source: openapi/adready-cpxi-kickstart-openapi.yml
+note: 'Digital Remedy publishes no MCP server. Searched the docs surface, the npm registry and the public MCP registries
+  and found none, and no /.well-known/ discovery document is served on any host. This is a CANDIDATE tool list derived
+  from the 355-operation OpenAPI, not a published server: it is what an MCP server over this API could expose, and
+  every tool below inherits its real input contract from the named operation in the spec. Only the 98 operations
+  that carry a provider-written summary are listed - the remaining 257 have springdoc default operationIds with
+  no semantics, and naming tools after them would be guesswork.'
+server:
+  name: adready-cpxi
+  transport: http
+  url: null
+  published: false
+discovery:
+  searched_npm: true
+  searched_registries: true
+  well_known_probed: true
+  result: none found
+coverage:
+  rest_operations_total: 355
+  operations_with_provider_summary: 98
+  candidate_tools: 98
+tools:
+- name: fetchAdGroups
+  description: Get ad groups for an advertiser as per the solution id
+  method: POST
+  path: /api/ac/advertisers/{advertiserId}/ad_groups
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchAdGroups
+- name: fetchAudiences
+  description: Get audiences for an advertiser as per the solution id
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/audiences
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchAudiences
+- name: fetchCampaigns
+  description: Get campaigns for an advertiser as per the solution id
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/campaigns
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchCampaigns
+- name: fetchCreatives
+  description: Get creatives for an advertiser as per the solution id
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/creatives
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchCreatives
+- name: fetchKeywords
+  description: Get keywords for an advertiser as per the solution id
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/keywords
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchKeywords
+- name: fetchMatchTypes
+  description: Get match types for an advertiser as per the solution id
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/matchtypes
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchMatchTypes
+- name: fetchMediaTypes
+  description: Get mediatypes for an advertiser as per the solution id
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/mediatypes
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchMediaTypes
+- name: fetchConversionPixels
+  description: Get conversion pixels for an advertiser as per the solution id
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/pixels
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchConversionPixels
+- name: fetchAdvertiserSolutions
+  description: Get list of solutions for an advertiser
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchAdvertiserSolutions
+- name: getDailyMeasurement_2
+  description: Get daily measurements for Performance Brand solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/measurements/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyMeasurement_2
+- name: getBrandMeasurementsDistribution
+  description: Get dimension-wise measurements for Performance Brand solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/measurements/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getBrandMeasurementsDistribution
+- name: getDailyMetric_2
+  description: Get daily metrics for Performance Brand solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/metrics/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyMetric_2
+- name: getBrandMetricsDistribution
+  description: Get dimension-wise metrics for Performance Brand solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/metrics/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getBrandMetricsDistribution
+- name: getBrandPerformance
+  description: Get dimension-wise measurements & metrics for Performance Brand solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/performance
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getBrandPerformance
+- name: getBrandPerformanceReport
+  description: Get dimension-wise measurements & metrics report for Performance Brand solution
+  method: POST
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/reports
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getBrandPerformanceReport
+- name: getBrandSummary
+  description: Get summary for Performance Brand solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/summary
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getBrandSummary
+- name: getBrandTopPerformers
+  description: Get dimension-wise top performing metrics for Performance Brand solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/top_performers
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getBrandTopPerformers
+- name: getCvgdTVSummary
+  description: Get something for Social solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/convergedtv/summary
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getCvgdTVSummary
+- name: getDailyMeasurement_1
+  description: Get daily measurements for Search solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/measurements/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyMeasurement_1
+- name: getSearchMeasurementsDistribution
+  description: Get dimension-wise measurements for Search solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/measurements/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSearchMeasurementsDistribution
+- name: getDailyMetric_1
+  description: Get daily metrics for Search solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/metrics/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyMetric_1
+- name: getSearchMetricsDistribution
+  description: Get dimension-wise metrics for Search solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/metrics/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSearchMetricsDistribution
+- name: getSearchPerformance
+  description: Get dimension-wise measurements & metrics for Search solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/performance
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSearchPerformance
+- name: getSearchPerformanceReport
+  description: Get dimension-wise measurements & metrics report for Search solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/reports
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSearchPerformanceReport
+- name: getSearchSummary
+  description: Get summary for Search solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/summary
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSearchSummary
+- name: getSearchTopPerformers
+  description: Get dimension-wise top performing metrics for Search solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/top_performers
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSearchTopPerformers
+- name: getDailyMeasurement
+  description: Get daily measurements for Social solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/measurements/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyMeasurement
+- name: getSocialMeasurementsDistribution
+  description: Get dimension-wise measurements for Social solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/measurements/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSocialMeasurementsDistribution
+- name: getDailyMetric
+  description: Get daily metrics for Social solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/metrics/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyMetric
+- name: getSocialMetricsDistribution
+  description: Get dimension-wise metrics for Social solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/metrics/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSocialMetricsDistribution
+- name: getSocialPerformance
+  description: Get dimension-wise measurements & metrics for Social solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/performance
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSocialPerformance
+- name: getSocialPerformanceReport
+  description: Get dimension-wise measurements & metrics report for Social solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/reports
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSocialPerformanceReport
+- name: getSocialSummary
+  description: Get summary for Social solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/summary
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSocialSummary
+- name: getSocialTopPerformers
+  description: Get dimension-wise top performing metrics for Social solution
+  method: GET
+  path: /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/top_performers
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getSocialTopPerformers
+- name: getAudiences
+  description: Get audiences for an advertiser
+  method: POST
+  path: /api/advertisers/{advertiserId}/audiences
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getAudiences
+- name: updateSPCGroupings
+  description: Update SPC Groupings and Mappings
+  method: PUT
+  path: /api/advertisers/{advertiserId}/brand_lift/campaign/{blCampaignId}/spc_groupings_and_mappings
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#updateSPCGroupings
+- name: getBrandLiftCampaign
+  description: Retrieve single campaign detail for a given campaign id
+  method: GET
+  path: /api/advertisers/{advertiserId}/brand_lift/campaign/{bl_campaign_id}
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getBrandLiftCampaign
+- name: getLiftCampaigns
+  description: Get campaigns for an Advertiser and selected IO
+  method: GET
+  path: /api/advertisers/{advertiserId}/brand_lift/campaigns
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getLiftCampaigns
+- name: createCampaign
+  description: Create campaign for an Advertiser and selected IO
+  method: POST
+  path: /api/advertisers/{advertiserId}/brand_lift/campaigns
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#createCampaign
+- name: updateCampaign
+  description: Update campaign
+  method: PUT
+  path: /api/advertisers/{advertiserId}/brand_lift/campaigns/{blCampaignId}
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#updateCampaign
+- name: deleteCampaign
+  description: Delete campaign
+  method: DELETE
+  path: /api/advertisers/{advertiserId}/brand_lift/campaigns/{blCampaignId}
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#deleteCampaign
+- name: launchCampaign
+  description: Launch Campaign
+  method: PUT
+  path: /api/advertisers/{advertiserId}/brand_lift/campaigns/{blCampaignId}/launch
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#launchCampaign
+- name: getLiftCampaignsStats
+  description: Get campaigns stats for an Advertiser and selected IO
+  method: GET
+  path: /api/advertisers/{advertiserId}/brand_lift/campaignsStats
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getLiftCampaignsStats
+- name: listCountryLanguages
+  description: List Country Languages
+  method: GET
+  path: /api/advertisers/{advertiserId}/brand_lift/country_languages
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#listCountryLanguages
+- name: getLiftDistribution
+  description: Get brand lift distribution
+  method: GET
+  path: /api/advertisers/{advertiserId}/brand_lift/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getLiftDistribution
+- name: getBrandLiftGroupByOption
+  description: Get group by for brand lift
+  method: GET
+  path: /api/advertisers/{advertiserId}/brand_lift/groupBy
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getBrandLiftGroupByOption
+- name: listIndustries
+  description: List Industries
+  method: GET
+  path: /api/advertisers/{advertiserId}/brand_lift/industries
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#listIndustries
+- name: listTemplateQuestions
+  description: List Template Questions
+  method: GET
+  path: /api/advertisers/{advertiserId}/brand_lift/template_questions
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#listTemplateQuestions
+- name: getLiftTypes
+  description: Get lift types for brand lift
+  method: GET
+  path: /api/advertisers/{advertiserId}/brand_lift/types
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getLiftTypes
+- name: getDailyConversions
+  description: Get daily pixel visits details
+  method: POST
+  path: /api/advertisers/{advertiserId}/conversions/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyConversions
+- name: getPixelDistribution
+  description: Get conversions distribution for a FLIP pixel
+  method: POST
+  path: /api/advertisers/{advertiserId}/conversions/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getPixelDistribution
+- name: getPixelSummary
+  description: Get conversions summary for a FLIP pixel
+  method: POST
+  path: /api/advertisers/{advertiserId}/conversions/summary
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getPixelSummary
+- name: getCreatives
+  description: Get creatives for an advertiser
+  method: POST
+  path: /api/advertisers/{advertiserId}/creatives
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getCreatives
+- name: getConversionEvents
+  description: Get conversion events for an advertiser
+  method: GET
+  path: /api/advertisers/{advertiserId}/events
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getConversionEvents
+- name: getFlipPixels
+  description: Get FLIP pixels by advertiser id
+  method: GET
+  path: /api/advertisers/{advertiserId}/flipPixels
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getFlipPixels
+- name: addFlipPixel
+  description: Add new FLIP pixel for an advertiser
+  method: POST
+  path: /api/advertisers/{advertiserId}/flipPixels
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#addFlipPixel
+- name: fetchFlipPixelDetails
+  description: Get details of a FLIP pixel for an advertiser
+  method: GET
+  path: /api/advertisers/{advertiserId}/flipPixels/{pixelId}
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchFlipPixelDetails
+- name: updateFlipPixel
+  description: Update an existing FLIP pixel for an advertiser
+  method: PUT
+  path: /api/advertisers/{advertiserId}/flipPixels/{pixelId}
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#updateFlipPixel
+- name: fetchPixelCategories
+  description: Fetch FLIP pixel categories
+  method: GET
+  path: /api/advertisers/{advertiserId}/flipPixels/{pixelId}/categories
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchPixelCategories
+- name: fetchPixelFires
+  description: Fetch FLIP pixel fires
+  method: GET
+  path: /api/advertisers/{advertiserId}/flipPixels/{pixelId}/fires
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchPixelFires
+- name: fetchDailyPixelFires
+  description: Get daily FLIP pixel fires
+  method: GET
+  path: /api/advertisers/{advertiserId}/flipPixels/{pixelId}/fires/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchDailyPixelFires
+- name: fetchFlipPixelFiresSummary
+  description: Get FLIP pixel fires summary
+  method: GET
+  path: /api/advertisers/{advertiserId}/flipPixels/{pixelId}/fires/summary
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchFlipPixelFiresSummary
+- name: getDailyImpressions_1
+  description: Get daily impressions details
+  method: POST
+  path: /api/advertisers/{advertiserId}/impressions/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyImpressions_1
+- name: getImpressionsDistribution_1
+  description: Get impressions distribution
+  method: POST
+  path: /api/advertisers/{advertiserId}/impressions/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getImpressionsDistribution_1
+- name: getImpressionsSummary_1
+  description: Get impressions summary
+  method: POST
+  path: /api/advertisers/{advertiserId}/impressions/summary
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getImpressionsSummary_1
+- name: getIncrementalityDistribution
+  description: Get incrementality distribution
+  method: POST
+  path: /api/advertisers/{advertiserId}/incrementality/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getIncrementalityDistribution
+- name: getIncrementalityHaloEffect
+  description: Get Halo Effect data
+  method: GET
+  path: /api/advertisers/{advertiserId}/incrementality/haloEffect
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getIncrementalityHaloEffect
+- name: getInsertionOrderNames
+  description: Get unique insertion order names for an advertiser
+  method: GET
+  path: /api/advertisers/{advertiserId}/io_names
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getInsertionOrderNames
+- name: getInsertionOrderPacing
+  description: Get overall pacing for selected insertion orders
+  method: POST
+  path: /api/advertisers/{advertiserId}/io_pacing
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getInsertionOrderPacing
+- name: getLiftSummary
+  description: Get incrementality & brand lift summary
+  method: POST
+  path: /api/advertisers/{advertiserId}/lift/summary
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getLiftSummary
+- name: getDailyImpressions
+  description: Get daily impressions details
+  method: POST
+  path: /api/advertisers/{advertiserId}/mdsp/impressions/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyImpressions
+- name: getImpressionsDistribution
+  description: Get impressions distribution
+  method: POST
+  path: /api/advertisers/{advertiserId}/mdsp/impressions/distribution
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getImpressionsDistribution
+- name: getImpressionsSummary
+  description: Get impressions summary (MDSP)
+  method: POST
+  path: /api/advertisers/{advertiserId}/mdsp/impressions/summary
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getImpressionsSummary
+- name: getDailyPerformance_1
+  description: Get daily CPM/CPA/ROAS/VCR/CTR performance
+  method: POST
+  path: /api/advertisers/{advertiserId}/mdsp/performance/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyPerformance_1
+- name: getMediaTypes
+  description: Get media types for an advertiser
+  method: POST
+  path: /api/advertisers/{advertiserId}/media_types
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getMediaTypes
+- name: getPerformance
+  description: Get performance by creative/adgroup/publisher/channel/audience/mediatype
+  method: POST
+  path: /api/advertisers/{advertiserId}/performance
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getPerformance
+- name: getDailyPerformance
+  description: Get daily CPM/CPA/ROAS/VCR/CTR performance
+  method: POST
+  path: /api/advertisers/{advertiserId}/performance/daily
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getDailyPerformance
+- name: getIncrementalReach
+  description: Get incremental reach metric
+  method: GET
+  path: /api/advertisers/{advertiserId}/performance/metrics/incrementalreach
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getIncrementalReach
+- name: getReachFrequencyMetric
+  description: Get reach and frequency performance metric
+  method: POST
+  path: /api/advertisers/{advertiserId}/performance/metrics/reach
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getReachFrequencyMetric
+- name: getPublishers
+  description: Get publishers for an advertiser
+  method: GET
+  path: /api/advertisers/{advertiserId}/publishers
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getPublishers
+- name: getEventPerformanceReport
+  description: Get event-wise performance report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
+  method: POST
+  path: /api/advertisers/{advertiserId}/reports/eventPerformance
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getEventPerformanceReport
+- name: getPerformanceReport
+  description: Get performance report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
+  method: POST
+  path: /api/advertisers/{advertiserId}/reports/performance
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getPerformanceReport
+- name: getLastTouches
+  description: Get rollup report with only last touches for each conversion
+  method: POST
+  path: /api/advertisers/{advertiserId}/reports/rollup
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getLastTouches
+- name: getAllTouchesForConversion
+  description: Get all touches (except last touch) for a conversion
+  method: POST
+  path: /api/advertisers/{advertiserId}/reports/rollup/touches
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getAllTouchesForConversion
+- name: getAudienceNames
+  description: get
+  method: GET
+  path: /api/advertisers/{id}/audienceNames
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getAudienceNames
+- name: findAllIoAudienceDefinitionFeedRawByCampaignId
+  description: getIoAudienceDefinitionFeedRawByCampaignId
+  method: GET
+  path: /api/dmm/campaign/{campaignId}/ioAudienceDefinitionFeedRaw
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#findAllIoAudienceDefinitionFeedRawByCampaignId
+- name: findAllIoAudienceDefinitionFeedRawHistoryByCampaignId
+  description: getIoAudienceDefinitionFeedRawHistoryByCampaignId
+  method: GET
+  path: /api/dmm/campaign/{campaignId}/ioAudienceDefinitionFeedRawHistory
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#findAllIoAudienceDefinitionFeedRawHistoryByCampaignId
+- name: findAllIoKeywordListFeedRawByCampaignId
+  description: getIoKeywordListFeedRawByCampaignId
+  method: GET
+  path: /api/dmm/campaign/{campaignId}/ioKeywordListFeedRaw
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#findAllIoKeywordListFeedRawByCampaignId
+- name: findAllIoKeywordListFeedRawHistoryByCampaignId
+  description: getIoKeywordListFeedRawHistoryByCampaignId
+  method: GET
+  path: /api/dmm/campaign/{campaignId}/ioKeywordListFeedRawHistory
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#findAllIoKeywordListFeedRawHistoryByCampaignId
+- name: findAllIoSiteListFeedRawByCampaignId
+  description: getIoSiteListFeedRawByCampaignId
+  method: GET
+  path: /api/dmm/campaign/{campaignId}/ioSiteListFeedRaw
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#findAllIoSiteListFeedRawByCampaignId
+- name: findAllIoSiteListFeedRawHistoryByCampaignId
+  description: getIoSiteListFeedRawHistoryByCampaignId
+  method: GET
+  path: /api/dmm/campaign/{campaignId}/ioSiteListFeedRawHistory
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#findAllIoSiteListFeedRawHistoryByCampaignId
+- name: findAllMarketGroupsFeedRawByCampaignId
+  description: getMarketGroupsFeedRawByCampaignId
+  method: GET
+  path: /api/dmm/campaign/{campaignId}/marketGroupsFeedRaw
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#findAllMarketGroupsFeedRawByCampaignId
+- name: findAllMarketGroupsFeedRawHistoryByCampaignId
+  description: getMarketGroupsFeedRawHistoryByCampaignId
+  method: GET
+  path: /api/dmm/campaign/{campaignId}/marketGroupsFeedRawHistory
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#findAllMarketGroupsFeedRawHistoryByCampaignId
+- name: findAllIoMarketFeedRawByCampaignIdPackageId
+  description: getIoMarketFeedRawByCampaignIdAndPackageId
+  method: GET
+  path: /api/dmm/campaign/{campaignId}/package/{packageId}/ioMarketFeedRaw
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#findAllIoMarketFeedRawByCampaignIdPackageId
+- name: findAllIoMarketFeedRawHistoryByCampaignIdPackageId
+  description: getIoMarketFeedRawHistoryByCampaignIdAndPackageId
+  method: GET
+  path: /api/dmm/campaign/{campaignId}/package/{packageId}/ioMarketFeedRawHistory
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#findAllIoMarketFeedRawHistoryByCampaignIdPackageId
+- name: getBudgetRanges
+  description: Get budget ranges
+  method: GET
+  path: /api/options/budgetRanges
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#getBudgetRanges
+- name: tableauViewsForAccount
+  description: Get Tableau views for an account
+  method: GET
+  path: /api/tableau/views/account/{accountId}
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#tableauViewsForAccount
+- name: tableauReportDownload
+  description: Download Tableau report
+  method: GET
+  path: /api/tableau/{advertiserId}/download/views/{viewId}/{type}
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#tableauReportDownload
+pointer_decision: 'No type: MCPServer pointer is wired into apis.yml. The mcp_server_present check asserts that
+  the PROVIDER operates an MCP server; Digital Remedy does not. Emitting the pointer for a derived candidate would
+  credit them with an agent surface they have not shipped.'

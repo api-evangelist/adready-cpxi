@@ -1,0 +1,75 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/adready-cpxi-kickstart-openapi.yml + live unauthenticated probes of https://platform.digitalremedy.com
+format: custom-envelope
+rfc9457: false
+
+envelope:
+  schema: ApiResponse
+  media_type: '*/*'
+  fields:
+    status: integer (int32) - application-level status carried inside the body
+    message: string - human-readable message
+    result: operation-specific payload, absent or null on failure
+  note: >-
+    This is not RFC 9457 Problem Details. There is no type URI, no title/detail split, no instance,
+    and no application/problem+json media type anywhere in the description. Because status is echoed
+    in the body, an application-level failure can be delivered under an HTTP 200.
+
+coverage:
+  operations_total: 355
+  operations_declaring_400: 355
+  operations_declaring_200: 352
+  operations_declaring_401: 1
+  operations_declaring_403: 1
+  operations_declaring_404: 3
+  operations_declaring_500: 3
+  operations_declaring_default: 3
+  note: >-
+    The uniform 400 on every operation is the springdoc default, not a curated contract. Effectively
+    only one operation (fetchCreatives) documents the authentication and authorization failures that
+    the deployed API actually returns on all 355.
+
+problems:
+- status: 400
+  title: Bad Request
+  declared_on: all 355 operations
+  schema: object (untyped)
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml
+  remediation: >-
+    Not enumerated by the provider. The response schema is a bare object with no properties, so a
+    client cannot determine which field failed validation from the contract.
+- status: 401
+  title: Unauthorized
+  declared_on: 1 operation (fetchCreatives)
+  observed: true
+  observed_detail: >-
+    Every business path returns 401 with Content-Length 0 and no WWW-Authenticate header. Observed on
+    https://platform.digitalremedy.com/api/users/1 and /config on 2026-08-12.
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchCreatives
+  remediation: Obtain a session token via POST /api/auth/login, or refresh via GET /api/token/refresh.
+- status: 403
+  title: Forbidden
+  declared_on: 1 operation (fetchCreatives)
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#fetchCreatives
+  remediation: Not documented. The API is heavily account/advertiser/organization scoped, so a valid
+    session for the wrong advertiser is the expected cause.
+- status: 404
+  title: Not Found
+  declared_on: 3 operations
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#updateFlipPixel
+- status: 500
+  title: Internal Server Error
+  declared_on: 3 operations
+  source_operation: openapi/adready-cpxi-kickstart-openapi.yml#tableauReportDownload
+
+diagnostic_operations:
+- {operationId: throwErr, path: /api/test/error, note: A test endpoint that raises an error, left in the published description.}
+- {operationId: throwException, path: /throw_exception, note: A test endpoint that raises an exception, left in the published description.}
+- {operationId: 'null', path: /api/errors, controller: errors-controller, note: An errors controller is exposed but its contract is undescribed.}
+
+gaps:
+- No machine-readable error code registry is published.
+- No error type URIs; nothing an agent can branch on beyond the HTTP status.
+- The 401 carries an empty body, so the failure reason is invisible to a client.
+- The uniform 400-on-everything pattern means the declared error contract carries no information.

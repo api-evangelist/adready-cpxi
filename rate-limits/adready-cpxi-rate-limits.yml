@@ -1,0 +1,29 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  Live response headers from https://platform.digitalremedy.com/version and /v3/api-docs, plus a
+  full-text search of the published OpenAPI 3.1 description for rate-limit vocabulary.
+limit_count: 0
+limits: []
+
+headers:
+  published: []
+  observed: []
+  note: >-
+    No RateLimit-*, X-RateLimit-* or Retry-After header was returned on any observed response. The
+    strings ratelimit, rate-limit and retry-after do not appear anywhere in the 396 KB OpenAPI
+    description, and no operation declares a 429 response.
+
+exhaustion_status_code: not documented
+
+evidence:
+- {url: 'https://platform.digitalremedy.com/version', status: 200, rate_limit_headers: none}
+- {url: 'https://platform.digitalremedy.com/v3/api-docs', status: 200, rate_limit_headers: none}
+- {url: 'https://platform.digitalremedy.com/api/users/1', status: 401, rate_limit_headers: none}
+
+note: >-
+  Digital Remedy publishes no developer documentation, so there is no rate-limit reference to search.
+  An honest zero: no limits are documented and none are signalled at runtime on the anonymous surface.
+  Limits may well be enforced behind authentication - that cannot be observed without credentials, and
+  is not asserted here. The API does sit behind Cloudflare, whose edge protections are infrastructure
+  rather than a published API rate-limit contract.

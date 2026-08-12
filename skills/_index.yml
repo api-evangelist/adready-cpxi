@@ -1,0 +1,37 @@
+generated: '2026-08-12'
+method: generated
+source: >-
+  Generated from openapi/adready-cpxi-kickstart-openapi.yml (harvested from
+  https://platform.digitalremedy.com/v3/api-docs on 2026-08-12) plus the conventions, authentication
+  and errors artifacts in this repo. Digital Remedy publishes no AGENTS.md and no skill files of its
+  own; a search of its public site inventory found none. Every operationId referenced in these skills
+  was verified verbatim in the spec.
+note: >-
+  These skills describe how to operate a PRIVATE first-party API correctly if you already hold
+  Digital Remedy credentials. They are not an invitation to access it. There is no public sign-up and
+  no developer program; access is provisioned by the vendor.
+
+skills:
+- file: adready-cpxi-authenticate-session.md
+  name: Establish and maintain a Digital Remedy Platform session
+  api: openapi/adready-cpxi-kickstart-openapi.yml
+  operations: [authenticateUser, refreshToken, parseJwtToken, removeJwtToken, getConfig, getVersion]
+- file: adready-cpxi-build-media-plan.md
+  name: Build and submit a media plan
+  api: openapi/adready-cpxi-kickstart-openapi.yml
+  operations: [getByAccount, getAdvertiser, getAll_1, create_3, get_3, updatePlan,
+    changeProductTypeAllocation, changeProductCategoryAllocation, changeDisplayDeviceAllocation,
+    changeTargetingLevel, updateFlag, exportOrder, sendSubmitOrderNotification, delete_3]
+- file: adready-cpxi-manage-line-items.md
+  name: Manage insertion-order line items and push to Xandr
+  api: openapi/adready-cpxi-kickstart-openapi.yml
+  operations: [index, create_8, getLineItem, update_6, calculateCpm, calculatePriceSpend, updateFlag_1,
+    pushToXandr, lineItemStatusCount, workflowStatusCount, getInsertionOrderNames,
+    getInsertionOrderPacing, uploadFile, delete_6]
+- file: adready-cpxi-flip-attribution.md
+  name: Set up Flip pixels and read attribution
+  api: openapi/adready-cpxi-kickstart-openapi.yml
+  operations: [getFlipPixels, addFlipPixel, fetchFlipPixelDetails, updateFlipPixel, fetchPixelCategories,
+    fetchPixelFires, fetchDailyPixelFires, fetchFlipPixelFiresSummary, getConversionEvents,
+    getPixelSummary, getPixelDistribution, getDailyConversions, getLastTouches,
+    getAllTouchesForConversion, getEventPerformanceReport, getPerformanceReport]

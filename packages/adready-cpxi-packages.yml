@@ -1,0 +1,48 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  Registry searches against registry.npmjs.org, pypi.org, api.github.com and the Digital Remedy public
+  site inventory (page-sitemap.xml).
+package_count: 0
+official_package_count: 0
+packages: []
+
+note: >-
+  Digital Remedy publishes no client libraries in any public registry, and operates no public GitHub
+  organization. The platform API is a first-party application backend consumed only by Digital
+  Remedy's own Vue/Vite single-page app, so there is no SDK surface to catalogue. No SDKs pointer is
+  wired into apis.yml, because there is no official client library.
+
+searches:
+- {registry: npm, query: adready, url: 'https://registry.npmjs.org/-/v1/search?text=adready', status: 200,
+   total_results: 1, first_party_hits: 0, note: the single hit is an unrelated webpack asset pipeline package}
+- {registry: npm, query: digital-remedy, status: 200, first_party_hits: 0}
+- {registry: pypi, name: adready, url: 'https://pypi.org/pypi/adready/json', status: 404}
+- {registry: pypi, name: digitalremedy, status: 404}
+- {registry: pypi, name: digital-remedy, status: 404}
+- {registry: github, org: adready, url: 'https://api.github.com/orgs/adready', status: 404}
+- {registry: github, org: digitalremedy, status: 404}
+- {registry: github, org: digital-remedy, status: 404}
+- {registry: github, org: DigitalRemedy, status: 404}
+- {registry: github, org: AdReady, status: 404}
+
+client_of_record:
+  kind: first-party web application
+  runtime: Vue single-page application built with Vite, using axios with withCredentials
+  hosts: [https://platform.digitalremedy.com, https://platform.adready.com]
+  distribution: served from the platform origin as a hashed bundle; not published to any registry
+  version: null
+  published: null
+  version_note: >-
+    The application bundle is served unpinned from the origin (assets/index.<hash>.js) and floats to
+    whatever the current deploy is. There is no registry or CDN metadata endpoint to read a version
+    from. The service itself self-reports 3.5.6 at GET /version, which is the closest thing to a
+    published version this provider offers.
+
+dead_hosts_referenced:
+- host: https://plus.adready.com
+  found_in: the platform SPA bundle (PLUS_URL) and the anonymous GET /api/config response
+  dns: does not resolve
+  note: >-
+    The running application still points at the legacy AdReady+ host, which has no DNS record. Recorded
+    as an observation about the deployed client, not as a package.

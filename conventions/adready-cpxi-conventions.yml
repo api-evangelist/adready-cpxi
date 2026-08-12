@@ -1,0 +1,131 @@
+generated: '2026-08-12'
+method: derived
+source: openapi/adready-cpxi-kickstart-openapi.yml + live response headers from https://platform.digitalremedy.com
+note: >-
+  Cross-cutting request/response semantics derived from the published OpenAPI 3.1 description and from
+  headers observed on live unauthenticated responses. Digital Remedy publishes no developer
+  documentation, so nothing here is sourced from prose; every entry is grounded in the spec or in an
+  observed response.
+
+authentication:
+  style: session JWT obtained from POST /api/auth/login
+  declared_in_spec: false
+  detail: authentication/adready-cpxi-authentication.yml
+
+error_envelope:
+  style: custom-wrapper
+  rfc9457: false
+  schema: ApiResponse
+  shape:
+    status: integer (int32) - an application-level status code carried in the body
+    message: string - human-readable message
+    result: the payload, typed per operation
+  generics_in_spec: 100 ApiResponse<T> variants are declared (ApiResponsePlan, ApiResponseUserDTO, ...)
+  note: >-
+    Because status is echoed inside the body, an HTTP 200 can carry an application-level failure. The
+    spec does not document which values status takes, so a client cannot enumerate outcomes from the
+    contract. See errors/adready-cpxi-problem-types.yml.
+
+pagination:
+  style: offset
+  supported: true
+  request_parameters:
+  - {name: pageNumber, in: query, type: integer, operations: 33}
+  - {name: perPage, in: query, type: integer, operations: 33}
+  - {name: sortKey, in: query, type: string, operations: 33}
+  - {name: sortOrder, in: query, type: string, operations: 33}
+  response_fields:
+    primary_shape: PageResponse<T>
+    fields: [content, first, last, pageNumber, pageSize, totalElements, totalPages]
+    alternate_shape: PagedResult<T>
+    alternate_fields: [records, recordCount, headers]
+    spring_shape: PageableObject
+    spring_fields: [offset, pageNumber, pageSize, paged, unpaged, sort]
+  cursors: false
+  note: >-
+    Three different paginated response shapes coexist in one API. No default or maximum perPage is
+    documented, and sortKey has no enumerated set of sortable fields.
+
+filtering:
+  style: flat query parameters, repeated per operation rather than a shared component
+  common_parameters:
+  - {name: advertiser, operations: 64}
+  - {name: client, operations: 64}
+  - {name: startDate, operations: 59}
+  - {name: endDate, operations: 59}
+  - {name: adGroups, operations: 52}
+  - {name: q, operations: 32, purpose: free-text search}
+  - {name: campaignIds, operations: 32}
+  - {name: compareStartDate, operations: 16, purpose: period-over-period comparison}
+  - {name: compareEndDate, operations: 16}
+  note: No parameters are factored into components.parameters; every operation redeclares its own.
+
+idempotency:
+  supported: false
+  evidence: >-
+    No Idempotency-Key header, no idempotency parameter and no idempotency language appears anywhere
+    in the 396 KB OpenAPI description. Retrying a failed POST against this API is unsafe by contract.
+  note: >-
+    Deliberately recorded as unsupported. No Idempotency pointer is wired into apis.yml, because the
+    provider has no idempotency contract to point at.
+
+request_tracing:
+  request_id_header: none
+  evidence: No header parameters other than Accept are declared, and no request-id header is returned.
+  observed_correlation: >-
+    Responses carry a Cloudflare cf-ray identifier, which is edge infrastructure rather than an
+    application trace identifier the provider documents.
+
+rate_limit_signaling:
+  supported: false
+  headers: []
+  detail: rate-limits/adready-cpxi-rate-limits.yml
+
+versioning:
+  api_version_in_path: false
+  scheme: none
+  detail: >-
+    Paths are unversioned (/api/...). The only version surface is the build metadata at GET /version
+    and GET /api/version, which reported application 3.5.6 / kickstart-api 3.5.6 built 2026-08-04.
+    The /v3 in /v3/api-docs is the springdoc endpoint version, not an API version.
+  spec_info_version: '1.0'
+  note: info.version in the OpenAPI reads 1.0 while the running build reports 3.5.6 - the description
+    is not versioned with the service.
+
+content_types:
+  request: application/json
+  response: >-
+    Overwhelmingly declared as */* rather than application/json, a springdoc default that leaves the
+    response media type unstated for most operations.
+  accept_header_declared_on: 6 operations
+
+header_parameters:
+  declared: [Accept]
+  note: Accept is the only header parameter described anywhere in the API.
+
+metadata_and_expansion:
+  sparse_fieldsets: false
+  field_expansion: false
+  metadata_object: false
+
+naming:
+  paths: camelCase resource segments (/api/rateCards, /api/publisherDeal, /api/whitelabel_domains)
+  note: >-
+    Mixed conventions - camelCase, snake_case (/api/auth/forgot_password, /api/whitelabel_domains)
+    and RPC-shaped verb suffixes (/updateFlag, /changeTargetingLevel, /pushToXandr, /mapAdvertisers)
+    all appear. Roughly a quarter of operations are RPC-style actions rather than REST resources.
+
+operation_ids:
+  unique: true
+  count: 355
+  quality: >-
+    Every operation has a unique operationId, but many are springdoc method-name defaults that carry
+    no semantics (get, get_1, update_3, createPassword_1, getVersion_1) and several are inconsistently
+    capitalised (ResetPassword). 98 of 355 operations have a summary; 48 have a description.
+
+cross_links:
+  authentication: authentication/adready-cpxi-authentication.yml
+  errors: errors/adready-cpxi-problem-types.yml
+  lifecycle: lifecycle/adready-cpxi-lifecycle.yml
+  rate_limits: rate-limits/adready-cpxi-rate-limits.yml
+  data_model: data-model/adready-cpxi-data-model.yml

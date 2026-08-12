@@ -42,6 +42,33 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-AdReady (CPXi) is a company surfaced as a portfolio company of bain-capital-ventures and added to the API Evangelist network as a stub for enrichment. Sector: commerce. This profile is a lead awaiting the enrichment pipeline.
+AdReady is a digital advertising execution brand operated by **Digital Remedy** (formerly CPX
+Interactive / CPXi), which runs an omnichannel advertising management platform for independent
+agencies, brands and media companies — media planning, insertion orders and line items, programmatic /
+CTV / DOOH / social execution, Flip pixel attribution, incrementality and brand-lift measurement, and
+white-label reporting.
+
+Sector: commerce. Surfaced as a portfolio company of bain-capital-ventures.
+
+## What this profile found
+
+Digital Remedy publishes **no developer portal, no documentation, no pricing and no sign-up** — but
+the platform's REST API does serve a **live, current OpenAPI 3.1 description anonymously**:
+
+| | |
+|---|---|
+| Spec | `https://platform.digitalremedy.com/v3/api-docs` (HTTP 200, OpenAPI 3.1.0) |
+| Reference | `https://platform.digitalremedy.com/swagger-ui.html` |
+| Size | 285 paths, 355 operations, 285 schemas |
+| Running build | `kickstart-api` 3.5.6, built 2026-08-04 (from `GET /version`) |
+| Access | Every business operation returns **HTTP 401** without a session JWT |
+
+The API is the first-party backend of Digital Remedy's own web application, not a product sold to
+developers. The contract is readable; the API is not open. It also has none of the runtime semantics
+that make an API safe to automate against — no idempotency keys, no rate-limit signalling, no RFC 9457
+problem details, no deprecation policy, no status page, and no `securitySchemes` declared at all
+despite enforcing authentication on everything.
+
+Artifacts in this repo are derived from that spec and from live probes; see `llms/` for the map.
 
 Backed by: bain-capital-ventures — https://www.digitalremedy.com/platform/

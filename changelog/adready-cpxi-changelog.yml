@@ -1,0 +1,40 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  https://platform.digitalremedy.com/version and /api/version (live build metadata), plus a
+  sitemap-driven sweep of https://www.digitalremedy.com for a changelog or release-notes page.
+published: false
+scheme: semver
+current_version: 3.5.6
+
+note: >-
+  Digital Remedy publishes no changelog, release notes or API version history. The only version
+  surface that exists is the anonymous build-metadata endpoint the platform exposes, which reports a
+  single point-in-time build rather than a history. Recorded as a probed observation, not a
+  reconstruction: there is exactly one entry because exactly one build is observable.
+
+entries:
+- version: 3.5.6
+  date: '2026-08-04'
+  observed: '2026-08-12'
+  source: https://platform.digitalremedy.com/version
+  component: kickstart-api
+  git_revision: 19359bb
+  build_jdk: '17'
+  breaking: unknown
+  additions: unknown
+  highlights: >-
+    Build metadata only. The provider publishes no notes describing what changed, so nothing about the
+    content of this release is asserted.
+
+evidence:
+- {url: 'https://platform.digitalremedy.com/version', status: 200}
+- {url: 'https://platform.digitalremedy.com/api/version', status: 200}
+- {url: 'https://www.digitalremedy.com/page-sitemap.xml', status: 200, result: 'no changelog, release-notes
+    or what-is-new page among the 48 published pages'}
+
+gaps:
+- No changelog, so a consumer cannot see what changed between builds.
+- The OpenAPI reports info.version 1.0 while the service reports 3.5.6, so the description cannot be
+  used to detect change either.
+- No RSS or Atom feed of platform releases.

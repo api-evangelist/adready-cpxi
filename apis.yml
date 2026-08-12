@@ -1,34 +1,43 @@
 aid: adready-cpxi
 accessModel:
-  pricing: unknown
-  onboarding: unknown
+  pricing: contact-sales
+  onboarding: sales-gate
   trial: false
   try_now: false
   public: false
-  label: Unknown
-  confidence: low
-  source: []
-  generated: '2026-07-22'
-  method: derived
+  label: Customer Only
+  confidence: medium
+  source:
+  - https://www.digitalremedy.com/contact-us/
+  - https://platform.digitalremedy.com/
+  generated: '2026-08-12'
+  method: probed
+  note: No pricing page, no self-service sign-up and no developer portal exist; the platform login is the only entry
+    point and every API operation returns 401 without a session.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/adready-cpxi.png
 name: AdReady (CPXi)
-description: 'AdReady is a digital advertising execution brand now operated by Digital Remedy (formerly
-  CPX Interactive / CPXi). Digital Remedy runs an omnichannel advertising platform (AdReady+) for agencies,
-  brands and media companies, covering campaign planning, programmatic/CTV/DOOH execution, measurement
-  and attribution, with a RemyAI assistant and 100+ martech API integrations. AdReady originated as a
-  Seattle self-serve ad-building tool and was acquired by CPXi in 2013; the brand and platform are today
-  part of Digital Remedy. This company profile is maintained in the API Evangelist network; Digital Remedy
-  publishes no public developer API or documentation portal, but does operate a SOC 2 trust center.'
+description: AdReady is a digital advertising execution brand operated by Digital Remedy (formerly CPX Interactive
+  / CPXi). Digital Remedy runs an omnichannel advertising management platform - marketed as the Digital Remedy Platform
+  and historically as AdReady+ - for independent agencies, brands and media companies, covering media planning,
+  RFPs, insertion-order and line-item management, programmatic / CTV / DOOH / social execution, pixel-based attribution
+  (Flip), incrementality and brand-lift measurement, white-label reporting and a RemyAI assistant, on top of 100+
+  martech integrations and 300+ inventory and data sources. AdReady originated as a Seattle self-serve ad-building
+  tool and was acquired by CPXi in 2013; the brand and platform are today part of Digital Remedy, which has since
+  combined with Compulse. The platform is powered by an internally-named Kickstart API - a Spring Boot / springdoc
+  REST service whose OpenAPI 3.1 description is served anonymously at platform.digitalremedy.com/v3/api-docs with
+  a browsable Swagger UI - but Digital Remedy publishes no public developer portal, no onboarding, and no partner
+  API documentation, and every business operation on that API is authenticated (HTTP 401 without a session JWT).
+  This company profile is independently maintained in the API Evangelist network.
 url: https://raw.githubusercontent.com/api-evangelist/adready-cpxi/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - bain-capital-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: live OpenAPI harvested from the production platform host
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-18'
+modified: '2026-08-12'
 tags:
 - Company
 - Commerce
@@ -37,13 +46,62 @@ tags:
 - Marketing
 - Programmatic
 - Media
-apis: []
+- Media Planning
+- Campaign Management
+- Attribution
+- Connected TV
+- Ad Operations
+- Measurement
+- Agencies
+apis:
+- name: Digital Remedy Platform (Kickstart) API
+  description: 'The REST API behind the Digital Remedy Platform / AdReady+ web application. 285 paths and 355 operations
+    covering accounts, organizations, agencies and advertisers; users and permissions; media plans, insertion orders,
+    line items and budget groups; rate cards, media publishers, publisher deals and segments; Flip attribution pixels
+    and dashboards; incrementality and performance reporting; App Console solution, brand, search, social and Converged
+    TV management; white-label domains; and embedded Tableau / ThoughtSpot analytics tokens. The OpenAPI 3.1 description
+    is served anonymously by springdoc at /v3/api-docs with a Swagger UI at /swagger-ui.html, but the API itself
+    is a private first-party application backend: it is not documented for third parties, has no published onboarding,
+    and every business operation returns HTTP 401 without a session JWT obtained from POST /api/auth/login.'
+  humanURL: https://platform.digitalremedy.com/swagger-ui.html
+  baseURL: https://platform.digitalremedy.com
+  tags:
+  - advertising
+  - adtech
+  - media-planning
+  - campaign-management
+  - insertion-orders
+  - line-items
+  - programmatic
+  - connected-tv
+  - attribution
+  - measurement
+  - reporting
+  - white-label
+  - agency-tools
+  properties:
+  - type: OpenAPI
+    url: openapi/adready-cpxi-kickstart-openapi.yml
+  - type: APIReference
+    url: https://platform.digitalremedy.com/swagger-ui.html
+  - type: Authentication
+    url: authentication/adready-cpxi-authentication.yml
+  - type: Conventions
+    url: conventions/adready-cpxi-conventions.yml
+  - type: DataModel
+    url: data-model/adready-cpxi-data-model.yml
+  - type: ErrorCatalog
+    url: errors/adready-cpxi-problem-types.yml
+  - type: Overlay
+    url: overlays/adready-cpxi-kickstart-overlay.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/adready-cpxi-agentic-access.yml
 - type: TrustCenter
   url: security/adready-cpxi-trust-center.yml
 - type: Compliance
@@ -60,8 +118,44 @@ common:
   url: https://www.digitalremedy.com/contact-us/
 - type: PrivacyPolicy
   url: https://www.digitalremedy.com/privacy-policy/
+- type: OpenAPI
+  url: openapi/adready-cpxi-kickstart-openapi.yml
+- type: APIReference
+  url: https://platform.digitalremedy.com/swagger-ui.html
+- type: Authentication
+  url: authentication/adready-cpxi-authentication.yml
+- type: Conventions
+  url: conventions/adready-cpxi-conventions.yml
+- type: ErrorCatalog
+  url: errors/adready-cpxi-problem-types.yml
+- type: DataModel
+  url: data-model/adready-cpxi-data-model.yml
+- type: Conformance
+  url: conformance/adready-cpxi-conformance.yml
+- type: Lifecycle
+  url: lifecycle/adready-cpxi-lifecycle.yml
+- type: ChangeLog
+  url: changelog/adready-cpxi-changelog.yml
+- type: Packages
+  url: packages/adready-cpxi-packages.yml
+- type: Plans
+  url: plans/adready-cpxi-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/adready-cpxi-rate-limits.yml
+- type: Overlay
+  url: overlays/adready-cpxi-kickstart-overlay.yaml
+- type: LLMsTxt
+  url: llms/adready-cpxi-llms.txt
+- type: AgentSkill
+  url: skills/_index.yml
+- type: TermsOfService
+  url: https://www.digitalremedy.com/terms-and-conditions/
+- type: About
+  url: https://www.digitalremedy.com/about/
 x-enrichment:
-  date: '2026-07-19'
-  status: backfilled
+  date: '2026-08-12'
+  status: enriched
+  artifacts_added: 22
   pass: local-v1
-  note: backfilled from .gitignore signal + verified work evidence
+  note: 'Contract discovery found a live OpenAPI 3.1 (285 paths / 355 operations) served anonymously at https://platform.digitalremedy.com/v3/api-docs
+    after the previous round recorded no API surface. Ownership verified: servers[0] names platform.digitalremedy.com.'

@@ -1,0 +1,52 @@
+generated: '2026-08-12'
+method: probed
+source: live GET probes on 2026-08-12
+note: >-
+  Every /.well-known/ path was probed on all three live hosts. Nothing was served. The two platform
+  hosts answer 401 on every /.well-known/* path because the application requires a session before it
+  will route anything outside a small anonymous allowlist; the marketing host answers a genuine 404.
+  No WellKnown or SecurityTxt pointer is wired into apis.yml, because no path returned a document.
+
+hosts:
+- host: https://platform.digitalremedy.com
+  role: API host (OpenAPI servers[0]) and platform login
+  documents:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+  - {path: /.well-known/oauth-authorization-server, status: 401}
+  - {path: /.well-known/oauth-protected-resource, status: 401}
+  - {path: /.well-known/api-catalog, status: 401}
+  - {path: /.well-known/ai-plugin.json, status: 401}
+  - {path: /.well-known/agent-card.json, status: 401}
+  - {path: /.well-known/agent.json, status: 401}
+- host: https://platform.adready.com
+  role: AdReady-branded alias of the same platform application
+  documents:
+  - {path: /.well-known/security.txt, status: 401}
+  - {path: /.well-known/openid-configuration, status: 401}
+  - {path: /.well-known/oauth-authorization-server, status: 401}
+  - {path: /.well-known/oauth-protected-resource, status: 401}
+  - {path: /.well-known/api-catalog, status: 401}
+  - {path: /.well-known/ai-plugin.json, status: 401}
+  - {path: /.well-known/agent-card.json, status: 401}
+  - {path: /.well-known/agent.json, status: 401}
+- host: https://www.digitalremedy.com
+  role: corporate marketing site (WordPress)
+  documents:
+  - {path: /.well-known/security.txt, status: 404}
+  - {path: /.well-known/openid-configuration, status: 404}
+  - {path: /.well-known/oauth-authorization-server, status: 404}
+  - {path: /.well-known/oauth-protected-resource, status: 404}
+  - {path: /.well-known/api-catalog, status: 404}
+  - {path: /.well-known/ai-plugin.json, status: 404}
+  - {path: /.well-known/agent-card.json, status: 404}
+  - {path: /.well-known/agent.json, status: 404}
+
+summary:
+  paths_probed: 24
+  documents_found: 0
+  security_txt: false
+  openid_configuration: false
+  oauth_authorization_server: false
+  api_catalog: false
+  agent_card: false

@@ -1,0 +1,79 @@
+generated: '2026-08-12'
+method: probed
+source: >-
+  Live probes of https://platform.digitalremedy.com/version and /api/version, the OpenAPI at
+  /v3/api-docs, and a sitemap-driven sweep of https://www.digitalremedy.com for versioning,
+  deprecation, SLA and status pages.
+
+versioning:
+  scheme: none
+  path_versioned: false
+  header_versioned: false
+  current: null
+  docs: null
+  note: >-
+    Paths are unversioned. The /v3 in /v3/api-docs is springdoc's own endpoint version, not an API
+    version. info.version in the description reads 1.0 while the running service reports 3.5.6, so the
+    published contract is not versioned in step with the deployed build.
+
+build:
+  probed: '2026-08-12'
+  endpoint: https://platform.digitalremedy.com/version
+  status: 200
+  application_version: 3.5.6
+  application_git_revision: 197f25b
+  api_component: kickstart-api
+  api_component_version: 3.5.6
+  api_component_git_revision: 19359bb
+  api_component_build_time: '2026-08-04T10:04:27Z'
+  build_jdk: '17'
+  note: >-
+    The API was built eight days before this probe. Whatever else is missing, this is an actively
+    maintained, currently-shipping service - not an abandoned surface.
+
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation policy, no RFC 8594 Sunset support and no Deprecation header appear in the
+    description or in observed responses. One operation is flagged deprecated in the spec with no
+    replacement named and no removal date.
+
+deprecated_operations:
+- operation: openapi/adready-cpxi-kickstart-openapi.yml#createOrder
+  path: /api/plans/{planId}/createOrder
+  method: post
+  replacement: not stated
+  sunset_date: not stated
+
+sla:
+  url: null
+  uptime_target: null
+  published: false
+
+status_page: null
+status_page_probes:
+- {url: 'https://status.digitalremedy.com/', status: 0, result: DNS does not resolve}
+- {url: 'https://www.digitalremedy.com/', status: 200, result: no status-page link in the sitemap or navigation}
+
+health:
+  endpoint: https://platform.digitalremedy.com/health-check
+  status: 200
+  body: 'server is up'
+  note: >-
+    An anonymous liveness endpoint exists, but it is a probe target rather than a published status
+    page - it reports no history, no incidents and no components. No StatusPage pointer is wired,
+    because the provider publishes no status page.
+
+changelog:
+  published: false
+  detail: changelog/adready-cpxi-changelog.yml
+
+gaps:
+- No versioning policy, so a consumer has no contract for how the 355 operations may change.
+- No deprecation policy and no Sunset/Deprecation header support.
+- No status page and no incident history.
+- No published SLA.
+- The one deprecated operation names neither a successor nor a removal date.

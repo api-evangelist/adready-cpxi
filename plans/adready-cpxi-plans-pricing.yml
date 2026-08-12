@@ -1,0 +1,27 @@
+generated: '2026-08-12'
+method: searched
+source: >-
+  https://www.digitalremedy.com/sitemap_index.xml and page-sitemap.xml (full page inventory),
+  https://www.digitalremedy.com/platform/, https://www.digitalremedy.com/contact-us/
+plan_count: 0
+plans: []
+
+pricing_model: contact-sales
+self_service_signup: false
+free_tier: false
+trial: false
+
+evidence:
+- {url: 'https://www.digitalremedy.com/pricing/', status: 404}
+- {url: 'https://www.digitalremedy.com/page-sitemap.xml', status: 200, result: 'no pricing, plans or
+    packages page listed among the 48 published pages'}
+- {url: 'https://www.digitalremedy.com/contact-us/', status: 200, result: contact form is the only
+    commercial entry point}
+- {url: 'https://platform.digitalremedy.com/', status: 200, result: login screen; no sign-up offered}
+
+note: >-
+  Digital Remedy publishes no pricing page, no plan tiers, no quotas and no overage terms anywhere on
+  its public site. The platform is sold through a sales conversation and access is provisioned by the
+  vendor - the API carries a sign-up-controller and password-provisioning operations, but no public
+  registration flow. Recorded as plan_count 0 deliberately rather than omitted: the absence of
+  published commercial terms is the measurement.

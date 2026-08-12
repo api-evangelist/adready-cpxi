@@ -1,0 +1,91 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Digital Remedy Platform (Kickstart) API
+  version: 1.0.0
+extends: openapi/adready-cpxi-kickstart-openapi.yml
+
+x-provenance:
+  generated: '2026-08-12'
+  method: generated
+  source: >-
+    Harvested from https://platform.digitalremedy.com/v3/api-docs on 2026-08-12 (HTTP 200,
+    application/json, OpenAPI 3.1.0). This overlay records API Evangelist annotations only; the
+    harvested description under openapi/_original/ is never mutated.
+  note: >-
+    Every action below either corrects a springdoc placeholder that names no real party, or records an
+    observed runtime fact the description omits. No operation, schema or parameter is invented.
+
+actions:
+- target: $.info
+  description: >-
+    Identify the API and its operator. The harvested info block carries springdoc's unset defaults -
+    title "Kickstart API", contact "Your Team" / support@example.com, and an Apache 2.0 license that
+    contradicts the fact that this is a closed first-party backend.
+  update:
+    x-apievangelist-provider: adready-cpxi
+    x-apievangelist-provider-name: AdReady (CPXi) / Digital Remedy
+    x-apievangelist-harvested-from: https://platform.digitalremedy.com/v3/api-docs
+    x-apievangelist-harvested-on: '2026-08-12'
+    x-apievangelist-note: >-
+      "Kickstart" is Digital Remedy's internal name for the platform web API; the same name appears in
+      the platform SPA build variable VITE_APP_KICKSTART_WEB_API_URL and in the component key
+      kickstart-api returned by GET /version.
+    x-apievangelist-running-version: 3.5.6
+    x-apievangelist-info-version-mismatch: >-
+      info.version reads 1.0 while GET /version reports 3.5.6 built 2026-08-04.
+    x-apievangelist-contact-placeholder: >-
+      info.contact (Your Team / support@example.com) and info.license (Apache 2.0) are springdoc
+      defaults, not Digital Remedy assertions. They name no third party and were not treated as
+      evidence of ownership.
+
+- target: $.servers
+  description: Record that two brand hosts serve the identical description.
+  update:
+    x-apievangelist-additional-hosts:
+    - https://platform.adready.com
+    x-apievangelist-host-note: >-
+      https://platform.adready.com/v3/api-docs returns a semantically identical document; both are the
+      same application under the AdReady and Digital Remedy brands. servers[0] names
+      platform.digitalremedy.com, which is how ownership was confirmed.
+
+- target: $
+  description: Record the security model the description omits entirely.
+  update:
+    x-apievangelist-security-note: >-
+      The description declares no components.securitySchemes and no security[] requirement, yet every
+      business path returns HTTP 401 without a session. Authentication is by session JWT from
+      POST /api/auth/login. See authentication/adready-cpxi-authentication.yml.
+    x-apievangelist-anonymous-paths:
+    - /version
+    - /api/version
+    - /health-check
+    - /api/theme
+    - /api/config
+    - /v3/api-docs
+    - /swagger-ui.html
+
+- target: $
+  description: Record the cross-cutting conventions an agent needs and the contract does not state.
+  update:
+    x-apievangelist-error-envelope: 'ApiResponse {status:int, message:string, result:T} - not RFC 9457'
+    x-apievangelist-pagination: 'offset-based: pageNumber, perPage, sortKey, sortOrder'
+    x-apievangelist-idempotency: not supported - no idempotency key anywhere in the description
+    x-apievangelist-rate-limit-signalling: none observed or declared; no 429 declared
+    x-apievangelist-conventions: conventions/adready-cpxi-conventions.yml
+
+- target: $.paths['/api/plans/{planId}/createOrder'].post
+  description: The one deprecated operation names no successor and no removal date.
+  update:
+    x-apievangelist-deprecation-note: >-
+      Flagged deprecated in the description with no replacement operation and no sunset date, and the
+      provider publishes no deprecation policy.
+
+- target: $.paths['/api/test/error'].get
+  description: Diagnostic endpoint left in the published description.
+  update:
+    x-apievangelist-note: Test endpoint that raises an error; not a consumer-facing operation.
+
+- target: $.paths['/throw_exception'].get
+  description: Diagnostic endpoint left in the published description.
+  update:
+    x-apievangelist-note: Test endpoint that raises an exception; not a consumer-facing operation.

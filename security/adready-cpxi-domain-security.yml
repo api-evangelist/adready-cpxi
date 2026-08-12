@@ -1,4 +1,4 @@
-generated: '2026-07-17'
+generated: '2026-08-12'
 method: probed
 source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
 hosts:
@@ -7,6 +7,12 @@ hosts:
   tls_version: TLSv1.3
   cert_expires: Oct 13 04:47:02 2026 GMT
   hsts: false
+- host: platform.digitalremedy.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  6 03:55:03 2026 GMT
+  hsts: true
+  hsts_max_age: 31536000
 domains:
 - domain: digitalremedy.com
   dnssec: false
