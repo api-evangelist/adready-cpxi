@@ -2,12 +2,13 @@ generated: '2026-08-12'
 method: derived
 status: candidate
 source: openapi/adready-cpxi-kickstart-openapi.yml
-note: 'Digital Remedy publishes no MCP server. Searched the docs surface, the npm registry and the public MCP registries
-  and found none, and no /.well-known/ discovery document is served on any host. This is a CANDIDATE tool list derived
-  from the 355-operation OpenAPI, not a published server: it is what an MCP server over this API could expose, and
-  every tool below inherits its real input contract from the named operation in the spec. Only the 98 operations
-  that carry a provider-written summary are listed - the remaining 257 have springdoc default operationIds with
-  no semantics, and naming tools after them would be guesswork.'
+note: 'Digital Remedy publishes no MCP server. Searched the docs surface, the npm registry and the public
+  MCP registries and found none, and no /.well-known/ discovery document is served on any host. This is
+  a CANDIDATE tool list derived from the 355-operation OpenAPI, not a published server: it is what an
+  MCP server over this API could expose, and every tool below inherits its real input contract from the
+  named operation in the spec. Only the 98 operations that carry a provider-written summary are listed
+  - the remaining 257 have springdoc default operationIds with no semantics, and naming tools after them
+  would be guesswork.'
 server:
   name: adready-cpxi
   transport: http
@@ -513,6 +514,12 @@ tools:
   method: GET
   path: /api/tableau/{advertiserId}/download/views/{viewId}/{type}
   source_operation: openapi/adready-cpxi-kickstart-openapi.yml#tableauReportDownload
-pointer_decision: 'No type: MCPServer pointer is wired into apis.yml. The mcp_server_present check asserts that
-  the PROVIDER operates an MCP server; Digital Remedy does not. Emitting the pointer for a derived candidate would
-  credit them with an agent surface they have not shipped.'
+pointer_decision: 'No type: MCPServer pointer is wired into apis.yml. The mcp_server_present check asserts
+  that the PROVIDER operates an MCP server; Digital Remedy does not. Emitting the pointer for a derived
+  candidate would credit them with an agent surface they have not shipped.'
+deployment:
+  mode: none
+  verified: derived
+  tools: 98
+  checked: '2026-08-12'
+  source: catalog MCP census
