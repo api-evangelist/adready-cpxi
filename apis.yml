@@ -51,6 +51,21 @@ tags:
 - Attribution
 - Connected TV
 - Ad Operations
+- Measurements
+- Agencies
+tags_raw:
+- Company
+- Commerce
+- Advertising
+- AdTech
+- Marketing
+- Programmatic
+- Media
+- Media Planning
+- Campaign Management
+- Attribution
+- Connected TV
+- Ad Operations
 - Measurement
 - Agencies
 apis:
@@ -66,6 +81,20 @@ apis:
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
+  - Advertising
+  - AdTech
+  - Media Planning
+  - Campaign Management
+  - Insertion Orders
+  - Line Items
+  - Programmatic
+  - Connected TV
+  - Attribution
+  - Measurements
+  - Reporting
+  - White Label
+  - agency-tools
+  tags_raw:
   - advertising
   - adtech
   - media-planning
