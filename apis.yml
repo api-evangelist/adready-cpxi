@@ -1086,6 +1086,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/adready-cpxi-capability-edges.yml
+  name: AdReady (CPXi) Business Capability Map
 - type: AgenticAccess
   url: agentic-access/adready-cpxi-agentic-access.yml
 - type: TrustCenter

@@ -1,0 +1,147 @@
+slug: adready-cpxi
+provider: AdReady (CPXi)
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 13
+edges:
+- tag: Flip Dashboard
+  spec_file: adready-cpxi-flip-dashboard-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.8
+  evidence: POST /api/advertisers/{advertiserId}/reports/performance  getPerformanceReport  Get performance
+    report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip; PUT .../brand_lift/campaigns/{blCampaignId}/launch  launchCampaign
+  reason: Operations manage tracking pixels, launch brand-lift campaigns and produce conversion/reach/frequency
+    and creative-publisher-channel performance reporting — squarely paid digital media campaign management
+    and measurement. Some overlap with market intelligence (brand lift) keeps it below 0.9.
+- tag: Social Solution
+  spec_file: adready-cpxi-social-solution-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.8
+  evidence: GET /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/top_performers  Get dimension-wise
+    top performing metrics for Social solution
+  reason: All operations return metrics and measurements for the Social advertising solution per advertiser
+    — social channel performance analytics, a core part of digital marketing management.
+- tag: user-controller
+  spec_file: adready-cpxi-user-controller-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: POST /api/users/{userId}/globalRoles/{roleId}  updateUserRoles; POST /api/users/{userId}/invite;
+    createPasswordResetUrl; schemas Role, Permission, UserRole
+  reason: User CRUD with role/permission assignment, invitations and password reset is identity and access
+    management.
+- tag: Performance
+  spec_file: adready-cpxi-performance-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.75
+  evidence: POST /api/advertisers/{advertiserId}/performance/daily  getDailyPerformance  Get daily CPM/CPA/ROAS/VCR/CTR
+    performance
+  reason: Returns core paid-media performance metrics (CPM, CPA, ROAS, VCR, CTR) per advertiser, which
+    is digital/paid media performance reporting. Single-operation surface limits certainty on the exact
+    sub-capability.
+- tag: line-items-controller
+  spec_file: adready-cpxi-line-items-controller-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.75
+  evidence: PUT /api/ios/{insertionOrderId}/lineItems/{lineItemId}/pushToXandr, POST .../calculateCpm,
+    schemas LineItemTargeting, Creative, LineItemDeviceTypes, TrackingPixelData
+  reason: CRUD and pricing of insertion-order line items with targeting, creatives and push to a programmatic
+    DSP (Xandr) — paid media / programmatic execution, i.e. digital marketing management.
+- tag: App Console
+  spec_file: adready-cpxi-app-console-api-openapi.yml
+  capability_id: BC-400.60
+  capability_id_l1: BC-400
+  capability_name: Digital Marketing Management
+  confidence: 0.7
+  evidence: GET /api/ac/advertisers/{advertiserId}/campaigns fetchCampaigns ... fetchCreatives ... fetchAudiences
+    ... fetchConversionPixels
+  reason: Retrieval of advertiser campaigns, ad groups, creatives, keywords, audiences and conversion
+    pixels — digital advertising campaign objects, i.e. digital marketing management. Confidence moderated
+    because these are read-only reference lookups.
+- tag: 'App Console: Brand'
+  spec_file: adready-cpxi-app-console-brand-api-openapi.yml
+  capability_id: BC-400.50
+  capability_id_l1: BC-400
+  capability_name: Marketing Operations Management
+  confidence: 0.7
+  evidence: getBrandPerformanceReport  Get dimension-wise measurements & metrics report for Performance
+    Brand solution
+  reason: Performance reporting, summaries and top-performer metrics for a brand advertising solution
+    — marketing measurement/analytics, which sits under Marketing Operations Management. Could arguably
+    be Brand Management but the operations are purely campaign performance metrics.
+- tag: 'App Console: Search'
+  spec_file: adready-cpxi-app-console-search-api-openapi.yml
+  capability_id: BC-400.50
+  capability_id_l1: BC-400
+  capability_name: Marketing Operations Management
+  confidence: 0.7
+  evidence: getSearchPerformanceReport  Get dimension-wise measurements & metrics report for Search solution
+  reason: Performance metrics, summaries and top performers for the paid Search advertising solution —
+    marketing campaign measurement and reporting, not site search.
+- tag: 'App Console: Social'
+  spec_file: adready-cpxi-app-console-social-api-openapi.yml
+  capability_id: BC-400.50
+  capability_id_l1: BC-400
+  capability_name: Marketing Operations Management
+  confidence: 0.7
+  evidence: getSocialPerformanceReport  Get dimension-wise measurements & metrics report for Social solution
+  reason: Reporting on measurements and metrics for the Social advertising solution — marketing performance
+    measurement within digital media buying.
+- tag: Incrementality
+  spec_file: adready-cpxi-incrementality-api-openapi.yml
+  capability_id: BC-400
+  capability_id_l1: BC-400
+  capability_name: Marketing Management
+  confidence: 0.7
+  evidence: GET /api/advertisers/{advertiserId}/incrementality/haloEffect  getIncrementalityHaloEffect  Get
+    Halo Effect data; schema IncrementalLiftData
+  reason: Measures incremental lift and halo effect of advertising exposure for an advertiser — advertising
+    effectiveness measurement within marketing management. Ambiguous between digital marketing measurement
+    and marketing operations measurement, so no L2 asserted.
+- tag: plans-controller
+  spec_file: adready-cpxi-plans-controller-api-openapi.yml
+  capability_id: BC-400
+  capability_id_l1: BC-400
+  capability_name: Marketing Management
+  confidence: 0.7
+  evidence: PUT /api/plans/{planId}/changeProductTypeAllocation, changeDisplayDeviceAllocation, changeTargetingLevel;
+    schemas Plan, TargetingTypeAllocation, ProductCategoryAllocation, SubmitOrder
+  reason: Media plan lifecycle with budget/channel/device allocation and targeting on an advertising platform
+    — clearly marketing management, but ambiguous between planning, marketing operations and digital media
+    sub-capabilities.
+- tag: rate-cards-controller
+  spec_file: adready-cpxi-rate-cards-controller-api-openapi.yml
+  capability_id: BC-440.20
+  capability_id_l1: BC-440
+  capability_name: Price List Management
+  confidence: 0.7
+  evidence: PUT /api/rateCards/{productTypeId} updateRateCard, GET /api/rateCards/{accountId} listRateCards,
+    schema RateCardItemDTO
+  reason: Maintenance of rate cards (price lists) per account and product type — price list management.
+- tag: tableau-controller
+  spec_file: adready-cpxi-tableau-controller-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.7
+  evidence: GET /api/tableau/{advertiserId}/download/views/{viewId}/{type}  Download Tableau report
+  reason: Operations expose Tableau BI views and report downloads to advertisers — analytics/BI delivery.
+    Generic embedded-reporting plumbing, so moderate confidence.
