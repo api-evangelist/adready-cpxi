@@ -87,6 +87,8 @@ apis:
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
+  - Account-Controller
+  tags_raw:
   - account-controller
   properties:
   - type: OpenAPI
@@ -107,6 +109,8 @@ apis:
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
+  - Advertiser
+  tags_raw:
   - advertiser
   properties:
   - type: OpenAPI
@@ -352,6 +356,8 @@ apis:
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
+  - App Console
+  tags_raw:
   - AppConsole
   properties:
   - type: OpenAPI
@@ -637,6 +643,8 @@ apis:
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
+  - Health Check
+  tags_raw:
   - health-check
   properties:
   - type: OpenAPI
