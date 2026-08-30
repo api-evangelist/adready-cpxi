@@ -1,0 +1,846 @@
+openapi: 3.2.0
+info:
+  title: 'Kickstart App Console: Report Template Management API'
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: 'App Console: Report Template Management'
+paths:
+  /api/ac/advertisers/{advertiserId}/reportTemplate/{reportTemplateId}:
+    get:
+      tags:
+      - 'App Console: Report Template Management'
+      operationId: get_7
+      parameters:
+      - name: reportTemplateId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseReportTemplate'
+    put:
+      tags:
+      - 'App Console: Report Template Management'
+      operationId: update_12
+      parameters:
+      - name: reportTemplateId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportTemplate'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseReportTemplate'
+    delete:
+      tags:
+      - 'App Console: Report Template Management'
+      operationId: delete_9
+      parameters:
+      - name: reportTemplateId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseReportTemplate'
+  /api/ac/advertisers/{advertiserId}/reportTemplate:
+    post:
+      tags:
+      - 'App Console: Report Template Management'
+      operationId: create_15
+      parameters:
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportTemplate'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseReportTemplate'
+  /api/ac/advertisers/{advertiserId}/reportTemplate/run:
+    post:
+      tags:
+      - 'App Console: Report Template Management'
+      operationId: run
+      parameters:
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseReportResponse'
+  /api/ac/advertisers/{advertiserId}/reportTemplate/preset/run:
+    post:
+      tags:
+      - 'App Console: Report Template Management'
+      operationId: queryTemplate
+      parameters:
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePresetTemplateResult'
+  /api/ac/advertisers/{advertiserId}/reportTemplate/{reportTemplateId}/reportGenerationLogs:
+    get:
+      tags:
+      - 'App Console: Report Template Management'
+      operationId: getReportGenerationLogs
+      parameters:
+      - name: reportTemplateId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 5
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageResponseReportGenerationLog'
+  /api/ac/advertisers/{advertiserId}/reportTemplate/getUserSavedReports:
+    get:
+      tags:
+      - 'App Console: Report Template Management'
+      operationId: getReportTemplateByUserId
+      parameters:
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListReportTemplateResponseDto'
+components:
+  schemas:
+    ReportFilter:
+      type: object
+      properties:
+        adGroups:
+          type: array
+          items:
+            type: string
+        audiences:
+          type: array
+          items:
+            type: string
+        campaignIds:
+          type: array
+          items:
+            type: string
+        conversionWindow:
+          type: integer
+          format: int32
+        conversionWindowUnit:
+          type: string
+          enum:
+          - DAYS
+          - HOURS
+        creatives:
+          type: array
+          items:
+            type: string
+        dateRangeType:
+          type: string
+          enum:
+          - CUSTOM
+          - LAST_7_DAYS
+          - LAST_2_WEEKS
+          - LAST_30_DAYS
+          - CAMPAIGN_TO_DATE
+        dimensions:
+          type: array
+          items:
+            type: string
+        endDate:
+          type: string
+        interval:
+          type: string
+          enum:
+          - CUMULATIVE
+          - DAY
+          - HOURLY
+        keywords:
+          type: array
+          items:
+            type: string
+        mediaTypes:
+          type: array
+          items:
+            type: string
+        methodology:
+          type: string
+          enum:
+          - LAST_TOUCH
+          - FIRST_TOUCH
+          - LINEAR
+          - TIME_DECAY
+        pixelIds:
+          type: array
+          items:
+            type: string
+        presetTemplateName:
+          type: string
+        publisher:
+          type: array
+          items:
+            type: string
+        reportMetrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportMetrics'
+        showUniques:
+          type: boolean
+        startDate:
+          type: string
+    ReportTemplateResponseDto:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        advertiserId:
+          type: integer
+          format: int32
+        createdBy:
+          type: string
+        createdByUserEmail:
+          type: string
+        createdByUserName:
+          type: string
+        emailTo:
+          type: string
+        filters:
+          $ref: '#/components/schemas/ReportFilter'
+        id:
+          type: integer
+          format: int32
+        lastRunDate:
+          type: string
+          format: date
+        lastRunStatus:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - PROCESSING
+        name:
+          type: string
+        nextRunDate:
+          type: string
+          format: date
+        schedule:
+          type: string
+        scheduleEndDate:
+          type: string
+          format: date
+        scheduleStartDate:
+          type: string
+          format: date
+        scheduleStatus:
+          type: string
+    PresetTemplateResult:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: {}
+        total:
+          type: integer
+          format: int32
+        headers:
+          type: array
+          items:
+            type: string
+        firstAttemptFailed:
+          type: boolean
+    ApiResponsePageResponseReportGenerationLog:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageResponseReportGenerationLog'
+    PageResponseReportGenerationLog:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportGenerationLog'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    ReportResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportData'
+        total:
+          type: integer
+          format: int32
+    ApiResponseReportResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ReportResponse'
+    ApiResponsePresetTemplateResult:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PresetTemplateResult'
+    ReportRequest:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        advertiserId:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        emailTo:
+          type: string
+        filters:
+          $ref: '#/components/schemas/ReportFilter'
+        id:
+          type: integer
+          format: int32
+        lastRunDate:
+          type: string
+          format: date
+        lastRunStatus:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - PROCESSING
+        name:
+          type: string
+        nextRunDate:
+          type: string
+          format: date
+        schedule:
+          type: string
+          enum:
+          - WEEKLY
+          - BI_WEEKLY
+          - MONTHLY
+          - MONTH_END
+        scheduleEndDate:
+          type: string
+          format: date
+        scheduleStartDate:
+          type: string
+          format: date
+        scheduleStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        runNow:
+          type: boolean
+        export:
+          type: boolean
+        email:
+          type: boolean
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        orderBy:
+          type: string
+        orderByDirection:
+          type: string
+        totalRecordLimit:
+          type: integer
+          format: int32
+    ApiResponseReportTemplate:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ReportTemplate'
+    ApiResponseListReportTemplateResponseDto:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportTemplateResponseDto'
+    ReportMetrics:
+      type: object
+      properties:
+        event:
+          type: boolean
+        metrics:
+          type: string
+        subCategory:
+          type: array
+          items:
+            type: string
+    ReportTemplate:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        advertiserId:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        emailTo:
+          type: string
+        filters:
+          $ref: '#/components/schemas/ReportFilter'
+        id:
+          type: integer
+          format: int32
+        lastRunDate:
+          type: string
+          format: date
+        lastRunStatus:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - PROCESSING
+        name:
+          type: string
+        nextRunDate:
+          type: string
+          format: date
+        schedule:
+          type: string
+          enum:
+          - WEEKLY
+          - BI_WEEKLY
+          - MONTHLY
+          - MONTH_END
+        scheduleEndDate:
+          type: string
+          format: date
+        scheduleStartDate:
+          type: string
+          format: date
+        scheduleStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    ReportData:
+      type: object
+      properties:
+        overAll:
+          type: string
+        mediaType:
+          type: string
+        creative:
+          type: string
+        publisher:
+          type: string
+        channel:
+          type: string
+        placement:
+          type: string
+        audience:
+          type: string
+        adGroup:
+          type: string
+        deviceType:
+          type: string
+        state:
+          type: string
+        dma:
+          type: string
+        zipCode:
+          type: string
+        day:
+          type: string
+        dayPart:
+          type: string
+        spend:
+          type: number
+          format: double
+        impressions:
+          type: number
+          format: double
+        clicks:
+          type: number
+          format: double
+        cpm:
+          type: number
+          format: double
+        cpc:
+          type: number
+          format: double
+        ctr:
+          type: number
+          format: double
+        completions:
+          type: number
+          format: double
+        vcr:
+          type: number
+          format: double
+        reach:
+          type: integer
+          format: int64
+        frequency:
+          type: number
+          format: double
+        lead:
+          type: number
+          format: double
+        leadConversionRate:
+          type: number
+          format: double
+        leadCpa:
+          type: number
+          format: double
+        leadPm:
+          type: number
+          format: double
+        leadTimeToConvert:
+          type: number
+          format: double
+        leadTotalExposures:
+          type: number
+          format: double
+        activity:
+          type: number
+          format: double
+        activityConversionRate:
+          type: number
+          format: double
+        activityCpa:
+          type: number
+          format: double
+        activityPm:
+          type: number
+          format: double
+        activityTimeToConvert:
+          type: number
+          format: double
+        activityTotalExposures:
+          type: number
+          format: double
+        checkout:
+          type: number
+          format: double
+        checkoutConversionRate:
+          type: number
+          format: double
+        checkoutCpa:
+          type: number
+          format: double
+        checkoutPm:
+          type: number
+          format: double
+        checkoutTimeToConvert:
+          type: number
+          format: double
+        checkoutTotalExposures:
+          type: number
+          format: double
+        pageVisit:
+          type: number
+          format: double
+        pageVisitConversionRate:
+          type: number
+          format: double
+        pageVisitCpa:
+          type: number
+          format: double
+        pageVisitPm:
+          type: number
+          format: double
+        pageVisitTimeToConvert:
+          type: number
+          format: double
+        pageVisitTotalExposures:
+          type: number
+          format: double
+        locationVisit:
+          type: number
+          format: double
+        locationVisitConversionRate:
+          type: number
+          format: double
+        locationVisitCpa:
+          type: number
+          format: double
+        locationVisitPm:
+          type: number
+          format: double
+        locationVisitTimeToConvert:
+          type: number
+          format: double
+        locationVisitTotalExposures:
+          type: number
+          format: double
+        revenue:
+          type: number
+          format: double
+        roas:
+          type: number
+          format: double
+    ReportGenerationLog:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        reportTemplateId:
+          type: integer
+          format: int32
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - PROCESSING
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        url:
+          type: string

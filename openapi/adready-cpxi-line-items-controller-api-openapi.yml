@@ -1,0 +1,1277 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Line Items Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: line-items-controller
+paths:
+  /api/ios/{insertionOrderId}/lineItems/{lineItemId}:
+    put:
+      tags:
+      - line-items-controller
+      operationId: update_6
+      parameters:
+      - name: insertionOrderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LineItem'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLineItem'
+    delete:
+      tags:
+      - line-items-controller
+      operationId: delete_6
+      parameters:
+      - name: insertionOrderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLineItem'
+  /api/ios/{insertionOrderId}/lineItems/{lineItemId}/updateFlag:
+    put:
+      tags:
+      - line-items-controller
+      operationId: updateFlag_1
+      parameters:
+      - name: insertionOrderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LineItem'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseBoolean'
+  /api/ios/{insertionOrderId}/lineItems/{lineItemId}/pushToXandr:
+    put:
+      tags:
+      - line-items-controller
+      operationId: pushToXandr
+      parameters:
+      - name: insertionOrderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLineItem'
+  /api/ios/{lineItemId}/sendEmailNotification:
+    post:
+      tags:
+      - line-items-controller
+      operationId: emailNotification_1
+      parameters:
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailNotification'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLineItem'
+  /api/ios/{lineItemId}/customEmailNotification:
+    post:
+      tags:
+      - line-items-controller
+      operationId: customEmailNotification
+      parameters:
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailNotification'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLineItem'
+  /api/ios/{insertionOrderId}/{lineItemId}/sendResubmitEmailNotification:
+    post:
+      tags:
+      - line-items-controller
+      operationId: sendResubmitEmailNotification
+      parameters:
+      - name: insertionOrderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLineItem'
+  /api/ios/{insertionOrderId}/lineItems:
+    get:
+      tags:
+      - line-items-controller
+      operationId: index
+      parameters:
+      - name: insertionOrderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageResponseLineItem'
+    post:
+      tags:
+      - line-items-controller
+      operationId: create_8
+      parameters:
+      - name: insertionOrderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LineItem'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLineItem'
+  /api/ios/{insertionOrderId}/lineItems/{lineItemId}/calculatePriceSpend:
+    post:
+      tags:
+      - line-items-controller
+      operationId: calculatePriceSpend
+      parameters:
+      - name: insertionOrderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LineItem'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLineItem'
+  /api/ios/{insertionOrderId}/lineItems/{lineItemId}/calculateCpm:
+    post:
+      tags:
+      - line-items-controller
+      operationId: calculateCpm
+      parameters:
+      - name: insertionOrderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LineItem'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLineItem'
+  /api/ios/{advertiserId}/msdp/lineItemNamesData:
+    get:
+      tags:
+      - line-items-controller
+      operationId: lineItemNamesDataFromBQ
+      parameters:
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: planIds
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LineItemNameResponse'
+  /api/ios/{advertiserId}/lineItemNamesData:
+    get:
+      tags:
+      - line-items-controller
+      operationId: lineItemNamesData
+      parameters:
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: planIds
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: ioNames
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: includeNonFlip
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LineItemNameResponse'
+  /api/ios/workflowStatusCount:
+    get:
+      tags:
+      - line-items-controller
+      operationId: workflowStatusCount
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowStats'
+  /api/ios/plan/workflowStatsCount:
+    get:
+      tags:
+      - line-items-controller
+      operationId: workflowStatsCount
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowStats'
+  /api/ios/plan/lineItemStatusCount:
+    get:
+      tags:
+      - line-items-controller
+      operationId: lineItemStatusCount
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: advertiserId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: isFlip
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowStats'
+  /api/ios/plan/lineItemStatusCountForPlans:
+    get:
+      tags:
+      - line-items-controller
+      operationId: lineItemStatusCountForPlans
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: advertiserId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: isFlip
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/WorkflowStats'
+  /api/ios/lineItems:
+    get:
+      tags:
+      - line-items-controller
+      operationId: getAll_7
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: crFilter
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageResponseLineItem'
+  /api/ios/lineItem/{lineItemId}:
+    get:
+      tags:
+      - line-items-controller
+      operationId: getLineItem
+      parameters:
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLineItem'
+components:
+  schemas:
+    LineItemTargeting:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        targetableElementId:
+          type: integer
+          format: int32
+        value: {}
+    LineItemData:
+      type: object
+      properties:
+        adreadyId:
+          type: string
+        flightStartDate:
+          type: string
+    ApiResponseBoolean:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: boolean
+    CompanionAsset:
+      type: object
+      properties:
+        adTagCode:
+          type: string
+        assetType:
+          type: string
+          enum:
+          - image
+          - ad_tag
+          - facebook
+          - twitter
+          - pinterest
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        landingPageURL:
+          type: string
+        location:
+          type: string
+          enum:
+          - top
+          - bottom
+          - top_mobile
+          - bottom_mobile
+          - right_rail
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    PageResponseLineItem:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    LineItemVendors:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        vendorId:
+          type: integer
+          format: int32
+    LineItem:
+      type: object
+      properties:
+        adreadyId:
+          type: string
+        assignedTo:
+          type: integer
+          format: int32
+        audienceName:
+          type: string
+        billingType:
+          type: string
+          enum:
+          - FIRST_PARTY
+          - THIRD_PARTY
+          - THIRD_PARTY_FLASHTALKING
+          - THIRD_PARTY_SIZMEK
+          - THIRD_PARTY_INNOVID
+          - THIRD_PARTY_OTHERS
+        budgetGroup:
+          $ref: '#/components/schemas/BudgetGroup'
+        budgetGroupId:
+          type: integer
+          format: int32
+        contactUserId:
+          type: integer
+          format: int32
+        crLineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          uniqueItems: true
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        creatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/Creative'
+          uniqueItems: true
+        customUserId:
+          type: integer
+          format: int32
+        dayParting: {}
+        deletedAt:
+          type: string
+          format: date-time
+        deviceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemDeviceTypes'
+          uniqueItems: true
+        externalName:
+          type: string
+        externalSourceId:
+          type: integer
+          format: int32
+        fixCpm:
+          type: number
+        flag:
+          type: boolean
+        flagId:
+          type: integer
+          format: int32
+        flightEndDate:
+          type: string
+          format: date-time
+        flightStartDate:
+          type: string
+          format: date-time
+        flip:
+          type: boolean
+        frequencyRecency: {}
+        goalMetric:
+          type: number
+          format: double
+        id:
+          type: integer
+          format: int32
+        impressions:
+          type: integer
+          format: int32
+        incrementality:
+          type: boolean
+        kpis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Kpi'
+          uniqueItems: true
+        lineItemBudget:
+          type: number
+        lucid:
+          type: boolean
+        managementFeeOnly:
+          type: boolean
+        markup:
+          type: number
+        mediaSpend:
+          type: number
+        name:
+          type: string
+        note:
+          $ref: '#/components/schemas/Note'
+        pace:
+          type: number
+          format: double
+        parentId:
+          type: integer
+          format: int32
+        planId:
+          type: integer
+          format: int32
+        price:
+          type: number
+        pricingType:
+          type: string
+          enum:
+          - CPM
+          - COST_PLUS
+          - FIXED_MARGIN
+          - ADDED_VALUE
+          - CPA
+        productCategoryId:
+          type: integer
+          format: int32
+        productTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemProductType'
+          uniqueItems: true
+        qa: {}
+        retargetingNotes:
+          type: string
+        siteRetargeting:
+          type: boolean
+        spend:
+          type: number
+          format: double
+        statusId:
+          type: integer
+          format: int32
+        tagsTrackers:
+          type: boolean
+        targetings:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemTargeting'
+          uniqueItems: true
+        taskTypeId:
+          type: integer
+          format: int32
+        trackingPixels:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackingPixelData'
+          uniqueItems: true
+        type:
+          type: string
+          enum:
+          - LINE
+          - FLIGHT
+          - CHANGE
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        vendors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemVendors'
+          uniqueItems: true
+        workflowId:
+          type: integer
+          format: int32
+        xandrLineItemId:
+          type: integer
+          format: int32
+    Headline:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        value:
+          type: string
+    LineItemProductType:
+      type: object
+      properties:
+        categoryPath:
+          type: string
+        goalId:
+          type: integer
+          format: int32
+        googleAdAccount:
+          type: string
+        id:
+          type: integer
+          format: int32
+        placementType:
+          type: string
+        productTypeId:
+          type: integer
+          format: int32
+        productTypes:
+          type: array
+          items:
+            type: string
+    ApiResponsePageResponseLineItem:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageResponseLineItem'
+    WorkflowStats:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        parentId:
+          type: integer
+          format: int32
+        planId:
+          type: integer
+          format: int32
+        type:
+          type: string
+    Creative:
+      type: object
+      properties:
+        addCloseCaptioning:
+          type: boolean
+        bodyText:
+          type: string
+        brandName:
+          type: string
+        businessName:
+          type: string
+        callToAction:
+          type: string
+        clickThroughURL:
+          type: string
+        companionAsset:
+          type: boolean
+        companionAssets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanionAsset'
+          uniqueItems: true
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        creativeEndDate:
+          type: string
+          format: date-time
+        creativeStartDate:
+          type: string
+          format: date-time
+        creativeType:
+          type: string
+          enum:
+          - normal
+          - search
+          - social
+          - pay_per_call
+          - url_only
+          - native_display
+          - native_video
+          - native_article
+          - youtube_bumper_video
+          - youtube_nonskippable_video
+          - social_tiktok
+          - social_snapchat
+        cta:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        description1:
+          type: string
+        description2:
+          type: string
+        displayPath1:
+          type: string
+        displayPath2:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        headline1:
+          type: string
+        headline2:
+          type: string
+        headline3:
+          type: string
+        headlines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Headline'
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        percentOfRetargetingBudget:
+          type: number
+          format: double
+        phoneNumber:
+          type: string
+        previewText:
+          type: string
+        socialUrl:
+          type: string
+        trueView:
+          type: boolean
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    Note:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        id:
+          type: integer
+          format: int32
+        value:
+          type: string
+    Kpi:
+      type: object
+      properties:
+        benchmark:
+          type: number
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        kpiId:
+          type: integer
+          format: int32
+        notes:
+          type: string
+        value:
+          type: string
+    BudgetGroup:
+      type: object
+      properties:
+        budget:
+          type: number
+        budgetGroupId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        markup:
+          type: number
+        planId:
+          type: integer
+          format: int32
+    FileData:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        path:
+          type: string
+        size:
+          type: integer
+          format: int32
+        type:
+          type: string
+          enum:
+          - UPLOAD
+          - LINK
+          - ARTICLE_UPLOAD
+          - ARTICLE_LINK
+          - COMPANION_ASSET_UPLOAD
+          - COMPANION_ASSET_LINK
+          - CLOSED_CAPTIONING_UPLOAD
+          - ADVERTISER_LOGO
+          - IO_ATTACHMENT
+          - NOTES
+          - CREATIVE
+          - ARTICLE_CREATIVE
+          - COMPANION_ASSET
+          - CLOSED_CAPTIONING
+          - TRACKING_PIXEL
+          - ORGANIZATION_LOGO
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    LineItemDeviceTypes:
+      type: object
+      properties:
+        deletedAt:
+          type: string
+          format: date-time
+        deviceTypeId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+    LineItemNameResponse:
+      type: object
+      properties:
+        lineItemName:
+          type: string
+        liData:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemData'
+    TrackingPixelData:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        id:
+          type: integer
+          format: int32
+        idKey:
+          type: integer
+          format: int32
+        name:
+          type: string
+        value:
+          type: string
+    ApiResponseLineItem:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/LineItem'
+    EmailNotification:
+      type: object
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+        changeTypes:
+          type: array
+          items:
+            type: string
+        notes:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        emailSubject:
+          type: string
+        category:
+          type: string
+          enum:
+          - SUBMIT
+          - CR_SUBMIT
+          - CR_SUBMIT_PENDING
+          - RESUBMIT
+          - LI_DISAPPROVED
+          - LI_READY_FOR_ACTIVATION
+          - LI_ACTIVATED
+          - LI_CAMPAIGN_LIVE
+          - LI_PAUSED
+          - LI_CANCELED
+          - LI_CHANGE_READY
+          - LI_CHANGE_APPLIED
+        emailSource:
+          type: string

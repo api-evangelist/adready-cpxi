@@ -1,0 +1,212 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Pixel Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: pixel-controller
+paths:
+  /api/pixels:
+    get:
+      tags:
+      - pixel-controller
+      operationId: getAll_2
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListPixel'
+    post:
+      tags:
+      - pixel-controller
+      operationId: create_4
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PixelDTO'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePixel'
+  /api/pixels/{pixelId}:
+    get:
+      tags:
+      - pixel-controller
+      operationId: get_8
+      parameters:
+      - name: pixelId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePixel'
+  /api/pixels/advertiser/{advertiserId}:
+    get:
+      tags:
+      - pixel-controller
+      operationId: getAllByAdvertiser
+      parameters:
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListPixel'
+components:
+  schemas:
+    Pixel:
+      type: object
+      properties:
+        active:
+          type: boolean
+        advertiserId:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        triggerType:
+          type: string
+        type:
+          type: string
+          enum:
+          - CONVERSION
+          - SEGMENT
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        xandrPixelId:
+          type: integer
+          format: int32
+    ApiResponseListPixel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pixel'
+    ApiResponsePixel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/Pixel'
+    PixelDTO:
+      type: object
+      properties:
+        active:
+          type: boolean
+        advertiserId:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        triggerType:
+          type: string
+        type:
+          type: string
+          enum:
+          - CONVERSION
+          - SEGMENT
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        xandrPixelId:
+          type: integer
+          format: int32
+        advisrAdvertiserId:
+          type: integer
+          format: int32
+        advisrAdvertiserName:
+          type: string
+        adreadyAccountId:
+          type: integer
+          format: int32

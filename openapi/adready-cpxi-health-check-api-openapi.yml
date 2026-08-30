@@ -1,0 +1,35 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Health Check API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: health-check
+paths:
+  /health-check:
+    get:
+      tags:
+      - health-check
+      operationId: getHealthCheckPage
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string

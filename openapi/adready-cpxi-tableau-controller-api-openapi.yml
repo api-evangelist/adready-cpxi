@@ -1,0 +1,108 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Tableau Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: tableau-controller
+paths:
+  /api/tableau/{advertiserId}/download/views/{viewId}/{type}:
+    get:
+      tags:
+      - tableau-controller
+      summary: Download Tableau report
+      description: Downloads a Tableau report for the given advertiser, view, and type
+      operationId: tableauReportDownload
+      parameters:
+      - name: advertiserId
+        in: path
+        description: Advertiser ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+        example: 123
+      - name: viewId
+        in: path
+        description: View ID
+        required: true
+        schema:
+          type: string
+        example: my-dashboard-id
+      - name: type
+        in: path
+        description: Report type (e.g., pdf, png)
+        required: true
+        schema:
+          type: string
+        example: pdf
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Report downloaded successfully
+        '500':
+          description: Error while generating the report
+  /api/tableau/views/{advertiserId}:
+    get:
+      tags:
+      - tableau-controller
+      operationId: tableauViews
+      parameters:
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListTableauView'
+components:
+  schemas:
+    ApiResponseListTableauView:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TableauView'
+    TableauView:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+        createdAt:
+          type: string
+        id:
+          type: string

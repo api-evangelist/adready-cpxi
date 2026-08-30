@@ -1,0 +1,2980 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Dmm Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: dmm-controller
+paths:
+  /api/dmm/campaign/{campaignId}/package/{packageId}/ioMarketFeedRaw:
+    get:
+      tags:
+      - dmm-controller
+      summary: getIoMarketFeedRawByCampaignIdAndPackageId
+      operationId: findAllIoMarketFeedRawByCampaignIdPackageId
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: packageId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DmmIoMarketsFeedRaw'
+  /api/dmm/campaign/{campaignId}/package/{packageId}/ioMarketFeedRawHistory:
+    get:
+      tags:
+      - dmm-controller
+      summary: getIoMarketFeedRawHistoryByCampaignIdAndPackageId
+      operationId: findAllIoMarketFeedRawHistoryByCampaignIdPackageId
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: packageId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DmmIoMarketsFeedRawHistory'
+  /api/dmm/campaign/{campaignId}/marketGroupsFeedRaw:
+    get:
+      tags:
+      - dmm-controller
+      summary: getMarketGroupsFeedRawByCampaignId
+      operationId: findAllMarketGroupsFeedRawByCampaignId
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DmmIoMarketGroupsFeedRaw'
+  /api/dmm/campaign/{campaignId}/marketGroupsFeedRawHistory:
+    get:
+      tags:
+      - dmm-controller
+      summary: getMarketGroupsFeedRawHistoryByCampaignId
+      operationId: findAllMarketGroupsFeedRawHistoryByCampaignId
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DmmIoMarketGroupsFeedRawHistory'
+  /api/dmm/campaign/{campaignId}/ioSiteListFeedRaw:
+    get:
+      tags:
+      - dmm-controller
+      summary: getIoSiteListFeedRawByCampaignId
+      operationId: findAllIoSiteListFeedRawByCampaignId
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DmmIoSiteListFeedRaw'
+  /api/dmm/campaign/{campaignId}/ioSiteListFeedRawHistory:
+    get:
+      tags:
+      - dmm-controller
+      summary: getIoSiteListFeedRawHistoryByCampaignId
+      operationId: findAllIoSiteListFeedRawHistoryByCampaignId
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DmmIoSiteListFeedRawHistory'
+  /api/dmm/campaign/{campaignId}/ioKeywordListFeedRaw:
+    get:
+      tags:
+      - dmm-controller
+      summary: getIoKeywordListFeedRawByCampaignId
+      operationId: findAllIoKeywordListFeedRawByCampaignId
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DmmIoKeywordListFeedRaw'
+  /api/dmm/campaign/{campaignId}/ioKeywordListFeedRawHistory:
+    get:
+      tags:
+      - dmm-controller
+      summary: getIoKeywordListFeedRawHistoryByCampaignId
+      operationId: findAllIoKeywordListFeedRawHistoryByCampaignId
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DmmIoKeywordListFeedRawHistory'
+  /api/dmm/campaign/{campaignId}/ioAudienceDefinitionFeedRaw:
+    get:
+      tags:
+      - dmm-controller
+      summary: getIoAudienceDefinitionFeedRawByCampaignId
+      operationId: findAllIoAudienceDefinitionFeedRawByCampaignId
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DmmIoAudienceDefinitionFeedRaw'
+  /api/dmm/campaign/{campaignId}/ioAudienceDefinitionFeedRawHistory:
+    get:
+      tags:
+      - dmm-controller
+      summary: getIoAudienceDefinitionFeedRawHistoryByCampaignId
+      operationId: findAllIoAudienceDefinitionFeedRawHistoryByCampaignId
+      parameters:
+      - name: campaignId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DmmIoAudienceDefinitionFeedRawHistory'
+  /api/dmm/placement:
+    get:
+      tags:
+      - dmm-controller
+      operationId: getPlacements
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRaw'
+    put:
+      tags:
+      - dmm-controller
+      operationId: getPlacements_2
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRaw'
+    post:
+      tags:
+      - dmm-controller
+      operationId: getPlacements_1
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRaw'
+    delete:
+      tags:
+      - dmm-controller
+      operationId: getPlacements_3
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRaw'
+    options:
+      tags:
+      - dmm-controller
+      operationId: getPlacements_6
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRaw'
+    head:
+      tags:
+      - dmm-controller
+      operationId: getPlacements_5
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRaw'
+    patch:
+      tags:
+      - dmm-controller
+      operationId: getPlacements_4
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRaw'
+  /api/dmm/placementHistory:
+    get:
+      tags:
+      - dmm-controller
+      operationId: getPlacementsHistory
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRawHistory'
+    put:
+      tags:
+      - dmm-controller
+      operationId: getPlacementsHistory_2
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRawHistory'
+    post:
+      tags:
+      - dmm-controller
+      operationId: getPlacementsHistory_1
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRawHistory'
+    delete:
+      tags:
+      - dmm-controller
+      operationId: getPlacementsHistory_3
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRawHistory'
+    options:
+      tags:
+      - dmm-controller
+      operationId: getPlacementsHistory_6
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRawHistory'
+    head:
+      tags:
+      - dmm-controller
+      operationId: getPlacementsHistory_5
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRawHistory'
+    patch:
+      tags:
+      - dmm-controller
+      operationId: getPlacementsHistory_4
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPlacementFeedRawHistory'
+  /api/dmm/package:
+    get:
+      tags:
+      - dmm-controller
+      operationId: getPackages
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRaw'
+    put:
+      tags:
+      - dmm-controller
+      operationId: getPackages_2
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRaw'
+    post:
+      tags:
+      - dmm-controller
+      operationId: getPackages_1
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRaw'
+    delete:
+      tags:
+      - dmm-controller
+      operationId: getPackages_3
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRaw'
+    options:
+      tags:
+      - dmm-controller
+      operationId: getPackages_6
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRaw'
+    head:
+      tags:
+      - dmm-controller
+      operationId: getPackages_5
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRaw'
+    patch:
+      tags:
+      - dmm-controller
+      operationId: getPackages_4
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRaw'
+  /api/dmm/packageHistory:
+    get:
+      tags:
+      - dmm-controller
+      operationId: getPackagesHistory
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRawHistory'
+    put:
+      tags:
+      - dmm-controller
+      operationId: getPackagesHistory_2
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRawHistory'
+    post:
+      tags:
+      - dmm-controller
+      operationId: getPackagesHistory_1
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRawHistory'
+    delete:
+      tags:
+      - dmm-controller
+      operationId: getPackagesHistory_3
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRawHistory'
+    options:
+      tags:
+      - dmm-controller
+      operationId: getPackagesHistory_6
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRawHistory'
+    head:
+      tags:
+      - dmm-controller
+      operationId: getPackagesHistory_5
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRawHistory'
+    patch:
+      tags:
+      - dmm-controller
+      operationId: getPackagesHistory_4
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoPackageFeedRawHistory'
+  /api/dmm/campaign:
+    get:
+      tags:
+      - dmm-controller
+      operationId: getCampaigns
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRaw'
+    put:
+      tags:
+      - dmm-controller
+      operationId: getCampaigns_2
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRaw'
+    post:
+      tags:
+      - dmm-controller
+      operationId: getCampaigns_1
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRaw'
+    delete:
+      tags:
+      - dmm-controller
+      operationId: getCampaigns_3
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRaw'
+    options:
+      tags:
+      - dmm-controller
+      operationId: getCampaigns_6
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRaw'
+    head:
+      tags:
+      - dmm-controller
+      operationId: getCampaigns_5
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRaw'
+    patch:
+      tags:
+      - dmm-controller
+      operationId: getCampaigns_4
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRaw'
+  /api/dmm/campaignHistory:
+    get:
+      tags:
+      - dmm-controller
+      operationId: getCampaignsHistory
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRawHistory'
+    put:
+      tags:
+      - dmm-controller
+      operationId: getCampaignsHistory_2
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRawHistory'
+    post:
+      tags:
+      - dmm-controller
+      operationId: getCampaignsHistory_1
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRawHistory'
+    delete:
+      tags:
+      - dmm-controller
+      operationId: getCampaignsHistory_3
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRawHistory'
+    options:
+      tags:
+      - dmm-controller
+      operationId: getCampaignsHistory_6
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRawHistory'
+    head:
+      tags:
+      - dmm-controller
+      operationId: getCampaignsHistory_5
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRawHistory'
+    patch:
+      tags:
+      - dmm-controller
+      operationId: getCampaignsHistory_4
+      parameters:
+      - name: q
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageDmmIoCampaignFeedRawHistory'
+components:
+  schemas:
+    DmmIoAudienceDefinitionFeedRaw:
+      type: object
+      properties:
+        audienceDefinitionName:
+          type: string
+        campaignId:
+          type: integer
+          format: int32
+        header1:
+          type: string
+        header2:
+          type: string
+        header3:
+          type: string
+        header4:
+          type: string
+        header5:
+          type: string
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        rowNum:
+          type: integer
+          format: int32
+        updatedOn:
+          type: string
+          format: date-time
+        value1:
+          type: string
+        value2:
+          type: string
+        value3:
+          type: string
+        value4:
+          type: string
+        value5:
+          type: string
+    PageableObject:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        paged:
+          type: boolean
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
+    ApiResponsePageDmmIoPackageFeedRawHistory:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageDmmIoPackageFeedRawHistory'
+    ApiResponsePageDmmIoPlacementFeedRaw:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageDmmIoPlacementFeedRaw'
+    ApiResponsePageDmmIoPackageFeedRaw:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageDmmIoPackageFeedRaw'
+    DmmIoAudienceDefinitionFeedRawHistory:
+      type: object
+      properties:
+        audienceDefinitionName:
+          type: string
+        campaignId:
+          type: integer
+          format: int32
+        header1:
+          type: string
+        header2:
+          type: string
+        header3:
+          type: string
+        header4:
+          type: string
+        header5:
+          type: string
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        rowNum:
+          type: integer
+          format: int32
+        updatedOn:
+          type: string
+          format: date-time
+        value1:
+          type: string
+        value2:
+          type: string
+        value3:
+          type: string
+        value4:
+          type: string
+        value5:
+          type: string
+    DmmIoKeywordListFeedRaw:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        keywordList:
+          type: string
+        keywordListName:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    PageDmmIoPlacementFeedRaw:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DmmIoPlacementFeedRaw'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    DmmIoPlacementFeedRawHistory:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        creativeExecution:
+          type: string
+        creativeId:
+          type: integer
+          format: int32
+        creativeName:
+          type: string
+        device:
+          type: string
+        id:
+          type: integer
+          format: int32
+        ioPlacementName:
+          type: string
+        ioPlacementSize:
+          type: string
+        packageId:
+          type: integer
+          format: int32
+        placementId:
+          type: integer
+          format: int32
+        updatedOn:
+          type: string
+          format: date-time
+    PageDmmIoCampaignFeedRaw:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DmmIoCampaignFeedRaw'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    ApiResponsePageDmmIoCampaignFeedRawHistory:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageDmmIoCampaignFeedRawHistory'
+    DmmIoCampaignFeedRaw:
+      type: object
+      properties:
+        advertiser:
+          type: string
+        campaignId:
+          type: integer
+          format: int32
+        cntAudienceDefination:
+          type: integer
+          format: int32
+        cntKeywordList:
+          type: integer
+          format: int32
+        cntMarketGroup:
+          type: integer
+          format: int32
+        cntSiteList:
+          type: integer
+          format: int32
+        contact:
+          type: string
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        ioDate:
+          type: string
+          format: date-time
+        ioEndDate:
+          type: string
+          format: date-time
+        ioStartDate:
+          type: string
+          format: date-time
+        ioStatus:
+          type: string
+        ioTotalCost:
+          type: number
+        ioTotalPackages:
+          type: integer
+          format: int32
+        ioTotalUnits:
+          type: integer
+          format: int32
+        mailingAddress:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    DmmIoSiteListFeedRawHistory:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        siteList:
+          type: string
+        siteListName:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    DmmIoPackageFeedRawHistory:
+      type: object
+      properties:
+        adServer:
+          type: string
+        campaignId:
+          type: integer
+          format: int32
+        cntMarketFeed:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioPackageCost:
+          type: number
+        ioPackageCostStructure:
+          type: string
+        ioPackageEndDate:
+          type: string
+          format: date-time
+        ioPackageMottoClientCost:
+          type: number
+        ioPackageMottoClientRate:
+          type: number
+        ioPackageNotes:
+          type: string
+        ioPackageRate:
+          type: number
+        ioPackageRevisionNotes:
+          type: string
+        ioPackageStartDate:
+          type: string
+          format: date-time
+        ioPackageUnits:
+          type: integer
+          format: int32
+        packageId:
+          type: integer
+          format: int32
+        packageName:
+          type: string
+        placementDetails:
+          type: string
+        targettingTactics:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    PageDmmIoPlacementFeedRawHistory:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DmmIoPlacementFeedRawHistory'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    DmmIoCampaignFeedRawHistory:
+      type: object
+      properties:
+        advertiser:
+          type: string
+        campaignId:
+          type: integer
+          format: int32
+        cntAudienceDefination:
+          type: integer
+          format: int32
+        cntKeywordList:
+          type: integer
+          format: int32
+        cntMarketGroup:
+          type: integer
+          format: int32
+        cntSiteList:
+          type: integer
+          format: int32
+        contact:
+          type: string
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        ioDate:
+          type: string
+          format: date-time
+        ioEndDate:
+          type: string
+          format: date-time
+        ioStartDate:
+          type: string
+          format: date-time
+        ioStatus:
+          type: string
+        ioTotalCost:
+          type: number
+        ioTotalPackages:
+          type: integer
+          format: int32
+        ioTotalUnits:
+          type: integer
+          format: int32
+        mailingAddress:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    SortObject:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+    DmmIoMarketsFeedRaw:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        markets:
+          type: string
+        packageId:
+          type: integer
+          format: int32
+        packageName:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    DmmIoPlacementFeedRaw:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        creativeExecution:
+          type: string
+        creativeId:
+          type: integer
+          format: int32
+        creativeName:
+          type: string
+        device:
+          type: string
+        id:
+          type: integer
+          format: int32
+        ioPlacementName:
+          type: string
+        ioPlacementSize:
+          type: string
+        packageId:
+          type: integer
+          format: int32
+        placementId:
+          type: integer
+          format: int32
+        updatedOn:
+          type: string
+          format: date-time
+    DmmIoMarketsFeedRawHistory:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        markets:
+          type: string
+        packageId:
+          type: integer
+          format: int32
+        packageName:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    DmmIoPackageFeedRaw:
+      type: object
+      properties:
+        adServer:
+          type: string
+        campaignId:
+          type: integer
+          format: int32
+        cntMarketFeed:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioPackageCost:
+          type: number
+        ioPackageCostStructure:
+          type: string
+        ioPackageEndDate:
+          type: string
+          format: date-time
+        ioPackageMottoClientCost:
+          type: number
+        ioPackageMottoClientRate:
+          type: number
+        ioPackageNotes:
+          type: string
+        ioPackageRate:
+          type: number
+        ioPackageRevisionNotes:
+          type: string
+        ioPackageStartDate:
+          type: string
+          format: date-time
+        ioPackageUnits:
+          type: integer
+          format: int32
+        packageId:
+          type: integer
+          format: int32
+        packageName:
+          type: string
+        placementDetails:
+          type: string
+        targettingTactics:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    DmmIoKeywordListFeedRawHistory:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        keywordList:
+          type: string
+        keywordListName:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    ApiResponsePageDmmIoPlacementFeedRawHistory:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageDmmIoPlacementFeedRawHistory'
+    DmmIoSiteListFeedRaw:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        siteList:
+          type: string
+        siteListName:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    DmmIoMarketGroupsFeedRaw:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        marketGroup:
+          type: string
+        marketGroupItems:
+          type: string
+        marketType:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    ApiResponsePageDmmIoCampaignFeedRaw:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageDmmIoCampaignFeedRaw'
+    PageDmmIoCampaignFeedRawHistory:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DmmIoCampaignFeedRawHistory'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    PageDmmIoPackageFeedRawHistory:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DmmIoPackageFeedRawHistory'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    PageDmmIoPackageFeedRaw:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DmmIoPackageFeedRaw'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    DmmIoMarketGroupsFeedRawHistory:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        marketGroup:
+          type: string
+        marketGroupItems:
+          type: string
+        marketType:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time

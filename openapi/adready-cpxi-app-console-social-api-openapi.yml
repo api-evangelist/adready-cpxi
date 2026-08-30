@@ -1,0 +1,870 @@
+openapi: 3.2.0
+info:
+  title: 'Kickstart App Console: Social API'
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: 'App Console: Social'
+  description: This contains API endpoints related to Meta solution in App Console
+paths:
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/top_performers:
+    get:
+      tags:
+      - 'App Console: Social'
+      summary: Get dimension-wise top performing metrics for Social solution
+      description: Get dimension-wise top performing metrics for Social solution
+      operationId: getSocialTopPerformers
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: solutionId
+        in: path
+        description: the solution id
+        required: true
+      - name: dimension
+        in: query
+        description: the dimension by which data to be grouped, either campaign, adSet, ad, placement
+        schema:
+          type: string
+          default: adSet, ad
+          enum:
+          - campaign, adSet, ad, placement
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: creatives
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListSocialTopPerformer'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/summary:
+    get:
+      tags:
+      - 'App Console: Social'
+      summary: Get summary for Social solution
+      operationId: getSocialSummary
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: the solution id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: the comma-separated creative ids to filter
+        style: form
+        schema:
+          type: string
+      - name: pixelIds
+        in: query
+        description: the comma-separated pixel ids to filter
+        style: form
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        style: form
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        style: form
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+        example: '2023-06-14'
+      - name: compareStartDate
+        in: query
+        description: the compare start date
+        schema:
+          type: string
+        example: '2023-06-01'
+      - name: compareEndDate
+        in: query
+        description: the compare end date
+        schema:
+          type: string
+        example: '2023-06-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        default:
+          description: default response
+          content:
+            application/json: {}
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/reports:
+    get:
+      tags:
+      - 'App Console: Social'
+      summary: Get dimension-wise measurements & metrics report for Social solution
+      operationId: getSocialPerformanceReport
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: the solution id
+        required: true
+        schema:
+          type: integer
+      - name: dimension
+        in: query
+        description: the dimension by which data to be grouped, either overall, day, campaign, adSet, ad, placement
+        schema:
+          type: string
+          enum:
+          - overall
+          - day
+          - campaign
+          - adSet
+          - ad
+          - placement
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: the comma-separated creative ids to filter
+        style: form
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        style: form
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        style: form
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+        example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        default:
+          description: default response
+          content:
+            application/json: {}
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/performance:
+    get:
+      tags:
+      - 'App Console: Social'
+      summary: Get dimension-wise measurements & metrics for Social solution
+      operationId: getSocialPerformance
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: the solution id
+        required: true
+        schema:
+          type: integer
+      - name: dimension
+        in: query
+        description: the dimension by which data to be grouped, either campaign, adSet, ad, placement
+        schema:
+          type: string
+          default: ad
+          enum:
+          - campaign
+          - adSet
+          - ad
+          - placement
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: the comma-separated creative ids to filter
+        style: form
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        style: form
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        style: form
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+        example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialMetricsByDimension'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/metrics/distribution:
+    get:
+      tags:
+      - 'App Console: Social'
+      summary: Get dimension-wise metrics for Social solution
+      description: Get dimension-wise metrics for Social solution
+      operationId: getSocialMetricsDistribution
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: solutionId
+        in: path
+        description: the solution id
+        required: true
+      - name: metric
+        in: query
+        description: the metric to be returned, either ctr, cpc, vcr, cpcv, cpa, roas
+        schema:
+          type: string
+          enum:
+          - ctr, cpc, vcr, cpcv, cpa, roas
+      - name: dimension
+        in: query
+        description: the dimension by which data to be grouped, either campaign, adSet, ad, placement
+        schema:
+          type: string
+          enum:
+          - campaign, adSet, ad, placement
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: creatives
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: pixelIds
+        in: query
+        description: the comma-separated pixel ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueDouble'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/metrics/daily:
+    get:
+      tags:
+      - 'App Console: Social'
+      summary: Get daily metrics for Social solution
+      description: Get daily metrics for Social solution
+      operationId: getDailyMetric
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: solutionId
+        in: path
+        description: the solution id
+        required: true
+      - name: metric
+        in: query
+        description: the metric like ctr / vcr / cpa / roas
+        schema:
+          type: string
+          enum:
+          - ctr, vcr, cpa, roas
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: creatives
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: pixelIds
+        in: query
+        description: the comma-separated pixel ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2023-06-14'
+      - name: compareStartDate
+        in: query
+        description: the compare start date
+        example: '2023-06-01'
+      - name: compareEndDate
+        in: query
+        description: the compare end date
+        example: '2023-06-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailySocialSummary'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/measurements/distribution:
+    get:
+      tags:
+      - 'App Console: Social'
+      summary: Get dimension-wise measurements for Social solution
+      description: Get dimension-wise measurements for Social solution
+      operationId: getSocialMeasurementsDistribution
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: solutionId
+        in: path
+        description: the solution id
+        required: true
+      - name: measurement
+        in: query
+        schema:
+          type: string
+          description: the measurement to be returned, either Impressions / Spend / Clicks / Video Completions / Conversions / Revenue
+          enum:
+          - impressions, spend, clicks, completions, conversions, revenue
+      - name: dimension
+        in: query
+        description: the dimension by which data to be grouped, either campaign, adSet, ad, placement
+        schema:
+          type: string
+          enum:
+          - campaign, adSet, ad, placement
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: creatives
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: pixelIds
+        in: query
+        description: the comma-separated pixel ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueDouble'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/social/measurements/daily:
+    get:
+      tags:
+      - 'App Console: Social'
+      summary: Get daily measurements for Social solution
+      description: Get daily measurements for Social solution
+      operationId: getDailyMeasurement
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: solutionId
+        in: path
+        description: the solution id
+        required: true
+      - name: measurement
+        in: query
+        description: the measurement to be returned, either Impressions / Spend / Clicks / Video Completions / Conversions / Revenue
+        schema:
+          type: string
+          enum:
+          - impressions, spend, clicks, completions, conversions, revenue
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: creatives
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: pixelIds
+        in: query
+        description: the comma-separated pixel ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2023-06-14'
+      - name: compareStartDate
+        in: query
+        description: the compare start date
+        example: '2023-06-01'
+      - name: compareEndDate
+        in: query
+        description: the compare end date
+        example: '2023-06-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailySummary'
+components:
+  schemas:
+    ComparisonData:
+      type: object
+      properties:
+        currentValue:
+          type: number
+          format: double
+        compareValue:
+          type: number
+          format: double
+        difference:
+          type: number
+          format: double
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    SocialTopPerformer:
+      type: object
+      properties:
+        name:
+          type: string
+        dimension:
+          type: string
+        ctr: {}
+        ctrInfinity:
+          type: boolean
+        vcr: {}
+        vcrInfinity:
+          type: boolean
+    DailySocialSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueSocialSummary'
+    DailySummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
+    ApiResponseListKeyValueDouble:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueDouble'
+    KeyValueComparisonDataNumber:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ComparisonDataNumber'
+        extra:
+          type: string
+    ApiResponseDailySummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySummary'
+    SocialMetricsByDimension:
+      type: object
+      properties:
+        name:
+          type: string
+        spend:
+          type: number
+          format: double
+        impressions:
+          type: number
+          format: double
+        clicks:
+          type: number
+          format: double
+        cpm: {}
+        cpmInfinity:
+          type: boolean
+        cpc: {}
+        cpcInfinity:
+          type: boolean
+        cpcv: {}
+        cpcvInfinity:
+          type: boolean
+        ctr: {}
+        ctrInfinity:
+          type: boolean
+        completions:
+          type: number
+          format: double
+        vcr: {}
+        vcrInfinity:
+          type: boolean
+    SocialSummary:
+      type: object
+      properties:
+        spend:
+          $ref: '#/components/schemas/ComparisonData'
+        impressions:
+          $ref: '#/components/schemas/ComparisonData'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonData'
+        videoImpressions:
+          $ref: '#/components/schemas/ComparisonData'
+        clicks:
+          $ref: '#/components/schemas/ComparisonData'
+        cpa:
+          $ref: '#/components/schemas/ComparisonData'
+        roas:
+          $ref: '#/components/schemas/ComparisonData'
+        vcr:
+          $ref: '#/components/schemas/ComparisonData'
+        ctr:
+          $ref: '#/components/schemas/ComparisonData'
+    KeyValueSocialSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/SocialSummary'
+        extra:
+          type: string
+    ApiResponseDailySocialSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySocialSummary'
+    KeyValueDouble:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: number
+          format: double
+        extra:
+          type: string
+    ComparisonDataNumber:
+      type: object
+      properties:
+        currentValue:
+          type: number
+        compareValue:
+          type: number
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    ApiResponseListSocialTopPerformer:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialTopPerformer'

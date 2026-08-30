@@ -1,0 +1,380 @@
+openapi: 3.2.0
+info:
+  title: 'Kickstart App Console: Solution Management API'
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: 'App Console: Solution Management'
+  description: This contains API endpoints related to solution management
+paths:
+  /api/ac/solutions/{solutionId}:
+    get:
+      tags:
+      - 'App Console: Solution Management'
+      operationId: getSolution
+      parameters:
+      - name: solutionId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseSolution'
+    put:
+      tags:
+      - 'App Console: Solution Management'
+      operationId: update_11
+      parameters:
+      - name: solutionId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Solution'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseSolution'
+    delete:
+      tags:
+      - 'App Console: Solution Management'
+      operationId: delete_8
+      parameters:
+      - name: solutionId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api/ac/advertiserSolution/id/{id}:
+    get:
+      tags:
+      - 'App Console: Solution Management'
+      operationId: getById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseAdvertiserSolution'
+    put:
+      tags:
+      - 'App Console: Solution Management'
+      operationId: update_13
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdvertiserSolution'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseAdvertiserSolution'
+    delete:
+      tags:
+      - 'App Console: Solution Management'
+      operationId: delete_10
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api/ac/solutions:
+    get:
+      tags:
+      - 'App Console: Solution Management'
+      operationId: getAll_5
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListSolution'
+    post:
+      tags:
+      - 'App Console: Solution Management'
+      operationId: create_14
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Solution'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseSolution'
+  /api/ac/advertiserSolution:
+    get:
+      tags:
+      - 'App Console: Solution Management'
+      operationId: getAll_6
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListAdvertiserSolution'
+    post:
+      tags:
+      - 'App Console: Solution Management'
+      operationId: create_16
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdvertiserSolution'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseAdvertiserSolution'
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
+    AdvertiserSolution:
+      type: object
+      properties:
+        advertiserId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        solution:
+          $ref: '#/components/schemas/Solution'
+        solutionId:
+          type: integer
+          format: int32
+        state:
+          type: string
+          enum:
+          - ACTIVE
+          - DISCOVER
+          - HIDDEN
+    Solution:
+      type: object
+      properties:
+        config: {}
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        description:
+          type: string
+        icon:
+          type: string
+        id:
+          type: integer
+          format: int32
+        order:
+          type: integer
+          format: int32
+        scope:
+          type: string
+          enum:
+          - GLOBAL
+          - ADVERTISER
+        state:
+          type: string
+          enum:
+          - ACTIVE
+          - DISCOVER
+          - HIDDEN
+          - DISABLED
+        title:
+          type: string
+        type:
+          type: string
+          enum:
+          - FLIP
+          - TS
+          - DATORAMA
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    ApiResponseSolution:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/Solution'
+    ApiResponseListSolution:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Solution'
+    ApiResponseListAdvertiserSolution:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdvertiserSolution'
+    ApiResponseAdvertiserSolution:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/AdvertiserSolution'

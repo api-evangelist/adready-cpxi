@@ -1,0 +1,421 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Incrementality API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: Incrementality
+paths:
+  /api/advertisers/{advertiserId}/incrementality/distribution:
+    post:
+      tags:
+      - Incrementality
+      summary: Get incrementality distribution
+      description: Provides incrementality distribution data
+      operationId: getIncrementalityDistribution
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: groupBy
+        in: query
+        description: the field by which data to be grouped, either creative/publisher/audience/mediatype/adgroup/overall
+        required: true
+        schema:
+          type: string
+          enum:
+          - creative
+          - publisher
+          - audience
+          - mediatype
+          - adgroup
+          - overall
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        description: the FLIP universal pixel id
+        required: true
+        schema:
+          type: string
+      - name: showUniques
+        in: query
+        description: flag to decide whether to show only uniques or not
+        schema:
+          type: boolean
+          default: false
+          enum:
+          - 'true'
+          - 'false'
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        style: form
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        style: form
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        style: form
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        style: form
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        style: form
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        style: form
+        schema:
+          type: string
+      - name: attribution
+        in: query
+        description: the conversion attribution to be used, either full or partial
+        schema:
+          type: string
+          default: full
+          enum:
+          - full
+          - partial
+      - name: methodology
+        in: query
+        description: the methodology to be used, either first_touch/last_touch/linear/time_decay
+        schema:
+          type: string
+          default: last_touch
+          enum:
+          - first_touch
+          - last_touch
+          - linear
+          - time_decay
+      - name: event
+        in: query
+        description: the event
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: the pixel category
+        required: true
+        schema:
+          type: string
+      - name: subCategory
+        in: query
+        description: the comma-separated pixel sub-categories
+        style: form
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successful operation
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListIncrementalLiftData'
+  /api/advertisers/{advertiserId}/incrementality/haloEffect:
+    get:
+      tags:
+      - Incrementality
+      summary: Get Halo Effect data
+      description: Provides halo effect data
+      operationId: getIncrementalityHaloEffect
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        description: the FLIP universal pixel id
+        required: true
+        schema:
+          type: string
+      - name: showUniques
+        in: query
+        description: flag to decide whether to show only uniques or not
+        schema:
+          type: boolean
+          default: false
+          enum:
+          - 'true'
+          - 'false'
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        style: form
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        style: form
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        style: form
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        style: form
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        style: form
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        style: form
+        schema:
+          type: string
+      - name: attribution
+        in: query
+        description: the conversion attribution to be used, either full or partial
+        schema:
+          type: string
+          default: full
+          enum:
+          - full
+          - partial
+      - name: methodology
+        in: query
+        description: the methodology to be used, either first_touch/last_touch/linear/time_decay
+        schema:
+          type: string
+          default: last_touch
+          enum:
+          - first_touch
+          - last_touch
+          - linear
+          - time_decay
+      - name: event
+        in: query
+        description: the event
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: the pixel category
+        required: true
+        schema:
+          type: string
+      - name: subCategory
+        in: query
+        description: the comma-separated pixel sub-categories
+        style: form
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successful operation
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListHaloEffectData'
+components:
+  schemas:
+    ApiResponseListHaloEffectData:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/HaloEffectData'
+    HaloEffectData:
+      type: object
+      properties:
+        name:
+          type: string
+        exposedCount:
+          type: number
+          format: double
+        exposedConversions:
+          type: number
+          format: double
+        controlCount:
+          type: number
+          format: double
+        controlConversions:
+          type: number
+          format: double
+        scale:
+          type: number
+          format: double
+        incrementalConversions:
+          type: number
+          format: double
+        liftPercentage: {}
+        isLiftPercentageInfinity:
+          type: boolean
+    ApiResponseListIncrementalLiftData:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncrementalLiftData'
+    IncrementalLiftData:
+      type: object
+      properties:
+        name:
+          type: string
+        exposedCount:
+          type: number
+          format: double
+        exposedConversions:
+          type: number
+          format: double
+        exposedRate:
+          type: number
+          format: double
+        controlCount:
+          type: number
+          format: double
+        controlConversions:
+          type: number
+          format: double
+        controlRate:
+          type: number
+          format: double
+        liftPercentage:
+          type: number
+          format: double
+        liftPercentageInfinity:
+          type: boolean
+        incrementality:
+          type: number
+          format: double
+        incrementalityInfinity:
+          type: boolean

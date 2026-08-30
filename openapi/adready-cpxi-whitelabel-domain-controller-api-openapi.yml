@@ -1,0 +1,228 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Whitelabel Domain Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: whitelabel-domain-controller
+paths:
+  /api/whitelabel_domains/{orgId}:
+    get:
+      tags:
+      - whitelabel-domain-controller
+      operationId: get
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseWhitelabelDomain'
+    put:
+      tags:
+      - whitelabel-domain-controller
+      operationId: update
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: acctId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhitelabelDomain'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseWhitelabelDomain'
+    delete:
+      tags:
+      - whitelabel-domain-controller
+      operationId: delete
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: acctId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseWhitelabelDomain'
+  /api/whitelabel_domains:
+    get:
+      tags:
+      - whitelabel-domain-controller
+      operationId: getWhitelabelDomains
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListWhitelabelDomain'
+    post:
+      tags:
+      - whitelabel-domain-controller
+      operationId: create
+      parameters:
+      - name: acctId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhitelabelDomain'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseWhitelabelDomain'
+  /api/whitelabel_domains/get_by_domain_name:
+    get:
+      tags:
+      - whitelabel-domain-controller
+      operationId: getByDomainName
+      parameters:
+      - name: domainName
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/WhitelabelDomain'
+components:
+  schemas:
+    ApiResponseWhitelabelDomain:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/WhitelabelDomain'
+    WhitelabelDomain:
+      type: object
+      properties:
+        apiDomain:
+          type: string
+        appType:
+          type: string
+          enum:
+          - flip
+          - app
+        demoDomainName:
+          type: string
+        domainName:
+          type: string
+        domainType:
+          type: string
+          enum:
+          - std_subdomain
+          - fqdn
+        flipEmbeddedDomain:
+          type: string
+        orgId:
+          type: integer
+          format: int32
+    ApiResponseListWhitelabelDomain:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/WhitelabelDomain'

@@ -1,0 +1,84 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Deal Performance Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: deal-performance-controller
+paths:
+  /api/deals:
+    get:
+      tags:
+      - deal-performance-controller
+      operationId: list_4
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DealPerformance'
+  /api/deals/{id}:
+    get:
+      tags:
+      - deal-performance-controller
+      operationId: get_9
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/DealPerformance'
+components:
+  schemas:
+    DealPerformance:
+      type: object
+      properties:
+        cpm:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        dealId:
+          type: integer
+          format: int32
+        dealName:
+          type: string
+        pctBadIp:
+          type: number
+        seller:
+          type: string
+        totalImpressionsLast30Days:
+          type: integer
+          format: int32

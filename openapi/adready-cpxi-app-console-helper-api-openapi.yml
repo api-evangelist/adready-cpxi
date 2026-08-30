@@ -1,0 +1,244 @@
+openapi: 3.2.0
+info:
+  title: Kickstart App Console Helper API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: App Console Helper
+paths:
+  /api/ac/advertisers/{advertiserId}/matchtypes:
+    get:
+      tags:
+      - App Console Helper
+      summary: Get match types for an advertiser as per the solution id
+      description: Fetch match types for an advertiser as per the solution id
+      operationId: fetchMatchTypes
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: solutionId
+        in: query
+        description: the solution id
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        allowEmptyValue: true
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        allowEmptyValue: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        schema:
+          type: string
+          example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        schema:
+          type: string
+          example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListString'
+  /api/ac/advertisers/{advertiserId}/keywords:
+    get:
+      tags:
+      - App Console Helper
+      summary: Get keywords for an advertiser as per the solution id
+      description: Fetch keywords for an advertiser as per the solution id
+      operationId: fetchKeywords
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: solutionId
+        in: query
+        description: the solution id
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        allowEmptyValue: true
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        allowEmptyValue: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        schema:
+          type: string
+          example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        schema:
+          type: string
+          example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListString'
+  /api/ac/advertisers/{advertiserId}/audiences:
+    get:
+      tags:
+      - App Console Helper
+      summary: Get audiences for an advertiser as per the solution id
+      description: Fetch audiences for an advertiser as per the solution id
+      operationId: fetchAudiences
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: solutionId
+        in: query
+        description: the solution id
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        allowEmptyValue: true
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        allowEmptyValue: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        schema:
+          type: string
+          example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        schema:
+          type: string
+          example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListString'
+components:
+  schemas:
+    ApiResponseListString:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            type: string

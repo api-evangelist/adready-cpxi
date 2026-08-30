@@ -1,0 +1,413 @@
+openapi: 3.2.0
+info:
+  title: Kickstart File Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: file-controller
+paths:
+  /api/files/{orderId}/lineItems/{lineItemId}:
+    post:
+      tags:
+      - file-controller
+      operationId: uploadFile
+      parameters:
+      - name: type
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+              - file
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseFileData'
+  /api/files/publisher/{publisherId}:
+    post:
+      tags:
+      - file-controller
+      operationId: savePublisherLogo
+      parameters:
+      - name: publisherId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+              - file
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseFileData'
+  /api/files/organizations/{organizationId}:
+    post:
+      tags:
+      - file-controller
+      operationId: saveLogo
+      parameters:
+      - name: type
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: organizationId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+              required:
+              - file
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseFileData'
+  /api/files/{fileId}:
+    get:
+      tags:
+      - file-controller
+      operationId: getFile
+      parameters:
+      - name: fileId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FileData'
+  /api/files/download/plan/{planId}:
+    get:
+      tags:
+      - file-controller
+      operationId: downloadPlanFile
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+  /api/files/download/orders/{orderId}/{lineItemId}/{fileName}:
+    get:
+      tags:
+      - file-controller
+      operationId: downloadFile
+      parameters:
+      - name: fileName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: download
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+  /api/files/download/orders/{orderId}/{fileName}:
+    get:
+      tags:
+      - file-controller
+      operationId: downloadFile_1
+      parameters:
+      - name: fileName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: download
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+  /api/files/download/tmp/{fileName}:
+    get:
+      tags:
+      - file-controller
+      operationId: downloadFile_2
+      parameters:
+      - name: fileName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: download
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+  /api/files/download/{fileName}:
+    get:
+      tags:
+      - file-controller
+      operationId: downloadFile_3
+      parameters:
+      - name: fileName
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: download
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+  /api/files/download/line-item/{lineItemId}:
+    get:
+      tags:
+      - file-controller
+      operationId: downloadLineItemFile
+      parameters:
+      - name: lineItemId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+components:
+  schemas:
+    ApiResponseFileData:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/FileData'
+    FileData:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        path:
+          type: string
+        size:
+          type: integer
+          format: int32
+        type:
+          type: string
+          enum:
+          - UPLOAD
+          - LINK
+          - ARTICLE_UPLOAD
+          - ARTICLE_LINK
+          - COMPANION_ASSET_UPLOAD
+          - COMPANION_ASSET_LINK
+          - CLOSED_CAPTIONING_UPLOAD
+          - ADVERTISER_LOGO
+          - IO_ATTACHMENT
+          - NOTES
+          - CREATIVE
+          - ARTICLE_CREATIVE
+          - COMPANION_ASSET
+          - CLOSED_CAPTIONING
+          - TRACKING_PIXEL
+          - ORGANIZATION_LOGO
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string

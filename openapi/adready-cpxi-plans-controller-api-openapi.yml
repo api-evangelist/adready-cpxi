@@ -1,0 +1,1541 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Plans Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: plans-controller
+paths:
+  /api/plans/{planId}:
+    get:
+      tags:
+      - plans-controller
+      operationId: get_3
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: includePacing
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: advertiser
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: client
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+    put:
+      tags:
+      - plans-controller
+      operationId: updatePlan
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plan'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+    delete:
+      tags:
+      - plans-controller
+      operationId: delete_3
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api/plans/{planId}/updateFlag:
+    put:
+      tags:
+      - plans-controller
+      operationId: updateFlag
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plan'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseBoolean'
+  /api/plans/{planId}/changeTargetingLevel:
+    put:
+      tags:
+      - plans-controller
+      operationId: changeTargetingLevel
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalcReq'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+  /api/plans/{planId}/changeProductTypeAllocation:
+    put:
+      tags:
+      - plans-controller
+      operationId: changeProductTypeAllocation
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalcReq'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+  /api/plans/{planId}/changeProductCategoryAllocation:
+    put:
+      tags:
+      - plans-controller
+      operationId: changeProductCategoryAllocation
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalcReq'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+  /api/plans/{planId}/changeDisplayDeviceAllocation:
+    put:
+      tags:
+      - plans-controller
+      operationId: changeDisplayDeviceAllocation
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalcReq'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+  /api/plans:
+    get:
+      tags:
+      - plans-controller
+      operationId: getAll_1
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: perPage
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: sortKey
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOrder
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: crFilter
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: flip
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: includePacing
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: advertiser
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: client
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePageResponsePlan'
+    post:
+      tags:
+      - plans-controller
+      operationId: create_3
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Plan'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+  /api/plans/{planId}/workflowEmailNotification:
+    post:
+      tags:
+      - plans-controller
+      operationId: workflowEmailNotification
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailNotification'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+  /api/plans/{planId}/updateStatusEmailNotification:
+    post:
+      tags:
+      - plans-controller
+      operationId: updateStatusEmailNotification
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailNotification'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+  /api/plans/{planId}/sendSubmitOrderNotification:
+    post:
+      tags:
+      - plans-controller
+      operationId: sendSubmitOrderNotification
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitOrder'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+  /api/plans/{planId}/sendEmailNotification:
+    post:
+      tags:
+      - plans-controller
+      operationId: emailNotification
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailNotification'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+  /api/plans/{planId}/export:
+    post:
+      tags:
+      - plans-controller
+      operationId: exportOrder
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportSchedule'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api/plans/{planId}/createOrder:
+    post:
+      tags:
+      - plans-controller
+      operationId: createOrder
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+      deprecated: true
+  /api/plans/{planId}/changeAppliedEmailNotification:
+    post:
+      tags:
+      - plans-controller
+      operationId: changeAppliedEmailNotification
+      parameters:
+      - name: planId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EmailNotification'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePlan'
+components:
+  schemas:
+    LineItemTargeting:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        targetableElementId:
+          type: integer
+          format: int32
+        value: {}
+    ApiResponseBoolean:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: boolean
+    ApiResponsePageResponsePlan:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageResponsePlan'
+    ApiResponsePlan:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/Plan'
+    CompanionAsset:
+      type: object
+      properties:
+        adTagCode:
+          type: string
+        assetType:
+          type: string
+          enum:
+          - image
+          - ad_tag
+          - facebook
+          - twitter
+          - pinterest
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        landingPageURL:
+          type: string
+        location:
+          type: string
+          enum:
+          - top
+          - bottom
+          - top_mobile
+          - bottom_mobile
+          - right_rail
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    LocationData:
+      type: object
+      properties:
+        addresses:
+          type: array
+          items:
+            type: string
+        locationId:
+          type: integer
+          format: int32
+    LineItemVendors:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        vendorId:
+          type: integer
+          format: int32
+    LineItem:
+      type: object
+      properties:
+        adreadyId:
+          type: string
+        assignedTo:
+          type: integer
+          format: int32
+        audienceName:
+          type: string
+        billingType:
+          type: string
+          enum:
+          - FIRST_PARTY
+          - THIRD_PARTY
+          - THIRD_PARTY_FLASHTALKING
+          - THIRD_PARTY_SIZMEK
+          - THIRD_PARTY_INNOVID
+          - THIRD_PARTY_OTHERS
+        budgetGroup:
+          $ref: '#/components/schemas/BudgetGroup'
+        budgetGroupId:
+          type: integer
+          format: int32
+        contactUserId:
+          type: integer
+          format: int32
+        crLineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          uniqueItems: true
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        creatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/Creative'
+          uniqueItems: true
+        customUserId:
+          type: integer
+          format: int32
+        dayParting: {}
+        deletedAt:
+          type: string
+          format: date-time
+        deviceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemDeviceTypes'
+          uniqueItems: true
+        externalName:
+          type: string
+        externalSourceId:
+          type: integer
+          format: int32
+        fixCpm:
+          type: number
+        flag:
+          type: boolean
+        flagId:
+          type: integer
+          format: int32
+        flightEndDate:
+          type: string
+          format: date-time
+        flightStartDate:
+          type: string
+          format: date-time
+        flip:
+          type: boolean
+        frequencyRecency: {}
+        goalMetric:
+          type: number
+          format: double
+        id:
+          type: integer
+          format: int32
+        impressions:
+          type: integer
+          format: int32
+        incrementality:
+          type: boolean
+        kpis:
+          type: array
+          items:
+            $ref: '#/components/schemas/Kpi'
+          uniqueItems: true
+        lineItemBudget:
+          type: number
+        lucid:
+          type: boolean
+        managementFeeOnly:
+          type: boolean
+        markup:
+          type: number
+        mediaSpend:
+          type: number
+        name:
+          type: string
+        note:
+          $ref: '#/components/schemas/Note'
+        pace:
+          type: number
+          format: double
+        parentId:
+          type: integer
+          format: int32
+        planId:
+          type: integer
+          format: int32
+        price:
+          type: number
+        pricingType:
+          type: string
+          enum:
+          - CPM
+          - COST_PLUS
+          - FIXED_MARGIN
+          - ADDED_VALUE
+          - CPA
+        productCategoryId:
+          type: integer
+          format: int32
+        productTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemProductType'
+          uniqueItems: true
+        qa: {}
+        retargetingNotes:
+          type: string
+        siteRetargeting:
+          type: boolean
+        spend:
+          type: number
+          format: double
+        statusId:
+          type: integer
+          format: int32
+        tagsTrackers:
+          type: boolean
+        targetings:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemTargeting'
+          uniqueItems: true
+        taskTypeId:
+          type: integer
+          format: int32
+        trackingPixels:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackingPixelData'
+          uniqueItems: true
+        type:
+          type: string
+          enum:
+          - LINE
+          - FLIGHT
+          - CHANGE
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        vendors:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemVendors'
+          uniqueItems: true
+        workflowId:
+          type: integer
+          format: int32
+        xandrLineItemId:
+          type: integer
+          format: int32
+    Headline:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        value:
+          type: string
+    LineItemProductType:
+      type: object
+      properties:
+        categoryPath:
+          type: string
+        goalId:
+          type: integer
+          format: int32
+        googleAdAccount:
+          type: string
+        id:
+          type: integer
+          format: int32
+        placementType:
+          type: string
+        productTypeId:
+          type: integer
+          format: int32
+        productTypes:
+          type: array
+          items:
+            type: string
+    TargetingTypeAllocation:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        level:
+          type: integer
+          format: int32
+        targetingType:
+          type: string
+          enum:
+          - NONE
+          - PUBLISHER
+          - GEO
+          - AUDIENCE
+          - CONTEXTUAL
+    Plan:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        advertiserId:
+          type: integer
+          format: int32
+        advertiserIsNew:
+          type: boolean
+        agencyId:
+          type: integer
+          format: int32
+        brandSafetyLevelId:
+          type: integer
+          format: int32
+        budget:
+          type: number
+        campaignName:
+          type: string
+        contactUserId:
+          type: integer
+          format: int32
+        crPlans:
+          type: array
+          items:
+            $ref: '#/components/schemas/Plan'
+          uniqueItems: true
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        customOrderId:
+          type: string
+        customUserId:
+          type: integer
+          format: int32
+        deletedAt:
+          type: string
+          format: date-time
+        emailSubject:
+          type: string
+        endedFlightDate:
+          type: string
+          format: date-time
+        externalSourceId:
+          type: integer
+          format: int32
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        flag:
+          type: boolean
+        flagId:
+          type: integer
+          format: int32
+        flightEndDate:
+          type: string
+          format: date-time
+        flightStartDate:
+          type: string
+          format: date-time
+        flip:
+          type: boolean
+        flipCampaignInfo: {}
+        goalMetric:
+          type: number
+          format: double
+        id:
+          type: integer
+          format: int32
+        impressions:
+          type: integer
+          format: int32
+        industryId:
+          type: integer
+          format: int32
+        internalNote:
+          $ref: '#/components/schemas/Note'
+        ioId:
+          type: integer
+          format: int32
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          uniqueItems: true
+        location:
+          $ref: '#/components/schemas/LocationData'
+        lucid:
+          type: boolean
+        lucidCampaignInfo: {}
+        marketingObjectiveId:
+          type: integer
+          format: int32
+        nonEndedFlightDate:
+          type: integer
+          format: int32
+        note:
+          $ref: '#/components/schemas/Note'
+        ownerId:
+          type: integer
+          format: int32
+        pace:
+          type: number
+          format: double
+        parentId:
+          type: integer
+          format: int32
+        planFlip:
+          type: boolean
+        political:
+          type: boolean
+        productCategoryAllocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductCategoryAllocation'
+          uniqueItems: true
+        source:
+          type: string
+          enum:
+          - ADREADY
+          - FLIPPLUS
+          - DMM
+          - PIO
+          - VIA
+        spend:
+          type: number
+          format: double
+        state:
+          type: string
+          enum:
+          - PLAN
+          - IO
+          - CHANGE
+          - EXTEND
+        statusId:
+          type: integer
+          format: int32
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        verificationPartners: {}
+        xandrIoId:
+          type: integer
+          format: int32
+    ProductCategoryAllocation:
+      type: object
+      properties:
+        avgCPM:
+          type: number
+        budget:
+          type: number
+        budgetPercentage:
+          type: number
+        id:
+          type: integer
+          format: int32
+        impressions:
+          type: integer
+          format: int32
+        planningMatrixEntries:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlanningMatrixEntry'
+        productCategeoryDeviceAllocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductCategeoryDeviceAllocation'
+          uniqueItems: true
+        productCategoryId:
+          type: integer
+          format: int32
+        productTypeAllocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductTypeAllocation'
+          uniqueItems: true
+    PageResponsePlan:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Plan'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    SubmitOrder:
+      type: object
+      properties:
+        crPlanId:
+          type: integer
+          format: int32
+        emails:
+          type: array
+          items:
+            type: string
+        notes:
+          type: string
+    Creative:
+      type: object
+      properties:
+        addCloseCaptioning:
+          type: boolean
+        bodyText:
+          type: string
+        brandName:
+          type: string
+        businessName:
+          type: string
+        callToAction:
+          type: string
+        clickThroughURL:
+          type: string
+        companionAsset:
+          type: boolean
+        companionAssets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanionAsset'
+          uniqueItems: true
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        creativeEndDate:
+          type: string
+          format: date-time
+        creativeStartDate:
+          type: string
+          format: date-time
+        creativeType:
+          type: string
+          enum:
+          - normal
+          - search
+          - social
+          - pay_per_call
+          - url_only
+          - native_display
+          - native_video
+          - native_article
+          - youtube_bumper_video
+          - youtube_nonskippable_video
+          - social_tiktok
+          - social_snapchat
+        cta:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        description1:
+          type: string
+        description2:
+          type: string
+        displayPath1:
+          type: string
+        displayPath2:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        headline1:
+          type: string
+        headline2:
+          type: string
+        headline3:
+          type: string
+        headlines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Headline'
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        percentOfRetargetingBudget:
+          type: number
+          format: double
+        phoneNumber:
+          type: string
+        previewText:
+          type: string
+        socialUrl:
+          type: string
+        trueView:
+          type: boolean
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
+    Note:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        id:
+          type: integer
+          format: int32
+        value:
+          type: string
+    Kpi:
+      type: object
+      properties:
+        benchmark:
+          type: number
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        kpiId:
+          type: integer
+          format: int32
+        notes:
+          type: string
+        value:
+          type: string
+    ExportSchedule:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        emailIds:
+          type: string
+        emailSource:
+          type: string
+        id:
+          type: integer
+          format: int32
+        lineItemId:
+          type: integer
+          format: int32
+        notes:
+          type: string
+        planId:
+          type: integer
+          format: int32
+        scheduledTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - SCHEDULED
+          - STARTED
+          - FINISHED
+          - FAILED
+          - DELETED
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    BudgetGroup:
+      type: object
+      properties:
+        budget:
+          type: number
+        budgetGroupId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        markup:
+          type: number
+        planId:
+          type: integer
+          format: int32
+    CalcReq:
+      type: object
+      properties:
+        productCategoryId:
+          type: integer
+          format: int32
+          writeOnly: true
+        productTypeId:
+          type: integer
+          format: int32
+          writeOnly: true
+        deviceTypeId:
+          type: integer
+          format: int32
+          writeOnly: true
+        targetingType:
+          type: string
+          writeOnly: true
+        level:
+          type: integer
+          format: int32
+          writeOnly: true
+        fixCpm:
+          type: number
+          format: double
+          writeOnly: true
+        percentage:
+          type: number
+          format: float
+          writeOnly: true
+    ProductTypeAllocation:
+      type: object
+      properties:
+        budget:
+          type: number
+        budgetPercentage:
+          type: number
+        cpm:
+          type: number
+        fixCpm:
+          type: number
+        id:
+          type: integer
+          format: int32
+        impressions:
+          type: integer
+          format: int32
+        maxCpm:
+          type: number
+        productTypeId:
+          type: integer
+          format: int32
+        targetingTypeAllocations:
+          type: array
+          items:
+            $ref: '#/components/schemas/TargetingTypeAllocation'
+          uniqueItems: true
+    LineItemDeviceTypes:
+      type: object
+      properties:
+        deletedAt:
+          type: string
+          format: date-time
+        deviceTypeId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+    TrackingPixelData:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        id:
+          type: integer
+          format: int32
+        idKey:
+          type: integer
+          format: int32
+        name:
+          type: string
+        value:
+          type: string
+    PlanningMatrixEntry:
+      type: object
+      properties:
+        budgetRangeId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        industryId:
+          type: integer
+          format: int32
+        locationId:
+          type: integer
+          format: int32
+        marketingObjectiveId:
+          type: integer
+          format: int32
+    ProductCategeoryDeviceAllocation:
+      type: object
+      properties:
+        budget:
+          type: number
+        budgetPercentage:
+          type: number
+        deviceTypeId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        impressions:
+          type: integer
+          format: int32
+    FileData:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        path:
+          type: string
+        size:
+          type: integer
+          format: int32
+        type:
+          type: string
+          enum:
+          - UPLOAD
+          - LINK
+          - ARTICLE_UPLOAD
+          - ARTICLE_LINK
+          - COMPANION_ASSET_UPLOAD
+          - COMPANION_ASSET_LINK
+          - CLOSED_CAPTIONING_UPLOAD
+          - ADVERTISER_LOGO
+          - IO_ATTACHMENT
+          - NOTES
+          - CREATIVE
+          - ARTICLE_CREATIVE
+          - COMPANION_ASSET
+          - CLOSED_CAPTIONING
+          - TRACKING_PIXEL
+          - ORGANIZATION_LOGO
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    EmailNotification:
+      type: object
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+        changeTypes:
+          type: array
+          items:
+            type: string
+        notes:
+          type: string
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        emailSubject:
+          type: string
+        category:
+          type: string
+          enum:
+          - SUBMIT
+          - CR_SUBMIT
+          - CR_SUBMIT_PENDING
+          - RESUBMIT
+          - LI_DISAPPROVED
+          - LI_READY_FOR_ACTIVATION
+          - LI_ACTIVATED
+          - LI_CAMPAIGN_LIVE
+          - LI_PAUSED
+          - LI_CANCELED
+          - LI_CHANGE_READY
+          - LI_CHANGE_APPLIED
+        emailSource:
+          type: string

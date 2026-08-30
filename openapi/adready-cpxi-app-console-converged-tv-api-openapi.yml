@@ -1,0 +1,134 @@
+openapi: 3.2.0
+info:
+  title: 'Kickstart App Console: Converged TV API'
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: 'App Console: Converged TV'
+paths:
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/convergedtv/summary:
+    get:
+      tags:
+      - 'App Console: Converged TV'
+      summary: Get something for Social solution
+      description: Get something for Social solution
+      operationId: getCvgdTVSummary
+      parameters:
+      - name: solutionId
+        in: path
+        description: the solution id
+        required: true
+        schema:
+          type: integer
+        example: 7
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+        example: 674
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        example: Jersey Mike's Subs
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        example: Jersey Mike's Subs
+      - name: campaignIds
+        in: query
+        description: the CSV Campaign ids to filter on
+        style: form
+      - name: adGroups
+        in: query
+        description: the CSV AdReady Ids to filter on
+        style: form
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2024-01-01'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2024-04-15'
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successful response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseCTVReachAndOverlap'
+components:
+  schemas:
+    ApiResponseCTVReachAndOverlap:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/CTVReachAndOverlap'
+    CTVReachAndOverlap:
+      type: object
+      properties:
+        overallReach:
+          type: number
+          format: double
+        overallCtvReach:
+          type: number
+          format: double
+        incrementalCtvReach:
+          type: number
+          format: double
+        incrementalReachPercent:
+          type: number
+          format: double
+        uniqueCtvReach:
+          type: number
+          format: double
+        overallLinearNrpReach:
+          type: number
+          format: double
+        linearOnlyNrpReach:
+          type: number
+          format: double
+        linearAndCtvNrpReach:
+          type: number
+          format: double
+        linearCvr:
+          type: number
+          format: double
+        linearAndCtvOverlapCvr:
+          type: number
+          format: double
+        ctvCvr:
+          type: number
+          format: double

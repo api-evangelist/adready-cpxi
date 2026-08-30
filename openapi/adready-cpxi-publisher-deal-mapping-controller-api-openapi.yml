@@ -1,0 +1,171 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Publisher Deal Mapping Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: publisher-deal-mapping-controller
+paths:
+  /api/publisherDeal/{id}:
+    get:
+      tags:
+      - publisher-deal-mapping-controller
+      operationId: get_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublisherDealMapping'
+    put:
+      tags:
+      - publisher-deal-mapping-controller
+      operationId: update_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublisherDealMapping'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublisherDealMapping'
+    delete:
+      tags:
+      - publisher-deal-mapping-controller
+      operationId: delete_2
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+  /api/publisherDeal:
+    get:
+      tags:
+      - publisher-deal-mapping-controller
+      operationId: list
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PublisherDealMapping'
+    post:
+      tags:
+      - publisher-deal-mapping-controller
+      operationId: create_2
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PublisherDealMapping'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PublisherDealMapping'
+components:
+  schemas:
+    PublisherDealMapping:
+      type: object
+      properties:
+        deal:
+          $ref: '#/components/schemas/DealPerformance'
+        dealId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        mediaPublisherId:
+          type: integer
+          format: int32
+    DealPerformance:
+      type: object
+      properties:
+        cpm:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        dealId:
+          type: integer
+          format: int32
+        dealName:
+          type: string
+        pctBadIp:
+          type: number
+        seller:
+          type: string
+        totalImpressionsLast30Days:
+          type: integer
+          format: int32

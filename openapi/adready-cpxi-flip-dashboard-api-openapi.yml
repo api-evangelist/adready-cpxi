@@ -1,0 +1,4658 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Flip Dashboard API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: Flip Dashboard
+  description: APIs related to Flip Dashboard
+paths:
+  /api/advertisers/{advertiserId}/flipPixels/{pixelId}:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get details of a FLIP pixel for an advertiser
+      description: Returns metadata for a given FLIP pixel and advertiser
+      operationId: fetchFlipPixelDetails
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+        schema:
+          type: integer
+      - name: pixelId
+        in: path
+        description: The FLIP pixel ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Pixel details successfully retrieved
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseFlipPixel'
+    put:
+      tags:
+      - Flip Dashboard
+      summary: Update an existing FLIP pixel for an advertiser
+      description: Updates a FLIP pixel's properties using the provided data
+      operationId: updateFlipPixel
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+        schema:
+          type: integer
+      - name: pixelId
+        in: path
+        description: The pixel ID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The updated FlipPixel object
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlipPixel'
+        required: true
+      responses:
+        '400':
+          description: Invalid input
+        '200':
+          description: Pixel updated successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseFlipPixel'
+        '404':
+          description: Pixel not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseFlipPixel'
+  /api/advertisers/{advertiserId}/brand_lift/campaigns/{blCampaignId}:
+    put:
+      tags:
+      - Flip Dashboard
+      summary: Update campaign
+      operationId: updateCampaign
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: blCampaignId
+        in: path
+        description: Campaign Id
+        required: true
+      requestBody:
+        description: Campaign to be created
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExistingLucidCampaign'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            application/json: {}
+    delete:
+      tags:
+      - Flip Dashboard
+      summary: Delete campaign
+      operationId: deleteCampaign
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: blCampaignId
+        in: path
+        description: Campaign Id
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/brand_lift/campaigns/{blCampaignId}/launch:
+    put:
+      tags:
+      - Flip Dashboard
+      summary: Launch Campaign
+      operationId: launchCampaign
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: blCampaignId
+        in: path
+        description: Campaign Id
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/brand_lift/campaign/{blCampaignId}/spc_groupings_and_mappings:
+    put:
+      tags:
+      - Flip Dashboard
+      summary: Update SPC Groupings and Mappings
+      operationId: updateSPCGroupings
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: blCampaignId
+        in: path
+        description: Brandlift campaign id
+        required: true
+        schema:
+          type: string
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: 'SPC Grouping types: placement or publisher'
+        required: true
+        schema:
+          type: string
+          enum:
+          - placement
+          - publisher
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                additionalProperties: {}
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseLucidSPCGroupingsWrapper'
+  /api/advertisers/{advertiserId}/reports/rollup:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get rollup report with only last touches for each conversion
+      operationId: getLastTouches
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: kind
+        in: query
+        description: the kind of data to be returned, either all_touch or last_touch
+        required: true
+        schema:
+          type: string
+          enum:
+          - all_touch
+          - last_touch
+      - name: includeChannel
+        in: query
+        description: 'true : Include channel false : Dont include channel'
+        required: true
+        schema:
+          type: boolean
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        description: the FLIP universal pixel id
+        required: true
+        schema:
+          type: string
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: event
+        in: query
+        description: the event
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: the pixel category
+        required: true
+        schema:
+          type: string
+      - name: subCategory
+        in: query
+        description: the comma-separated pixel sub-categories
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-14'
+      - name: offset
+        in: query
+        description: the number of records to skip
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        description: the max number of records to return
+        schema:
+          type: integer
+          default: 100
+      - name: onceNow
+        in: query
+        description: Run this report once?
+        schema:
+          type: boolean
+          default: true
+      - name: emailIt
+        in: query
+        description: Email this report?
+        schema:
+          type: boolean
+          default: false
+      - name: emailAddr
+        in: query
+        description: Email address?
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: '''application/json'' - provides json response. ''text/csv'' or ''application/csv'' provides csv file.'
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListObject'
+  /api/advertisers/{advertiserId}/reports/rollup/touches:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get all touches (except last touch) for a conversion
+      operationId: getAllTouchesForConversion
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        description: the FLIP universal pixel id
+        required: true
+        schema:
+          type: string
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: event
+        in: query
+        description: the event
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: the pixel category
+        required: true
+        schema:
+          type: string
+      - name: subCategory
+        in: query
+        description: the comma-separated pixel sub-categories
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-14'
+      - name: ip
+        in: query
+        description: the IP address
+        required: true
+        schema:
+          type: string
+      - name: ts
+        in: query
+        description: the pixel timestamp in micro seconds
+        required: true
+        schema:
+          type: integer
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListConversionTouch'
+  /api/advertisers/{advertiserId}/reports/performance:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get performance report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
+      description: Get performance report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
+      operationId: getPerformanceReport
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: kind
+        in: query
+        description: the field by which data to be grouped, either creative/adgroup/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
+        schema:
+          type: string
+          enum:
+          - creative
+          - adgroup
+          - publisher
+          - channel
+          - daypart
+          - audience
+          - device
+          - mediatype
+          - state
+          - dma
+          - zip
+          - overall
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        description: the FLIP universal pixel id
+        required: true
+        schema:
+          type: string
+      - name: showUniques
+        in: query
+        description: flag to decide whether to show only uniques or not
+        schema:
+          type: boolean
+          default: false
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attribution
+        in: query
+        description: the conversion attribution to be used, either full or partial
+        schema:
+          type: string
+          default: full
+          enum:
+          - full
+          - partial
+      - name: methodology
+        in: query
+        description: the methodology to be used, either first_touch/last_touch/linear/time_decay
+        schema:
+          type: string
+          default: last_touch
+          enum:
+          - first_touch
+          - last_touch
+          - linear
+          - time_decay
+      - name: event
+        in: query
+        description: the event
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: the pixel category
+        required: true
+        schema:
+          type: string
+      - name: subCategory
+        in: query
+        description: the comma-separated pixel sub-categories
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-14'
+      - name: fields
+        in: query
+        description: the comma-separated fields to return
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: offset
+        in: query
+        description: the number of records to skip
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        description: the max number of records to return
+        schema:
+          type: integer
+          default: 100
+      - name: onceNow
+        in: query
+        description: Run this report once?
+        schema:
+          type: boolean
+          default: true
+      - name: emailIt
+        in: query
+        description: Email this report?
+        schema:
+          type: boolean
+          default: false
+      - name: emailAddr
+        in: query
+        description: Email address?
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: '''application/json'' - provides json response. ''text/csv'' or ''application/csv'' provides csv file.'
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListMetricsByField'
+  /api/advertisers/{advertiserId}/reports/eventPerformance:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get event-wise performance report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
+      description: Get event-wise performance report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
+      operationId: getEventPerformanceReport
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: kind
+        in: query
+        description: the field by which data to be grouped, either creative/adgroup/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
+        required: true
+        schema:
+          type: string
+          enum:
+          - creative
+          - adgroup
+          - publisher
+          - channel
+          - daypart
+          - audience
+          - device
+          - mediatype
+          - state
+          - dma
+          - zip
+          - overall
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        description: the FLIP universal pixel id
+        required: true
+        schema:
+          type: string
+      - name: showUniques
+        in: query
+        description: flag to decide whether to show only uniques or not
+        schema:
+          type: boolean
+          default: false
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: attribution
+        in: query
+        description: the conversion attribution to be used, either full or partial
+        schema:
+          type: string
+          default: full
+          enum:
+          - full
+          - partial
+      - name: methodology
+        in: query
+        description: the methodology to be used, either first_touch/last_touch/linear/time_decay
+        schema:
+          type: string
+          default: last_touch
+          enum:
+          - first_touch
+          - last_touch
+          - linear
+          - time_decay
+      - name: event
+        in: query
+        description: the event
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: the pixel category
+        required: true
+        schema:
+          type: string
+      - name: subCategory
+        in: query
+        description: the comma-separated pixel sub-categories
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-14'
+      - name: fields
+        in: query
+        description: the comma-separated fields to return
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: offset
+        in: query
+        description: the number of records to skip
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        description: the max number of records to return
+        schema:
+          type: integer
+          default: 100
+      - name: onceNow
+        in: query
+        description: Run this report once?
+        schema:
+          type: boolean
+          default: true
+      - name: emailIt
+        in: query
+        description: Email this report?
+        schema:
+          type: boolean
+          default: false
+      - name: emailAddr
+        in: query
+        description: Email address?
+        schema:
+          type: string
+      - name: Accept
+        in: header
+        description: '''application/json'' - provides json response. ''text/csv'' or ''application/csv'' provides csv file.'
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponsePagedResultEventMetricsByField'
+  /api/advertisers/{advertiserId}/performance:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get performance by creative/adgroup/publisher/channel/audience/mediatype
+      description: Returns grouped performance metrics
+      operationId: getPerformance
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+      - name: groupBy
+        in: query
+        description: The field to group by
+        required: true
+        schema:
+          type: string
+          enum:
+          - creative
+          - adgroup
+          - publisher
+          - channel
+          - audience
+          - mediatype
+      - name: client
+        in: query
+        description: The client name
+        required: true
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+      - name: xandrId
+        in: query
+        description: The advertiser's Xandr ID
+        required: true
+      - name: pixel
+        in: query
+        description: The FLIP universal pixel ID
+        required: true
+      - name: showUniques
+        in: query
+        description: Whether to show only uniques
+        schema:
+          type: boolean
+          default: false
+      - name: conversionWindow
+        in: query
+        description: Conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: Media types to filter
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successful response
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MetricsComparisonByField'
+  /api/advertisers/{advertiserId}/performance/metrics/reach:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get reach and frequency performance metric
+      description: Returns reach and frequency metrics for a given advertiser and filters
+      operationId: getReachFrequencyMetric
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+      - name: xandrId
+        in: query
+        description: The advertiser's XandrId
+        required: true
+      - name: mediaType
+        in: query
+        description: Media types to filter (e.g., Display Retargeting, OTT, etc.)
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creative
+        in: query
+        description: Comma-separated creative IDs to filter
+        schema:
+          type: array
+          items:
+            type: string
+      - name: publisher
+        in: query
+        description: Comma-separated publisher names to filter
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audience
+        in: query
+        description: Comma-separated audience names to filter
+        schema:
+          type: array
+          items:
+            type: string
+      - name: ioIds
+        in: query
+        description: Comma-separated IO IDs to filter
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady ID & start date (separated by |) combination to filter
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: Start date
+        required: true
+        schema:
+          type: string
+          example: '2021-05-24'
+      - name: endDate
+        in: query
+        description: End date
+        required: true
+        schema:
+          type: string
+          example: '2021-05-31'
+      - name: compareStartDate
+        in: query
+        description: Compare start date
+        schema:
+          type: string
+          example: '2021-05-17'
+      - name: compareEndDate
+        in: query
+        description: Compare end date
+        schema:
+          type: string
+          example: '2021-05-23'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successful operation
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ReachMetric'
+  /api/advertisers/{advertiserId}/performance/daily:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get daily CPM/CPA/ROAS/VCR/CTR performance
+      description: Retrieve daily metrics such as CPM, CPA, ROAS, VCR, and CTR.
+      operationId: getDailyPerformance
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: kind
+        in: query
+        description: the kind of data to be returned, either CPM or CPA or ROAS or VCR or CTR
+        required: true
+        schema:
+          type: string
+          enum:
+          - cpm
+          - cpa
+          - roas
+          - vcr
+          - ctr
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailyPerformanceSummary'
+  /api/advertisers/{advertiserId}/media_types:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get media types for an advertiser
+      description: Get media types for an advertiser
+      operationId: getMediaTypes
+      parameters:
+      - name: advertiserId
+        in: query
+        description: the advertiser id
+        required: true
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2022-01-14'
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: includeNonFlip
+        in: query
+        description: flag to decide whether to include non-flip IOs in the response or not
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/advertisers/{advertiserId}/mdsp/performance/daily:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get daily CPM/CPA/ROAS/VCR/CTR performance
+      description: Retrieve daily performance metrics like CPM, CPA, ROAS, VCR, CTR
+      operationId: getDailyPerformance_1
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: kind
+        in: query
+        description: the kind of data to be returned, either CPM or CPA or ROAS or VCR or CTR
+        required: true
+        schema:
+          type: string
+          enum:
+          - cpm
+          - cpa
+          - roas
+          - vcr
+          - ctr
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        description: the FLIP universal pixel id
+        required: true
+        schema:
+          type: string
+      - name: showUniques
+        in: query
+        description: flag to decide whether to show only uniques or not
+        schema:
+          type: boolean
+          default: false
+          enum:
+          - 'true'
+          - 'false'
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: attribution
+        in: query
+        description: the conversion attribution to be used, either full or partial
+        schema:
+          type: string
+          default: full
+          enum:
+          - full
+          - partial
+      - name: methodology
+        in: query
+        description: the methodology to be used, either first_touch/last_touch/linear/time_decay
+        schema:
+          type: string
+          default: last_touch
+          enum:
+          - first_touch
+          - last_touch
+          - linear
+          - time_decay
+      - name: event
+        in: query
+        description: the event
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: the pixel category
+        required: true
+        schema:
+          type: string
+      - name: subCategory
+        in: query
+        description: the comma-separated pixel sub-categories
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-14'
+      - name: compareStartDate
+        in: query
+        description: the compare start date
+        schema:
+          type: string
+          format: date
+        example: '2022-01-01'
+      - name: compareEndDate
+        in: query
+        description: the compare end date
+        schema:
+          type: string
+          format: date
+        example: '2022-01-07'
+      - name: cumulative
+        in: query
+        description: flag to specify cumulative or not.
+        schema:
+          type: boolean
+          default: true
+          enum:
+          - 'true'
+          - 'false'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successful response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailyPerformanceSummary'
+  /api/advertisers/{advertiserId}/mdsp/impressions/summary:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get impressions summary (MDSP)
+      description: Retrieve impressions summary data filtered by various parameters
+      operationId: getImpressionsSummary
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: kind
+        in: query
+        description: 'Return what data? Choices: Impressions / Ad Spend / Video Completions / Clicks'
+        schema:
+          type: string
+          default: views
+          enum:
+          - views
+          - spend
+          - videoCompletions
+          - clicks
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: The advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: mediaType
+        in: query
+        description: The media types to filter (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: The comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: The comma-separated publisher names to filter
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: The comma-separated audience names to filter
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: The comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: The comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-14'
+      - name: compareStartDate
+        in: query
+        description: The compare start date
+        schema:
+          type: string
+          format: date
+        example: '2022-01-01'
+      - name: compareEndDate
+        in: query
+        description: The compare end date
+        schema:
+          type: string
+          format: date
+        example: '2022-01-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successful response
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseImpressionsSummary'
+  /api/advertisers/{advertiserId}/mdsp/impressions/distribution:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get impressions distribution
+      operationId: getImpressionsDistribution
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: kind
+        in: query
+        description: 'Return what data? Choices: Impressions/Ad Spend/Video Completions/Clicks'
+        required: true
+        schema:
+          type: string
+          enum:
+          - views
+          - spend
+          - videoCompletions
+          - clicks
+      - name: groupBy
+        in: query
+        description: 'Group by?, Choices: creative/adgroup/device/daypart/publisher/channel/audience/state/dma/mediatype'
+        required: true
+        schema:
+          type: string
+          enum:
+          - creative
+          - adgroup
+          - device
+          - daypart
+          - publisher
+          - channel
+          - audience
+          - state
+          - dma
+          - mediatype
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2022-01-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: successful operation
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/mdsp/impressions/daily:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get daily impressions details
+      description: Return daily impressions details for given filters
+      operationId: getDailyImpressions
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: kind
+        in: query
+        description: 'Return what data? Choices: Impressions / Ad Spend / Video Completions / Clicks'
+        required: true
+        schema:
+          type: string
+          default: views
+          enum:
+          - views
+          - spend
+          - videoCompletions
+          - clicks
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: The advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: mediaType
+        in: query
+        description: The media types to filter (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: The comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: The comma-separated publisher names to filter
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: The comma-separated audience names to filter
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: The comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: The comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-14'
+      - name: compareStartDate
+        in: query
+        description: The compare start date
+        schema:
+          type: string
+          format: date
+        example: '2022-01-01'
+      - name: compareEndDate
+        in: query
+        description: The compare end date
+        schema:
+          type: string
+          format: date
+        example: '2022-01-07'
+      - name: cumulative
+        in: query
+        description: Flag to specify cumulative or not.
+        schema:
+          type: boolean
+          default: true
+          enum:
+          - 'true'
+          - 'false'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/lift/summary:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get incrementality & brand lift summary
+      operationId: getLiftSummary
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        description: the FLIP universal pixel id
+        required: true
+        schema:
+          type: string
+      - name: showUniques
+        in: query
+        description: flag to decide whether to show only uniques or not
+        schema:
+          type: boolean
+          default: false
+          enum:
+          - 'true'
+          - 'false'
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        schema:
+          type: string
+      - name: io
+        in: query
+        description: the IO name/grouping name
+        required: true
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: attribution
+        in: query
+        description: the conversion attribution to be used, either full or partial
+        schema:
+          type: string
+          default: full
+          enum:
+          - full
+          - partial
+      - name: methodology
+        in: query
+        description: the methodology to be used, either first_touch/last_touch/linear/time_decay
+        schema:
+          type: string
+          default: last_touch
+          enum:
+          - first_touch
+          - last_touch
+          - linear
+          - time_decay
+      - name: event
+        in: query
+        description: the event
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: the pixel category
+        required: true
+        schema:
+          type: string
+      - name: subCategory
+        in: query
+        description: the comma-separated pixel sub-categories
+        schema:
+          type: string
+      - name: liftType
+        in: query
+        description: the lift type
+        required: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: List of solutions returned
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/io_pacing:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get overall pacing for selected insertion orders
+      description: Fetches the overall pacing details for the provided insertion orders
+      operationId: getInsertionOrderPacing
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InsertionOrderPacingRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseInsertionOrderPacing'
+  /api/advertisers/{advertiserId}/impressions/summary:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get impressions summary
+      operationId: getImpressionsSummary_1
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: kind
+        in: query
+        description: the kind of data to be returned, either Impressions / Ad Spend / Video Completions / Clicks
+        schema:
+          type: string
+          default: views
+          enum:
+          - views
+          - spend
+          - videoCompletions
+          - clicks
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-14'
+      - name: compareStartDate
+        in: query
+        description: the compare start date
+        schema:
+          type: string
+          format: date
+        example: '2022-01-01'
+      - name: compareEndDate
+        in: query
+        description: the compare end date
+        schema:
+          type: string
+          format: date
+        example: '2022-01-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Impressions summary
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/impressions/distribution:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get impressions distribution
+      operationId: getImpressionsDistribution_1
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: kind
+        in: query
+        description: the kind of data to be returned, either Impressions / Ad Spend / Video Completions / Clicks
+        required: true
+        schema:
+          type: string
+          enum:
+          - views
+          - spend
+          - videoCompletions
+          - clicks
+      - name: groupBy
+        in: query
+        description: the field by which data to be grouped, either creative/adgroup/device/daypart/publisher/channel/audience/state/dma/mediatype
+        required: true
+        schema:
+          type: string
+          enum:
+          - creative
+          - adgroup
+          - device
+          - daypart
+          - publisher
+          - channel
+          - audience
+          - state
+          - dma
+          - mediatype
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2022-01-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/impressions/daily:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get daily impressions details
+      description: Returns daily impression data for a given advertiser
+      operationId: getDailyImpressions_1
+      parameters:
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: kind
+        in: query
+        description: The kind of data to be returned, either Impressions / Ad Spend / Video Completions / Clicks
+        required: true
+        schema:
+          type: string
+          enum:
+          - views
+          - spend
+          - videoCompletions
+          - clicks
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailySummary'
+  /api/advertisers/{advertiserId}/flipPixels:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get FLIP pixels by advertiser id
+      description: Returns FLIP pixels for the specified advertiser
+      operationId: getFlipPixels
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: showAll
+        in: query
+        description: Flag to decide whether to show all pixels or only active pixels
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successful retrieval
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListFlipPixel'
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Add new FLIP pixel for an advertiser
+      description: Adds a new FLIP pixel for the given advertiser ID
+      operationId: addFlipPixel
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        description: FlipPixel object to add
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlipPixel'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successfully added FlipPixel
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/FlipPixel'
+  /api/advertisers/{advertiserId}/creatives:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get creatives for an advertiser
+      description: Fetches creatives for a given advertiser
+      operationId: getCreatives
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2022-01-14'
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/advertisers/{advertiserId}/conversions/summary:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get conversions summary for a FLIP pixel
+      operationId: getPixelSummary
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+        schema:
+          type: string
+      - name: pixel
+        in: query
+        description: the FLIP universal pixel id
+        required: true
+        schema:
+          type: string
+      - name: showUniques
+        in: query
+        description: flag to decide whether to show only uniques or not
+        schema:
+          type: boolean
+          default: false
+          enum:
+          - 'true'
+          - 'false'
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated ioIds ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: attribution
+        in: query
+        description: the conversion attribution to be used, either full or partial
+        schema:
+          type: string
+          default: full
+          enum:
+          - full
+          - partial
+      - name: methodology
+        in: query
+        description: the methodology to be used, either first_touch/last_touch/linear/time_decay
+        schema:
+          type: string
+          default: last_touch
+          enum:
+          - first_touch
+          - last_touch
+          - linear
+          - time_decay
+      - name: event
+        in: query
+        description: the event
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: the pixel category
+        required: true
+        schema:
+          type: string
+      - name: subCategory
+        in: query
+        description: the comma-separated pixel sub-categories
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2022-01-14'
+      - name: compareStartDate
+        in: query
+        description: the compare start date
+        schema:
+          type: string
+          format: date
+        example: '2022-01-01'
+      - name: compareEndDate
+        in: query
+        description: the compare end date
+        schema:
+          type: string
+          format: date
+        example: '2022-01-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: List of solutions returned
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/conversions/distribution:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get conversions distribution for a FLIP pixel
+      operationId: getPixelDistribution
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: kind
+        in: query
+        description: the kind of data to be returned, either pixel visits or pixel revenue
+        required: true
+        schema:
+          type: string
+          enum:
+          - visits
+          - revenue
+      - name: groupBy
+        in: query
+        description: the field by which data to be grouped, either creative/adgroup/device/daypart/publisher/channel/audience/timesexposed/state/dma/mediatype/subcategories
+        required: true
+        schema:
+          type: string
+          enum:
+          - creative
+          - adgroup
+          - device
+          - daypart
+          - publisher
+          - channel
+          - audience
+          - timesexposed
+          - state
+          - dma
+          - mediatype
+          - subcategories
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+        required: true
+      - name: pixel
+        in: query
+        description: the FLIP universal pixel id
+        required: true
+      - name: showUniques
+        in: query
+        description: flag to decide whether to show only uniques or not
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+      - name: conversionWindow
+        in: query
+        description: the conversion window in hours
+        schema:
+          type: integer
+          default: 0
+      - name: mediaType
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: string
+      - name: creative
+        in: query
+        description: the comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: publisher
+        in: query
+        description: the comma-separated publisher names to filter
+        schema:
+          type: string
+      - name: audience
+        in: query
+        description: the comma-separated audience names to filter
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: attribution
+        in: query
+        description: the conversion attribution to be used, either full or partial
+        schema:
+          type: string
+          enum:
+          - full
+          - partial
+      - name: methodology
+        in: query
+        description: the methodology to be used, either first_touch/last_touch/linear/time_decay
+        schema:
+          type: string
+          enum:
+          - first_touch
+          - last_touch
+          - linear
+          - time_decay
+      - name: event
+        in: query
+        description: the event
+      - name: category
+        in: query
+        description: the pixel category
+        required: true
+      - name: subCategory
+        in: query
+        description: the comma-separated pixel sub-categories
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2022-01-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/conversions/daily:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get daily pixel visits details
+      description: Returns pixel visit or revenue data for a specific advertiser over a time range.
+      operationId: getDailyConversions
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: kind
+        in: query
+        description: The kind of data to be returned
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailySummary'
+  /api/advertisers/{advertiserId}/brand_lift/campaigns:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get campaigns for an Advertiser and selected IO
+      operationId: getLiftCampaigns
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        schema:
+          type: string
+      - name: intCampaignId
+        in: query
+        description: the IO/Campaign Id
+        schema:
+          type: integer
+      - name: io
+        in: query
+        description: the IO name/grouping name
+        schema:
+          type: string
+      - name: pioCampaignId
+        in: query
+        description: the PIO Campaign Id
+        schema:
+          type: integer
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        default:
+          description: default response
+          content:
+            application/json: {}
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Create campaign for an Advertiser and selected IO
+      operationId: createCampaign
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: intCampaignId
+        in: query
+        description: the Campaign/IO Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: io
+        in: query
+        description: the IO name/grouping name
+        required: true
+        schema:
+          type: string
+      - name: pioCampaignId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewLucidCampaign'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/audiences:
+    post:
+      tags:
+      - Flip Dashboard
+      summary: Get audiences for an advertiser
+      description: Get audiences for an advertiser
+      operationId: getAudiences
+      parameters:
+      - name: advertiserId
+        in: query
+        description: the advertiser id
+        required: true
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2022-01-14'
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KeyValue'
+  /api/advertisers/{advertiserId}/publishers:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get publishers for an advertiser
+      description: Fetches the list of publishers for the specified advertiser
+      operationId: getPublishers
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2022-01-14'
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/advertisers/{advertiserId}/performance/metrics/incrementalreach:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get incremental reach metric
+      description: Returns incremental reach metrics by advertiser and client over specified date range
+      operationId: getIncrementalReach
+      parameters:
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          example: '2021-05-24'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          example: '2021-05-31'
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+        schema:
+          type: integer
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady ID & start date (separated by |) combinations
+        schema:
+          type: array
+          items:
+            type: string
+      - name: compareStartDate
+        in: query
+        description: Compare start date
+        schema:
+          type: string
+          example: '2021-05-17'
+      - name: compareEndDate
+        in: query
+        description: Compare end date
+        schema:
+          type: string
+          example: '2021-05-23'
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successful operation
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/IncrementalReachMetric'
+  /api/advertisers/{advertiserId}/io_names:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get unique insertion order names for an advertiser
+      description: Get unique insertion order names for an advertiser
+      operationId: getInsertionOrderNames
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: showAll
+        in: query
+        description: flag to decide whether to include Adready IOs in the response or not
+        required: false
+        schema:
+          type: boolean
+          default: false
+          enum:
+          - 'true'
+          - 'false'
+      - name: includeNonFlip
+        in: query
+        description: flag to decide whether to include non-flip IOs in the response or not
+        required: false
+        schema:
+          type: boolean
+          default: false
+          enum:
+          - 'true'
+          - 'false'
+      - name: currentPage
+        in: query
+        description: for pagination
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/advertisers/{advertiserId}/flipPixels/{pixelId}/fires:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Fetch FLIP pixel fires
+      description: Returns pixel fires for the specified pixel and advertiser, with support for filters and pagination.
+      operationId: fetchPixelFires
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+        schema:
+          type: integer
+      - name: pixelId
+        in: path
+        description: The FLIP pixel ID
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Comma-separated pixel categories
+        required: false
+        schema:
+          type: string
+          default: all
+      - name: subCategory
+        in: query
+        description: Comma-separated pixel sub-categories
+        required: false
+        schema:
+          type: string
+          default: all
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          example: '2022-01-14'
+      - name: offset
+        in: query
+        description: Number of records to skip
+        schema:
+          type: integer
+          default: 0
+      - name: limit
+        in: query
+        description: Max number of records to return
+        schema:
+          type: integer
+          default: 20
+      - name: Accept
+        in: header
+        description: '''application/json'' (default), ''text/csv'', or ''application/csv'''
+        required: false
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '400':
+          description: Invalid request parameters
+        '200':
+          description: Pixel fires fetched successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListUniversalPixelFires'
+  /api/advertisers/{advertiserId}/flipPixels/{pixelId}/fires/summary:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get FLIP pixel fires summary
+      description: Returns summary of pixel fires for a given pixel ID and date range
+      operationId: fetchFlipPixelFiresSummary
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: pixelId
+        in: path
+        description: The pixel id
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: The comma-separated pixel categories
+        required: false
+        schema:
+          type: string
+          example: category1,category2
+      - name: subCategory
+        in: query
+        description: The comma-separated pixel sub-categories
+        required: false
+        schema:
+          type: string
+          example: sub1,sub2
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+          example: '2022-01-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Successfully retrieved pixel fires summary
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseUniversalPixelFiresSummary'
+  /api/advertisers/{advertiserId}/flipPixels/{pixelId}/fires/daily:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get daily FLIP pixel fires
+      description: Returns daily pixel fires for a given advertiser and pixel ID.
+      operationId: fetchDailyPixelFires
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+        schema:
+          type: integer
+      - name: pixelId
+        in: path
+        description: The FLIP pixel ID
+        required: true
+        schema:
+          type: string
+      - name: category
+        in: query
+        description: Comma-separated pixel categories
+        required: false
+        schema:
+          type: string
+          default: all
+      - name: subCategory
+        in: query
+        description: Comma-separated pixel sub-categories
+        required: false
+        schema:
+          type: string
+          default: all
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+          example: '2022-01-14'
+      - name: Accept
+        in: header
+        description: '''application/json'' (default), or ''text/csv'' / ''application/csv'' for CSV format'
+        schema:
+          type: string
+          default: application/json
+      responses:
+        '400':
+          description: Invalid parameters
+        '200':
+          description: Daily pixel fires fetched successfully
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueLong'
+        '500':
+          description: Server error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueLong'
+  /api/advertisers/{advertiserId}/flipPixels/{pixelId}/categories:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Fetch FLIP pixel categories
+      description: Returns a list of pixel events (categories) for the given pixel ID and advertiser ID within the specified date range
+      operationId: fetchPixelCategories
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+        schema:
+          type: integer
+      - name: pixelId
+        in: path
+        description: The FLIP pixel ID
+        required: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: 'The start date (format: yyyy-MM-dd)'
+        required: true
+        schema:
+          type: string
+          example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: 'The end date (format: yyyy-MM-dd)'
+        required: true
+        schema:
+          type: string
+          example: '2022-01-14'
+      responses:
+        '400':
+          description: Invalid input
+        '200':
+          description: Successfully fetched pixel categories
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListPixelEvent'
+        '404':
+          description: Pixel not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListPixelEvent'
+  /api/advertisers/{advertiserId}/events:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get conversion events for an advertiser
+      description: Fetches conversion events for a given advertiser
+      operationId: getConversionEvents
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: xandrId
+        in: query
+        description: the advertiser's XandrId
+      - name: pixelId
+        in: query
+        description: the advertiser's pixelId
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/advertisers/{advertiserId}/brand_lift/types:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get lift types for brand lift
+      operationId: getLiftTypes
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        required: false
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: false
+        schema:
+          type: string
+      - name: intCampaignId
+        in: query
+        description: the IO/Campaign Id
+        required: false
+        schema:
+          type: string
+      - name: io
+        in: query
+        description: the IO name/grouping name
+        required: false
+        schema:
+          type: string
+      - name: pioCampaignId
+        in: query
+        description: the PIO Campaign Id
+        required: false
+        schema:
+          type: integer
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: successful operation
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/brand_lift/template_questions:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: List Template Questions
+      operationId: listTemplateQuestions
+      parameters:
+      - name: advertiserId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: usage
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: countryLanguageId
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: industryId
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: successful operation
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/brand_lift/industries:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: List Industries
+      operationId: listIndustries
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: successful operation
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/brand_lift/groupBy:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get group by for brand lift
+      operationId: getBrandLiftGroupByOption
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        schema:
+          type: string
+      - name: intCampaignId
+        in: query
+        description: the IO/Campaign Id
+        schema:
+          type: string
+      - name: io
+        in: query
+        description: the IO name/grouping name
+        schema:
+          type: string
+      - name: pioCampaignId
+        in: query
+        description: the PIO Campaign Id
+        schema:
+          type: integer
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: successful operation
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/brand_lift/distribution:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get brand lift distribution
+      operationId: getLiftDistribution
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        schema:
+          type: string
+      - name: intCampaignId
+        in: query
+        description: the IO/Campaign Id
+        schema:
+          type: integer
+      - name: io
+        in: query
+        description: the IO name/grouping name
+        schema:
+          type: string
+      - name: groupBy
+        in: query
+        description: the field by which data to be grouped, either creative/publisher/audience/overall
+        required: true
+        schema:
+          type: string
+          enum:
+          - creative
+          - publisher
+          - audience
+          - overall
+      - name: liftType
+        in: query
+        description: the lift type
+        required: true
+        schema:
+          type: string
+      - name: pioCampaignId
+        in: query
+        description: the PIO Campaign Id
+        schema:
+          type: integer
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: successful operation
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/brand_lift/country_languages:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: List Country Languages
+      operationId: listCountryLanguages
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: successful operation
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/brand_lift/campaignsStats:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Get campaigns stats for an Advertiser and selected IO
+      operationId: getLiftCampaignsStats
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+      - name: client
+        in: query
+        description: the account/client name
+      - name: advertiser
+        in: query
+        description: the advertiser name
+      - name: intCampaignId
+        in: query
+        description: the IO/Campaign Id
+      - name: io
+        in: query
+        description: the IO name/grouping name
+      - name: pioCampaignId
+        in: query
+        description: the PIO Campaign Id
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            application/json: {}
+  /api/advertisers/{advertiserId}/brand_lift/campaign/{bl_campaign_id}:
+    get:
+      tags:
+      - Flip Dashboard
+      summary: Retrieve single campaign detail for a given campaign id
+      operationId: getBrandLiftCampaign
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: bl_campaign_id
+        in: path
+        description: the BL campaign id
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: successful operation
+          content:
+            application/json: {}
+components:
+  schemas:
+    ApiResponseListObject:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items: {}
+    NewLucidCampaign:
+      type: object
+      properties:
+        campaign_name:
+          type: string
+        start_date:
+          type: string
+        end_date:
+          type: string
+        client_name:
+          type: string
+        country_language_id:
+          type: integer
+          format: int32
+        industry_id:
+          type: integer
+          format: int32
+        channels:
+          type: array
+          items:
+            type: string
+        draft_settings:
+          $ref: '#/components/schemas/DraftSettings'
+    DailyPerformanceSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePerformanceSummary'
+    DailySummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
+    MetricsByField:
+      type: object
+      properties:
+        category:
+          type: string
+        event:
+          type: string
+        name:
+          type: string
+        impressions:
+          type: integer
+          format: int64
+        spend:
+          type: number
+          format: double
+        cpm: {}
+        cpmInfinity:
+          type: boolean
+        totalCount:
+          type: number
+          format: double
+        conversionRate: {}
+        conversionRateInfinity:
+          type: boolean
+        revenue:
+          type: number
+          format: double
+        videoCompletionRate: {}
+        videoCompletionRateInfinity:
+          type: boolean
+        videoCompletions:
+          type: integer
+          format: int64
+        clickThroughRate: {}
+        clickThroughRateInfinity:
+          type: boolean
+        clicks:
+          type: integer
+          format: int64
+        cpa: {}
+        cpaInfinity:
+          type: boolean
+        roas: {}
+        roasInfinity:
+          type: boolean
+        pm: {}
+        pmInfinity:
+          type: boolean
+        reach:
+          type: integer
+          format: int64
+        frequency: {}
+        frequencyInfinity:
+          type: boolean
+        timeToConvert:
+          type: number
+          format: double
+        totalExposures:
+          type: number
+          format: double
+        incrementalReach:
+          type: integer
+          format: int64
+        overallCTVReach:
+          type: integer
+          format: int64
+        incrementalReachPercentage:
+          type: number
+          format: double
+    ComparisonDataDouble:
+      type: object
+      properties:
+        currentValue:
+          type: number
+          format: double
+        compareValue:
+          type: number
+          format: double
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    DraftSettings:
+      type: object
+      properties:
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+        baseline_questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+        allow_ip:
+          type: boolean
+        expected_impressions_count:
+          type: integer
+          format: int32
+        target_audiences:
+          type: array
+          items:
+            $ref: '#/components/schemas/TargetAudience'
+    Field:
+      type: object
+      properties:
+        name:
+          type: string
+        label:
+          type: string
+        value:
+          type: string
+    ApiResponseListPixelEvent:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/PixelEvent'
+    IncrementalReachMetric:
+      type: object
+      properties:
+        incrementalReach:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        incrementalReachPercentage:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+    UniversalPixelFires:
+      type: object
+      properties:
+        pixelTimeStamp:
+          type: string
+        orderNumber:
+          type: string
+        checkoutValue:
+          type: number
+          format: double
+        category:
+          type: string
+        subCategory:
+          type: string
+        gaEventName:
+          type: string
+        gaEventAction:
+          type: string
+        gaReferrerUrl:
+          type: string
+        utmSource:
+          type: string
+        utmMedium:
+          type: string
+    ApiResponseListFlipPixel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlipPixel'
+    ComparisonDataNumber:
+      type: object
+      properties:
+        currentValue:
+          type: number
+        compareValue:
+          type: number
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    PagedResultEventMetricsByField:
+      type: object
+      properties:
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventMetricsByField'
+        recordCount:
+          type: integer
+          format: int64
+        headers:
+          type: array
+          items:
+            type: string
+    MetricsComparisonByField:
+      type: object
+      properties:
+        category:
+          type: string
+        event:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        displayName:
+          type: string
+        streamingCategory:
+          type: string
+        imageUrl:
+          type: string
+        impressions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        spend:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        totalCount:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        cpa:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        roas:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        revenue:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        cpm:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        pm:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        videoImpressions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        clicks:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        vcr:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        ctr:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        ireach:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        ireachPercentage:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+    LucidSPCGroupingsWrapper:
+      type: object
+      properties:
+        campaign_id:
+          type: string
+        data:
+          type: array
+          items: {}
+    ExistingLucidCampaign:
+      type: object
+      properties:
+        campaign_name:
+          type: string
+        start_date:
+          type: string
+        end_date:
+          type: string
+        client_name:
+          type: string
+        country_language_id:
+          type: integer
+          format: int32
+        industry_id:
+          type: integer
+          format: int32
+        channels:
+          type: array
+          items:
+            type: string
+        draft_settings:
+          $ref: '#/components/schemas/DraftSettings'
+        campaign_id:
+          type: string
+        bl_campaign_id:
+          type: string
+        int_campaign_id:
+          type: integer
+          format: int32
+        pio_campaign_id:
+          type: integer
+          format: int32
+        status:
+          type: string
+        control_survey_id:
+          type: string
+        exposed_survey_id:
+          type: string
+        errors:
+          type: string
+        default_question_id:
+          type: integer
+          format: int32
+        default_question_name:
+          type: string
+        account_id:
+          type: string
+        project_manager_user_id:
+          type: integer
+          format: int32
+        created_at:
+          type: string
+        updated_at:
+          type: string
+        permission_id:
+          type: integer
+          format: int32
+        campaign_data_updated_at:
+          type: string
+        salesforce_id:
+          type: string
+        region: {}
+    Row:
+      type: object
+      properties:
+        text:
+          type: string
+        title:
+          type: string
+        order:
+          type: integer
+          format: int32
+        none_of_the_above:
+          type: boolean
+    ImpressionsSummary:
+      type: object
+      properties:
+        spend:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        impressions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        videoCompletionRate:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        clicks:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        clickThroughRate:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+    Question:
+      type: object
+      properties:
+        customQuestion:
+          type: boolean
+        question_text:
+          type: string
+        question_name:
+          type: string
+        kpi_type:
+          type: string
+        max_sel:
+          type: integer
+          format: int32
+        answers:
+          type: array
+          items:
+            type: string
+        none_of_the_above_answer:
+          type: string
+        anchored_answer:
+          type: string
+        custom_question_text:
+          type: string
+        is_custom_question_text:
+          type: boolean
+        randomize:
+          type: boolean
+        order:
+          type: integer
+          format: int32
+        default:
+          type: boolean
+        question_type:
+          type: string
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/Column'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/Row'
+        target_option_index:
+          type: integer
+          format: int32
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/Option'
+        multi_target_option_index:
+          type: array
+          items:
+            type: integer
+            format: int32
+        multi_level_target_option_index: {}
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        required:
+          type: boolean
+        questionParams:
+          type: array
+          items:
+            type: string
+        input_fields_values:
+          type: object
+          additionalProperties:
+            type: string
+    TargetAudience:
+      type: object
+      properties:
+        target_name:
+          type: string
+        is_default:
+          type: boolean
+        qualifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Qualification'
+    ApiResponseLucidSPCGroupingsWrapper:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/LucidSPCGroupingsWrapper'
+    FlipPixel:
+      type: object
+      properties:
+        apn_name:
+          type: string
+        apn_adv_id:
+          type: string
+        active:
+          type: boolean
+        name:
+          type: string
+        start_date:
+          type: string
+        end_date:
+          type: string
+        conversion_type:
+          type: string
+        values_returned:
+          type: string
+        requires_order_number:
+          type: boolean
+        piggyback_pixels:
+          type: array
+          items:
+            type: string
+        authorized_urls:
+          type: array
+          items:
+            type: string
+        order_number_regex:
+          type: string
+        total_regex:
+          type: string
+        external_file:
+          type: string
+        is_mni:
+          type: boolean
+        flip_id:
+          type: string
+        pixel_fires:
+          $ref: '#/components/schemas/FlipPixelFires'
+    ApiResponseListMetricsByField:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricsByField'
+    KeyValuePerformanceSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/PerformanceSummary'
+        extra:
+          type: string
+    Qualification:
+      type: object
+      properties:
+        marketplace_question_id:
+          type: number
+          format: float
+        qual_name:
+          type: string
+        answer_type:
+          type: string
+        precodes:
+          type: array
+          items:
+            type: string
+    ApiResponseInsertionOrderPacing:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/InsertionOrderPacing'
+    UniversalPixelFiresSummary:
+      type: object
+      properties:
+        pixelId:
+          type: string
+        todaysCount:
+          type: integer
+          format: int64
+        yesterdaysCount:
+          type: integer
+          format: int64
+        last7DaysCount:
+          type: integer
+          format: int64
+        last30DaysCount:
+          type: integer
+          format: int64
+        last7DaysAverage:
+          type: number
+          format: double
+        average:
+          type: number
+          format: double
+    InsertionOrderPacingRequest:
+      type: object
+      properties:
+        client:
+          type: string
+        advertiser:
+          type: string
+        ioIds:
+          type: string
+        adGroups:
+          type: string
+    ApiResponsePagedResultEventMetricsByField:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PagedResultEventMetricsByField'
+    ApiResponseUniversalPixelFiresSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/UniversalPixelFiresSummary'
+    PerformanceSummary:
+      type: object
+      properties:
+        impressions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        spend:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        visits:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        cpa:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        revenue:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        roas:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        cpm:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        videoImpressions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        vcr:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        clicks:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        ctr:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+    ReachMetric:
+      type: object
+      properties:
+        reach:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        frequency:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+    PixelEvent:
+      type: object
+      properties:
+        event:
+          type: string
+        category:
+          type: string
+        selected:
+          type: boolean
+        numSubCategories:
+          type: integer
+          format: int32
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/PixelEvent'
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+        value: {}
+        extra:
+          type: string
+    Option:
+      type: object
+      properties:
+        text:
+          type: string
+        none_of_the_above:
+          type: boolean
+    ApiResponseFlipPixel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/FlipPixel'
+    ApiResponseListKeyValueLong:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueLong'
+    ApiResponseListUniversalPixelFires:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/UniversalPixelFires'
+    KeyValueLong:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: integer
+          format: int64
+        extra:
+          type: string
+    EventMetricsByField:
+      type: object
+      properties:
+        name:
+          type: string
+        spend:
+          type: number
+          format: double
+        allEvents:
+          type: object
+          additionalProperties: {}
+    FlipPixelFires:
+      type: object
+      properties:
+        yesterday:
+          type: integer
+          format: int64
+        last15Minutes:
+          type: integer
+          format: int64
+        last7Days:
+          type: integer
+          format: int64
+        last30Days:
+          type: integer
+          format: int64
+        lifetime:
+          type: integer
+          format: int64
+        dailyAverage:
+          type: number
+          format: double
+        last7DayAverage:
+          type: number
+          format: double
+        yesterdayDelta:
+          type: number
+          format: double
+    ComparisonDataLong:
+      type: object
+      properties:
+        currentValue:
+          type: integer
+          format: int64
+        compareValue:
+          type: integer
+          format: int64
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    ApiResponseDailyPerformanceSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailyPerformanceSummary'
+    ApiResponseListConversionTouch:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversionTouch'
+    Column:
+      type: object
+      properties:
+        text:
+          type: string
+        title:
+          type: string
+        order:
+          type: integer
+          format: int32
+        none_of_the_above:
+          type: boolean
+    ApiResponseImpressionsSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ImpressionsSummary'
+    KeyValueComparisonDataNumber:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ComparisonDataNumber'
+        extra:
+          type: string
+    ApiResponseDailySummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySummary'
+    InsertionOrderPacing:
+      type: object
+      properties:
+        startDate:
+          type: string
+        endDate:
+          type: string
+        budget:
+          type: number
+          format: double
+        spend:
+          type: number
+          format: double
+        pacing:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+    ConversionTouch:
+      type: object
+      properties:
+        uniqueId:
+          type: string
+        ip:
+          type: string
+        revenue:
+          type: number
+          format: double
+        subCategory:
+          type: string
+        pixelTimestamp:
+          type: string
+        pixelTimestampMillis:
+          type: integer
+          format: int64
+        creative:
+          type: string
+        publisher:
+          type: string
+        channel:
+          type: string
+        audience:
+          type: string
+        mediaType:
+          type: string
+        state:
+          type: string
+        dma:
+          type: string
+        deviceType:
+          type: string
+        impressionTimestamp:
+          type: string
+        timeToConvert:
+          type: integer
+          format: int32
+        timesExposed:
+          type: integer
+          format: int32

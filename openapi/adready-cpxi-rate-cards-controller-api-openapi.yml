@@ -1,0 +1,251 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Rate Cards Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: rate-cards-controller
+paths:
+  /api/rateCards/{productTypeId}:
+    put:
+      tags:
+      - rate-cards-controller
+      operationId: updateRateCard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateCardItem'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseRateCardItemDTO'
+  /api/rateCards:
+    post:
+      tags:
+      - rate-cards-controller
+      operationId: createRateCardItem
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RateCardItem'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseRateCardItemDTO'
+  /api/rateCards/{accountId}:
+    get:
+      tags:
+      - rate-cards-controller
+      operationId: listRateCards
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: accountType
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseRateCardDTO'
+components:
+  schemas:
+    RateCardItemDTO:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        accountType:
+          type: string
+        adjustmentId:
+          type: integer
+          format: int32
+        adjustmentModel:
+          type: string
+          enum:
+          - TARGETING
+          - KPI
+        adjustmentType:
+          type: string
+          enum:
+          - INCREMENT
+          - OVERRIDE
+        costPlus:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        defaultValue:
+          type: number
+        deletedAt:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+        id:
+          type: integer
+          format: int64
+        max:
+          type: number
+        min:
+          type: number
+        productTypeId:
+          type: integer
+          format: int32
+        rateType:
+          type: string
+          enum:
+          - STANDARD
+          - COSTPLUS
+          - CPM
+          - FIXED_MARGIN
+          - ADDED_VALUE
+          - CPA
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        productCategoryId:
+          type: integer
+          format: int32
+        productTypeName:
+          type: string
+        productCategoryName:
+          type: string
+    ApiResponseRateCardItemDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/RateCardItemDTO'
+    RateCardDTO:
+      type: object
+      properties:
+        markup:
+          type: number
+        rateCardItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/RateCardItemDTO'
+    RateCardItem:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        accountType:
+          type: string
+        adjustmentId:
+          type: integer
+          format: int32
+        adjustmentModel:
+          type: string
+          enum:
+          - TARGETING
+          - KPI
+        adjustmentType:
+          type: string
+          enum:
+          - INCREMENT
+          - OVERRIDE
+        costPlus:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        defaultValue:
+          type: number
+        deletedAt:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+        id:
+          type: integer
+          format: int64
+        max:
+          type: number
+        min:
+          type: number
+        productTypeId:
+          type: integer
+          format: int32
+        rateType:
+          type: string
+          enum:
+          - STANDARD
+          - COSTPLUS
+          - CPM
+          - FIXED_MARGIN
+          - ADDED_VALUE
+          - CPA
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    ApiResponseRateCardDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/RateCardDTO'

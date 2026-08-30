@@ -1,0 +1,143 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Advertiser API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: advertiser
+paths:
+  /api/advertisers/{advertiserId}/media_types:
+    post:
+      tags:
+      - advertiser
+      summary: Get media types for an advertiser
+      description: Get media types for an advertiser
+      operationId: getMediaTypes
+      parameters:
+      - name: advertiserId
+        in: query
+        description: the advertiser id
+        required: true
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2022-01-14'
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: includeNonFlip
+        in: query
+        description: flag to decide whether to include non-flip IOs in the response or not
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: string
+  /api/advertisers/{advertiserId}/audiences:
+    post:
+      tags:
+      - advertiser
+      summary: Get audiences for an advertiser
+      description: Get audiences for an advertiser
+      operationId: getAudiences
+      parameters:
+      - name: advertiserId
+        in: query
+        description: the advertiser id
+        required: true
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+      - name: ioIds
+        in: query
+        description: the comma-separated IO ids to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        example: '2022-01-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        example: '2022-01-14'
+      - name: adGroups
+        in: query
+        description: the comma-separated Adready Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/KeyValue'
+components:
+  schemas:
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+        value: {}
+        extra:
+          type: string

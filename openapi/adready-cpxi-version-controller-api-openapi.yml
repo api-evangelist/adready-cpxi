@@ -1,0 +1,91 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Version Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: version-controller
+paths:
+  /version:
+    get:
+      tags:
+      - version-controller
+      operationId: getVersion
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AppVersion'
+  /api/version:
+    get:
+      tags:
+      - version-controller
+      operationId: getVersion_1
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AppVersion'
+  /throw_exception:
+    get:
+      tags:
+      - version-controller
+      operationId: throwException
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AppVersion'
+components:
+  schemas:
+    AppVersion:
+      type: object
+      properties:
+        gitBranch:
+          type: string
+        gitRevision:
+          type: string
+        builtBy:
+          type: string
+        buildJdk:
+          type: string
+        buildTime:
+          type: string
+        version:
+          type: string
+        api:
+          type: object
+          additionalProperties: {}

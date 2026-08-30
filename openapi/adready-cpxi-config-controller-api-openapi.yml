@@ -1,0 +1,105 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Config Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: config-controller
+paths:
+  /api/theme:
+    get:
+      tags:
+      - config-controller
+      operationId: getTheme
+      parameters:
+      - name: domain
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: appId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: mode
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/secured_config:
+    get:
+      tags:
+      - config-controller
+      operationId: getSecuredConfig
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/config:
+    get:
+      tags:
+      - config-controller
+      operationId: getConfig
+      parameters:
+      - name: domain
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: appId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: mode
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object

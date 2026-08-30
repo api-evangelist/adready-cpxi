@@ -1,0 +1,1453 @@
+openapi: 3.2.0
+info:
+  title: 'Kickstart App Console: Brand API'
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: 'App Console: Brand'
+  description: This contains API endpoints related to Performance Brand solution in App Console
+paths:
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/reports:
+    post:
+      tags:
+      - 'App Console: Brand'
+      summary: Get dimension-wise measurements & metrics report for Performance Brand solution
+      description: 'Groups data by one of: overall, day, campaign, adgroup, mediatype, creative, audience, country, state, dma, device'
+      operationId: getBrandPerformanceReport
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: dimension
+        in: query
+        description: The dimension by which data is grouped
+        required: false
+        schema:
+          type: string
+          default: overall
+          enum:
+          - overall
+          - day
+          - campaign
+          - adgroup
+          - mediatype
+          - creative
+          - audience
+          - country
+          - state
+          - dma
+          - device
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+      - name: mediaTypes
+        in: query
+        description: The media types to filter (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creatives
+        in: query
+        description: The comma-separated creative ids to filter
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audiences
+        in: query
+        description: The comma-separated audience names to filter
+        schema:
+          type: array
+          items:
+            type: string
+      - name: campaignIds
+        in: query
+        description: The comma-separated Campaign ids to filter
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: The comma-separated AdReady Id & start date (separated by |)
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        example: '2023-06-14'
+      - name: standardRequest
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/StandardApiRequest'
+      - name: conversionApiRequest
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/ConversionApiRequest'
+      - name: Accept
+        in: header
+        required: true
+        schema:
+          type: string
+      - name: schedulingRequest
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/SchedulingRequest'
+      - name: creative
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: audience
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: mediaType
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: ioIds
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListBrandMetricsByDimension'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/top_performers:
+    get:
+      tags:
+      - 'App Console: Brand'
+      summary: Get dimension-wise top performing metrics for Performance Brand solution
+      description: Returns top-performing metrics grouped by specified dimensions
+      operationId: getBrandTopPerformers
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution ID
+        required: true
+        schema:
+          type: integer
+      - name: dimension
+        in: query
+        description: Comma-separated dimensions to group by (e.g. creative,audience)
+        required: false
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - campaign
+            - adgroup
+            - mediatype
+            - creative
+            - audience
+            - country
+            - state
+            - dma
+            - device
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: mediaTypes
+        in: query
+        description: Comma-separated media types (e.g. Display Retargeting, OTT, etc.)
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative IDs
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audiences
+        in: query
+        description: Comma-separated audience names
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated campaign IDs
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady ID and start date (| separated)
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: Start date
+        required: true
+        schema:
+          type: string
+          format: date
+          example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: End date
+        required: true
+        schema:
+          type: string
+          format: date
+          example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListBrandTopPerformer'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/summary:
+    get:
+      tags:
+      - 'App Console: Brand'
+      summary: Get summary for Performance Brand solution
+      description: Get summary for Performance Brand solution
+      operationId: getBrandSummary
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: the solution id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: mediaTypes
+        in: query
+        description: the media types to filter (e.g. Display Retargeting, OTT, etc.)
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creatives
+        in: query
+        description: the comma-separated creative ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audiences
+        in: query
+        description: the comma-separated audience names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pixelIds
+        in: query
+        description: the comma-separated pixel ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: the start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      - name: compareStartDate
+        in: query
+        description: the compare start date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-01'
+      - name: compareEndDate
+        in: query
+        description: the compare end date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: Success
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseBrandSummary'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/performance:
+    get:
+      tags:
+      - 'App Console: Brand'
+      summary: Get dimension-wise measurements & metrics for Performance Brand solution
+      description: 'Returns grouped data by dimension: campaign, adgroup, mediatype, creative, audience, country, state, dma, or device.'
+      operationId: getBrandPerformance
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: dimension
+        in: query
+        description: The dimension to group by
+        required: false
+        schema:
+          type: string
+          default: mediatype
+          enum:
+          - campaign
+          - adgroup
+          - mediatype
+          - creative
+          - audience
+          - country
+          - state
+          - dma
+          - device
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+      - name: mediaTypes
+        in: query
+        description: Comma-separated media types (e.g. Display Retargeting, OTT)
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audiences
+        in: query
+        description: Comma-separated audience names
+        schema:
+          type: array
+          items:
+            type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated campaign ids
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |)
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: Start date (e.g. 2023-06-08)
+        required: true
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: End date (e.g. 2023-06-14)
+        required: true
+        schema:
+          type: string
+      - name: standardRequest
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/StandardApiRequest'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListBrandMetricsByDimension'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/metrics/distribution:
+    get:
+      tags:
+      - 'App Console: Brand'
+      summary: Get dimension-wise metrics for Performance Brand solution
+      description: Returns grouped metrics (e.g., CTR, CPC) by dimension (e.g., campaign, adgroup)
+      operationId: getBrandMetricsDistribution
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser ID
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution ID
+        required: true
+        schema:
+          type: integer
+      - name: metric
+        in: query
+        description: Metric to return
+        required: false
+        schema:
+          type: string
+          default: ctr
+          enum:
+          - ctr
+          - cpc
+          - vcr
+          - cpcv
+          - cpa
+      - name: dimension
+        in: query
+        description: Group by dimension
+        required: false
+        schema:
+          type: string
+          default: mediatype
+          enum:
+          - campaign
+          - adgroup
+          - mediatype
+          - creative
+          - audience
+          - country
+          - state
+          - dma
+          - device
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: mediaTypes
+        in: query
+        description: Comma-separated media types (e.g. Display Retargeting, OTT, etc.)
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative IDs
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audiences
+        in: query
+        description: Comma-separated audience names
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pixelIds
+        in: query
+        description: Comma-separated pixel IDs
+        schema:
+          type: array
+          items:
+            type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated campaign IDs
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady ID & start date (separated by |)
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+          example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+          example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueDouble'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/metrics/daily:
+    get:
+      tags:
+      - 'App Console: Brand'
+      summary: Get daily metrics for Performance Brand solution
+      description: Retrieve daily metrics filtered by various criteria
+      operationId: getDailyMetric_2
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: metric
+        in: query
+        description: The metric like ctr or vcr
+        required: false
+        schema:
+          type: string
+          default: ctr
+          enum:
+          - ctr
+          - vcr
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: mediaTypes
+        in: query
+        description: The media types to filter (e.g. Display Retargeting, OTT, etc.)
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audiences
+        in: query
+        description: Comma-separated audience names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pixelIds
+        in: query
+        description: Comma-separated pixel ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated Campaign ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |) combination to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      - name: compareStartDate
+        in: query
+        description: The compare start date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-01'
+      - name: compareEndDate
+        in: query
+        description: The compare end date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailyBrandSummary'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/measurements/distribution:
+    get:
+      tags:
+      - 'App Console: Brand'
+      summary: Get dimension-wise measurements for Performance Brand solution
+      description: Returns grouped measurement data (e.g. impressions, spend) by a specified dimension.
+      operationId: getBrandMeasurementsDistribution
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: measurement
+        in: query
+        description: Measurement to return
+        required: false
+        schema:
+          type: string
+          default: impressions
+          enum:
+          - impressions
+          - spend
+          - clicks
+          - completions
+          - conversions
+      - name: dimension
+        in: query
+        description: Group by dimension
+        required: false
+        schema:
+          type: string
+          default: mediatype
+          enum:
+          - campaign
+          - adgroup
+          - mediatype
+          - creative
+          - audience
+          - country
+          - state
+          - dma
+          - device
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+      - name: mediaTypes
+        in: query
+        description: Comma-separated media types (e.g. Display Retargeting, OTT)
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audiences
+        in: query
+        description: Comma-separated audience names
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pixelIds
+        in: query
+        description: Comma-separated pixel ids
+        schema:
+          type: array
+          items:
+            type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated campaign ids
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |)
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: Start date
+        required: true
+        schema:
+          type: string
+          example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: End date
+        required: true
+        schema:
+          type: string
+          example: '2023-06-14'
+      - name: standardRequest
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/StandardApiRequest'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueDouble'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/brand/measurements/daily:
+    get:
+      tags:
+      - 'App Console: Brand'
+      summary: Get daily measurements for Performance Brand solution
+      description: Returns daily measurement data filtered by various criteria
+      operationId: getDailyMeasurement_2
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: measurement
+        in: query
+        description: The measurement to be returned, either Impressions / Spend / Clicks / Video Completions / Conversions
+        required: false
+        schema:
+          type: string
+          default: impressions
+          enum:
+          - impressions
+          - spend
+          - clicks
+          - completions
+          - conversions
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: mediaTypes
+        in: query
+        description: The media types to filter (e.g. Display Retargeting, OTT, etc.)
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: audiences
+        in: query
+        description: Comma-separated audience names to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: pixelIds
+        in: query
+        description: Comma-separated pixel ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated Campaign ids to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |) combination to filter
+        style: form
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      - name: compareStartDate
+        in: query
+        description: The compare start date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-01'
+      - name: compareEndDate
+        in: query
+        description: The compare end date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailySummary'
+components:
+  schemas:
+    DailySummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
+    BrandSummary:
+      type: object
+      properties:
+        spend:
+          $ref: '#/components/schemas/ComparisonData'
+        impressions:
+          $ref: '#/components/schemas/ComparisonData'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonData'
+        videoImpressions:
+          $ref: '#/components/schemas/ComparisonData'
+        clicks:
+          $ref: '#/components/schemas/ComparisonData'
+        vcr:
+          $ref: '#/components/schemas/ComparisonData'
+        ctr:
+          $ref: '#/components/schemas/ComparisonData'
+    ApiResponseListKeyValueDouble:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueDouble'
+    BrandMetricsByDimension:
+      type: object
+      properties:
+        name:
+          type: string
+        spend:
+          type: number
+          format: double
+        impressions:
+          type: number
+          format: double
+        clicks:
+          type: number
+          format: double
+        cpm: {}
+        cpmInfinity:
+          type: boolean
+        cpc: {}
+        cpcInfinity:
+          type: boolean
+        cpcv: {}
+        cpcvInfinity:
+          type: boolean
+        reach:
+          type: integer
+          format: int64
+        frequency: {}
+        frequencyInfinity:
+          type: boolean
+        incrementalReach:
+          type: integer
+          format: int64
+        incrementalReachPercentage:
+          type: number
+          format: double
+        totalCount:
+          type: number
+          format: double
+        conversionRate: {}
+        conversionRateInfinity:
+          type: boolean
+        revenue:
+          type: number
+          format: double
+        cpa: {}
+        pm: {}
+        pmInfinity:
+          type: boolean
+        cpaInfinity:
+          type: boolean
+        roas: {}
+        roasInfinity:
+          type: boolean
+        timeToConvert:
+          type: number
+          format: double
+        totalExposures:
+          type: number
+          format: double
+        key:
+          type: string
+        category:
+          type: string
+        event:
+          type: string
+        ctr: {}
+        ctrInfinity:
+          type: boolean
+        completions:
+          type: number
+          format: double
+        vcr: {}
+        vcrInfinity:
+          type: boolean
+    ConversionApiRequest:
+      type: object
+      properties:
+        pixel:
+          type: string
+          description: The FLIP universal pixel id
+          example: pixel_123
+        showUniques:
+          type: boolean
+          default: false
+          description: Flag to decide whether to show only uniques or not
+        conversionWindow:
+          type: integer
+          format: int32
+          default: 0
+          description: The conversion window in hours
+        attribution:
+          type: string
+          default: full
+          description: The conversion attribution to be used, either full or partial
+          enum:
+          - full
+          - partial
+        methodology:
+          type: string
+          default: last_touch
+          description: The methodology to be used
+          enum:
+          - first_touch
+          - last_touch
+          - linear
+          - time_decay
+        event:
+          type: string
+          description: The event
+        category:
+          type: string
+          description: The pixel category
+        subCategory:
+          type: string
+          description: The comma-separated pixel sub-categories
+        ip:
+          type: string
+          description: IP address of the request
+          example: 192.168.1.1
+        ts:
+          type: integer
+          format: int64
+          description: Timestamp of the request
+          example: 1651234567890
+        fields:
+          type: string
+          writeOnly: true
+        fieldsToReturn:
+          type: array
+          items:
+            type: string
+      required:
+      - category
+      - pixel
+    SchedulingRequest:
+      type: object
+      properties:
+        onceNow:
+          type: boolean
+        emailIt:
+          type: boolean
+        emailAddr:
+          type: string
+    ApiResponseListBrandMetricsByDimension:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrandMetricsByDimension'
+    ComparisonDataNumber:
+      type: object
+      properties:
+        currentValue:
+          type: number
+        compareValue:
+          type: number
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    ApiResponseBrandSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/BrandSummary'
+    ApiResponseListBrandTopPerformer:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrandTopPerformer'
+    KeyValueBrandSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/BrandSummary'
+        extra:
+          type: string
+    ComparisonData:
+      type: object
+      properties:
+        currentValue:
+          type: number
+          format: double
+        compareValue:
+          type: number
+          format: double
+        difference:
+          type: number
+          format: double
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    ApiResponseDailyBrandSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailyBrandSummary'
+    StandardApiRequest:
+      type: object
+      properties:
+        solutionId:
+          type: integer
+          format: int32
+        client:
+          type: string
+        advertiser:
+          type: string
+        advertiserId:
+          type: integer
+          format: int32
+        xandrId:
+          type: string
+        campaignIds:
+          type: string
+        adGroups:
+          type: string
+        mediaTypes:
+          type: string
+        creatives:
+          type: string
+        audiences:
+          type: string
+        keywords:
+          type: string
+        pixelIds:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        compareStartDate:
+          type: string
+        compareEndDate:
+          type: string
+        publisher:
+          type: string
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        conversionWindow:
+          type: integer
+          format: int32
+        keywordFilterApplied:
+          type: boolean
+        comparedDateRangeProvided:
+          type: boolean
+    KeyValueDouble:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: number
+          format: double
+        extra:
+          type: string
+    BrandTopPerformer:
+      type: object
+      properties:
+        name:
+          type: string
+        dimension:
+          type: string
+        cpc: {}
+        ctr: {}
+        ctrInfinity:
+          type: boolean
+        vcr: {}
+        vcrInfinity:
+          type: boolean
+        roas: {}
+        roasInfinity:
+          type: boolean
+        impressions:
+          type: number
+          format: double
+    KeyValueComparisonDataNumber:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ComparisonDataNumber'
+        extra:
+          type: string
+    ApiResponseDailySummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySummary'
+    DailyBrandSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueBrandSummary'

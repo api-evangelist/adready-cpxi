@@ -1,0 +1,814 @@
+openapi: 3.2.0
+info:
+  title: Kickstart User Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: user-controller
+paths:
+  /api/users/{userId}/mapAdvertisers:
+    put:
+      tags:
+      - user-controller
+      operationId: mapAdvertisers
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserAdvertiser'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+  /api/users/{userId}/mapAccounts:
+    put:
+      tags:
+      - user-controller
+      operationId: mapAccounts
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UserAccount'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api/users/{id}:
+    get:
+      tags:
+      - user-controller
+      operationId: get_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseUserDTO'
+    put:
+      tags:
+      - user-controller
+      operationId: update_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseUserDTO'
+    delete:
+      tags:
+      - user-controller
+      operationId: delete_1
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api/users:
+    get:
+      tags:
+      - user-controller
+      operationId: getAll
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListUserDTO'
+    post:
+      tags:
+      - user-controller
+      operationId: create_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseUserDTO'
+  /api/users/{userId}/password_reset/url:
+    post:
+      tags:
+      - user-controller
+      operationId: createPasswordResetUrl
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseString'
+  /api/users/{userId}/invite:
+    post:
+      tags:
+      - user-controller
+      operationId: inviteUser
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/users/{userId}/invite/url:
+    post:
+      tags:
+      - user-controller
+      operationId: inviteUserUrl
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseString'
+  /api/users/{userId}/globalRoles/{roleId}:
+    post:
+      tags:
+      - user-controller
+      operationId: updateUserRoles
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: roleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: userRole
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/UserRole'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/UserRole'
+    delete:
+      tags:
+      - user-controller
+      operationId: deleteUserRoles
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: roleId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: userRole
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/UserRole'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+  /api/users/{userId}/activateSolution:
+    post:
+      tags:
+      - user-controller
+      operationId: activateSolution
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: accountName
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: advertiserName
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: solutionName
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/users/{userId}/globalRoles:
+    get:
+      tags:
+      - user-controller
+      operationId: findUserGlobalRoles
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserRole'
+  /api/users/organization:
+    get:
+      tags:
+      - user-controller
+      operationId: getUserByOrgId
+      parameters:
+      - name: orgId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+  /api/users/advertiser:
+    get:
+      tags:
+      - user-controller
+      operationId: getUsersByAdvertiserId
+      parameters:
+      - name: advertiserId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListUserDTO'
+  /api/users/{userId}/removeAdvertiser:
+    delete:
+      tags:
+      - user-controller
+      operationId: removeAdvertiser
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAdvertiser'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+  /api/users/{userId}/removeAccount:
+    delete:
+      tags:
+      - user-controller
+      operationId: removeAccount
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserAccount'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
+    Role:
+      type: object
+      properties:
+        canCreateRole:
+          type: array
+          items:
+            type: string
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permission'
+          uniqueItems: true
+    UserDTO:
+      type: object
+      properties:
+        acceptedTos:
+          type: boolean
+        accountIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+        allowedDomains:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        email:
+          type: string
+        emailVerificationDate:
+          type: string
+          format: date-time
+        emailVerified:
+          type: boolean
+        enabled:
+          type: boolean
+        flags:
+          type: array
+          items:
+            type: string
+        id:
+          type: integer
+          format: int64
+        lastLogin:
+          type: string
+          format: date-time
+        loginCount:
+          type: integer
+          format: int32
+        organizationId:
+          type: integer
+          format: int32
+        phone:
+          type: string
+        promptLibrary:
+          type: string
+        provider:
+          type: string
+          enum:
+          - GOOGLE
+          - DR_SSO
+          - LOCAL
+          - NONE
+        role:
+          $ref: '#/components/schemas/Role'
+        team:
+          type: boolean
+        teamUserIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+          uniqueItems: true
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        userApplications:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserApplication'
+          uniqueItems: true
+        userName:
+          type: string
+        verificationMailSent:
+          type: boolean
+        selfServe:
+          type: boolean
+        inviteAccepted:
+          type: boolean
+    Permission:
+      type: object
+      properties:
+        entity:
+          type: string
+          enum:
+          - User
+          - Account
+          - Advertiser
+          - RateCard
+          - Organization
+        id:
+          type: integer
+          format: int32
+        privilege:
+          type: string
+          enum:
+          - All
+          - Read
+          - Create
+          - Delete
+    UserApplication:
+      type: object
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+    ApiResponseUserDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/UserDTO'
+    ApiResponseListUserDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDTO'
+    UserAccount:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    User:
+      type: object
+      properties:
+        acceptedTos:
+          type: boolean
+        accountIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+        allowedDomains:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        email:
+          type: string
+        emailVerificationDate:
+          type: string
+          format: date-time
+        emailVerified:
+          type: boolean
+        enabled:
+          type: boolean
+        flags:
+          type: array
+          items:
+            type: string
+        id:
+          type: integer
+          format: int64
+        lastLogin:
+          type: string
+          format: date-time
+        loginCount:
+          type: integer
+          format: int32
+        organizationId:
+          type: integer
+          format: int32
+        password:
+          type: string
+        phone:
+          type: string
+        promptLibrary:
+          type: string
+        provider:
+          type: string
+          enum:
+          - GOOGLE
+          - DR_SSO
+          - LOCAL
+          - NONE
+        role:
+          $ref: '#/components/schemas/Role'
+        team:
+          type: boolean
+        teamUserIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+          uniqueItems: true
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        userApplications:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserApplication'
+          uniqueItems: true
+        userName:
+          type: string
+        verificationMailSent:
+          type: boolean
+    UserAdvertiser:
+      type: object
+      properties:
+        advertiserId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    ApiResponseString:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: string
+    UserRole:
+      type: object
+      properties:
+        role:
+          $ref: '#/components/schemas/Role'
+        roleId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64

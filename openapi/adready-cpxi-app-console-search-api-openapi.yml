@@ -1,0 +1,1062 @@
+openapi: 3.2.0
+info:
+  title: 'Kickstart App Console: Search API'
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: 'App Console: Search'
+  description: This contains API endpoints related to Google Search solution in App Console
+paths:
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/top_performers:
+    get:
+      tags:
+      - 'App Console: Search'
+      summary: Get dimension-wise top performing metrics for Search solution
+      operationId: getSearchTopPerformers
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: dimension
+        in: query
+        description: 'The dimensions (comma-separated) by which data is grouped: campaign, adgroup, country, state, dma, zipcode, county, city, ad, adType, keyword, matchType'
+        schema:
+          type: string
+          default: ad,adType
+          enum:
+          - campaign
+          - adgroup
+          - country
+          - state
+          - dma
+          - zipcode
+          - county
+          - city
+          - ad
+          - adType
+          - keyword
+          - matchType
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: Comma-separated keywords to filter
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |) combinations
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListSearchTopPerformer'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/summary:
+    get:
+      tags:
+      - 'App Console: Search'
+      summary: Get summary for Search solution
+      operationId: getSearchSummary
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: The keywords to filter (comma-separated)
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |) combinations to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      - name: compareStartDate
+        in: query
+        description: The compare start date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-01'
+      - name: compareEndDate
+        in: query
+        description: The compare end date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseSearchSummary'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/reports:
+    get:
+      tags:
+      - 'App Console: Search'
+      summary: Get dimension-wise measurements & metrics report for Search solution
+      operationId: getSearchPerformanceReport
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: dimension
+        in: query
+        description: 'The dimension by which data to be grouped: overall, day, campaign, adgroup, country, state, dma, zipcode, county, city, ad, adType, keyword, matchType'
+        schema:
+          type: string
+          default: overall
+          enum:
+          - overall
+          - day
+          - campaign
+          - adgroup
+          - country
+          - state
+          - dma
+          - zipcode
+          - county
+          - city
+          - ad
+          - adType
+          - keyword
+          - matchType
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: The keywords to filter (comma-separated)
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListSearchMetricsByDimension'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/performance:
+    get:
+      tags:
+      - 'App Console: Search'
+      summary: Get dimension-wise measurements & metrics for Search solution
+      operationId: getSearchPerformance
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: dimension
+        in: query
+        description: 'The dimension by which data to be grouped: campaign, adgroup, country, state, dma, zipcode, county, city, ad, adType, keyword, matchType'
+        schema:
+          type: string
+          default: ad
+          enum:
+          - campaign
+          - adgroup
+          - country
+          - state
+          - dma
+          - zipcode
+          - county
+          - city
+          - ad
+          - adType
+          - keyword
+          - matchType
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: The keywords to filter (comma-separated)
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListSearchMetricsByDimension'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/metrics/distribution:
+    get:
+      tags:
+      - 'App Console: Search'
+      summary: Get dimension-wise metrics for Search solution
+      operationId: getSearchMetricsDistribution
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: metric
+        in: query
+        description: 'The metric to be returned: ctr, cpc, cpa, roas'
+        schema:
+          type: string
+          default: ctr
+          enum:
+          - ctr
+          - cpc
+          - cpa
+          - roas
+      - name: dimension
+        in: query
+        description: 'The dimension by which data is grouped: campaign, adgroup, country, state, dma, zipcode, county, city, ad, adType, keyword, matchType'
+        schema:
+          type: string
+          default: ad
+          enum:
+          - campaign
+          - adgroup
+          - country
+          - state
+          - dma
+          - zipcode
+          - county
+          - city
+          - ad
+          - adType
+          - keyword
+          - matchType
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: Comma-separated keywords to filter
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: pixelIds
+        in: query
+        description: Comma-separated pixel ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |) combinations
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueDouble'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/metrics/daily:
+    get:
+      tags:
+      - 'App Console: Search'
+      summary: Get daily metrics for Search solution
+      operationId: getDailyMetric_1
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: metric
+        in: query
+        description: The metric like ctr / cpc / cpa / roas
+        schema:
+          type: string
+          default: ctr
+          enum:
+          - ctr
+          - cpc
+          - cpa
+          - roas
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: Comma-separated keywords to filter
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: pixelIds
+        in: query
+        description: Comma-separated pixel ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |) combinations
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      - name: compareStartDate
+        in: query
+        description: The compare start date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-01'
+      - name: compareEndDate
+        in: query
+        description: The compare end date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailySearchSummary'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/measurements/distribution:
+    get:
+      tags:
+      - 'App Console: Search'
+      summary: Get dimension-wise measurements for Search solution
+      operationId: getSearchMeasurementsDistribution
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: measurement
+        in: query
+        description: 'The measurement to be returned: impressions / spend / clicks / conversions / revenue'
+        schema:
+          type: string
+          default: impressions
+          enum:
+          - impressions
+          - spend
+          - clicks
+          - conversions
+          - revenue
+      - name: dimension
+        in: query
+        description: 'The dimension by which data is grouped: campaign, adgroup, country, state, dma, zipcode, county, city, ad, adType, keyword, matchType'
+        schema:
+          type: string
+          default: ad
+          enum:
+          - campaign
+          - adgroup
+          - country
+          - state
+          - dma
+          - zipcode
+          - county
+          - city
+          - ad
+          - adType
+          - keyword
+          - matchType
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: The keywords to filter (comma-separated)
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: pixelIds
+        in: query
+        description: Comma-separated pixel ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueDouble'
+  /api/ac/advertisers/{advertiserId}/solutions/{solutionId}/search/measurements/daily:
+    get:
+      tags:
+      - 'App Console: Search'
+      summary: Get daily measurements for Search solution
+      operationId: getDailyMeasurement_1
+      parameters:
+      - name: advertiserId
+        in: path
+        description: The advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: solutionId
+        in: path
+        description: The solution id
+        required: true
+        schema:
+          type: integer
+      - name: measurement
+        in: query
+        description: 'The measurement to be returned: impressions / spend / clicks / conversions / revenue'
+        schema:
+          type: string
+          default: impressions
+          enum:
+          - impressions
+          - spend
+          - clicks
+          - conversions
+          - revenue
+      - name: client
+        in: query
+        description: The account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: The advertiser name
+        required: true
+        schema:
+          type: string
+      - name: keywords
+        in: query
+        description: Comma-separated keywords to filter
+        schema:
+          type: string
+      - name: creatives
+        in: query
+        description: Comma-separated creative ids to filter
+        schema:
+          type: string
+      - name: pixelIds
+        in: query
+        description: Comma-separated pixel ids to filter
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: Comma-separated Campaign ids to filter
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: Comma-separated AdReady Id & start date (separated by |) combination to filter
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: The start date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: The end date
+        required: true
+        schema:
+          type: string
+          format: date
+        example: '2023-06-14'
+      - name: compareStartDate
+        in: query
+        description: The compare start date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-01'
+      - name: compareEndDate
+        in: query
+        description: The compare end date
+        schema:
+          type: string
+          format: date
+        example: '2023-06-07'
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailySummary'
+components:
+  schemas:
+    ComparisonData:
+      type: object
+      properties:
+        currentValue:
+          type: number
+          format: double
+        compareValue:
+          type: number
+          format: double
+        difference:
+          type: number
+          format: double
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    DailySearchSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueSearchSummary'
+    DailySummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
+    ApiResponseDailySearchSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySearchSummary'
+    ApiResponseListKeyValueDouble:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueDouble'
+    SearchSummary:
+      type: object
+      properties:
+        spend:
+          $ref: '#/components/schemas/ComparisonData'
+        impressions:
+          $ref: '#/components/schemas/ComparisonData'
+        clicks:
+          $ref: '#/components/schemas/ComparisonData'
+        cpc:
+          $ref: '#/components/schemas/ComparisonData'
+        ctr:
+          $ref: '#/components/schemas/ComparisonData'
+    KeyValueSearchSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/SearchSummary'
+        extra:
+          type: string
+    KeyValueComparisonDataNumber:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ComparisonDataNumber'
+        extra:
+          type: string
+    ApiResponseDailySummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySummary'
+    ApiResponseSearchSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/SearchSummary'
+    KeyValueDouble:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: number
+          format: double
+        extra:
+          type: string
+    ApiResponseListSearchMetricsByDimension:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchMetricsByDimension'
+    SearchTopPerformer:
+      type: object
+      properties:
+        name:
+          type: string
+        dimension:
+          type: string
+        cpc: {}
+        cpcInfinity:
+          type: boolean
+        cpa: {}
+        cpaInfinity:
+          type: boolean
+        roas: {}
+        roasInfinity:
+          type: boolean
+        ctr: {}
+        ctrInfinity:
+          type: boolean
+    ComparisonDataNumber:
+      type: object
+      properties:
+        currentValue:
+          type: number
+        compareValue:
+          type: number
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    SearchMetricsByDimension:
+      type: object
+      properties:
+        name:
+          type: string
+        spend:
+          type: number
+          format: double
+        impressions:
+          type: number
+          format: double
+        clicks:
+          type: number
+          format: double
+        cpc: {}
+        cpcInfinity:
+          type: boolean
+        ctr: {}
+        ctrInfinity:
+          type: boolean
+    ApiResponseListSearchTopPerformer:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchTopPerformer'

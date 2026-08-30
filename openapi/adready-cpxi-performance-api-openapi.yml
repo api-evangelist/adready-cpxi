@@ -1,0 +1,147 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Performance API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: Performance
+paths:
+  /api/advertisers/{advertiserId}/performance/daily:
+    post:
+      tags:
+      - Performance
+      summary: Get daily CPM/CPA/ROAS/VCR/CTR performance
+      description: Retrieve daily metrics such as CPM, CPA, ROAS, VCR, and CTR.
+      operationId: getDailyPerformance
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+      - name: kind
+        in: query
+        description: the kind of data to be returned, either CPM or CPA or ROAS or VCR or CTR
+        required: true
+        schema:
+          type: string
+          enum:
+          - cpm
+          - cpa
+          - roas
+          - vcr
+          - ctr
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseDailyPerformanceSummary'
+components:
+  schemas:
+    ApiResponseDailyPerformanceSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailyPerformanceSummary'
+    ComparisonDataLong:
+      type: object
+      properties:
+        currentValue:
+          type: integer
+          format: int64
+        compareValue:
+          type: integer
+          format: int64
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    DailyPerformanceSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePerformanceSummary'
+    ComparisonDataDouble:
+      type: object
+      properties:
+        currentValue:
+          type: number
+          format: double
+        compareValue:
+          type: number
+          format: double
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    PerformanceSummary:
+      type: object
+      properties:
+        impressions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        spend:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        visits:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        cpa:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        revenue:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        roas:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        cpm:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        videoImpressions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        vcr:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        clicks:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        ctr:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+    KeyValuePerformanceSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/PerformanceSummary'
+        extra:
+          type: string

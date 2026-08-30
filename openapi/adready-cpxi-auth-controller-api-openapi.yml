@@ -1,0 +1,256 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Auth Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: auth-controller
+paths:
+  /api/auth/validate_token:
+    post:
+      tags:
+      - auth-controller
+      operationId: validateResetPasswordToken
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ValidateResetPasswordTokenRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/auth/reset_password:
+    post:
+      tags:
+      - auth-controller
+      operationId: ResetPassword
+      parameters:
+      - name: app
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePasswordRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/auth/plus_login:
+    post:
+      tags:
+      - auth-controller
+      operationId: authenticatePlusUser
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/auth/login:
+    post:
+      tags:
+      - auth-controller
+      operationId: authenticateUser
+      parameters:
+      - name: app
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/auth/loginC360User:
+    post:
+      tags:
+      - auth-controller
+      operationId: loginAhUser
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/auth/forgot_password:
+    post:
+      tags:
+      - auth-controller
+      operationId: createPassword
+      parameters:
+      - name: app
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForgotPasswordRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+  /api/auth/create_password:
+    post:
+      tags:
+      - auth-controller
+      operationId: createPassword_1
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePasswordRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: object
+components:
+  schemas:
+    ForgotPasswordRequest:
+      type: object
+      properties:
+        hostname:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+          minLength: 1
+      required:
+      - email
+      - hostname
+    CreatePasswordRequest:
+      type: object
+      properties:
+        password:
+          type: string
+          minLength: 1
+        userId:
+          type: integer
+          format: int64
+        token:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+        phone:
+          type: string
+      required:
+      - name
+      - password
+      - token
+      - userId
+    ValidateResetPasswordTokenRequest:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        token:
+          type: string
+          minLength: 1
+      required:
+      - token
+      - userId
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+      required:
+      - email
+      - password

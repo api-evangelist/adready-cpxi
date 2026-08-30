@@ -1,0 +1,64 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Device Type Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: device-type-controller
+paths:
+  /api/deviceTypes:
+    get:
+      tags:
+      - device-type-controller
+      operationId: getDeviceTypeMaster
+      parameters:
+      - name: productCategoryId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListDeviceTypeMaster'
+components:
+  schemas:
+    DeviceTypeMaster:
+      type: object
+      properties:
+        deviceType:
+          type: string
+        id:
+          type: integer
+          format: int32
+    ApiResponseListDeviceTypeMaster:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceTypeMaster'

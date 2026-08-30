@@ -1,0 +1,105 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Flip PixelFile API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: Flip PixelFile
+paths:
+  /api/flipPixelsFile/dumpToBucket:
+    post:
+      tags:
+      - Flip PixelFile
+      operationId: dumpToBucket
+      parameters:
+      - name: pretty
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: filePath
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api/flipPixelsFile/dumpToBucketCronAuth:
+    post:
+      tags:
+      - Flip PixelFile
+      operationId: dumpToBucket_1
+      parameters:
+      - name: pretty
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: filePath
+        in: query
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+components:
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+      required:
+      - email
+      - password

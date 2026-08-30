@@ -1,0 +1,267 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Media Publisher Master Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: media-publisher-master-controller
+paths:
+  /api/mediaPublisher/{id}:
+    get:
+      tags:
+      - media-publisher-master-controller
+      operationId: get_5
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MediaPublisherMaster'
+    put:
+      tags:
+      - media-publisher-master-controller
+      operationId: update_5
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MediaPublisherMaster'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MediaPublisherMaster'
+    delete:
+      tags:
+      - media-publisher-master-controller
+      operationId: delete_5
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+  /api/mediaPublisher:
+    get:
+      tags:
+      - media-publisher-master-controller
+      operationId: list_2
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MediaPublisherMaster'
+    post:
+      tags:
+      - media-publisher-master-controller
+      operationId: create_7
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MediaPublisherMaster'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/MediaPublisherMaster'
+components:
+  schemas:
+    MediaPublisherMaster:
+      type: object
+      properties:
+        category:
+          type: string
+          enum:
+          - APP
+          - NETWORK
+          - OS
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deals:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublisherDealMapping'
+          uniqueItems: true
+        deletedAt:
+          type: string
+          format: date-time
+        displayName:
+          type: string
+        highCpmDealId:
+          type: integer
+          format: int32
+        highDealPerformance:
+          $ref: '#/components/schemas/DealPerformance'
+        id:
+          type: integer
+          format: int32
+        infoURL:
+          type: string
+        logoURL:
+          type: string
+        lowCpmDealId:
+          type: integer
+          format: int32
+        lowDealPerformance:
+          $ref: '#/components/schemas/DealPerformance'
+        mediaTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PublisherMediaTypeMapping'
+          uniqueItems: true
+        name:
+          type: string
+        scalability:
+          type: integer
+          format: int32
+        streamingCategory:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    DealPerformance:
+      type: object
+      properties:
+        cpm:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        dealId:
+          type: integer
+          format: int32
+        dealName:
+          type: string
+        pctBadIp:
+          type: number
+        seller:
+          type: string
+        totalImpressionsLast30Days:
+          type: integer
+          format: int32
+    PublisherMediaTypeMapping:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        mediaPublisherId:
+          type: integer
+          format: int32
+        productCategory:
+          $ref: '#/components/schemas/ProductCategory'
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        siteDomain:
+          type: string
+    PublisherDealMapping:
+      type: object
+      properties:
+        deal:
+          $ref: '#/components/schemas/DealPerformance'
+        dealId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        mediaPublisherId:
+          type: integer
+          format: int32
+    ProductType:
+      type: object
+      properties:
+        canonicalProductId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      required:
+      - name
+    ProductCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      required:
+      - name

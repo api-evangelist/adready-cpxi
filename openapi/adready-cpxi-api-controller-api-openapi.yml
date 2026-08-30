@@ -1,0 +1,1329 @@
+openapi: 3.2.0
+info:
+  title: Kickstart API Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: api-controller
+paths:
+  /api/run/updateLineItemStatus:
+    post:
+      tags:
+      - api-controller
+      operationId: updateLineItemStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseString'
+  /api/run/updateLineItemStatusLive:
+    post:
+      tags:
+      - api-controller
+      operationId: updateLineItemStatusLive
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseString'
+  /api/run/sendDailySummaryReport:
+    post:
+      tags:
+      - api-controller
+      operationId: runReport
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseString'
+  /api/run/generateReports:
+    post:
+      tags:
+      - api-controller
+      operationId: generateReports
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseString'
+  /api/run/flip_pixel_activity_scheduler:
+    post:
+      tags:
+      - api-controller
+      operationId: runFlipPixelActivityController
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+  /api/run/exportScheduleJob:
+    post:
+      tags:
+      - api-controller
+      operationId: runExportScheduleJob
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseString'
+  /api/reportGenerationLog/updateStatus:
+    post:
+      tags:
+      - api-controller
+      operationId: updateReportGenerationLogStatus
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReportLogStatusUpdateRequest'
+        required: true
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseString'
+  /api/workflowOptions:
+    get:
+      tags:
+      - api-controller
+      operationId: getWorkflowOptions
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListWorkflowOption'
+  /api/verificationPartners:
+    get:
+      tags:
+      - api-controller
+      operationId: getAllVerificationPartners
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListVerificationPartner'
+  /api/trackingTypes:
+    get:
+      tags:
+      - api-controller
+      operationId: getTrackingTypes
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListTrackingPixel'
+  /api/taskTypeOptions:
+    get:
+      tags:
+      - api-controller
+      operationId: getTaskTypeOptions
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListTaskTypeOption'
+  /api/targetingElements:
+    get:
+      tags:
+      - api-controller
+      operationId: getTargetableElements
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListTargetableElement'
+  /api/targetableElement/{targetableElementId}/options:
+    get:
+      tags:
+      - api-controller
+      operationId: getTargetableElementOptions
+      parameters:
+      - name: targetableElementId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: term
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: source
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListOptionDTO'
+  /api/statusOptions/{type}:
+    get:
+      tags:
+      - api-controller
+      operationId: getAllStatusOptions
+      parameters:
+      - name: type
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListStatusOption'
+  /api/roles:
+    get:
+      tags:
+      - api-controller
+      operationId: getRoles
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListRole'
+  /api/productTypes/{productTypeId}:
+    get:
+      tags:
+      - api-controller
+      operationId: getProductTypeById
+      parameters:
+      - name: productTypeId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseProductType'
+  /api/productTypes/{productTypeId}/targetingTypes/{targetingType}:
+    get:
+      tags:
+      - api-controller
+      operationId: getTargetableElements_1
+      parameters:
+      - name: productTypeId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: targetingType
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: accountId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListTargetableElement'
+  /api/productTypes/{productTypeId}/targetingTypes/{targetingType}/level/{level}:
+    get:
+      tags:
+      - api-controller
+      operationId: getTargetableElementsByLevel
+      parameters:
+      - name: productTypeId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: targetingType
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: level
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListTargetableElement'
+  /api/productTypes/{productTypeId}/kpiOptions:
+    get:
+      tags:
+      - api-controller
+      operationId: getKpiOptions
+      parameters:
+      - name: productTypeId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKpiOption'
+  /api/productTypes/{productTypeId}/goalOptions:
+    get:
+      tags:
+      - api-controller
+      operationId: goalOptions
+      parameters:
+      - name: productTypeId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Option'
+  /api/productCategories:
+    get:
+      tags:
+      - api-controller
+      operationId: getProductCategories
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListProductCategoryDTO'
+  /api/productCategories/{productCategoryId}:
+    get:
+      tags:
+      - api-controller
+      operationId: getProductCategoryById
+      parameters:
+      - name: productCategoryId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseProductCategoryDTO'
+  /api/priceTypeOptions:
+    get:
+      tags:
+      - api-controller
+      operationId: getPriceTypeOptions
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValue'
+  /api/options/marketingObjectives:
+    get:
+      tags:
+      - api-controller
+      operationId: getMarketingObjectives
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListMarketingObjective'
+  /api/options/locations:
+    get:
+      tags:
+      - api-controller
+      operationId: getLocations
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListLocation'
+  /api/options/industries:
+    get:
+      tags:
+      - api-controller
+      operationId: getIndustries
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListIndustry'
+  /api/options/budgetRanges:
+    get:
+      tags:
+      - api-controller
+      summary: Get budget ranges
+      operationId: getBudgetRanges
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListBudgetRange'
+  /api/kpiOptions:
+    get:
+      tags:
+      - api-controller
+      operationId: getKpiOptions_1
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKpiOption'
+  /api/hierarchies:
+    get:
+      tags:
+      - api-controller
+      operationId: getAllProductHierarchies
+      parameters:
+      - name: accountId
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: accountType
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ProductHierarchy'
+  /api/flagOptions:
+    get:
+      tags:
+      - api-controller
+      operationId: getFlagOptions
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListFlagOption'
+  /api/brandSafetyLevels:
+    get:
+      tags:
+      - api-controller
+      operationId: getAllBrandSafetyLevels
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListBrandSafetyLevel'
+  /api/billingTypeOptions:
+    get:
+      tags:
+      - api-controller
+      operationId: getBillingTypeOptions
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValue'
+  /api/applications:
+    get:
+      tags:
+      - api-controller
+      operationId: getApplications
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListApplication'
+components:
+  schemas:
+    StatusOption:
+      type: object
+      properties:
+        displayOrder:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        status:
+          type: string
+        type:
+          type: string
+          enum:
+          - LI
+          - IO
+          - IO_CHANGE
+          - LI_CHANGE
+    TrackingPixel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+    ApiResponseListRole:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Role'
+    Permission:
+      type: object
+      properties:
+        entity:
+          type: string
+          enum:
+          - User
+          - Account
+          - Advertiser
+          - RateCard
+          - Organization
+        id:
+          type: integer
+          format: int32
+        privilege:
+          type: string
+          enum:
+          - All
+          - Read
+          - Create
+          - Delete
+    ApiResponseListBrandSafetyLevel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrandSafetyLevel'
+    MarketingObjective:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      required:
+      - name
+    ProductType:
+      type: object
+      properties:
+        canonicalProductId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      required:
+      - name
+    ApiResponseListKpiOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KpiOption'
+    ApiResponseListBudgetRange:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BudgetRange'
+    ApiResponseListVerificationPartner:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerificationPartner'
+    ApiResponseListStatusOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusOption'
+    ApiResponseListWorkflowOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowOption'
+    ProductCategoryDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        productTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductType'
+    TargetableElement:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        level:
+          type: integer
+          format: int32
+        name:
+          type: string
+        targetingType:
+          type: string
+      required:
+      - name
+    VerificationPartner:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiResponseListMarketingObjective:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketingObjective'
+    ApiResponseListApplication:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+    Application:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    WorkflowOption:
+      type: object
+      properties:
+        displayOrder:
+          type: integer
+          format: int32
+        flagColorCode:
+          type: string
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - LI
+          - IO
+          - IO_CHANGE
+          - LI_CHANGE
+    ReportLogStatusUpdateRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+        reportGenerationLogId:
+          type: integer
+          format: int32
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - PROCESSING
+      required:
+      - email
+      - password
+      - reportGenerationLogId
+      - status
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+      required:
+      - email
+      - password
+    FlagOption:
+      type: object
+      properties:
+        icon:
+          type: string
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        value:
+          type: string
+    ApiResponseListTargetableElement:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TargetableElement'
+    ApiResponseListTaskTypeOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskTypeOption'
+    TaskTypeOption:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiResponseListFlagOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlagOption'
+    ApiResponseProductCategoryDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ProductCategoryDTO'
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
+    BudgetRange:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    Role:
+      type: object
+      properties:
+        canCreateRole:
+          type: array
+          items:
+            type: string
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permission'
+          uniqueItems: true
+    ApiResponseListLocation:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+    Industry:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiResponseListIndustry:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Industry'
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+        value: {}
+        extra:
+          type: string
+    ProductHierarchy:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        accountType:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        displayName:
+          type: string
+        id:
+          type: integer
+          format: int32
+        multiselect:
+          type: integer
+          format: int32
+        parentId:
+          type: integer
+          format: int32
+        refId:
+          type: integer
+          format: int32
+        type:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    ApiResponseListKeyValue:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    Option:
+      type: object
+      properties:
+        text:
+          type: string
+        none_of_the_above:
+          type: boolean
+    ApiResponseListTrackingPixel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackingPixel'
+    ApiResponseListOptionDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/OptionDTO'
+    OptionDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        value:
+          type: string
+        options:
+          type: array
+          items:
+            type: string
+    ApiResponseListProductCategoryDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductCategoryDTO'
+    KpiOption:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    BrandSafetyLevel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        levelText:
+          type: string
+    ApiResponseString:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: string
+    ApiResponseProductType:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ProductType'

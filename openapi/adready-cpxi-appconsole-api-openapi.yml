@@ -1,0 +1,131 @@
+openapi: 3.2.0
+info:
+  title: Kickstart App Console API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: AppConsole
+paths:
+  /api/ac/advertisers/{advertiserId}/creatives:
+    get:
+      tags:
+      - AppConsole
+      summary: Get creatives for an advertiser as per the solution id
+      description: Get creatives for an advertiser as per the solution id
+      operationId: fetchCreatives
+      parameters:
+      - name: advertiserId
+        in: path
+        description: the advertiser id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: solutionId
+        in: query
+        description: the solution id
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: client
+        in: query
+        description: the account/client name
+        required: true
+        schema:
+          type: string
+      - name: advertiser
+        in: query
+        description: the advertiser name
+        required: true
+        schema:
+          type: string
+      - name: campaignIds
+        in: query
+        description: the comma-separated Campaign ids to filter
+        allowEmptyValue: true
+        schema:
+          type: string
+      - name: adGroups
+        in: query
+        description: the comma-separated AdReady Id & start date (separated by |) combination to filter
+        allowEmptyValue: true
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: the start date
+        schema:
+          type: string
+          example: '2023-06-08'
+      - name: endDate
+        in: query
+        description: the end date
+        schema:
+          type: string
+          example: '2023-06-14'
+      responses:
+        '400':
+          description: Bad request
+        '200':
+          description: Successful operation
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueString'
+        '401':
+          description: Unauthorized
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueString'
+        '403':
+          description: Forbidden
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueString'
+        '404':
+          description: Resource not found
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueString'
+        '500':
+          description: Internal Server Error
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ApiResponseListKeyValueString'
+components:
+  schemas:
+    ApiResponseListKeyValueString:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueString'
+    KeyValueString:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        extra:
+          type: string

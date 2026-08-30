@@ -1,0 +1,73 @@
+openapi: 3.2.0
+info:
+  title: Kickstart Demo Advertiser Mapping Controller API
+  description: API documentation for Kickstart services
+  contact:
+    name: Your Team
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://platform.digitalremedy.com
+  description: Generated server url
+tags:
+- name: demo-advertiser-mapping-controller
+paths:
+  /api/demoAdvtMapping:
+    get:
+      tags:
+      - demo-advertiser-mapping-controller
+      operationId: getDemoAdvertiserMappings
+      responses:
+        '400':
+          description: Bad Request
+          content:
+            '*/*':
+              schema:
+                type: object
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DemoConfig'
+components:
+  schemas:
+    DemoConfig:
+      type: object
+      properties:
+        advertiserId:
+          type: integer
+          format: int32
+        accountId:
+          type: integer
+          format: int32
+        targetAdvertiserId:
+          type: integer
+          format: int32
+        targetAccountId:
+          type: integer
+          format: int32
+        solutionId:
+          type: integer
+          format: int32
+        startDate:
+          type: string
+        endDate:
+          type: string
+        compareStartDate:
+          type: string
+        compareEndDate:
+          type: string
+        selectedCampaigns:
+          type: array
+          items:
+            type: string
+        config:
+          type: object
+          additionalProperties:
+            type: string
