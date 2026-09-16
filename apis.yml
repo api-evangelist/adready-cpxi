@@ -24,22 +24,23 @@ accessModel:
   - https://platform.digitalremedy.com/
   generated: '2026-08-12'
   method: probed
-  note: No pricing page, no self-service sign-up and no developer portal exist; the platform login is the only entry
-    point and every API operation returns 401 without a session.
+  note: No pricing page, no self-service sign-up and no developer portal exist; the platform login is
+    the only entry point and every API operation returns 401 without a session.
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/adready-cpxi.png
 name: AdReady (CPXi)
-description: AdReady is a digital advertising execution brand operated by Digital Remedy (formerly CPX Interactive
-  / CPXi). Digital Remedy runs an omnichannel advertising management platform - marketed as the Digital Remedy Platform
-  and historically as AdReady+ - for independent agencies, brands and media companies, covering media planning,
-  RFPs, insertion-order and line-item management, programmatic / CTV / DOOH / social execution, pixel-based attribution
-  (Flip), incrementality and brand-lift measurement, white-label reporting and a RemyAI assistant, on top of 100+
-  martech integrations and 300+ inventory and data sources. AdReady originated as a Seattle self-serve ad-building
-  tool and was acquired by CPXi in 2013; the brand and platform are today part of Digital Remedy, which has since
-  combined with Compulse. The platform is powered by an internally-named Kickstart API - a Spring Boot / springdoc
-  REST service whose OpenAPI 3.1 description is served anonymously at platform.digitalremedy.com/v3/api-docs with
-  a browsable Swagger UI - but Digital Remedy publishes no public developer portal, no onboarding, and no partner
-  API documentation, and every business operation on that API is authenticated (HTTP 401 without a session JWT).
-  This company profile is independently maintained in the API Evangelist network.
+description: AdReady is a digital advertising execution brand operated by Digital Remedy (formerly CPX
+  Interactive / CPXi). Digital Remedy runs an omnichannel advertising management platform - marketed as
+  the Digital Remedy Platform and historically as AdReady+ - for independent agencies, brands and media
+  companies, covering media planning, RFPs, insertion-order and line-item management, programmatic / CTV
+  / DOOH / social execution, pixel-based attribution (Flip), incrementality and brand-lift measurement,
+  white-label reporting and a RemyAI assistant, on top of 100+ martech integrations and 300+ inventory
+  and data sources. AdReady originated as a Seattle self-serve ad-building tool and was acquired by CPXi
+  in 2013; the brand and platform are today part of Digital Remedy, which has since combined with Compulse.
+  The platform is powered by an internally-named Kickstart API - a Spring Boot / springdoc REST service
+  whose OpenAPI 3.1 description is served anonymously at platform.digitalremedy.com/v3/api-docs with a
+  browsable Swagger UI - but Digital Remedy publishes no public developer portal, no onboarding, and no
+  partner API documentation, and every business operation on that API is authenticated (HTTP 401 without
+  a session JWT). This company profile is independently maintained in the API Evangelist network.
 url: https://raw.githubusercontent.com/api-evangelist/adready-cpxi/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -49,7 +50,7 @@ x-tier: profiled
 x-tier-reason: live OpenAPI harvested from the production platform host
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-08-12'
+modified: '2026-09-16'
 tags:
 - Company
 - Commerce
@@ -127,8 +128,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-advertiser-controller-api
   name: AdReady (CPXi) Advertiser Controller API
-  description: >-
-    The advertiser-controller API from AdReady (CPXi) — 10 operation(s) for advertiser-controller.
+  description: The advertiser-controller API from AdReady (CPXi) — 10 operation(s) for advertiser-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -228,9 +228,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-app-console-converged-tv-api
   name: 'AdReady (CPXi) App Console: Converged TV API'
-  description: >-
-    The App Console: Converged TV API from AdReady (CPXi) — 1 operation(s) for app console: converged
-    tv.
+  description: 'The App Console: Converged TV API from AdReady (CPXi) — 1 operation(s) for app console:
+    converged tv.'
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -270,9 +269,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-app-console-report-template-management-api
   name: 'AdReady (CPXi) App Console: Report Template Management API'
-  description: >-
-    The App Console: Report Template Management API from AdReady (CPXi) — 6 operation(s) for app console:
-    report template management.
+  description: 'The App Console: Report Template Management API from AdReady (CPXi) — 6 operation(s) for
+    app console: report template management.'
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -394,8 +392,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-available-features-controller-api
   name: AdReady (CPXi) Available Features Controller API
-  description: >-
-    The available-features-controller API from AdReady (CPXi) — 1 operation(s) for available-features-controller.
+  description: The available-features-controller API from AdReady (CPXi) — 1 operation(s) for available-features-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -415,8 +412,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-budget-group-controller-api
   name: AdReady (CPXi) Budget Group Controller API
-  description: >-
-    The budget-group-controller API from AdReady (CPXi) — 3 operation(s) for budget-group-controller.
+  description: The budget-group-controller API from AdReady (CPXi) — 3 operation(s) for budget-group-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -476,8 +472,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-deal-performance-controller-api
   name: AdReady (CPXi) Deal Performance Controller API
-  description: >-
-    The deal-performance-controller API from AdReady (CPXi) — 2 operation(s) for deal-performance-controller.
+  description: The deal-performance-controller API from AdReady (CPXi) — 2 operation(s) for deal-performance-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -497,8 +492,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-demo-advertiser-mapping-controller-api
   name: AdReady (CPXi) Demo Advertiser Mapping Controller API
-  description: >-
-    The demo-advertiser-mapping-controller API from AdReady (CPXi) — 1 operation(s) for demo-advertiser-mapping-controller.
+  description: The demo-advertiser-mapping-controller API from AdReady (CPXi) — 1 operation(s) for demo-advertiser-mapping-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -518,8 +512,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-device-type-controller-api
   name: AdReady (CPXi) Device Type Controller API
-  description: >-
-    The device-type-controller API from AdReady (CPXi) — 1 operation(s) for device-type-controller.
+  description: The device-type-controller API from AdReady (CPXi) — 1 operation(s) for device-type-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -681,8 +674,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-line-item-history-controller-api
   name: AdReady (CPXi) Line Item History Controller API
-  description: >-
-    The line-item-history-controller API from AdReady (CPXi) — 1 operation(s) for line-item-history-controller.
+  description: The line-item-history-controller API from AdReady (CPXi) — 1 operation(s) for line-item-history-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -702,8 +694,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-line-items-controller-api
   name: AdReady (CPXi) Line Items Controller API
-  description: >-
-    The line-items-controller API from AdReady (CPXi) — 17 operation(s) for line-items-controller.
+  description: The line-items-controller API from AdReady (CPXi) — 17 operation(s) for line-items-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -723,8 +714,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-media-publisher-master-controller-api
   name: AdReady (CPXi) Media Publisher Master Controller API
-  description: >-
-    The media-publisher-master-controller API from AdReady (CPXi) — 2 operation(s) for media-publisher-master-controller.
+  description: The media-publisher-master-controller API from AdReady (CPXi) — 2 operation(s) for media-publisher-master-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -744,8 +734,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-organization-controller-api
   name: AdReady (CPXi) Organization Controller API
-  description: >-
-    The organization-controller API from AdReady (CPXi) — 2 operation(s) for organization-controller.
+  description: The organization-controller API from AdReady (CPXi) — 2 operation(s) for organization-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -825,8 +814,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-publisher-deal-mapping-controller-api
   name: AdReady (CPXi) Publisher Deal Mapping Controller API
-  description: >-
-    The publisher-deal-mapping-controller API from AdReady (CPXi) — 2 operation(s) for publisher-deal-mapping-controller.
+  description: The publisher-deal-mapping-controller API from AdReady (CPXi) — 2 operation(s) for publisher-deal-mapping-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -846,8 +834,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-publisher-media-type-mapping-controller-api
   name: AdReady (CPXi) Publisher Media Type Mapping Controller API
-  description: >-
-    The publisher-media-type-mapping-controller API from AdReady (CPXi) — 2 operation(s) for publisher-media-type-mapping-controller.
+  description: The publisher-media-type-mapping-controller API from AdReady (CPXi) — 2 operation(s) for
+    publisher-media-type-mapping-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -867,8 +855,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-rate-cards-controller-api
   name: AdReady (CPXi) Rate Cards Controller API
-  description: >-
-    The rate-cards-controller API from AdReady (CPXi) — 3 operation(s) for rate-cards-controller.
+  description: The rate-cards-controller API from AdReady (CPXi) — 3 operation(s) for rate-cards-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -1028,8 +1015,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-vendor-master-controller-api
   name: AdReady (CPXi) Vendor Master Controller API
-  description: >-
-    The vendor-master-controller API from AdReady (CPXi) — 1 operation(s) for vendor-master-controller.
+  description: The vendor-master-controller API from AdReady (CPXi) — 1 operation(s) for vendor-master-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -1069,8 +1055,7 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-whitelabel-domain-controller-api
   name: AdReady (CPXi) Whitelabel Domain Controller API
-  description: >-
-    The whitelabel-domain-controller API from AdReady (CPXi) — 3 operation(s) for whitelabel-domain-controller.
+  description: The whitelabel-domain-controller API from AdReady (CPXi) — 3 operation(s) for whitelabel-domain-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -1116,7 +1101,7 @@ common:
 - type: PrivacyPolicy
   url: https://www.digitalremedy.com/privacy-policy/
 - type: OpenAPI
-  url: openapi/adready-cpxi-kickstart-openapi.yml
+  url: openapi/_original/adready-cpxi-kickstart-openapi.yml
 - type: APIReference
   url: https://platform.digitalremedy.com/swagger-ui.html
 - type: Authentication
@@ -1154,5 +1139,6 @@ x-enrichment:
   status: enriched
   artifacts_added: 22
   pass: local-v1
-  note: 'Contract discovery found a live OpenAPI 3.1 (285 paths / 355 operations) served anonymously at https://platform.digitalremedy.com/v3/api-docs
-    after the previous round recorded no API surface. Ownership verified: servers[0] names platform.digitalremedy.com.'
+  note: 'Contract discovery found a live OpenAPI 3.1 (285 paths / 355 operations) served anonymously at
+    https://platform.digitalremedy.com/v3/api-docs after the previous round recorded no API surface. Ownership
+    verified: servers[0] names platform.digitalremedy.com.'
