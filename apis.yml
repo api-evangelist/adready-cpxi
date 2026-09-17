@@ -128,7 +128,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-advertiser-controller-api
   name: AdReady (CPXi) Advertiser Controller API
-  description: The advertiser-controller API from AdReady (CPXi) — 10 operation(s) for advertiser-controller.
+  description: >-
+    The advertiser-controller API from AdReady (CPXi) — 10 operation(s) for advertiser-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -228,8 +229,9 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-app-console-converged-tv-api
   name: 'AdReady (CPXi) App Console: Converged TV API'
-  description: 'The App Console: Converged TV API from AdReady (CPXi) — 1 operation(s) for app console:
-    converged tv.'
+  description: >-
+    The App Console: Converged TV API from AdReady (CPXi) — 1 operation(s) for app console: converged
+    tv.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -269,8 +271,9 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-app-console-report-template-management-api
   name: 'AdReady (CPXi) App Console: Report Template Management API'
-  description: 'The App Console: Report Template Management API from AdReady (CPXi) — 6 operation(s) for
-    app console: report template management.'
+  description: >-
+    The App Console: Report Template Management API from AdReady (CPXi) — 6 operation(s) for app console:
+    report template management.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -348,28 +351,6 @@ apis:
     url: data-model/adready-cpxi-data-model.yml
   - type: ErrorCatalog
     url: errors/adready-cpxi-problem-types.yml
-- aid: adready-cpxi:adready-cpxi-appconsole-api
-  name: AdReady (CPXi) App Console API
-  description: The AppConsole API from AdReady (CPXi) — 1 operation(s) for appconsole.
-  humanURL: https://platform.digitalremedy.com/swagger-ui.html
-  baseURL: https://platform.digitalremedy.com
-  tags:
-  - App Console
-  tags_raw:
-  - AppConsole
-  properties:
-  - type: OpenAPI
-    url: openapi/adready-cpxi-appconsole-api-openapi.yml
-  - type: APIReference
-    url: https://platform.digitalremedy.com/swagger-ui.html
-  - type: Authentication
-    url: authentication/adready-cpxi-authentication.yml
-  - type: Conventions
-    url: conventions/adready-cpxi-conventions.yml
-  - type: DataModel
-    url: data-model/adready-cpxi-data-model.yml
-  - type: ErrorCatalog
-    url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-auth-controller-api
   name: AdReady (CPXi) Auth Controller API
   description: The auth-controller API from AdReady (CPXi) — 7 operation(s) for auth-controller.
@@ -392,7 +373,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-available-features-controller-api
   name: AdReady (CPXi) Available Features Controller API
-  description: The available-features-controller API from AdReady (CPXi) — 1 operation(s) for available-features-controller.
+  description: >-
+    The available-features-controller API from AdReady (CPXi) — 1 operation(s) for available-features-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -412,7 +394,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-budget-group-controller-api
   name: AdReady (CPXi) Budget Group Controller API
-  description: The budget-group-controller API from AdReady (CPXi) — 3 operation(s) for budget-group-controller.
+  description: >-
+    The budget-group-controller API from AdReady (CPXi) — 3 operation(s) for budget-group-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -472,7 +455,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-deal-performance-controller-api
   name: AdReady (CPXi) Deal Performance Controller API
-  description: The deal-performance-controller API from AdReady (CPXi) — 2 operation(s) for deal-performance-controller.
+  description: >-
+    The deal-performance-controller API from AdReady (CPXi) — 2 operation(s) for deal-performance-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -492,7 +476,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-demo-advertiser-mapping-controller-api
   name: AdReady (CPXi) Demo Advertiser Mapping Controller API
-  description: The demo-advertiser-mapping-controller API from AdReady (CPXi) — 1 operation(s) for demo-advertiser-mapping-controller.
+  description: >-
+    The demo-advertiser-mapping-controller API from AdReady (CPXi) — 1 operation(s) for demo-advertiser-mapping-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -512,7 +497,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-device-type-controller-api
   name: AdReady (CPXi) Device Type Controller API
-  description: The device-type-controller API from AdReady (CPXi) — 1 operation(s) for device-type-controller.
+  description: >-
+    The device-type-controller API from AdReady (CPXi) — 1 operation(s) for device-type-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -674,7 +660,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-line-item-history-controller-api
   name: AdReady (CPXi) Line Item History Controller API
-  description: The line-item-history-controller API from AdReady (CPXi) — 1 operation(s) for line-item-history-controller.
+  description: >-
+    The line-item-history-controller API from AdReady (CPXi) — 1 operation(s) for line-item-history-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -694,7 +681,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-line-items-controller-api
   name: AdReady (CPXi) Line Items Controller API
-  description: The line-items-controller API from AdReady (CPXi) — 17 operation(s) for line-items-controller.
+  description: >-
+    The line-items-controller API from AdReady (CPXi) — 17 operation(s) for line-items-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -714,7 +702,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-media-publisher-master-controller-api
   name: AdReady (CPXi) Media Publisher Master Controller API
-  description: The media-publisher-master-controller API from AdReady (CPXi) — 2 operation(s) for media-publisher-master-controller.
+  description: >-
+    The media-publisher-master-controller API from AdReady (CPXi) — 2 operation(s) for media-publisher-master-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -734,7 +723,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-organization-controller-api
   name: AdReady (CPXi) Organization Controller API
-  description: The organization-controller API from AdReady (CPXi) — 2 operation(s) for organization-controller.
+  description: >-
+    The organization-controller API from AdReady (CPXi) — 2 operation(s) for organization-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -814,7 +804,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-publisher-deal-mapping-controller-api
   name: AdReady (CPXi) Publisher Deal Mapping Controller API
-  description: The publisher-deal-mapping-controller API from AdReady (CPXi) — 2 operation(s) for publisher-deal-mapping-controller.
+  description: >-
+    The publisher-deal-mapping-controller API from AdReady (CPXi) — 2 operation(s) for publisher-deal-mapping-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -834,8 +825,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-publisher-media-type-mapping-controller-api
   name: AdReady (CPXi) Publisher Media Type Mapping Controller API
-  description: The publisher-media-type-mapping-controller API from AdReady (CPXi) — 2 operation(s) for
-    publisher-media-type-mapping-controller.
+  description: >-
+    The publisher-media-type-mapping-controller API from AdReady (CPXi) — 2 operation(s) for publisher-media-type-mapping-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -855,7 +846,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-rate-cards-controller-api
   name: AdReady (CPXi) Rate Cards Controller API
-  description: The rate-cards-controller API from AdReady (CPXi) — 3 operation(s) for rate-cards-controller.
+  description: >-
+    The rate-cards-controller API from AdReady (CPXi) — 3 operation(s) for rate-cards-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -1015,7 +1007,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-vendor-master-controller-api
   name: AdReady (CPXi) Vendor Master Controller API
-  description: The vendor-master-controller API from AdReady (CPXi) — 1 operation(s) for vendor-master-controller.
+  description: >-
+    The vendor-master-controller API from AdReady (CPXi) — 1 operation(s) for vendor-master-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
@@ -1055,7 +1048,8 @@ apis:
     url: errors/adready-cpxi-problem-types.yml
 - aid: adready-cpxi:adready-cpxi-whitelabel-domain-controller-api
   name: AdReady (CPXi) Whitelabel Domain Controller API
-  description: The whitelabel-domain-controller API from AdReady (CPXi) — 3 operation(s) for whitelabel-domain-controller.
+  description: >-
+    The whitelabel-domain-controller API from AdReady (CPXi) — 3 operation(s) for whitelabel-domain-controller.
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
