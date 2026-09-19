@@ -110,7 +110,7 @@ apis:
   humanURL: https://platform.digitalremedy.com/swagger-ui.html
   baseURL: https://platform.digitalremedy.com
   tags:
-  - Advertiser
+  - Advertisers
   tags_raw:
   - advertiser
   properties:
