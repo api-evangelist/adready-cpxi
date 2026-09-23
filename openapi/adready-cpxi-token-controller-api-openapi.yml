@@ -13,12 +13,12 @@ servers:
 - url: https://platform.digitalremedy.com
   description: Generated server url
 tags:
-- name: token-controller
+- name: Token Controller
 paths:
   /api/token/thoughtSpot:
     get:
       tags:
-      - token-controller
+      - Token Controller
       operationId: generateThoughtSpotToken
       responses:
         '400':
@@ -33,10 +33,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseThoughtSpotToken'
+      summary: Generate thought spot token
+      x-summary-source: derived
   /api/token/tableau:
     get:
       tags:
-      - token-controller
+      - Token Controller
       operationId: tableauJwtToken
       responses:
         '400':
@@ -51,10 +53,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseString'
+      summary: Tableau jwt token
+      x-summary-source: derived
   /api/token/tableau/{advertiserId}:
     get:
       tags:
-      - token-controller
+      - Token Controller
       operationId: tableauJwtToken_1
       parameters:
       - name: advertiserId
@@ -76,10 +80,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseString'
+      summary: Tableau jwt token 1
+      x-summary-source: derived
   /api/token/tableau/sign/{advertiserId}:
     get:
       tags:
-      - token-controller
+      - Token Controller
       operationId: tableauSignInTokenByAdvertiser
       parameters:
       - name: advertiserId
@@ -101,10 +107,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseString'
+      summary: Tableau sign in token by advertiser
+      x-summary-source: derived
   /api/token/tableau/account/{accountId}:
     get:
       tags:
-      - token-controller
+      - Token Controller
       operationId: tableauJwtTokenByAccount
       parameters:
       - name: accountId
@@ -126,10 +134,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseString'
+      summary: Tableau jwt token by account
+      x-summary-source: derived
   /api/token/refresh:
     get:
       tags:
-      - token-controller
+      - Token Controller
       operationId: refreshToken
       responses:
         '400':
@@ -144,10 +154,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseTokenWrapper'
+      summary: Refresh token
+      x-summary-source: derived
   /api/token/parse:
     get:
       tags:
-      - token-controller
+      - Token Controller
       operationId: parseJwtToken
       responses:
         '400':
@@ -162,10 +174,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseTokenWrapper'
+      summary: Parse jwt token
+      x-summary-source: derived
   /api/token/remove:
     delete:
       tags:
-      - token-controller
+      - Token Controller
       operationId: removeJwtToken
       responses:
         '400':
@@ -180,18 +194,10 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Remove jwt token
+      x-summary-source: derived
 components:
   schemas:
-    ApiResponseTokenWrapper:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/TokenWrapper'
     ApiResponseThoughtSpotToken:
       type: object
       properties:
@@ -202,6 +208,23 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/ThoughtSpotToken'
+    ThoughtSpotToken:
+      type: object
+      properties:
+        userName:
+          type: string
+        authToken:
+          type: string
+    ApiResponseTokenWrapper:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/TokenWrapper'
     TokenWrapper:
       type: object
       properties:
@@ -220,13 +243,6 @@ components:
           type: integer
           format: int64
         email:
-          type: string
-    ThoughtSpotToken:
-      type: object
-      properties:
-        userName:
-          type: string
-        authToken:
           type: string
     ApiResponseString:
       type: object

@@ -50,6 +50,8 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Get theme
+      x-summary-source: derived
   /api/secured_config:
     get:
       tags:
@@ -68,6 +70,8 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Get secured config
+      x-summary-source: derived
   /api/config:
     get:
       tags:
@@ -103,3 +107,5 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Get config
+      x-summary-source: derived

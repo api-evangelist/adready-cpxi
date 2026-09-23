@@ -40,6 +40,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListVendorMaster'
+      summary: Get all vendor
+      x-summary-source: derived
 components:
   schemas:
     ApiResponseListVendorMaster:

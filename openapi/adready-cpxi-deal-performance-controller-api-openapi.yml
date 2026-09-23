@@ -35,6 +35,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/DealPerformance'
+      summary: List 4
+      x-summary-source: derived
   /api/deals/{id}:
     get:
       tags:
@@ -60,6 +62,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/DealPerformance'
+      summary: Get 9
+      x-summary-source: derived
 components:
   schemas:
     DealPerformance:

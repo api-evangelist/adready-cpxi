@@ -39,6 +39,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseRateCardItemDTO'
+      summary: Update rate card
+      x-summary-source: derived
   /api/rateCards:
     post:
       tags:
@@ -63,6 +65,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseRateCardItemDTO'
+      summary: Create rate card item
+      x-summary-source: derived
   /api/rateCards/{accountId}:
     get:
       tags:
@@ -93,8 +97,69 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseRateCardDTO'
+      summary: List rate cards
+      x-summary-source: derived
 components:
   schemas:
+    RateCardItem:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        accountType:
+          type: string
+        adjustmentId:
+          type: integer
+          format: int32
+        adjustmentModel:
+          type: string
+          enum:
+          - TARGETING
+          - KPI
+        adjustmentType:
+          type: string
+          enum:
+          - INCREMENT
+          - OVERRIDE
+        costPlus:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        defaultValue:
+          type: number
+        deletedAt:
+          type: string
+          format: date-time
+        enabled:
+          type: boolean
+        id:
+          type: integer
+          format: int64
+        max:
+          type: number
+        min:
+          type: number
+        productTypeId:
+          type: integer
+          format: int32
+        rateType:
+          type: string
+          enum:
+          - STANDARD
+          - COSTPLUS
+          - CPM
+          - FIXED_MARGIN
+          - ADDED_VALUE
+          - CPA
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
     RateCardItemDTO:
       type: object
       properties:
@@ -161,6 +226,15 @@ components:
           type: string
         productCategoryName:
           type: string
+    RateCardDTO:
+      type: object
+      properties:
+        markup:
+          type: number
+        rateCardItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/RateCardItemDTO'
     ApiResponseRateCardItemDTO:
       type: object
       properties:
@@ -171,74 +245,6 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/RateCardItemDTO'
-    RateCardDTO:
-      type: object
-      properties:
-        markup:
-          type: number
-        rateCardItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/RateCardItemDTO'
-    RateCardItem:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int32
-        accountType:
-          type: string
-        adjustmentId:
-          type: integer
-          format: int32
-        adjustmentModel:
-          type: string
-          enum:
-          - TARGETING
-          - KPI
-        adjustmentType:
-          type: string
-          enum:
-          - INCREMENT
-          - OVERRIDE
-        costPlus:
-          type: number
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        defaultValue:
-          type: number
-        deletedAt:
-          type: string
-          format: date-time
-        enabled:
-          type: boolean
-        id:
-          type: integer
-          format: int64
-        max:
-          type: number
-        min:
-          type: number
-        productTypeId:
-          type: integer
-          format: int32
-        rateType:
-          type: string
-          enum:
-          - STANDARD
-          - COSTPLUS
-          - CPM
-          - FIXED_MARGIN
-          - ADDED_VALUE
-          - CPA
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
     ApiResponseRateCardDTO:
       type: object
       properties:

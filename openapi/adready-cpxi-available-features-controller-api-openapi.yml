@@ -35,3 +35,5 @@ paths:
                 type: array
                 items:
                   type: string
+      summary: Get available features
+      x-summary-source: derived

@@ -46,6 +46,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseBudgetGroup'
+      summary: Update 8
+      x-summary-source: derived
   /api/budgetGroup/create:
     post:
       tags:
@@ -70,6 +72,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseBudgetGroup'
+      summary: Create 10
+      x-summary-source: derived
   /api/budgetGroup/budgetGroupByPlanId/{ioId}:
     get:
       tags:
@@ -95,24 +99,10 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListBudgetGroup'
+      summary: Get by plan id
+      x-summary-source: derived
 components:
   schemas:
-    BudgetGroup:
-      type: object
-      properties:
-        budget:
-          type: number
-        budgetGroupId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        markup:
-          type: number
-        planId:
-          type: integer
-          format: int32
     ApiResponseListBudgetGroup:
       type: object
       properties:
@@ -135,3 +125,19 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/BudgetGroup'
+    BudgetGroup:
+      type: object
+      properties:
+        budget:
+          type: number
+        budgetGroupId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        markup:
+          type: number
+        planId:
+          type: integer
+          format: int32

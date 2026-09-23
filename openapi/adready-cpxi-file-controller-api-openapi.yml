@@ -62,6 +62,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseFileData'
+      summary: Upload file
+      x-summary-source: derived
   /api/files/publisher/{publisherId}:
     post:
       tags:
@@ -98,6 +100,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseFileData'
+      summary: Save publisher logo
+      x-summary-source: derived
   /api/files/organizations/{organizationId}:
     post:
       tags:
@@ -139,6 +143,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseFileData'
+      summary: Save logo
+      x-summary-source: derived
   /api/files/{fileId}:
     get:
       tags:
@@ -164,6 +170,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/FileData'
+      summary: Get file
+      x-summary-source: derived
   /api/files/download/plan/{planId}:
     get:
       tags:
@@ -190,6 +198,8 @@ paths:
               schema:
                 type: string
                 format: binary
+      summary: Download plan file
+      x-summary-source: derived
   /api/files/download/orders/{orderId}/{lineItemId}/{fileName}:
     get:
       tags:
@@ -232,6 +242,8 @@ paths:
               schema:
                 type: string
                 format: binary
+      summary: Download file
+      x-summary-source: derived
   /api/files/download/orders/{orderId}/{fileName}:
     get:
       tags:
@@ -268,6 +280,8 @@ paths:
               schema:
                 type: string
                 format: binary
+      summary: Download file 1
+      x-summary-source: derived
   /api/files/download/tmp/{fileName}:
     get:
       tags:
@@ -298,6 +312,8 @@ paths:
               schema:
                 type: string
                 format: binary
+      summary: Download file 2
+      x-summary-source: derived
   /api/files/download/{fileName}:
     get:
       tags:
@@ -328,6 +344,8 @@ paths:
               schema:
                 type: string
                 format: binary
+      summary: Download file 3
+      x-summary-source: derived
   /api/files/download/line-item/{lineItemId}:
     get:
       tags:
@@ -354,18 +372,10 @@ paths:
               schema:
                 type: string
                 format: binary
+      summary: Download line item file
+      x-summary-source: derived
 components:
   schemas:
-    ApiResponseFileData:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/FileData'
     FileData:
       type: object
       properties:
@@ -411,3 +421,13 @@ components:
           format: date-time
         updatedBy:
           type: string
+    ApiResponseFileData:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/FileData'

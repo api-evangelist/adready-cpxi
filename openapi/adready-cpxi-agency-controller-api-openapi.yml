@@ -46,6 +46,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/Agency'
+      summary: Map advertiser
+      x-summary-source: derived
   /api/agencies:
     get:
       tags:
@@ -71,6 +73,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListAgency'
+      summary: Get all 3
+      x-summary-source: derived
     post:
       tags:
       - agency-controller
@@ -94,6 +98,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseAgency'
+      summary: Create 11
+      x-summary-source: derived
   /api/agencies/{agencyId}:
     get:
       tags:
@@ -119,8 +125,45 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseAgency'
+      summary: Get agency
+      x-summary-source: derived
 components:
   schemas:
+    Agency:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        advertisers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Advertiser'
+          uniqueItems: true
+        deletedAt:
+          type: string
+          format: date-time
+        flags:
+          type: array
+          items:
+            type: string
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiResponseListAgency:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agency'
     ApiResponseAgency:
       type: object
       properties:
@@ -215,41 +258,6 @@ components:
         xandrAdvertiserId:
           type: integer
           format: int32
-    ApiResponseListAgency:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Agency'
-    Agency:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int32
-        advertisers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Advertiser'
-          uniqueItems: true
-        deletedAt:
-          type: string
-          format: date-time
-        flags:
-          type: array
-          items:
-            type: string
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
     FileData:
       type: object
       properties:

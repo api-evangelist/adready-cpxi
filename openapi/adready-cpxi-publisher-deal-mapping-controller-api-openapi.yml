@@ -40,6 +40,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PublisherDealMapping'
+      summary: Get 2
+      x-summary-source: derived
     put:
       tags:
       - publisher-deal-mapping-controller
@@ -70,6 +72,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PublisherDealMapping'
+      summary: Update 2
+      x-summary-source: derived
     delete:
       tags:
       - publisher-deal-mapping-controller
@@ -90,6 +94,8 @@ paths:
                 type: object
         '200':
           description: OK
+      summary: Delete 2
+      x-summary-source: derived
   /api/publisherDeal:
     get:
       tags:
@@ -110,6 +116,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/PublisherDealMapping'
+      summary: List
+      x-summary-source: derived
     post:
       tags:
       - publisher-deal-mapping-controller
@@ -133,22 +141,10 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/PublisherDealMapping'
+      summary: Create 2
+      x-summary-source: derived
 components:
   schemas:
-    PublisherDealMapping:
-      type: object
-      properties:
-        deal:
-          $ref: '#/components/schemas/DealPerformance'
-        dealId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        mediaPublisherId:
-          type: integer
-          format: int32
     DealPerformance:
       type: object
       properties:
@@ -167,5 +163,19 @@ components:
         seller:
           type: string
         totalImpressionsLast30Days:
+          type: integer
+          format: int32
+    PublisherDealMapping:
+      type: object
+      properties:
+        deal:
+          $ref: '#/components/schemas/DealPerformance'
+        dealId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        mediaPublisherId:
           type: integer
           format: int32

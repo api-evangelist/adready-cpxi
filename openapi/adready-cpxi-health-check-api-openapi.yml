@@ -13,12 +13,12 @@ servers:
 - url: https://platform.digitalremedy.com
   description: Generated server url
 tags:
-- name: health-check
+- name: Health Check
 paths:
   /health-check:
     get:
       tags:
-      - health-check
+      - Health Check
       operationId: getHealthCheckPage
       responses:
         '400':
@@ -33,3 +33,5 @@ paths:
             '*/*':
               schema:
                 type: string
+      summary: Get health check page
+      x-summary-source: derived

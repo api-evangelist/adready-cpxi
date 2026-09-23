@@ -33,3 +33,5 @@ paths:
             '*/*':
               schema:
                 type: string
+      summary: Throw err
+      x-summary-source: derived

@@ -592,7 +592,7 @@ paths:
     post:
       tags:
       - Flip Dashboard
-      summary: Get performance report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
+      summary: Get performance report by creative/publisher/channel/daypart/audience/device/med…
       description: Get performance report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
       operationId: getPerformanceReport
       parameters:
@@ -825,7 +825,7 @@ paths:
     post:
       tags:
       - Flip Dashboard
-      summary: Get event-wise performance report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
+      summary: Get event-wise performance report by creative/publisher/channel/daypart/audience…
       description: Get event-wise performance report by creative/publisher/channel/daypart/audience/device/mediatype/state/dma/zip/overall
       operationId: getEventPerformanceReport
       parameters:
@@ -1295,7 +1295,6 @@ paths:
       tags:
       - Flip Dashboard
       summary: Get media types for an advertiser
-      description: Get media types for an advertiser
       operationId: getMediaTypes
       parameters:
       - name: advertiserId
@@ -2897,7 +2896,6 @@ paths:
       tags:
       - Flip Dashboard
       summary: Get audiences for an advertiser
-      description: Get audiences for an advertiser
       operationId: getAudiences
       parameters:
       - name: advertiserId
@@ -3073,7 +3071,6 @@ paths:
       tags:
       - Flip Dashboard
       summary: Get unique insertion order names for an advertiser
-      description: Get unique insertion order names for an advertiser
       operationId: getInsertionOrderNames
       parameters:
       - name: advertiserId
@@ -3747,7 +3744,7 @@ paths:
             application/json: {}
 components:
   schemas:
-    ApiResponseListObject:
+    ApiResponsePagedResultEventMetricsByField:
       type: object
       properties:
         status:
@@ -3756,38 +3753,55 @@ components:
         message:
           type: string
         result:
-          type: array
-          items: {}
-    NewLucidCampaign:
+          $ref: '#/components/schemas/PagedResultEventMetricsByField'
+    ConversionTouch:
       type: object
       properties:
-        campaign_name:
+        uniqueId:
           type: string
-        start_date:
+        ip:
           type: string
-        end_date:
+        revenue:
+          type: number
+          format: double
+        subCategory:
           type: string
-        client_name:
+        pixelTimestamp:
           type: string
-        country_language_id:
+        pixelTimestampMillis:
+          type: integer
+          format: int64
+        creative:
+          type: string
+        publisher:
+          type: string
+        channel:
+          type: string
+        audience:
+          type: string
+        mediaType:
+          type: string
+        state:
+          type: string
+        dma:
+          type: string
+        deviceType:
+          type: string
+        impressionTimestamp:
+          type: string
+        timeToConvert:
           type: integer
           format: int32
-        industry_id:
+        timesExposed:
           type: integer
           format: int32
-        channels:
-          type: array
-          items:
-            type: string
-        draft_settings:
-          $ref: '#/components/schemas/DraftSettings'
-    DailyPerformanceSummary:
+    IncrementalReachMetric:
       type: object
       properties:
-        breakup:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValuePerformanceSummary'
+        incrementalReach:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        incrementalReachPercentage:
+          $ref: '#/components/schemas/ComparisonDataDouble'
     DailySummary:
       type: object
       properties:
@@ -3795,113 +3809,67 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValueComparisonDataNumber'
-    MetricsByField:
+    TargetAudience:
       type: object
       properties:
-        category:
+        target_name:
           type: string
-        event:
-          type: string
-        name:
-          type: string
-        impressions:
-          type: integer
-          format: int64
-        spend:
-          type: number
-          format: double
-        cpm: {}
-        cpmInfinity:
+        is_default:
           type: boolean
-        totalCount:
-          type: number
-          format: double
-        conversionRate: {}
-        conversionRateInfinity:
-          type: boolean
-        revenue:
-          type: number
-          format: double
-        videoCompletionRate: {}
-        videoCompletionRateInfinity:
-          type: boolean
-        videoCompletions:
-          type: integer
-          format: int64
-        clickThroughRate: {}
-        clickThroughRateInfinity:
-          type: boolean
-        clicks:
-          type: integer
-          format: int64
-        cpa: {}
-        cpaInfinity:
-          type: boolean
-        roas: {}
-        roasInfinity:
-          type: boolean
-        pm: {}
-        pmInfinity:
-          type: boolean
-        reach:
-          type: integer
-          format: int64
-        frequency: {}
-        frequencyInfinity:
-          type: boolean
-        timeToConvert:
-          type: number
-          format: double
-        totalExposures:
-          type: number
-          format: double
-        incrementalReach:
-          type: integer
-          format: int64
-        overallCTVReach:
-          type: integer
-          format: int64
-        incrementalReachPercentage:
-          type: number
-          format: double
-    ComparisonDataDouble:
+        qualifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/Qualification'
+    FlipPixelFires:
       type: object
       properties:
-        currentValue:
+        yesterday:
+          type: integer
+          format: int64
+        last15Minutes:
+          type: integer
+          format: int64
+        last7Days:
+          type: integer
+          format: int64
+        last30Days:
+          type: integer
+          format: int64
+        lifetime:
+          type: integer
+          format: int64
+        dailyAverage:
           type: number
           format: double
-        compareValue:
+        last7DayAverage:
           type: number
           format: double
-        change:
+        yesterdayDelta:
           type: number
           format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean
-    DraftSettings:
+    UniversalPixelFiresSummary:
       type: object
       properties:
-        questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Question'
-        baseline_questions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Question'
-        allow_ip:
-          type: boolean
-        expected_impressions_count:
+        pixelId:
+          type: string
+        todaysCount:
           type: integer
-          format: int32
-        target_audiences:
-          type: array
-          items:
-            $ref: '#/components/schemas/TargetAudience'
+          format: int64
+        yesterdaysCount:
+          type: integer
+          format: int64
+        last7DaysCount:
+          type: integer
+          format: int64
+        last30DaysCount:
+          type: integer
+          format: int64
+        last7DaysAverage:
+          type: number
+          format: double
+        average:
+          type: number
+          format: double
     Field:
       type: object
       properties:
@@ -3911,146 +3879,76 @@ components:
           type: string
         value:
           type: string
-    ApiResponseListPixelEvent:
+    Question:
       type: object
       properties:
-        status:
+        customQuestion:
+          type: boolean
+        question_text:
+          type: string
+        question_name:
+          type: string
+        kpi_type:
+          type: string
+        max_sel:
           type: integer
           format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/PixelEvent'
-    IncrementalReachMetric:
-      type: object
-      properties:
-        incrementalReach:
-          $ref: '#/components/schemas/ComparisonDataLong'
-        incrementalReachPercentage:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-    UniversalPixelFires:
-      type: object
-      properties:
-        pixelTimeStamp:
-          type: string
-        orderNumber:
-          type: string
-        checkoutValue:
-          type: number
-          format: double
-        category:
-          type: string
-        subCategory:
-          type: string
-        gaEventName:
-          type: string
-        gaEventAction:
-          type: string
-        gaReferrerUrl:
-          type: string
-        utmSource:
-          type: string
-        utmMedium:
-          type: string
-    ApiResponseListFlipPixel:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlipPixel'
-    ComparisonDataNumber:
-      type: object
-      properties:
-        currentValue:
-          type: number
-        compareValue:
-          type: number
-        change:
-          type: number
-          format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean
-    PagedResultEventMetricsByField:
-      type: object
-      properties:
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventMetricsByField'
-        recordCount:
-          type: integer
-          format: int64
-        headers:
+        answers:
           type: array
           items:
             type: string
-    MetricsComparisonByField:
-      type: object
-      properties:
-        category:
+        none_of_the_above_answer:
           type: string
-        event:
+        anchored_answer:
           type: string
-        id:
+        custom_question_text:
           type: string
-        name:
+        is_custom_question_text:
+          type: boolean
+        randomize:
+          type: boolean
+        order:
+          type: integer
+          format: int32
+        default:
+          type: boolean
+        question_type:
           type: string
-        displayName:
-          type: string
-        streamingCategory:
-          type: string
-        imageUrl:
-          type: string
-        impressions:
-          $ref: '#/components/schemas/ComparisonDataLong'
-        spend:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        totalCount:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        cpa:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        roas:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        revenue:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        cpm:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        pm:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        videoCompletions:
-          $ref: '#/components/schemas/ComparisonDataLong'
-        videoImpressions:
-          $ref: '#/components/schemas/ComparisonDataLong'
-        clicks:
-          $ref: '#/components/schemas/ComparisonDataLong'
-        vcr:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        ctr:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        ireach:
-          $ref: '#/components/schemas/ComparisonDataLong'
-        ireachPercentage:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-    LucidSPCGroupingsWrapper:
-      type: object
-      properties:
-        campaign_id:
-          type: string
-        data:
+        columns:
           type: array
-          items: {}
+          items:
+            $ref: '#/components/schemas/Column'
+        rows:
+          type: array
+          items:
+            $ref: '#/components/schemas/Row'
+        target_option_index:
+          type: integer
+          format: int32
+        options:
+          type: array
+          items:
+            $ref: '#/components/schemas/Option'
+        multi_target_option_index:
+          type: array
+          items:
+            type: integer
+            format: int32
+        multi_level_target_option_index: {}
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/Field'
+        required:
+          type: boolean
+        questionParams:
+          type: array
+          items:
+            type: string
+        input_fields_values:
+          type: object
+          additionalProperties:
+            type: string
     ExistingLucidCampaign:
       type: object
       properties:
@@ -4126,103 +4024,68 @@ components:
           format: int32
         none_of_the_above:
           type: boolean
-    ImpressionsSummary:
+    UniversalPixelFires:
       type: object
       properties:
-        spend:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        impressions:
-          $ref: '#/components/schemas/ComparisonDataLong'
-        videoCompletions:
-          $ref: '#/components/schemas/ComparisonDataLong'
-        videoCompletionRate:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-        clicks:
-          $ref: '#/components/schemas/ComparisonDataLong'
-        clickThroughRate:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-    Question:
+        pixelTimeStamp:
+          type: string
+        orderNumber:
+          type: string
+        checkoutValue:
+          type: number
+          format: double
+        category:
+          type: string
+        subCategory:
+          type: string
+        gaEventName:
+          type: string
+        gaEventAction:
+          type: string
+        gaReferrerUrl:
+          type: string
+        utmSource:
+          type: string
+        utmMedium:
+          type: string
+    ReachMetric:
       type: object
       properties:
-        customQuestion:
-          type: boolean
-        question_text:
+        reach:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        frequency:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+    Qualification:
+      type: object
+      properties:
+        marketplace_question_id:
+          type: number
+          format: float
+        qual_name:
           type: string
-        question_name:
+        answer_type:
           type: string
-        kpi_type:
-          type: string
-        max_sel:
-          type: integer
-          format: int32
-        answers:
+        precodes:
           type: array
           items:
             type: string
-        none_of_the_above_answer:
-          type: string
-        anchored_answer:
-          type: string
-        custom_question_text:
-          type: string
-        is_custom_question_text:
-          type: boolean
-        randomize:
-          type: boolean
-        order:
-          type: integer
-          format: int32
-        default:
-          type: boolean
-        question_type:
-          type: string
-        columns:
-          type: array
-          items:
-            $ref: '#/components/schemas/Column'
-        rows:
-          type: array
-          items:
-            $ref: '#/components/schemas/Row'
-        target_option_index:
-          type: integer
-          format: int32
-        options:
-          type: array
-          items:
-            $ref: '#/components/schemas/Option'
-        multi_target_option_index:
-          type: array
-          items:
-            type: integer
-            format: int32
-        multi_level_target_option_index: {}
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/Field'
-        required:
-          type: boolean
-        questionParams:
-          type: array
-          items:
-            type: string
-        input_fields_values:
-          type: object
-          additionalProperties:
-            type: string
-    TargetAudience:
+    PixelEvent:
       type: object
       properties:
-        target_name:
+        event:
           type: string
-        is_default:
+        category:
+          type: string
+        selected:
           type: boolean
-        qualifications:
+        numSubCategories:
+          type: integer
+          format: int32
+        children:
           type: array
           items:
-            $ref: '#/components/schemas/Qualification'
-    ApiResponseLucidSPCGroupingsWrapper:
+            $ref: '#/components/schemas/PixelEvent'
+    ApiResponseListPixelEvent:
       type: object
       properties:
         status:
@@ -4231,7 +4094,180 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/LucidSPCGroupingsWrapper'
+          type: array
+          items:
+            $ref: '#/components/schemas/PixelEvent'
+    Option:
+      type: object
+      properties:
+        text:
+          type: string
+        none_of_the_above:
+          type: boolean
+    ApiResponseListFlipPixel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlipPixel'
+    ApiResponseInsertionOrderPacing:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/InsertionOrderPacing'
+    ApiResponseListConversionTouch:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConversionTouch'
+    ApiResponseUniversalPixelFiresSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/UniversalPixelFiresSummary'
+    DraftSettings:
+      type: object
+      properties:
+        questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+        baseline_questions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Question'
+        allow_ip:
+          type: boolean
+        expected_impressions_count:
+          type: integer
+          format: int32
+        target_audiences:
+          type: array
+          items:
+            $ref: '#/components/schemas/TargetAudience'
+    ComparisonDataNumber:
+      type: object
+      properties:
+        currentValue:
+          type: number
+        compareValue:
+          type: number
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    ApiResponseListObject:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items: {}
+    KeyValueComparisonDataNumber:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ComparisonDataNumber'
+        extra:
+          type: string
+    KeyValuePerformanceSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/PerformanceSummary'
+        extra:
+          type: string
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+        value: {}
+        extra:
+          type: string
+    DailyPerformanceSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePerformanceSummary'
+    ComparisonDataDouble:
+      type: object
+      properties:
+        currentValue:
+          type: number
+          format: double
+        compareValue:
+          type: number
+          format: double
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    ApiResponseDailyPerformanceSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailyPerformanceSummary'
+    ApiResponseListUniversalPixelFires:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/UniversalPixelFires'
     FlipPixel:
       type: object
       properties:
@@ -4273,7 +4309,7 @@ components:
           type: string
         pixel_fires:
           $ref: '#/components/schemas/FlipPixelFires'
-    ApiResponseListMetricsByField:
+    ApiResponseFlipPixel:
       type: object
       properties:
         status:
@@ -4282,33 +4318,122 @@ components:
         message:
           type: string
         result:
+          $ref: '#/components/schemas/FlipPixel'
+    MetricsByField:
+      type: object
+      properties:
+        category:
+          type: string
+        event:
+          type: string
+        name:
+          type: string
+        impressions:
+          type: integer
+          format: int64
+        spend:
+          type: number
+          format: double
+        cpm: {}
+        cpmInfinity:
+          type: boolean
+        totalCount:
+          type: number
+          format: double
+        conversionRate: {}
+        conversionRateInfinity:
+          type: boolean
+        revenue:
+          type: number
+          format: double
+        videoCompletionRate: {}
+        videoCompletionRateInfinity:
+          type: boolean
+        videoCompletions:
+          type: integer
+          format: int64
+        clickThroughRate: {}
+        clickThroughRateInfinity:
+          type: boolean
+        clicks:
+          type: integer
+          format: int64
+        cpa: {}
+        cpaInfinity:
+          type: boolean
+        roas: {}
+        roasInfinity:
+          type: boolean
+        pm: {}
+        pmInfinity:
+          type: boolean
+        reach:
+          type: integer
+          format: int64
+        frequency: {}
+        frequencyInfinity:
+          type: boolean
+        timeToConvert:
+          type: number
+          format: double
+        totalExposures:
+          type: number
+          format: double
+        incrementalReach:
+          type: integer
+          format: int64
+        overallCTVReach:
+          type: integer
+          format: int64
+        incrementalReachPercentage:
+          type: number
+          format: double
+    PagedResultEventMetricsByField:
+      type: object
+      properties:
+        records:
           type: array
           items:
-            $ref: '#/components/schemas/MetricsByField'
-    KeyValuePerformanceSummary:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/PerformanceSummary'
-        extra:
-          type: string
-    Qualification:
-      type: object
-      properties:
-        marketplace_question_id:
-          type: number
-          format: float
-        qual_name:
-          type: string
-        answer_type:
-          type: string
-        precodes:
+            $ref: '#/components/schemas/EventMetricsByField'
+        recordCount:
+          type: integer
+          format: int64
+        headers:
           type: array
           items:
             type: string
-    ApiResponseInsertionOrderPacing:
+    NewLucidCampaign:
+      type: object
+      properties:
+        campaign_name:
+          type: string
+        start_date:
+          type: string
+        end_date:
+          type: string
+        client_name:
+          type: string
+        country_language_id:
+          type: integer
+          format: int32
+        industry_id:
+          type: integer
+          format: int32
+        channels:
+          type: array
+          items:
+            type: string
+        draft_settings:
+          $ref: '#/components/schemas/DraftSettings'
+    LucidSPCGroupingsWrapper:
+      type: object
+      properties:
+        campaign_id:
+          type: string
+        data:
+          type: array
+          items: {}
+    ApiResponseLucidSPCGroupingsWrapper:
       type: object
       properties:
         status:
@@ -4317,42 +4442,41 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/InsertionOrderPacing'
-    UniversalPixelFiresSummary:
+          $ref: '#/components/schemas/LucidSPCGroupingsWrapper'
+    ComparisonDataLong:
       type: object
       properties:
-        pixelId:
-          type: string
-        todaysCount:
+        currentValue:
           type: integer
           format: int64
-        yesterdaysCount:
+        compareValue:
           type: integer
           format: int64
-        last7DaysCount:
-          type: integer
-          format: int64
-        last30DaysCount:
-          type: integer
-          format: int64
-        last7DaysAverage:
+        change:
           type: number
           format: double
-        average:
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    InsertionOrderPacing:
+      type: object
+      properties:
+        startDate:
+          type: string
+        endDate:
+          type: string
+        budget:
           type: number
           format: double
-    InsertionOrderPacingRequest:
-      type: object
-      properties:
-        client:
-          type: string
-        advertiser:
-          type: string
-        ioIds:
-          type: string
-        adGroups:
-          type: string
-    ApiResponsePagedResultEventMetricsByField:
+        spend:
+          type: number
+          format: double
+        pacing:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+    ApiResponseImpressionsSummary:
       type: object
       properties:
         status:
@@ -4361,8 +4485,20 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/PagedResultEventMetricsByField'
-    ApiResponseUniversalPixelFiresSummary:
+          $ref: '#/components/schemas/ImpressionsSummary'
+    Column:
+      type: object
+      properties:
+        text:
+          type: string
+        title:
+          type: string
+        order:
+          type: integer
+          format: int32
+        none_of_the_above:
+          type: boolean
+    ApiResponseDailySummary:
       type: object
       properties:
         status:
@@ -4371,7 +4507,22 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/UniversalPixelFiresSummary'
+          $ref: '#/components/schemas/DailySummary'
+    ImpressionsSummary:
+      type: object
+      properties:
+        spend:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        impressions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        videoCompletionRate:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        clicks:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        clickThroughRate:
+          $ref: '#/components/schemas/ComparisonDataDouble'
     PerformanceSummary:
       type: object
       properties:
@@ -4399,54 +4550,16 @@ components:
           $ref: '#/components/schemas/ComparisonDataLong'
         ctr:
           $ref: '#/components/schemas/ComparisonDataDouble'
-    ReachMetric:
-      type: object
-      properties:
-        reach:
-          $ref: '#/components/schemas/ComparisonDataLong'
-        frequency:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-    PixelEvent:
-      type: object
-      properties:
-        event:
-          type: string
-        category:
-          type: string
-        selected:
-          type: boolean
-        numSubCategories:
-          type: integer
-          format: int32
-        children:
-          type: array
-          items:
-            $ref: '#/components/schemas/PixelEvent'
-    KeyValue:
+    KeyValueLong:
       type: object
       properties:
         key:
           type: string
-        value: {}
+        value:
+          type: integer
+          format: int64
         extra:
           type: string
-    Option:
-      type: object
-      properties:
-        text:
-          type: string
-        none_of_the_above:
-          type: boolean
-    ApiResponseFlipPixel:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/FlipPixel'
     ApiResponseListKeyValueLong:
       type: object
       properties:
@@ -4459,28 +4572,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValueLong'
-    ApiResponseListUniversalPixelFires:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/UniversalPixelFires'
-    KeyValueLong:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: integer
-          format: int64
-        extra:
-          type: string
     EventMetricsByField:
       type: object
       properties:
@@ -4492,62 +4583,54 @@ components:
         allEvents:
           type: object
           additionalProperties: {}
-    FlipPixelFires:
+    MetricsComparisonByField:
       type: object
       properties:
-        yesterday:
-          type: integer
-          format: int64
-        last15Minutes:
-          type: integer
-          format: int64
-        last7Days:
-          type: integer
-          format: int64
-        last30Days:
-          type: integer
-          format: int64
-        lifetime:
-          type: integer
-          format: int64
-        dailyAverage:
-          type: number
-          format: double
-        last7DayAverage:
-          type: number
-          format: double
-        yesterdayDelta:
-          type: number
-          format: double
-    ComparisonDataLong:
-      type: object
-      properties:
-        currentValue:
-          type: integer
-          format: int64
-        compareValue:
-          type: integer
-          format: int64
-        change:
-          type: number
-          format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean
-    ApiResponseDailyPerformanceSummary:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
+        category:
           type: string
-        result:
-          $ref: '#/components/schemas/DailyPerformanceSummary'
-    ApiResponseListConversionTouch:
+        event:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        displayName:
+          type: string
+        streamingCategory:
+          type: string
+        imageUrl:
+          type: string
+        impressions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        spend:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        totalCount:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        cpa:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        roas:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        revenue:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        cpm:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        pm:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        videoImpressions:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        clicks:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        vcr:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        ctr:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+        ireach:
+          $ref: '#/components/schemas/ComparisonDataLong'
+        ireachPercentage:
+          $ref: '#/components/schemas/ComparisonDataDouble'
+    ApiResponseListMetricsByField:
       type: object
       properties:
         status:
@@ -4558,101 +4641,15 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/ConversionTouch'
-    Column:
+            $ref: '#/components/schemas/MetricsByField'
+    InsertionOrderPacingRequest:
       type: object
       properties:
-        text:
+        client:
           type: string
-        title:
+        advertiser:
           type: string
-        order:
-          type: integer
-          format: int32
-        none_of_the_above:
-          type: boolean
-    ApiResponseImpressionsSummary:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
+        ioIds:
           type: string
-        result:
-          $ref: '#/components/schemas/ImpressionsSummary'
-    KeyValueComparisonDataNumber:
-      type: object
-      properties:
-        key:
+        adGroups:
           type: string
-        value:
-          $ref: '#/components/schemas/ComparisonDataNumber'
-        extra:
-          type: string
-    ApiResponseDailySummary:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/DailySummary'
-    InsertionOrderPacing:
-      type: object
-      properties:
-        startDate:
-          type: string
-        endDate:
-          type: string
-        budget:
-          type: number
-          format: double
-        spend:
-          type: number
-          format: double
-        pacing:
-          $ref: '#/components/schemas/ComparisonDataDouble'
-    ConversionTouch:
-      type: object
-      properties:
-        uniqueId:
-          type: string
-        ip:
-          type: string
-        revenue:
-          type: number
-          format: double
-        subCategory:
-          type: string
-        pixelTimestamp:
-          type: string
-        pixelTimestampMillis:
-          type: integer
-          format: int64
-        creative:
-          type: string
-        publisher:
-          type: string
-        channel:
-          type: string
-        audience:
-          type: string
-        mediaType:
-          type: string
-        state:
-          type: string
-        dma:
-          type: string
-        deviceType:
-          type: string
-        impressionTimestamp:
-          type: string
-        timeToConvert:
-          type: integer
-          format: int32
-        timesExposed:
-          type: integer
-          format: int32

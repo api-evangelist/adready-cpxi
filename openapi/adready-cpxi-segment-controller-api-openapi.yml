@@ -40,6 +40,8 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Get segment by id
+      x-summary-source: derived
     put:
       tags:
       - segment-controller
@@ -70,6 +72,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/Segment'
+      summary: Update segment
+      x-summary-source: derived
     delete:
       tags:
       - segment-controller
@@ -90,6 +94,8 @@ paths:
                 type: object
         '200':
           description: OK
+      summary: Delete segment
+      x-summary-source: derived
   /api/segments:
     get:
       tags:
@@ -110,6 +116,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Segment'
+      summary: Get all segments
+      x-summary-source: derived
     post:
       tags:
       - segment-controller
@@ -133,6 +141,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/Segment'
+      summary: Create segment
+      x-summary-source: derived
   /api/segments/download:
     get:
       tags:
@@ -151,6 +161,8 @@ paths:
             '*/*':
               schema:
                 type: string
+      summary: Download records as json
+      x-summary-source: derived
 components:
   schemas:
     Segment:

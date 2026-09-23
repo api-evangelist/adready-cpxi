@@ -13,12 +13,12 @@ servers:
 - url: https://platform.digitalremedy.com
   description: Generated server url
 tags:
-- name: account-controller
+- name: Account Controller
 paths:
   /api/accounts/{id}:
     put:
       tags:
-      - account-controller
+      - Account Controller
       operationId: update_10
       parameters:
       - name: id
@@ -46,10 +46,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseAccount'
+      summary: Update 10
+      x-summary-source: derived
   /api/accounts/{accountId}/provisionDefaultAccountData:
     put:
       tags:
-      - account-controller
+      - Account Controller
       operationId: provisionDefaultAccountData
       parameters:
       - name: accountId
@@ -67,10 +69,12 @@ paths:
                 type: object
         '200':
           description: OK
+      summary: Provision default account data
+      x-summary-source: derived
   /api/accounts/{accountId}/mapUsers:
     put:
       tags:
-      - account-controller
+      - Account Controller
       operationId: mapUsers_1
       parameters:
       - name: accountId
@@ -96,10 +100,12 @@ paths:
                 type: object
         '200':
           description: OK
+      summary: Map users 1
+      x-summary-source: derived
   /api/accounts/{accountId}/mapUsersAndDropdowns:
     put:
       tags:
-      - account-controller
+      - Account Controller
       operationId: mapUsersAndDropdowns
       parameters:
       - name: accountId
@@ -125,10 +131,12 @@ paths:
                 type: object
         '200':
           description: OK
+      summary: Map users and dropdowns
+      x-summary-source: derived
   /api/accounts/refresh_wl_files/{id}:
     put:
       tags:
-      - account-controller
+      - Account Controller
       operationId: refreshWhitelabelFiles
       parameters:
       - name: id
@@ -150,10 +158,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseAccount'
+      summary: Refresh whitelabel files
+      x-summary-source: derived
   /api/accounts:
     get:
       tags:
-      - account-controller
+      - Account Controller
       operationId: getAll_4
       responses:
         '400':
@@ -168,9 +178,11 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListAccount'
+      summary: Get all 4
+      x-summary-source: derived
     post:
       tags:
-      - account-controller
+      - Account Controller
       operationId: create_13
       requestBody:
         content:
@@ -191,10 +203,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseAccount'
+      summary: Create 13
+      x-summary-source: derived
   /api/accounts/{accountId}:
     get:
       tags:
-      - account-controller
+      - Account Controller
       operationId: getAccount
       parameters:
       - name: accountId
@@ -221,10 +235,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseAccount'
+      summary: Get account
+      x-summary-source: derived
   /api/accounts/{accountId}/dropdowns/{type}:
     get:
       tags:
-      - account-controller
+      - Account Controller
       operationId: getUserbyAccountAndType
       parameters:
       - name: accountId
@@ -251,10 +267,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListLong'
+      summary: Get userby account and type
+      x-summary-source: derived
   /api/accounts/{accountId}/dropdownUsers:
     get:
       tags:
-      - account-controller
+      - Account Controller
       operationId: getDropdownUserbyAccount
       parameters:
       - name: accountId
@@ -278,10 +296,12 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/DropdownUserMaster'
+      summary: Get dropdown userby account
+      x-summary-source: derived
   /api/accounts/user/{userId}:
     get:
       tags:
-      - account-controller
+      - Account Controller
       operationId: getAllAccountsByUserId
       parameters:
       - name: userId
@@ -303,10 +323,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListAccount'
+      summary: Get all accounts by user id
+      x-summary-source: derived
   /api/accounts/prefixExist:
     get:
       tags:
-      - account-controller
+      - Account Controller
       operationId: isPrefixExist
       parameters:
       - name: prefix
@@ -327,10 +349,12 @@ paths:
             '*/*':
               schema:
                 type: boolean
+      summary: Is prefix exist
+      x-summary-source: derived
   /api/accounts/nameExist:
     get:
       tags:
-      - account-controller
+      - Account Controller
       operationId: isNameExist
       parameters:
       - name: name
@@ -351,10 +375,12 @@ paths:
             '*/*':
               schema:
                 type: boolean
+      summary: Is name exist
+      x-summary-source: derived
   /api/accounts/managed/{userId}:
     get:
       tags:
-      - account-controller
+      - Account Controller
       operationId: getAllManagedAccountsByUserId
       parameters:
       - name: userId
@@ -376,10 +402,12 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListAccount'
+      summary: Get all managed accounts by user id
+      x-summary-source: derived
   /api/accounts/abbreviationExist:
     get:
       tags:
-      - account-controller
+      - Account Controller
       operationId: isAbbreviationExist
       parameters:
       - name: abbreviation
@@ -400,10 +428,12 @@ paths:
             '*/*':
               schema:
                 type: boolean
+      summary: Is abbreviation exist
+      x-summary-source: derived
   /api/accounts/{accountId}/removeUser:
     delete:
       tags:
-      - account-controller
+      - Account Controller
       operationId: removeUser
       parameters:
       - name: accountId
@@ -427,10 +457,12 @@ paths:
                 type: object
         '200':
           description: OK
+      summary: Remove user
+      x-summary-source: derived
   /api/accounts/{accountId}/dropdown/{id}:
     delete:
       tags:
-      - account-controller
+      - Account Controller
       operationId: removeUserFromDropdown
       parameters:
       - name: accountId
@@ -454,8 +486,227 @@ paths:
                 type: object
         '200':
           description: OK
+      summary: Remove user from dropdown
+      x-summary-source: derived
 components:
   schemas:
+    Organization:
+      type: object
+      properties:
+        appConsoleLogoFile:
+          $ref: '#/components/schemas/FileData'
+        appConsoleSquareLogoFile:
+          $ref: '#/components/schemas/FileData'
+        emailBranding:
+          type: boolean
+        favIconLogoFile:
+          $ref: '#/components/schemas/FileData'
+        id:
+          type: integer
+          format: int32
+        loginEnabled:
+          type: boolean
+        logoFile:
+          $ref: '#/components/schemas/FileData'
+        name:
+          type: string
+        orgType:
+          type: string
+        subdomainConfig: {}
+        subdomainEnabled:
+          type: boolean
+        theme: {}
+        whitelabelEnabled:
+          type: boolean
+    FileData:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        path:
+          type: string
+        size:
+          type: integer
+          format: int32
+        type:
+          type: string
+          enum:
+          - UPLOAD
+          - LINK
+          - ARTICLE_UPLOAD
+          - ARTICLE_LINK
+          - COMPANION_ASSET_UPLOAD
+          - COMPANION_ASSET_LINK
+          - CLOSED_CAPTIONING_UPLOAD
+          - ADVERTISER_LOGO
+          - IO_ATTACHMENT
+          - NOTES
+          - CREATIVE
+          - ARTICLE_CREATIVE
+          - COMPANION_ASSET
+          - CLOSED_CAPTIONING
+          - TRACKING_PIXEL
+          - ORGANIZATION_LOGO
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    ApiResponseListAccount:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+    ApiResponseAccount:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/Account'
+    ApiResponseListLong:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            type: integer
+            format: int64
+    Account:
+      type: object
+      properties:
+        abbreviation:
+          type: string
+        aboutAgency:
+          type: string
+        active:
+          type: boolean
+        advertisers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Advertiser'
+          uniqueItems: true
+        advisrGroupId:
+          type: integer
+          format: int32
+        ahAgencyUuid:
+          type: string
+        aiName:
+          type: string
+        countryCode:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        currency:
+          type: string
+        dashboardUrls:
+          type: array
+          items:
+            $ref: '#/components/schemas/DashboardUrl'
+          uniqueItems: true
+        deletedAt:
+          type: string
+          format: date-time
+        flags:
+          type: array
+          items:
+            type: string
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        organization:
+          $ref: '#/components/schemas/Organization'
+        organizationId:
+          type: integer
+          format: int32
+        parentId:
+          type: integer
+          format: int32
+        pioId:
+          type: integer
+          format: int32
+        plusAccountId:
+          type: integer
+          format: int32
+        prefix:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    UserAccount:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    DropdownUserMaster:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        type:
+          type: string
+          enum:
+          - ASSIGNEE
+          - OWNER
+          - CONTACT_USER
+          - CUSTOM_USER
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        userId:
+          type: integer
+          format: int64
     Advertiser:
       type: object
       properties:
@@ -540,124 +791,6 @@ components:
         xandrAdvertiserId:
           type: integer
           format: int32
-    Account:
-      type: object
-      properties:
-        abbreviation:
-          type: string
-        aboutAgency:
-          type: string
-        active:
-          type: boolean
-        advertisers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Advertiser'
-          uniqueItems: true
-        advisrGroupId:
-          type: integer
-          format: int32
-        ahAgencyUuid:
-          type: string
-        aiName:
-          type: string
-        countryCode:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        currency:
-          type: string
-        dashboardUrls:
-          type: array
-          items:
-            $ref: '#/components/schemas/DashboardUrl'
-          uniqueItems: true
-        deletedAt:
-          type: string
-          format: date-time
-        flags:
-          type: array
-          items:
-            type: string
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        organization:
-          $ref: '#/components/schemas/Organization'
-        organizationId:
-          type: integer
-          format: int32
-        parentId:
-          type: integer
-          format: int32
-        pioId:
-          type: integer
-          format: int32
-        plusAccountId:
-          type: integer
-          format: int32
-        prefix:
-          type: string
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
-    Organization:
-      type: object
-      properties:
-        appConsoleLogoFile:
-          $ref: '#/components/schemas/FileData'
-        appConsoleSquareLogoFile:
-          $ref: '#/components/schemas/FileData'
-        emailBranding:
-          type: boolean
-        favIconLogoFile:
-          $ref: '#/components/schemas/FileData'
-        id:
-          type: integer
-          format: int32
-        loginEnabled:
-          type: boolean
-        logoFile:
-          $ref: '#/components/schemas/FileData'
-        name:
-          type: string
-        orgType:
-          type: string
-        subdomainConfig: {}
-        subdomainEnabled:
-          type: boolean
-        theme: {}
-        whitelabelEnabled:
-          type: boolean
-    ApiResponseListLong:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            type: integer
-            format: int64
-    UserAccount:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
     DashboardUrl:
       type: object
       properties:
@@ -671,102 +804,3 @@ components:
           type: string
         title:
           type: string
-    FileData:
-      type: object
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        deletedAt:
-          type: string
-          format: date-time
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        path:
-          type: string
-        size:
-          type: integer
-          format: int32
-        type:
-          type: string
-          enum:
-          - UPLOAD
-          - LINK
-          - ARTICLE_UPLOAD
-          - ARTICLE_LINK
-          - COMPANION_ASSET_UPLOAD
-          - COMPANION_ASSET_LINK
-          - CLOSED_CAPTIONING_UPLOAD
-          - ADVERTISER_LOGO
-          - IO_ATTACHMENT
-          - NOTES
-          - CREATIVE
-          - ARTICLE_CREATIVE
-          - COMPANION_ASSET
-          - CLOSED_CAPTIONING
-          - TRACKING_PIXEL
-          - ORGANIZATION_LOGO
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
-    ApiResponseAccount:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/Account'
-    DropdownUserMaster:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int32
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        deletedAt:
-          type: string
-          format: date-time
-        id:
-          type: integer
-          format: int32
-        type:
-          type: string
-          enum:
-          - ASSIGNEE
-          - OWNER
-          - CONTACT_USER
-          - CUSTOM_USER
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
-        userId:
-          type: integer
-          format: int64
-    ApiResponseListAccount:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'

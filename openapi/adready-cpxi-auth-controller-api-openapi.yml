@@ -39,6 +39,8 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Validate reset password token
+      x-summary-source: derived
   /api/auth/reset_password:
     post:
       tags:
@@ -70,6 +72,8 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Reset password
+      x-summary-source: derived
   /api/auth/plus_login:
     post:
       tags:
@@ -88,6 +92,8 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Authenticate plus user
+      x-summary-source: derived
   /api/auth/login:
     post:
       tags:
@@ -119,6 +125,8 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Authenticate user
+      x-summary-source: derived
   /api/auth/loginC360User:
     post:
       tags:
@@ -137,6 +145,8 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Login ah user
+      x-summary-source: derived
   /api/auth/forgot_password:
     post:
       tags:
@@ -168,6 +178,8 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Create password
+      x-summary-source: derived
   /api/auth/create_password:
     post:
       tags:
@@ -192,21 +204,10 @@ paths:
             '*/*':
               schema:
                 type: object
+      summary: Create password 1
+      x-summary-source: derived
 components:
   schemas:
-    ForgotPasswordRequest:
-      type: object
-      properties:
-        hostname:
-          type: string
-          minLength: 1
-        email:
-          type: string
-          format: email
-          minLength: 1
-      required:
-      - email
-      - hostname
     CreatePasswordRequest:
       type: object
       properties:
@@ -241,6 +242,19 @@ components:
       required:
       - token
       - userId
+    ForgotPasswordRequest:
+      type: object
+      properties:
+        hostname:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+          minLength: 1
+      required:
+      - email
+      - hostname
     LoginRequest:
       type: object
       properties:

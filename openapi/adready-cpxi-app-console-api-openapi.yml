@@ -361,7 +361,6 @@ paths:
       tags:
       - App Console
       summary: Get creatives for an advertiser as per the solution id
-      description: Get creatives for an advertiser as per the solution id
       operationId: fetchCreatives
       parameters:
       - name: advertiserId
@@ -571,6 +570,15 @@ components:
           type: array
           items:
             type: string
+    KeyValueString:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        extra:
+          type: string
     ApiResponseListKeyValueString:
       type: object
       properties:
@@ -583,12 +591,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValueString'
-    KeyValueString:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-        extra:
-          type: string

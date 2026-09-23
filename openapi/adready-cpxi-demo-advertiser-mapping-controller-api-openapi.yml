@@ -35,6 +35,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/DemoConfig'
+      summary: Get demo advertiser mappings
+      x-summary-source: derived
 components:
   schemas:
     DemoConfig:

@@ -292,7 +292,6 @@ paths:
       tags:
       - 'App Console: Brand'
       summary: Get summary for Performance Brand solution
-      description: Get summary for Performance Brand solution
       operationId: getBrandSummary
       parameters:
       - name: advertiserId
@@ -1074,42 +1073,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDailySummary'
 components:
   schemas:
-    DailySummary:
-      type: object
-      properties:
-        breakup:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
-    BrandSummary:
-      type: object
-      properties:
-        spend:
-          $ref: '#/components/schemas/ComparisonData'
-        impressions:
-          $ref: '#/components/schemas/ComparisonData'
-        videoCompletions:
-          $ref: '#/components/schemas/ComparisonData'
-        videoImpressions:
-          $ref: '#/components/schemas/ComparisonData'
-        clicks:
-          $ref: '#/components/schemas/ComparisonData'
-        vcr:
-          $ref: '#/components/schemas/ComparisonData'
-        ctr:
-          $ref: '#/components/schemas/ComparisonData'
-    ApiResponseListKeyValueDouble:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueDouble'
     BrandMetricsByDimension:
       type: object
       properties:
@@ -1184,6 +1147,57 @@ components:
         vcr: {}
         vcrInfinity:
           type: boolean
+    ApiResponseListBrandMetricsByDimension:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrandMetricsByDimension'
+    DailyBrandSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueBrandSummary'
+    DailySummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
+    SchedulingRequest:
+      type: object
+      properties:
+        onceNow:
+          type: boolean
+        emailIt:
+          type: boolean
+        emailAddr:
+          type: string
+    ComparisonDataNumber:
+      type: object
+      properties:
+        currentValue:
+          type: number
+        compareValue:
+          type: number
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
     ConversionApiRequest:
       type: object
       properties:
@@ -1244,16 +1258,7 @@ components:
       required:
       - category
       - pixel
-    SchedulingRequest:
-      type: object
-      properties:
-        onceNow:
-          type: boolean
-        emailIt:
-          type: boolean
-        emailAddr:
-          type: string
-    ApiResponseListBrandMetricsByDimension:
+    ApiResponseListKeyValueDouble:
       type: object
       properties:
         status:
@@ -1264,45 +1269,46 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/BrandMetricsByDimension'
-    ComparisonDataNumber:
+            $ref: '#/components/schemas/KeyValueDouble'
+    KeyValueComparisonDataNumber:
       type: object
       properties:
-        currentValue:
-          type: number
-        compareValue:
-          type: number
-        change:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ComparisonDataNumber'
+        extra:
+          type: string
+    BrandTopPerformer:
+      type: object
+      properties:
+        name:
+          type: string
+        dimension:
+          type: string
+        cpc: {}
+        ctr: {}
+        ctrInfinity:
+          type: boolean
+        vcr: {}
+        vcrInfinity:
+          type: boolean
+        roas: {}
+        roasInfinity:
+          type: boolean
+        impressions:
           type: number
           format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean
-    ApiResponseBrandSummary:
+    KeyValueDouble:
       type: object
       properties:
-        status:
-          type: integer
-          format: int32
-        message:
+        key:
           type: string
-        result:
-          $ref: '#/components/schemas/BrandSummary'
-    ApiResponseListBrandTopPerformer:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
+        value:
+          type: number
+          format: double
+        extra:
           type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/BrandTopPerformer'
     KeyValueBrandSummary:
       type: object
       properties:
@@ -1312,27 +1318,23 @@ components:
           $ref: '#/components/schemas/BrandSummary'
         extra:
           type: string
-    ComparisonData:
+    BrandSummary:
       type: object
       properties:
-        currentValue:
-          type: number
-          format: double
-        compareValue:
-          type: number
-          format: double
-        difference:
-          type: number
-          format: double
-        change:
-          type: number
-          format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean
+        spend:
+          $ref: '#/components/schemas/ComparisonData'
+        impressions:
+          $ref: '#/components/schemas/ComparisonData'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonData'
+        videoImpressions:
+          $ref: '#/components/schemas/ComparisonData'
+        clicks:
+          $ref: '#/components/schemas/ComparisonData'
+        vcr:
+          $ref: '#/components/schemas/ComparisonData'
+        ctr:
+          $ref: '#/components/schemas/ComparisonData'
     ApiResponseDailyBrandSummary:
       type: object
       properties:
@@ -1343,6 +1345,16 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/DailyBrandSummary'
+    ApiResponseDailySummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySummary'
     StandardApiRequest:
       type: object
       properties:
@@ -1395,46 +1407,7 @@ components:
           type: boolean
         comparedDateRangeProvided:
           type: boolean
-    KeyValueDouble:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: number
-          format: double
-        extra:
-          type: string
-    BrandTopPerformer:
-      type: object
-      properties:
-        name:
-          type: string
-        dimension:
-          type: string
-        cpc: {}
-        ctr: {}
-        ctrInfinity:
-          type: boolean
-        vcr: {}
-        vcrInfinity:
-          type: boolean
-        roas: {}
-        roasInfinity:
-          type: boolean
-        impressions:
-          type: number
-          format: double
-    KeyValueComparisonDataNumber:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/ComparisonDataNumber'
-        extra:
-          type: string
-    ApiResponseDailySummary:
+    ApiResponseBrandSummary:
       type: object
       properties:
         status:
@@ -1443,11 +1416,37 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/DailySummary'
-    DailyBrandSummary:
+          $ref: '#/components/schemas/BrandSummary'
+    ApiResponseListBrandTopPerformer:
       type: object
       properties:
-        breakup:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
           type: array
           items:
-            $ref: '#/components/schemas/KeyValueBrandSummary'
+            $ref: '#/components/schemas/BrandTopPerformer'
+    ComparisonData:
+      type: object
+      properties:
+        currentValue:
+          type: number
+          format: double
+        compareValue:
+          type: number
+          format: double
+        difference:
+          type: number
+          format: double
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean

@@ -40,6 +40,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListDeviceTypeMaster'
+      summary: Get device type master
+      x-summary-source: derived
 components:
   schemas:
     DeviceTypeMaster:

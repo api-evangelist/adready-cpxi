@@ -40,6 +40,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseOrganization'
+      summary: Get organization
+      x-summary-source: derived
     put:
       tags:
       - organization-controller
@@ -70,6 +72,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseOrganization'
+      summary: Update 3
+      x-summary-source: derived
   /api/organizations:
     get:
       tags:
@@ -88,6 +92,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListOrganization'
+      summary: Get organizations
+      x-summary-source: derived
     post:
       tags:
       - organization-controller
@@ -111,8 +117,60 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseOrganization'
+      summary: Create 5
+      x-summary-source: derived
 components:
   schemas:
+    ApiResponseOrganization:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/Organization'
+    Organization:
+      type: object
+      properties:
+        appConsoleLogoFile:
+          $ref: '#/components/schemas/FileData'
+        appConsoleSquareLogoFile:
+          $ref: '#/components/schemas/FileData'
+        emailBranding:
+          type: boolean
+        favIconLogoFile:
+          $ref: '#/components/schemas/FileData'
+        id:
+          type: integer
+          format: int32
+        loginEnabled:
+          type: boolean
+        logoFile:
+          $ref: '#/components/schemas/FileData'
+        name:
+          type: string
+        orgType:
+          type: string
+        subdomainConfig: {}
+        subdomainEnabled:
+          type: boolean
+        theme: {}
+        whitelabelEnabled:
+          type: boolean
+    ApiResponseListOrganization:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
     FileData:
       type: object
       properties:
@@ -158,53 +216,3 @@ components:
           format: date-time
         updatedBy:
           type: string
-    ApiResponseOrganization:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/Organization'
-    ApiResponseListOrganization:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
-    Organization:
-      type: object
-      properties:
-        appConsoleLogoFile:
-          $ref: '#/components/schemas/FileData'
-        appConsoleSquareLogoFile:
-          $ref: '#/components/schemas/FileData'
-        emailBranding:
-          type: boolean
-        favIconLogoFile:
-          $ref: '#/components/schemas/FileData'
-        id:
-          type: integer
-          format: int32
-        loginEnabled:
-          type: boolean
-        logoFile:
-          $ref: '#/components/schemas/FileData'
-        name:
-          type: string
-        orgType:
-          type: string
-        subdomainConfig: {}
-        subdomainEnabled:
-          type: boolean
-        theme: {}
-        whitelabelEnabled:
-          type: boolean

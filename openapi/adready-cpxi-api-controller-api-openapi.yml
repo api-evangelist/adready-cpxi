@@ -39,6 +39,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseString'
+      summary: Update line item status
+      x-summary-source: derived
   /api/run/updateLineItemStatusLive:
     post:
       tags:
@@ -63,6 +65,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseString'
+      summary: Update line item status live
+      x-summary-source: derived
   /api/run/sendDailySummaryReport:
     post:
       tags:
@@ -87,6 +91,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseString'
+      summary: Run report
+      x-summary-source: derived
   /api/run/generateReports:
     post:
       tags:
@@ -111,6 +117,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseString'
+      summary: Generate reports
+      x-summary-source: derived
   /api/run/flip_pixel_activity_scheduler:
     post:
       tags:
@@ -135,6 +143,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponse'
+      summary: Run flip pixel activity controller
+      x-summary-source: derived
   /api/run/exportScheduleJob:
     post:
       tags:
@@ -159,6 +169,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseString'
+      summary: Run export schedule job
+      x-summary-source: derived
   /api/reportGenerationLog/updateStatus:
     post:
       tags:
@@ -183,6 +195,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseString'
+      summary: Update report generation log status
+      x-summary-source: derived
   /api/workflowOptions:
     get:
       tags:
@@ -201,6 +215,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListWorkflowOption'
+      summary: Get workflow options
+      x-summary-source: derived
   /api/verificationPartners:
     get:
       tags:
@@ -219,6 +235,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListVerificationPartner'
+      summary: Get all verification partners
+      x-summary-source: derived
   /api/trackingTypes:
     get:
       tags:
@@ -237,6 +255,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListTrackingPixel'
+      summary: Get tracking types
+      x-summary-source: derived
   /api/taskTypeOptions:
     get:
       tags:
@@ -255,6 +275,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListTaskTypeOption'
+      summary: Get task type options
+      x-summary-source: derived
   /api/targetingElements:
     get:
       tags:
@@ -273,6 +295,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListTargetableElement'
+      summary: Get targetable elements
+      x-summary-source: derived
   /api/targetableElement/{targetableElementId}/options:
     get:
       tags:
@@ -308,6 +332,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListOptionDTO'
+      summary: Get targetable element options
+      x-summary-source: derived
   /api/statusOptions/{type}:
     get:
       tags:
@@ -332,6 +358,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListStatusOption'
+      summary: Get all status options
+      x-summary-source: derived
   /api/roles:
     get:
       tags:
@@ -350,6 +378,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListRole'
+      summary: Get roles
+      x-summary-source: derived
   /api/productTypes/{productTypeId}:
     get:
       tags:
@@ -375,6 +405,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseProductType'
+      summary: Get product type by id
+      x-summary-source: derived
   /api/productTypes/{productTypeId}/targetingTypes/{targetingType}:
     get:
       tags:
@@ -411,6 +443,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListTargetableElement'
+      summary: Get targetable elements 1
+      x-summary-source: derived
   /api/productTypes/{productTypeId}/targetingTypes/{targetingType}/level/{level}:
     get:
       tags:
@@ -447,6 +481,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListTargetableElement'
+      summary: Get targetable elements by level
+      x-summary-source: derived
   /api/productTypes/{productTypeId}/kpiOptions:
     get:
       tags:
@@ -472,6 +508,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListKpiOption'
+      summary: Get kpi options
+      x-summary-source: derived
   /api/productTypes/{productTypeId}/goalOptions:
     get:
       tags:
@@ -499,6 +537,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Option'
+      summary: Goal options
+      x-summary-source: derived
   /api/productCategories:
     get:
       tags:
@@ -517,6 +557,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListProductCategoryDTO'
+      summary: Get product categories
+      x-summary-source: derived
   /api/productCategories/{productCategoryId}:
     get:
       tags:
@@ -542,6 +584,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseProductCategoryDTO'
+      summary: Get product category by id
+      x-summary-source: derived
   /api/priceTypeOptions:
     get:
       tags:
@@ -560,6 +604,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListKeyValue'
+      summary: Get price type options
+      x-summary-source: derived
   /api/options/marketingObjectives:
     get:
       tags:
@@ -578,6 +624,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListMarketingObjective'
+      summary: Get marketing objectives
+      x-summary-source: derived
   /api/options/locations:
     get:
       tags:
@@ -596,6 +644,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListLocation'
+      summary: Get locations
+      x-summary-source: derived
   /api/options/industries:
     get:
       tags:
@@ -614,6 +664,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListIndustry'
+      summary: Get industries
+      x-summary-source: derived
   /api/options/budgetRanges:
     get:
       tags:
@@ -651,6 +703,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListKpiOption'
+      summary: Get kpi options 1
+      x-summary-source: derived
   /api/hierarchies:
     get:
       tags:
@@ -683,6 +737,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ProductHierarchy'
+      summary: Get all product hierarchies
+      x-summary-source: derived
   /api/flagOptions:
     get:
       tags:
@@ -701,6 +757,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListFlagOption'
+      summary: Get flag options
+      x-summary-source: derived
   /api/brandSafetyLevels:
     get:
       tags:
@@ -719,6 +777,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListBrandSafetyLevel'
+      summary: Get all brand safety levels
+      x-summary-source: derived
   /api/billingTypeOptions:
     get:
       tags:
@@ -737,6 +797,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListKeyValue'
+      summary: Get billing type options
+      x-summary-source: derived
   /api/applications:
     get:
       tags:
@@ -755,39 +817,11 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListApplication'
+      summary: Get applications
+      x-summary-source: derived
 components:
   schemas:
-    StatusOption:
-      type: object
-      properties:
-        displayOrder:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        status:
-          type: string
-        type:
-          type: string
-          enum:
-          - LI
-          - IO
-          - IO_CHANGE
-          - LI_CHANGE
-    TrackingPixel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        value:
-          type: string
-      required:
-      - name
-    ApiResponseListRole:
+    ApiResponseListFlagOption:
       type: object
       properties:
         status:
@@ -798,7 +832,51 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/Role'
+            $ref: '#/components/schemas/FlagOption'
+    Application:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiResponseListBudgetRange:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BudgetRange'
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
+    TargetableElement:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        level:
+          type: integer
+          format: int32
+        name:
+          type: string
+        targetingType:
+          type: string
+      required:
+      - name
     Permission:
       type: object
       properties:
@@ -820,7 +898,7 @@ components:
           - Read
           - Create
           - Delete
-    ApiResponseListBrandSafetyLevel:
+    ApiResponseProductCategoryDTO:
       type: object
       properties:
         status:
@@ -829,9 +907,7 @@ components:
         message:
           type: string
         result:
-          type: array
-          items:
-            $ref: '#/components/schemas/BrandSafetyLevel'
+          $ref: '#/components/schemas/ProductCategoryDTO'
     MarketingObjective:
       type: object
       properties:
@@ -842,20 +918,19 @@ components:
           type: string
       required:
       - name
-    ProductType:
+    OptionDTO:
       type: object
       properties:
-        canonicalProductId:
-          type: integer
-          format: int32
         id:
           type: integer
           format: int32
-        name:
+        value:
           type: string
-      required:
-      - name
-    ApiResponseListKpiOption:
+        options:
+          type: array
+          items:
+            type: string
+    ApiResponseListIndustry:
       type: object
       properties:
         status:
@@ -866,31 +941,7 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/KpiOption'
-    ApiResponseListBudgetRange:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/BudgetRange'
-    ApiResponseListVerificationPartner:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/VerificationPartner'
+            $ref: '#/components/schemas/Industry'
     ApiResponseListStatusOption:
       type: object
       properties:
@@ -915,7 +966,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/WorkflowOption'
-    ProductCategoryDTO:
+    BudgetRange:
       type: object
       properties:
         id:
@@ -923,34 +974,7 @@ components:
           format: int32
         name:
           type: string
-        productTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductType'
-    TargetableElement:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        level:
-          type: integer
-          format: int32
-        name:
-          type: string
-        targetingType:
-          type: string
-      required:
-      - name
-    VerificationPartner:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-    ApiResponseListMarketingObjective:
+    ApiResponseListBrandSafetyLevel:
       type: object
       properties:
         status:
@@ -961,8 +985,15 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/MarketingObjective'
-    ApiResponseListApplication:
+            $ref: '#/components/schemas/BrandSafetyLevel'
+    Option:
+      type: object
+      properties:
+        text:
+          type: string
+        none_of_the_above:
+          type: boolean
+    ApiResponseListRole:
       type: object
       properties:
         status:
@@ -973,14 +1004,14 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/Application'
-    Application:
+            $ref: '#/components/schemas/Role'
+    BrandSafetyLevel:
       type: object
       properties:
         id:
           type: integer
           format: int32
-        name:
+        levelText:
           type: string
     WorkflowOption:
       type: object
@@ -1002,30 +1033,6 @@ components:
           - IO
           - IO_CHANGE
           - LI_CHANGE
-    ReportLogStatusUpdateRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-          minLength: 1
-        password:
-          type: string
-          minLength: 1
-        reportGenerationLogId:
-          type: integer
-          format: int32
-        status:
-          type: string
-          enum:
-          - SUCCESS
-          - FAILED
-          - PROCESSING
-      required:
-      - email
-      - password
-      - reportGenerationLogId
-      - status
     LoginRequest:
       type: object
       properties:
@@ -1039,6 +1046,24 @@ components:
       required:
       - email
       - password
+    ApiResponseString:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: string
+    KeyValue:
+      type: object
+      properties:
+        key:
+          type: string
+        value: {}
+        extra:
+          type: string
     FlagOption:
       type: object
       properties:
@@ -1051,78 +1076,45 @@ components:
           type: string
         value:
           type: string
-    ApiResponseListTargetableElement:
+    ProductCategoryDTO:
       type: object
       properties:
-        status:
+        id:
           type: integer
           format: int32
-        message:
+        name:
           type: string
-        result:
+        productTypes:
           type: array
           items:
-            $ref: '#/components/schemas/TargetableElement'
-    ApiResponseListTaskTypeOption:
+            $ref: '#/components/schemas/ProductType'
+    StatusOption:
       type: object
       properties:
-        status:
+        displayOrder:
           type: integer
           format: int32
-        message:
+        id:
+          type: integer
+          format: int32
+        status:
           type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskTypeOption'
+        type:
+          type: string
+          enum:
+          - LI
+          - IO
+          - IO_CHANGE
+          - LI_CHANGE
+    KpiOption:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
     TaskTypeOption:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-    ApiResponseListFlagOption:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlagOption'
-    ApiResponseProductCategoryDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/ProductCategoryDTO'
-    Location:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-    ApiResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result: {}
-    BudgetRange:
       type: object
       properties:
         id:
@@ -1147,6 +1139,64 @@ components:
           items:
             $ref: '#/components/schemas/Permission'
           uniqueItems: true
+    ApiResponseListProductCategoryDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductCategoryDTO'
+    ApiResponseProductType:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ProductType'
+    ApiResponseListVerificationPartner:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerificationPartner'
+    ApiResponseListKpiOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KpiOption'
+    ApiResponseListTargetableElement:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TargetableElement'
     ApiResponseListLocation:
       type: object
       properties:
@@ -1159,15 +1209,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Location'
-    Industry:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-    ApiResponseListIndustry:
+    ApiResponseListTaskTypeOption:
       type: object
       properties:
         status:
@@ -1178,14 +1220,26 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/Industry'
-    KeyValue:
+            $ref: '#/components/schemas/TaskTypeOption'
+    ApiResponseListKeyValue:
       type: object
       properties:
-        key:
+        status:
+          type: integer
+          format: int32
+        message:
           type: string
-        value: {}
-        extra:
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    Industry:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
           type: string
     ProductHierarchy:
       type: object
@@ -1224,25 +1278,6 @@ components:
           format: date-time
         updatedBy:
           type: string
-    ApiResponseListKeyValue:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValue'
-    Option:
-      type: object
-      properties:
-        text:
-          type: string
-        none_of_the_above:
-          type: boolean
     ApiResponseListTrackingPixel:
       type: object
       properties:
@@ -1255,6 +1290,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TrackingPixel'
+    TrackingPixel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
     ApiResponseListOptionDTO:
       type: object
       properties:
@@ -1267,31 +1322,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/OptionDTO'
-    OptionDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        value:
-          type: string
-        options:
-          type: array
-          items:
-            type: string
-    ApiResponseListProductCategoryDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductCategoryDTO'
-    KpiOption:
+    VerificationPartner:
       type: object
       properties:
         id:
@@ -1299,31 +1330,64 @@ components:
           format: int32
         name:
           type: string
-    BrandSafetyLevel:
+    ApiResponseListApplication:
       type: object
       properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+    ReportLogStatusUpdateRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+        reportGenerationLogId:
+          type: integer
+          format: int32
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - PROCESSING
+      required:
+      - email
+      - password
+      - reportGenerationLogId
+      - status
+    ApiResponseListMarketingObjective:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketingObjective'
+    ProductType:
+      type: object
+      properties:
+        canonicalProductId:
+          type: integer
+          format: int32
         id:
           type: integer
           format: int32
-        levelText:
+        name:
           type: string
-    ApiResponseString:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: string
-    ApiResponseProductType:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/ProductType'
+      required:
+      - name

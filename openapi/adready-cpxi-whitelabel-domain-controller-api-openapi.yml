@@ -40,6 +40,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseWhitelabelDomain'
+      summary: Get
+      x-summary-source: derived
     put:
       tags:
       - whitelabel-domain-controller
@@ -76,6 +78,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseWhitelabelDomain'
+      summary: Update
+      x-summary-source: derived
     delete:
       tags:
       - whitelabel-domain-controller
@@ -106,6 +110,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseWhitelabelDomain'
+      summary: Delete
+      x-summary-source: derived
   /api/whitelabel_domains:
     get:
       tags:
@@ -124,6 +130,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListWhitelabelDomain'
+      summary: Get whitelabel domains
+      x-summary-source: derived
     post:
       tags:
       - whitelabel-domain-controller
@@ -154,6 +162,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseWhitelabelDomain'
+      summary: Create
+      x-summary-source: derived
   /api/whitelabel_domains/get_by_domain_name:
     get:
       tags:
@@ -178,9 +188,11 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/WhitelabelDomain'
+      summary: Get by domain name
+      x-summary-source: derived
 components:
   schemas:
-    ApiResponseWhitelabelDomain:
+    ApiResponseListWhitelabelDomain:
       type: object
       properties:
         status:
@@ -189,7 +201,9 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/WhitelabelDomain'
+          type: array
+          items:
+            $ref: '#/components/schemas/WhitelabelDomain'
     WhitelabelDomain:
       type: object
       properties:
@@ -214,7 +228,7 @@ components:
         orgId:
           type: integer
           format: int32
-    ApiResponseListWhitelabelDomain:
+    ApiResponseWhitelabelDomain:
       type: object
       properties:
         status:
@@ -223,6 +237,4 @@ components:
         message:
           type: string
         result:
-          type: array
-          items:
-            $ref: '#/components/schemas/WhitelabelDomain'
+          $ref: '#/components/schemas/WhitelabelDomain'

@@ -336,6 +336,39 @@ paths:
                 $ref: '#/components/schemas/ApiResponseListHaloEffectData'
 components:
   schemas:
+    IncrementalLiftData:
+      type: object
+      properties:
+        name:
+          type: string
+        exposedCount:
+          type: number
+          format: double
+        exposedConversions:
+          type: number
+          format: double
+        exposedRate:
+          type: number
+          format: double
+        controlCount:
+          type: number
+          format: double
+        controlConversions:
+          type: number
+          format: double
+        controlRate:
+          type: number
+          format: double
+        liftPercentage:
+          type: number
+          format: double
+        liftPercentageInfinity:
+          type: boolean
+        incrementality:
+          type: number
+          format: double
+        incrementalityInfinity:
+          type: boolean
     ApiResponseListHaloEffectData:
       type: object
       properties:
@@ -386,36 +419,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IncrementalLiftData'
-    IncrementalLiftData:
-      type: object
-      properties:
-        name:
-          type: string
-        exposedCount:
-          type: number
-          format: double
-        exposedConversions:
-          type: number
-          format: double
-        exposedRate:
-          type: number
-          format: double
-        controlCount:
-          type: number
-          format: double
-        controlConversions:
-          type: number
-          format: double
-        controlRate:
-          type: number
-          format: double
-        liftPercentage:
-          type: number
-          format: double
-        liftPercentageInfinity:
-          type: boolean
-        incrementality:
-          type: number
-          format: double
-        incrementalityInfinity:
-          type: boolean

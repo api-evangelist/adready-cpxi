@@ -13,14 +13,13 @@ servers:
 - url: https://platform.digitalremedy.com
   description: Generated server url
 tags:
-- name: advertiser
+- name: Advertiser
 paths:
   /api/advertisers/{advertiserId}/media_types:
     post:
       tags:
-      - advertiser
+      - Advertiser
       summary: Get media types for an advertiser
-      description: Get media types for an advertiser
       operationId: getMediaTypes
       parameters:
       - name: advertiserId
@@ -79,9 +78,8 @@ paths:
   /api/advertisers/{advertiserId}/audiences:
     post:
       tags:
-      - advertiser
+      - Advertiser
       summary: Get audiences for an advertiser
-      description: Get audiences for an advertiser
       operationId: getAudiences
       parameters:
       - name: advertiserId

@@ -81,6 +81,8 @@ paths:
             '*/*':
               schema:
                 $ref: '#/components/schemas/ApiResponseListTableauView'
+      summary: Tableau views
+      x-summary-source: derived
 components:
   schemas:
     ApiResponseListTableauView:
