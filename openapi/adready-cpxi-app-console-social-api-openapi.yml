@@ -674,6 +674,55 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDailySummary'
 components:
   schemas:
+    ApiResponseListSocialTopPerformer:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SocialTopPerformer'
+    KeyValueDouble:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: number
+          format: double
+        extra:
+          type: string
+    ApiResponseDailySummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySummary'
+    DailySocialSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueSocialSummary'
+    ApiResponseDailySocialSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySocialSummary'
     SocialMetricsByDimension:
       type: object
       properties:
@@ -706,102 +755,6 @@ components:
         vcr: {}
         vcrInfinity:
           type: boolean
-    ApiResponseDailySummary:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/DailySummary'
-    KeyValueSocialSummary:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/SocialSummary'
-        extra:
-          type: string
-    DailySummary:
-      type: object
-      properties:
-        breakup:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
-    KeyValueDouble:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: number
-          format: double
-        extra:
-          type: string
-    SocialTopPerformer:
-      type: object
-      properties:
-        name:
-          type: string
-        dimension:
-          type: string
-        ctr: {}
-        ctrInfinity:
-          type: boolean
-        vcr: {}
-        vcrInfinity:
-          type: boolean
-    ApiResponseDailySocialSummary:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/DailySocialSummary'
-    SocialSummary:
-      type: object
-      properties:
-        spend:
-          $ref: '#/components/schemas/ComparisonData'
-        impressions:
-          $ref: '#/components/schemas/ComparisonData'
-        videoCompletions:
-          $ref: '#/components/schemas/ComparisonData'
-        videoImpressions:
-          $ref: '#/components/schemas/ComparisonData'
-        clicks:
-          $ref: '#/components/schemas/ComparisonData'
-        cpa:
-          $ref: '#/components/schemas/ComparisonData'
-        roas:
-          $ref: '#/components/schemas/ComparisonData'
-        vcr:
-          $ref: '#/components/schemas/ComparisonData'
-        ctr:
-          $ref: '#/components/schemas/ComparisonData'
-    ComparisonDataNumber:
-      type: object
-      properties:
-        currentValue:
-          type: number
-        compareValue:
-          type: number
-        change:
-          type: number
-          format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean
     ApiResponseListKeyValueDouble:
       type: object
       properties:
@@ -823,18 +776,35 @@ components:
           $ref: '#/components/schemas/ComparisonDataNumber'
         extra:
           type: string
-    ApiResponseListSocialTopPerformer:
+    ComparisonDataNumber:
       type: object
       properties:
-        status:
-          type: integer
-          format: int32
-        message:
+        currentValue:
+          type: number
+        compareValue:
+          type: number
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    SocialTopPerformer:
+      type: object
+      properties:
+        name:
           type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SocialTopPerformer'
+        dimension:
+          type: string
+        ctr: {}
+        ctrInfinity:
+          type: boolean
+        vcr: {}
+        vcrInfinity:
+          type: boolean
     ComparisonData:
       type: object
       properties:
@@ -856,10 +826,40 @@ components:
           type: boolean
         isChangeInfinity:
           type: boolean
-    DailySocialSummary:
+    KeyValueSocialSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/SocialSummary'
+        extra:
+          type: string
+    DailySummary:
       type: object
       properties:
         breakup:
           type: array
           items:
-            $ref: '#/components/schemas/KeyValueSocialSummary'
+            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
+    SocialSummary:
+      type: object
+      properties:
+        spend:
+          $ref: '#/components/schemas/ComparisonData'
+        impressions:
+          $ref: '#/components/schemas/ComparisonData'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonData'
+        videoImpressions:
+          $ref: '#/components/schemas/ComparisonData'
+        clicks:
+          $ref: '#/components/schemas/ComparisonData'
+        cpa:
+          $ref: '#/components/schemas/ComparisonData'
+        roas:
+          $ref: '#/components/schemas/ComparisonData'
+        vcr:
+          $ref: '#/components/schemas/ComparisonData'
+        ctr:
+          $ref: '#/components/schemas/ComparisonData'

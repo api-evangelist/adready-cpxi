@@ -131,46 +131,6 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/Organization'
-    Organization:
-      type: object
-      properties:
-        appConsoleLogoFile:
-          $ref: '#/components/schemas/FileData'
-        appConsoleSquareLogoFile:
-          $ref: '#/components/schemas/FileData'
-        emailBranding:
-          type: boolean
-        favIconLogoFile:
-          $ref: '#/components/schemas/FileData'
-        id:
-          type: integer
-          format: int32
-        loginEnabled:
-          type: boolean
-        logoFile:
-          $ref: '#/components/schemas/FileData'
-        name:
-          type: string
-        orgType:
-          type: string
-        subdomainConfig: {}
-        subdomainEnabled:
-          type: boolean
-        theme: {}
-        whitelabelEnabled:
-          type: boolean
-    ApiResponseListOrganization:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Organization'
     FileData:
       type: object
       properties:
@@ -216,3 +176,43 @@ components:
           format: date-time
         updatedBy:
           type: string
+    ApiResponseListOrganization:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Organization'
+    Organization:
+      type: object
+      properties:
+        appConsoleLogoFile:
+          $ref: '#/components/schemas/FileData'
+        appConsoleSquareLogoFile:
+          $ref: '#/components/schemas/FileData'
+        emailBranding:
+          type: boolean
+        favIconLogoFile:
+          $ref: '#/components/schemas/FileData'
+        id:
+          type: integer
+          format: int32
+        loginEnabled:
+          type: boolean
+        logoFile:
+          $ref: '#/components/schemas/FileData'
+        name:
+          type: string
+        orgType:
+          type: string
+        subdomainConfig: {}
+        subdomainEnabled:
+          type: boolean
+        theme: {}
+        whitelabelEnabled:
+          type: boolean

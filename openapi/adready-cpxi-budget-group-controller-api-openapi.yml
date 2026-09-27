@@ -103,6 +103,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiResponseBudgetGroup:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/BudgetGroup'
     ApiResponseListBudgetGroup:
       type: object
       properties:
@@ -115,16 +125,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BudgetGroup'
-    ApiResponseBudgetGroup:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/BudgetGroup'
     BudgetGroup:
       type: object
       properties:

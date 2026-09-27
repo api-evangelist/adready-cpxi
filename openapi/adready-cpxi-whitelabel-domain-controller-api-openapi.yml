@@ -192,18 +192,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiResponseListWhitelabelDomain:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/WhitelabelDomain'
     WhitelabelDomain:
       type: object
       properties:
@@ -228,6 +216,18 @@ components:
         orgId:
           type: integer
           format: int32
+    ApiResponseListWhitelabelDomain:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/WhitelabelDomain'
     ApiResponseWhitelabelDomain:
       type: object
       properties:

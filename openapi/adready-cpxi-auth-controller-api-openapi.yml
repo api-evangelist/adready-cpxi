@@ -230,18 +230,6 @@ components:
       - password
       - token
       - userId
-    ValidateResetPasswordTokenRequest:
-      type: object
-      properties:
-        userId:
-          type: integer
-          format: int64
-        token:
-          type: string
-          minLength: 1
-      required:
-      - token
-      - userId
     ForgotPasswordRequest:
       type: object
       properties:
@@ -255,6 +243,18 @@ components:
       required:
       - email
       - hostname
+    ValidateResetPasswordTokenRequest:
+      type: object
+      properties:
+        userId:
+          type: integer
+          format: int64
+        token:
+          type: string
+          minLength: 1
+      required:
+      - token
+      - userId
     LoginRequest:
       type: object
       properties:

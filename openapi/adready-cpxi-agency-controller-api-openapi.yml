@@ -129,41 +129,51 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    Agency:
+    FileData:
       type: object
       properties:
-        accountId:
-          type: integer
-          format: int32
-        advertisers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Advertiser'
-          uniqueItems: true
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
         deletedAt:
           type: string
           format: date-time
-        flags:
-          type: array
-          items:
-            type: string
         id:
           type: integer
           format: int32
         name:
           type: string
-    ApiResponseListAgency:
-      type: object
-      properties:
-        status:
+        path:
+          type: string
+        size:
           type: integer
           format: int32
-        message:
+        type:
           type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Agency'
+          enum:
+          - UPLOAD
+          - LINK
+          - ARTICLE_UPLOAD
+          - ARTICLE_LINK
+          - COMPANION_ASSET_UPLOAD
+          - COMPANION_ASSET_LINK
+          - CLOSED_CAPTIONING_UPLOAD
+          - ADVERTISER_LOGO
+          - IO_ATTACHMENT
+          - NOTES
+          - CREATIVE
+          - ARTICLE_CREATIVE
+          - COMPANION_ASSET
+          - CLOSED_CAPTIONING
+          - TRACKING_PIXEL
+          - ORGANIZATION_LOGO
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
     ApiResponseAgency:
       type: object
       properties:
@@ -258,48 +268,38 @@ components:
         xandrAdvertiserId:
           type: integer
           format: int32
-    FileData:
+    Agency:
       type: object
       properties:
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
+        accountId:
+          type: integer
+          format: int32
+        advertisers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Advertiser'
+          uniqueItems: true
         deletedAt:
           type: string
           format: date-time
+        flags:
+          type: array
+          items:
+            type: string
         id:
           type: integer
           format: int32
         name:
           type: string
-        path:
-          type: string
-        size:
+    ApiResponseListAgency:
+      type: object
+      properties:
+        status:
           type: integer
           format: int32
-        type:
+        message:
           type: string
-          enum:
-          - UPLOAD
-          - LINK
-          - ARTICLE_UPLOAD
-          - ARTICLE_LINK
-          - COMPANION_ASSET_UPLOAD
-          - COMPANION_ASSET_LINK
-          - CLOSED_CAPTIONING_UPLOAD
-          - ADVERTISER_LOGO
-          - IO_ATTACHMENT
-          - NOTES
-          - CREATIVE
-          - ARTICLE_CREATIVE
-          - COMPANION_ASSET
-          - CLOSED_CAPTIONING
-          - TRACKING_PIXEL
-          - ORGANIZATION_LOGO
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agency'

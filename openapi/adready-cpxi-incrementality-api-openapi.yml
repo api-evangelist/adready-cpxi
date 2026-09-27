@@ -336,6 +336,56 @@ paths:
                 $ref: '#/components/schemas/ApiResponseListHaloEffectData'
 components:
   schemas:
+    ApiResponseListIncrementalLiftData:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncrementalLiftData'
+    HaloEffectData:
+      type: object
+      properties:
+        name:
+          type: string
+        exposedCount:
+          type: number
+          format: double
+        exposedConversions:
+          type: number
+          format: double
+        controlCount:
+          type: number
+          format: double
+        controlConversions:
+          type: number
+          format: double
+        scale:
+          type: number
+          format: double
+        incrementalConversions:
+          type: number
+          format: double
+        liftPercentage: {}
+        isLiftPercentageInfinity:
+          type: boolean
+    ApiResponseListHaloEffectData:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/HaloEffectData'
     IncrementalLiftData:
       type: object
       properties:
@@ -369,53 +419,3 @@ components:
           format: double
         incrementalityInfinity:
           type: boolean
-    ApiResponseListHaloEffectData:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/HaloEffectData'
-    HaloEffectData:
-      type: object
-      properties:
-        name:
-          type: string
-        exposedCount:
-          type: number
-          format: double
-        exposedConversions:
-          type: number
-          format: double
-        controlCount:
-          type: number
-          format: double
-        controlConversions:
-          type: number
-          format: double
-        scale:
-          type: number
-          format: double
-        incrementalConversions:
-          type: number
-          format: double
-        liftPercentage: {}
-        isLiftPercentageInfinity:
-          type: boolean
-    ApiResponseListIncrementalLiftData:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/IncrementalLiftData'

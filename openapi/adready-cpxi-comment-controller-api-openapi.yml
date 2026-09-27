@@ -182,6 +182,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
     CommentNotification:
       type: object
       properties:
@@ -230,12 +239,3 @@ components:
           type: string
         value:
           type: string
-    ApiResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result: {}

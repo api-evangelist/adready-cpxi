@@ -145,78 +145,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DealPerformance:
-      type: object
-      properties:
-        cpm:
-          type: number
-        createdAt:
-          type: string
-          format: date-time
-        dealId:
-          type: integer
-          format: int32
-        dealName:
-          type: string
-        pctBadIp:
-          type: number
-        seller:
-          type: string
-        totalImpressionsLast30Days:
-          type: integer
-          format: int32
-    ProductCategory:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-      required:
-      - name
-    PublisherDealMapping:
-      type: object
-      properties:
-        deal:
-          $ref: '#/components/schemas/DealPerformance'
-        dealId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        mediaPublisherId:
-          type: integer
-          format: int32
-    PublisherMediaTypeMapping:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        mediaPublisherId:
-          type: integer
-          format: int32
-        productCategory:
-          $ref: '#/components/schemas/ProductCategory'
-        productType:
-          $ref: '#/components/schemas/ProductType'
-        siteDomain:
-          type: string
-    ProductType:
-      type: object
-      properties:
-        canonicalProductId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-      required:
-      - name
     MediaPublisherMaster:
       type: object
       properties:
@@ -275,3 +203,75 @@ components:
           format: date-time
         updatedBy:
           type: string
+    PublisherMediaTypeMapping:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        mediaPublisherId:
+          type: integer
+          format: int32
+        productCategory:
+          $ref: '#/components/schemas/ProductCategory'
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        siteDomain:
+          type: string
+    DealPerformance:
+      type: object
+      properties:
+        cpm:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        dealId:
+          type: integer
+          format: int32
+        dealName:
+          type: string
+        pctBadIp:
+          type: number
+        seller:
+          type: string
+        totalImpressionsLast30Days:
+          type: integer
+          format: int32
+    PublisherDealMapping:
+      type: object
+      properties:
+        deal:
+          $ref: '#/components/schemas/DealPerformance'
+        dealId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        mediaPublisherId:
+          type: integer
+          format: int32
+    ProductType:
+      type: object
+      properties:
+        canonicalProductId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      required:
+      - name
+    ProductCategory:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      required:
+      - name

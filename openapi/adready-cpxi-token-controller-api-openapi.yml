@@ -198,23 +198,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiResponseThoughtSpotToken:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/ThoughtSpotToken'
-    ThoughtSpotToken:
-      type: object
-      properties:
-        userName:
-          type: string
-        authToken:
-          type: string
     ApiResponseTokenWrapper:
       type: object
       properties:
@@ -244,6 +227,13 @@ components:
           format: int64
         email:
           type: string
+    ThoughtSpotToken:
+      type: object
+      properties:
+        userName:
+          type: string
+        authToken:
+          type: string
     ApiResponseString:
       type: object
       properties:
@@ -254,3 +244,13 @@ components:
           type: string
         result:
           type: string
+    ApiResponseThoughtSpotToken:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ThoughtSpotToken'

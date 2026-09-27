@@ -557,189 +557,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiResponseListUserDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDTO'
-    User:
-      type: object
-      properties:
-        acceptedTos:
-          type: boolean
-        accountIds:
-          type: array
-          items:
-            type: integer
-            format: int32
-        allowedDomains:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        deletedAt:
-          type: string
-          format: date-time
-        email:
-          type: string
-        emailVerificationDate:
-          type: string
-          format: date-time
-        emailVerified:
-          type: boolean
-        enabled:
-          type: boolean
-        flags:
-          type: array
-          items:
-            type: string
-        id:
-          type: integer
-          format: int64
-        lastLogin:
-          type: string
-          format: date-time
-        loginCount:
-          type: integer
-          format: int32
-        organizationId:
-          type: integer
-          format: int32
-        password:
-          type: string
-        phone:
-          type: string
-        promptLibrary:
-          type: string
-        provider:
-          type: string
-          enum:
-          - GOOGLE
-          - DR_SSO
-          - LOCAL
-          - NONE
-        role:
-          $ref: '#/components/schemas/Role'
-        team:
-          type: boolean
-        teamUserIds:
-          type: array
-          items:
-            type: integer
-            format: int64
-        teams:
-          type: array
-          items:
-            $ref: '#/components/schemas/User'
-          uniqueItems: true
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
-        userApplications:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserApplication'
-          uniqueItems: true
-        userName:
-          type: string
-        verificationMailSent:
-          type: boolean
-    UserAdvertiser:
-      type: object
-      properties:
-        advertiserId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
-    ApiResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result: {}
-    UserApplication:
-      type: object
-      properties:
-        applicationId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-    Permission:
-      type: object
-      properties:
-        entity:
-          type: string
-          enum:
-          - User
-          - Account
-          - Advertiser
-          - RateCard
-          - Organization
-        id:
-          type: integer
-          format: int32
-        privilege:
-          type: string
-          enum:
-          - All
-          - Read
-          - Create
-          - Delete
-    Role:
-      type: object
-      properties:
-        canCreateRole:
-          type: array
-          items:
-            type: string
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        permissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Permission'
-          uniqueItems: true
-    UserRole:
-      type: object
-      properties:
-        role:
-          $ref: '#/components/schemas/Role'
-        roleId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
-    UserAccount:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
     UserDTO:
       type: object
       properties:
@@ -828,6 +645,57 @@ components:
           type: boolean
         inviteAccepted:
           type: boolean
+    Permission:
+      type: object
+      properties:
+        entity:
+          type: string
+          enum:
+          - User
+          - Account
+          - Advertiser
+          - RateCard
+          - Organization
+        id:
+          type: integer
+          format: int32
+        privilege:
+          type: string
+          enum:
+          - All
+          - Read
+          - Create
+          - Delete
+    UserApplication:
+      type: object
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+    UserAdvertiser:
+      type: object
+      properties:
+        advertiserId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    ApiResponseListUserDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDTO'
     ApiResponseString:
       type: object
       properties:
@@ -848,3 +716,135 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/UserDTO'
+    User:
+      type: object
+      properties:
+        acceptedTos:
+          type: boolean
+        accountIds:
+          type: array
+          items:
+            type: integer
+            format: int32
+        allowedDomains:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        email:
+          type: string
+        emailVerificationDate:
+          type: string
+          format: date-time
+        emailVerified:
+          type: boolean
+        enabled:
+          type: boolean
+        flags:
+          type: array
+          items:
+            type: string
+        id:
+          type: integer
+          format: int64
+        lastLogin:
+          type: string
+          format: date-time
+        loginCount:
+          type: integer
+          format: int32
+        organizationId:
+          type: integer
+          format: int32
+        password:
+          type: string
+        phone:
+          type: string
+        promptLibrary:
+          type: string
+        provider:
+          type: string
+          enum:
+          - GOOGLE
+          - DR_SSO
+          - LOCAL
+          - NONE
+        role:
+          $ref: '#/components/schemas/Role'
+        team:
+          type: boolean
+        teamUserIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/User'
+          uniqueItems: true
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        userApplications:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserApplication'
+          uniqueItems: true
+        userName:
+          type: string
+        verificationMailSent:
+          type: boolean
+    UserRole:
+      type: object
+      properties:
+        role:
+          $ref: '#/components/schemas/Role'
+        roleId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    Role:
+      type: object
+      properties:
+        canCreateRole:
+          type: array
+          items:
+            type: string
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permission'
+          uniqueItems: true
+    UserAccount:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
