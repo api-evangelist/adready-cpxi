@@ -116,6 +116,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiResponsePixel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/Pixel'
     Pixel:
       type: object
       properties:
@@ -152,6 +162,18 @@ components:
         xandrPixelId:
           type: integer
           format: int32
+    ApiResponseListPixel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Pixel'
     PixelDTO:
       type: object
       properties:
@@ -196,25 +218,3 @@ components:
         adreadyAccountId:
           type: integer
           format: int32
-    ApiResponseListPixel:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Pixel'
-    ApiResponsePixel:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/Pixel'

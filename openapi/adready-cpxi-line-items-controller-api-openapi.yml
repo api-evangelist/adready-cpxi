@@ -742,35 +742,23 @@ components:
           format: date-time
         updatedBy:
           type: string
-    WorkflowStats:
+    LineItemVendors:
       type: object
       properties:
-        count:
-          type: integer
-          format: int32
         id:
           type: integer
           format: int32
-        name:
-          type: string
-        parentId:
+        vendorId:
           type: integer
           format: int32
-        planId:
-          type: integer
-          format: int32
-        type:
-          type: string
-    ApiResponseLineItem:
+    Headline:
       type: object
       properties:
-        status:
+        id:
           type: integer
           format: int32
-        message:
+        value:
           type: string
-        result:
-          $ref: '#/components/schemas/LineItem'
     LineItemNameResponse:
       type: object
       properties:
@@ -780,180 +768,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LineItemData'
-    PageResponseLineItem:
+    Kpi:
       type: object
       properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        pageNumber:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-    LineItemTargeting:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        targetableElementId:
-          type: integer
-          format: int32
-        value: {}
-    ApiResponseBoolean:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: boolean
-    LineItemData:
-      type: object
-      properties:
-        adreadyId:
-          type: string
-        flightStartDate:
-          type: string
-    LineItemDeviceTypes:
-      type: object
-      properties:
+        benchmark:
+          type: number
         deletedAt:
           type: string
           format: date-time
-        deviceTypeId:
-          type: integer
-          format: int32
         id:
           type: integer
           format: int32
-    BudgetGroup:
-      type: object
-      properties:
-        budget:
-          type: number
-        budgetGroupId:
+        kpiId:
           type: integer
           format: int32
-        id:
-          type: integer
-          format: int32
-        markup:
-          type: number
-        planId:
-          type: integer
-          format: int32
-    Creative:
-      type: object
-      properties:
-        addCloseCaptioning:
-          type: boolean
-        bodyText:
+        notes:
           type: string
-        brandName:
-          type: string
-        businessName:
-          type: string
-        callToAction:
-          type: string
-        clickThroughURL:
-          type: string
-        companionAsset:
-          type: boolean
-        companionAssets:
-          type: array
-          items:
-            $ref: '#/components/schemas/CompanionAsset'
-          uniqueItems: true
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        creativeEndDate:
-          type: string
-          format: date-time
-        creativeStartDate:
-          type: string
-          format: date-time
-        creativeType:
-          type: string
-          enum:
-          - normal
-          - search
-          - social
-          - pay_per_call
-          - url_only
-          - native_display
-          - native_video
-          - native_article
-          - youtube_bumper_video
-          - youtube_nonskippable_video
-          - social_tiktok
-          - social_snapchat
-        cta:
-          type: string
-        deletedAt:
-          type: string
-          format: date-time
-        description1:
-          type: string
-        description2:
-          type: string
-        displayPath1:
-          type: string
-        displayPath2:
-          type: string
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileData'
-          uniqueItems: true
-        headline1:
-          type: string
-        headline2:
-          type: string
-        headline3:
-          type: string
-        headlines:
-          type: array
-          items:
-            $ref: '#/components/schemas/Headline'
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        percentOfRetargetingBudget:
-          type: number
-          format: double
-        phoneNumber:
-          type: string
-        previewText:
-          type: string
-        socialUrl:
-          type: string
-        trueView:
-          type: boolean
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
+        value:
           type: string
     EmailNotification:
       type: object
@@ -991,29 +822,14 @@ components:
           - LI_CHANGE_APPLIED
         emailSource:
           type: string
-    LineItemVendors:
+    LineItemData:
       type: object
       properties:
-        id:
-          type: integer
-          format: int32
-        vendorId:
-          type: integer
-          format: int32
-    Note:
-      type: object
-      properties:
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileData'
-          uniqueItems: true
-        id:
-          type: integer
-          format: int32
-        value:
+        adreadyId:
           type: string
-    ApiResponsePageResponseLineItem:
+        flightStartDate:
+          type: string
+    ApiResponseLineItem:
       type: object
       properties:
         status:
@@ -1022,117 +838,17 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/PageResponseLineItem'
-    TrackingPixelData:
+          $ref: '#/components/schemas/LineItem'
+    ApiResponseBoolean:
       type: object
       properties:
-        files:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileData'
-          uniqueItems: true
-        id:
+        status:
           type: integer
           format: int32
-        idKey:
-          type: integer
-          format: int32
-        name:
+        message:
           type: string
-        value:
-          type: string
-    Headline:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        value:
-          type: string
-    LineItemProductType:
-      type: object
-      properties:
-        categoryPath:
-          type: string
-        goalId:
-          type: integer
-          format: int32
-        googleAdAccount:
-          type: string
-        id:
-          type: integer
-          format: int32
-        placementType:
-          type: string
-        productTypeId:
-          type: integer
-          format: int32
-        productTypes:
-          type: array
-          items:
-            type: string
-    Kpi:
-      type: object
-      properties:
-        benchmark:
-          type: number
-        deletedAt:
-          type: string
-          format: date-time
-        id:
-          type: integer
-          format: int32
-        kpiId:
-          type: integer
-          format: int32
-        notes:
-          type: string
-        value:
-          type: string
-    CompanionAsset:
-      type: object
-      properties:
-        adTagCode:
-          type: string
-        assetType:
-          type: string
-          enum:
-          - image
-          - ad_tag
-          - facebook
-          - twitter
-          - pinterest
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        deletedAt:
-          type: string
-          format: date-time
-        id:
-          type: integer
-          format: int32
-        images:
-          type: array
-          items:
-            $ref: '#/components/schemas/FileData'
-          uniqueItems: true
-        landingPageURL:
-          type: string
-        location:
-          type: string
-          enum:
-          - top
-          - bottom
-          - top_mobile
-          - bottom_mobile
-          - right_rail
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
+        result:
+          type: boolean
     LineItem:
       type: object
       properties:
@@ -1311,5 +1027,289 @@ components:
           type: integer
           format: int32
         xandrLineItemId:
+          type: integer
+          format: int32
+    WorkflowStats:
+      type: object
+      properties:
+        count:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        parentId:
+          type: integer
+          format: int32
+        planId:
+          type: integer
+          format: int32
+        type:
+          type: string
+    LineItemTargeting:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        targetableElementId:
+          type: integer
+          format: int32
+        value: {}
+    ApiResponsePageResponseLineItem:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageResponseLineItem'
+    TrackingPixelData:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        id:
+          type: integer
+          format: int32
+        idKey:
+          type: integer
+          format: int32
+        name:
+          type: string
+        value:
+          type: string
+    PageResponseLineItem:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    Creative:
+      type: object
+      properties:
+        addCloseCaptioning:
+          type: boolean
+        bodyText:
+          type: string
+        brandName:
+          type: string
+        businessName:
+          type: string
+        callToAction:
+          type: string
+        clickThroughURL:
+          type: string
+        companionAsset:
+          type: boolean
+        companionAssets:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanionAsset'
+          uniqueItems: true
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        creativeEndDate:
+          type: string
+          format: date-time
+        creativeStartDate:
+          type: string
+          format: date-time
+        creativeType:
+          type: string
+          enum:
+          - normal
+          - search
+          - social
+          - pay_per_call
+          - url_only
+          - native_display
+          - native_video
+          - native_article
+          - youtube_bumper_video
+          - youtube_nonskippable_video
+          - social_tiktok
+          - social_snapchat
+        cta:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        description1:
+          type: string
+        description2:
+          type: string
+        displayPath1:
+          type: string
+        displayPath2:
+          type: string
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        headline1:
+          type: string
+        headline2:
+          type: string
+        headline3:
+          type: string
+        headlines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Headline'
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        percentOfRetargetingBudget:
+          type: number
+          format: double
+        phoneNumber:
+          type: string
+        previewText:
+          type: string
+        socialUrl:
+          type: string
+        trueView:
+          type: boolean
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    LineItemProductType:
+      type: object
+      properties:
+        categoryPath:
+          type: string
+        goalId:
+          type: integer
+          format: int32
+        googleAdAccount:
+          type: string
+        id:
+          type: integer
+          format: int32
+        placementType:
+          type: string
+        productTypeId:
+          type: integer
+          format: int32
+        productTypes:
+          type: array
+          items:
+            type: string
+    CompanionAsset:
+      type: object
+      properties:
+        adTagCode:
+          type: string
+        assetType:
+          type: string
+          enum:
+          - image
+          - ad_tag
+          - facebook
+          - twitter
+          - pinterest
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        images:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        landingPageURL:
+          type: string
+        location:
+          type: string
+          enum:
+          - top
+          - bottom
+          - top_mobile
+          - bottom_mobile
+          - right_rail
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    BudgetGroup:
+      type: object
+      properties:
+        budget:
+          type: number
+        budgetGroupId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        markup:
+          type: number
+        planId:
+          type: integer
+          format: int32
+    Note:
+      type: object
+      properties:
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/FileData'
+          uniqueItems: true
+        id:
+          type: integer
+          format: int32
+        value:
+          type: string
+    LineItemDeviceTypes:
+      type: object
+      properties:
+        deletedAt:
+          type: string
+          format: date-time
+        deviceTypeId:
+          type: integer
+          format: int32
+        id:
           type: integer
           format: int32

@@ -558,15 +558,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponseListString'
 components:
   schemas:
-    KeyValueString:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-        extra:
-          type: string
     ApiResponseListKeyValueString:
       type: object
       properties:
@@ -591,3 +582,12 @@ components:
           type: array
           items:
             type: string
+    KeyValueString:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+        extra:
+          type: string

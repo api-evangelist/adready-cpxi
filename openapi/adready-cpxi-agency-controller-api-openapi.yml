@@ -174,7 +174,7 @@ components:
           format: date-time
         updatedBy:
           type: string
-    ApiResponseAgency:
+    ApiResponseListAgency:
       type: object
       properties:
         status:
@@ -183,7 +183,9 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/Agency'
+          type: array
+          items:
+            $ref: '#/components/schemas/Agency'
     Advertiser:
       type: object
       properties:
@@ -291,7 +293,7 @@ components:
           format: int32
         name:
           type: string
-    ApiResponseListAgency:
+    ApiResponseAgency:
       type: object
       properties:
         status:
@@ -300,6 +302,4 @@ components:
         message:
           type: string
         result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Agency'
+          $ref: '#/components/schemas/Agency'

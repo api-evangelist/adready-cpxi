@@ -182,6 +182,31 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    Comment:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        itemId:
+          type: string
+        itemType:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        value:
+          type: string
     ApiResponse:
       type: object
       properties:
@@ -214,28 +239,3 @@ components:
         accountId:
           type: integer
           format: int32
-    Comment:
-      type: object
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        deletedAt:
-          type: string
-          format: date-time
-        id:
-          type: integer
-          format: int32
-        itemId:
-          type: string
-        itemType:
-          type: string
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
-        value:
-          type: string

@@ -863,83 +863,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDailySummary'
 components:
   schemas:
-    SearchTopPerformer:
-      type: object
-      properties:
-        name:
-          type: string
-        dimension:
-          type: string
-        cpc: {}
-        cpcInfinity:
-          type: boolean
-        cpa: {}
-        cpaInfinity:
-          type: boolean
-        roas: {}
-        roasInfinity:
-          type: boolean
-        ctr: {}
-        ctrInfinity:
-          type: boolean
-    ApiResponseListSearchTopPerformer:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchTopPerformer'
-    ApiResponseSearchSummary:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/SearchSummary'
-    KeyValueDouble:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: number
-          format: double
-        extra:
-          type: string
-    ApiResponseDailySummary:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/DailySummary'
-    DailySearchSummary:
-      type: object
-      properties:
-        breakup:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueSearchSummary'
-    KeyValueSearchSummary:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/SearchSummary'
-        extra:
-          type: string
     ComparisonData:
       type: object
       properties:
@@ -961,6 +884,107 @@ components:
           type: boolean
         isChangeInfinity:
           type: boolean
+    KeyValueComparisonDataNumber:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ComparisonDataNumber'
+        extra:
+          type: string
+    ApiResponseListSearchTopPerformer:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchTopPerformer'
+    SearchTopPerformer:
+      type: object
+      properties:
+        name:
+          type: string
+        dimension:
+          type: string
+        cpc: {}
+        cpcInfinity:
+          type: boolean
+        cpa: {}
+        cpaInfinity:
+          type: boolean
+        roas: {}
+        roasInfinity:
+          type: boolean
+        ctr: {}
+        ctrInfinity:
+          type: boolean
+    ApiResponseListSearchMetricsByDimension:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchMetricsByDimension'
+    KeyValueDouble:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: number
+          format: double
+        extra:
+          type: string
+    DailySummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
+    ApiResponseDailySummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySummary'
+    KeyValueSearchSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/SearchSummary'
+        extra:
+          type: string
+    SearchSummary:
+      type: object
+      properties:
+        spend:
+          $ref: '#/components/schemas/ComparisonData'
+        impressions:
+          $ref: '#/components/schemas/ComparisonData'
+        clicks:
+          $ref: '#/components/schemas/ComparisonData'
+        cpc:
+          $ref: '#/components/schemas/ComparisonData'
+        ctr:
+          $ref: '#/components/schemas/ComparisonData'
     SearchMetricsByDimension:
       type: object
       properties:
@@ -981,52 +1005,13 @@ components:
         ctr: {}
         ctrInfinity:
           type: boolean
-    SearchSummary:
+    DailySearchSummary:
       type: object
       properties:
-        spend:
-          $ref: '#/components/schemas/ComparisonData'
-        impressions:
-          $ref: '#/components/schemas/ComparisonData'
-        clicks:
-          $ref: '#/components/schemas/ComparisonData'
-        cpc:
-          $ref: '#/components/schemas/ComparisonData'
-        ctr:
-          $ref: '#/components/schemas/ComparisonData'
-    ApiResponseListKeyValueDouble:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
+        breakup:
           type: array
           items:
-            $ref: '#/components/schemas/KeyValueDouble'
-    ApiResponseListSearchMetricsByDimension:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchMetricsByDimension'
-    KeyValueComparisonDataNumber:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/ComparisonDataNumber'
-        extra:
-          type: string
+            $ref: '#/components/schemas/KeyValueSearchSummary'
     ComparisonDataNumber:
       type: object
       properties:
@@ -1043,6 +1028,16 @@ components:
           type: boolean
         isChangeInfinity:
           type: boolean
+    ApiResponseSearchSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/SearchSummary'
     ApiResponseDailySearchSummary:
       type: object
       properties:
@@ -1053,10 +1048,15 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/DailySearchSummary'
-    DailySummary:
+    ApiResponseListKeyValueDouble:
       type: object
       properties:
-        breakup:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
           type: array
           items:
-            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
+            $ref: '#/components/schemas/KeyValueDouble'

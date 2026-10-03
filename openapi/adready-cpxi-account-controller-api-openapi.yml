@@ -490,6 +490,48 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    DropdownUserMaster:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        type:
+          type: string
+          enum:
+          - ASSIGNEE
+          - OWNER
+          - CONTACT_USER
+          - CUSTOM_USER
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        userId:
+          type: integer
+          format: int64
+    ApiResponseAccount:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/Account'
     FileData:
       type: object
       properties:
@@ -535,34 +577,6 @@ components:
           format: date-time
         updatedBy:
           type: string
-    Organization:
-      type: object
-      properties:
-        appConsoleLogoFile:
-          $ref: '#/components/schemas/FileData'
-        appConsoleSquareLogoFile:
-          $ref: '#/components/schemas/FileData'
-        emailBranding:
-          type: boolean
-        favIconLogoFile:
-          $ref: '#/components/schemas/FileData'
-        id:
-          type: integer
-          format: int32
-        loginEnabled:
-          type: boolean
-        logoFile:
-          $ref: '#/components/schemas/FileData'
-        name:
-          type: string
-        orgType:
-          type: string
-        subdomainConfig: {}
-        subdomainEnabled:
-          type: boolean
-        theme: {}
-        whitelabelEnabled:
-          type: boolean
     ApiResponseListAccount:
       type: object
       properties:
@@ -575,35 +589,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Account'
-    DropdownUserMaster:
+    ApiResponseListLong:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            type: integer
+            format: int64
+    UserAccount:
       type: object
       properties:
         accountId:
           type: integer
           format: int32
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        deletedAt:
-          type: string
-          format: date-time
-        id:
-          type: integer
-          format: int32
-        type:
-          type: string
-          enum:
-          - ASSIGNEE
-          - OWNER
-          - CONTACT_USER
-          - CUSTOM_USER
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
         userId:
           type: integer
           format: int64
@@ -691,6 +695,47 @@ components:
         xandrAdvertiserId:
           type: integer
           format: int32
+    Organization:
+      type: object
+      properties:
+        appConsoleLogoFile:
+          $ref: '#/components/schemas/FileData'
+        appConsoleSquareLogoFile:
+          $ref: '#/components/schemas/FileData'
+        emailBranding:
+          type: boolean
+        favIconLogoFile:
+          $ref: '#/components/schemas/FileData'
+        id:
+          type: integer
+          format: int32
+        loginEnabled:
+          type: boolean
+        logoFile:
+          $ref: '#/components/schemas/FileData'
+        name:
+          type: string
+        orgType:
+          type: string
+        subdomainConfig: {}
+        subdomainEnabled:
+          type: boolean
+        theme: {}
+        whitelabelEnabled:
+          type: boolean
+    DashboardUrl:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        link:
+          type: string
+        title:
+          type: string
     Account:
       type: object
       properties:
@@ -759,48 +804,3 @@ components:
           format: date-time
         updatedBy:
           type: string
-    ApiResponseListLong:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            type: integer
-            format: int64
-    DashboardUrl:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        link:
-          type: string
-        title:
-          type: string
-    UserAccount:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
-    ApiResponseAccount:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/Account'

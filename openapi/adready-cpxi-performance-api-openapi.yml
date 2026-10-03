@@ -56,24 +56,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDailyPerformanceSummary'
 components:
   schemas:
-    ComparisonDataDouble:
-      type: object
-      properties:
-        currentValue:
-          type: number
-          format: double
-        compareValue:
-          type: number
-          format: double
-        change:
-          type: number
-          format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean
     KeyValuePerformanceSummary:
       type: object
       properties:
@@ -83,16 +65,31 @@ components:
           $ref: '#/components/schemas/PerformanceSummary'
         extra:
           type: string
-    ApiResponseDailyPerformanceSummary:
+    DailyPerformanceSummary:
       type: object
       properties:
-        status:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePerformanceSummary'
+    ComparisonDataLong:
+      type: object
+      properties:
+        currentValue:
           type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/DailyPerformanceSummary'
+          format: int64
+        compareValue:
+          type: integer
+          format: int64
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
     PerformanceSummary:
       type: object
       properties:
@@ -120,15 +117,25 @@ components:
           $ref: '#/components/schemas/ComparisonDataLong'
         ctr:
           $ref: '#/components/schemas/ComparisonDataDouble'
-    ComparisonDataLong:
+    ApiResponseDailyPerformanceSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailyPerformanceSummary'
+    ComparisonDataDouble:
       type: object
       properties:
         currentValue:
-          type: integer
-          format: int64
+          type: number
+          format: double
         compareValue:
-          type: integer
-          format: int64
+          type: number
+          format: double
         change:
           type: number
           format: double
@@ -138,10 +145,3 @@ components:
           type: boolean
         isChangeInfinity:
           type: boolean
-    DailyPerformanceSummary:
-      type: object
-      properties:
-        breakup:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValuePerformanceSummary'

@@ -121,16 +121,34 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiResponseOrganization:
+    Organization:
       type: object
       properties:
-        status:
+        appConsoleLogoFile:
+          $ref: '#/components/schemas/FileData'
+        appConsoleSquareLogoFile:
+          $ref: '#/components/schemas/FileData'
+        emailBranding:
+          type: boolean
+        favIconLogoFile:
+          $ref: '#/components/schemas/FileData'
+        id:
           type: integer
           format: int32
-        message:
+        loginEnabled:
+          type: boolean
+        logoFile:
+          $ref: '#/components/schemas/FileData'
+        name:
           type: string
-        result:
-          $ref: '#/components/schemas/Organization'
+        orgType:
+          type: string
+        subdomainConfig: {}
+        subdomainEnabled:
+          type: boolean
+        theme: {}
+        whitelabelEnabled:
+          type: boolean
     FileData:
       type: object
       properties:
@@ -188,31 +206,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Organization'
-    Organization:
+    ApiResponseOrganization:
       type: object
       properties:
-        appConsoleLogoFile:
-          $ref: '#/components/schemas/FileData'
-        appConsoleSquareLogoFile:
-          $ref: '#/components/schemas/FileData'
-        emailBranding:
-          type: boolean
-        favIconLogoFile:
-          $ref: '#/components/schemas/FileData'
-        id:
+        status:
           type: integer
           format: int32
-        loginEnabled:
-          type: boolean
-        logoFile:
-          $ref: '#/components/schemas/FileData'
-        name:
+        message:
           type: string
-        orgType:
-          type: string
-        subdomainConfig: {}
-        subdomainEnabled:
-          type: boolean
-        theme: {}
-        whitelabelEnabled:
-          type: boolean
+        result:
+          $ref: '#/components/schemas/Organization'

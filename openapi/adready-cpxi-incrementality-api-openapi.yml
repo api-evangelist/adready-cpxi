@@ -348,32 +348,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IncrementalLiftData'
-    HaloEffectData:
-      type: object
-      properties:
-        name:
-          type: string
-        exposedCount:
-          type: number
-          format: double
-        exposedConversions:
-          type: number
-          format: double
-        controlCount:
-          type: number
-          format: double
-        controlConversions:
-          type: number
-          format: double
-        scale:
-          type: number
-          format: double
-        incrementalConversions:
-          type: number
-          format: double
-        liftPercentage: {}
-        isLiftPercentageInfinity:
-          type: boolean
     ApiResponseListHaloEffectData:
       type: object
       properties:
@@ -418,4 +392,30 @@ components:
           type: number
           format: double
         incrementalityInfinity:
+          type: boolean
+    HaloEffectData:
+      type: object
+      properties:
+        name:
+          type: string
+        exposedCount:
+          type: number
+          format: double
+        exposedConversions:
+          type: number
+          format: double
+        controlCount:
+          type: number
+          format: double
+        controlConversions:
+          type: number
+          format: double
+        scale:
+          type: number
+          format: double
+        incrementalConversions:
+          type: number
+          format: double
+        liftPercentage: {}
+        isLiftPercentageInfinity:
           type: boolean

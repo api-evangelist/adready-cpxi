@@ -293,58 +293,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ReportResponse:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportData'
-        total:
-          type: integer
-          format: int32
-    ApiResponseListReportTemplateResponseDto:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportTemplateResponseDto'
-    ApiResponsePageResponseReportGenerationLog:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/PageResponseReportGenerationLog'
-    ApiResponseReportResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/ReportResponse'
-    ApiResponseReportTemplate:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/ReportTemplate'
     PresetTemplateResult:
       type: object
       properties:
@@ -362,132 +310,26 @@ components:
             type: string
         firstAttemptFailed:
           type: boolean
-    ReportFilter:
+    ReportResponse:
       type: object
       properties:
-        adGroups:
+        data:
           type: array
           items:
-            type: string
-        audiences:
-          type: array
-          items:
-            type: string
-        campaignIds:
-          type: array
-          items:
-            type: string
-        conversionWindow:
+            $ref: '#/components/schemas/ReportData'
+        total:
           type: integer
           format: int32
-        conversionWindowUnit:
-          type: string
-          enum:
-          - DAYS
-          - HOURS
-        creatives:
-          type: array
-          items:
-            type: string
-        dateRangeType:
-          type: string
-          enum:
-          - CUSTOM
-          - LAST_7_DAYS
-          - LAST_2_WEEKS
-          - LAST_30_DAYS
-          - CAMPAIGN_TO_DATE
-        dimensions:
-          type: array
-          items:
-            type: string
-        endDate:
-          type: string
-        interval:
-          type: string
-          enum:
-          - CUMULATIVE
-          - DAY
-          - HOURLY
-        keywords:
-          type: array
-          items:
-            type: string
-        mediaTypes:
-          type: array
-          items:
-            type: string
-        methodology:
-          type: string
-          enum:
-          - LAST_TOUCH
-          - FIRST_TOUCH
-          - LINEAR
-          - TIME_DECAY
-        pixelIds:
-          type: array
-          items:
-            type: string
-        presetTemplateName:
-          type: string
-        publisher:
-          type: array
-          items:
-            type: string
-        reportMetrics:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportMetrics'
-        showUniques:
-          type: boolean
-        startDate:
-          type: string
-    ReportTemplateResponseDto:
+    ApiResponsePageResponseReportGenerationLog:
       type: object
       properties:
-        accountId:
+        status:
           type: integer
           format: int32
-        advertiserId:
-          type: integer
-          format: int32
-        createdBy:
+        message:
           type: string
-        createdByUserEmail:
-          type: string
-        createdByUserName:
-          type: string
-        emailTo:
-          type: string
-        filters:
-          $ref: '#/components/schemas/ReportFilter'
-        id:
-          type: integer
-          format: int32
-        lastRunDate:
-          type: string
-          format: date
-        lastRunStatus:
-          type: string
-          enum:
-          - SUCCESS
-          - FAILED
-          - PROCESSING
-        name:
-          type: string
-        nextRunDate:
-          type: string
-          format: date
-        schedule:
-          type: string
-        scheduleEndDate:
-          type: string
-          format: date
-        scheduleStartDate:
-          type: string
-          format: date
-        scheduleStatus:
-          type: string
+        result:
+          $ref: '#/components/schemas/PageResponseReportGenerationLog'
     ApiResponsePresetTemplateResult:
       type: object
       properties:
@@ -498,86 +340,18 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/PresetTemplateResult'
-    ReportRequest:
+    ApiResponseListReportTemplateResponseDto:
       type: object
       properties:
-        accountId:
+        status:
           type: integer
           format: int32
-        advertiserId:
-          type: integer
-          format: int32
-        createdAt:
+        message:
           type: string
-          format: date-time
-        createdBy:
-          type: string
-        deletedAt:
-          type: string
-          format: date-time
-        emailTo:
-          type: string
-        filters:
-          $ref: '#/components/schemas/ReportFilter'
-        id:
-          type: integer
-          format: int32
-        lastRunDate:
-          type: string
-          format: date
-        lastRunStatus:
-          type: string
-          enum:
-          - SUCCESS
-          - FAILED
-          - PROCESSING
-        name:
-          type: string
-        nextRunDate:
-          type: string
-          format: date
-        schedule:
-          type: string
-          enum:
-          - WEEKLY
-          - BI_WEEKLY
-          - MONTHLY
-          - MONTH_END
-        scheduleEndDate:
-          type: string
-          format: date
-        scheduleStartDate:
-          type: string
-          format: date
-        scheduleStatus:
-          type: string
-          enum:
-          - ACTIVE
-          - INACTIVE
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
-          type: string
-        runNow:
-          type: boolean
-        export:
-          type: boolean
-        email:
-          type: boolean
-        offset:
-          type: integer
-          format: int32
-        limit:
-          type: integer
-          format: int32
-        orderBy:
-          type: string
-        orderByDirection:
-          type: string
-        totalRecordLimit:
-          type: integer
-          format: int32
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportTemplateResponseDto'
     ReportData:
       type: object
       properties:
@@ -735,29 +509,52 @@ components:
         roas:
           type: number
           format: double
-    PageResponseReportGenerationLog:
+    ReportTemplateResponseDto:
       type: object
       properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReportGenerationLog'
-        first:
-          type: boolean
-        last:
-          type: boolean
-        pageNumber:
+        accountId:
           type: integer
           format: int32
-        pageSize:
+        advertiserId:
           type: integer
           format: int32
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
+        createdBy:
+          type: string
+        createdByUserEmail:
+          type: string
+        createdByUserName:
+          type: string
+        emailTo:
+          type: string
+        filters:
+          $ref: '#/components/schemas/ReportFilter'
+        id:
           type: integer
           format: int32
+        lastRunDate:
+          type: string
+          format: date
+        lastRunStatus:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - PROCESSING
+        name:
+          type: string
+        nextRunDate:
+          type: string
+          format: date
+        schedule:
+          type: string
+        scheduleEndDate:
+          type: string
+          format: date
+        scheduleStartDate:
+          type: string
+          format: date
+        scheduleStatus:
+          type: string
     ReportGenerationLog:
       type: object
       properties:
@@ -799,6 +596,186 @@ components:
           type: array
           items:
             type: string
+    ApiResponseReportTemplate:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ReportTemplate'
+    ApiResponseReportResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ReportResponse'
+    ReportRequest:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        advertiserId:
+          type: integer
+          format: int32
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        emailTo:
+          type: string
+        filters:
+          $ref: '#/components/schemas/ReportFilter'
+        id:
+          type: integer
+          format: int32
+        lastRunDate:
+          type: string
+          format: date
+        lastRunStatus:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - PROCESSING
+        name:
+          type: string
+        nextRunDate:
+          type: string
+          format: date
+        schedule:
+          type: string
+          enum:
+          - WEEKLY
+          - BI_WEEKLY
+          - MONTHLY
+          - MONTH_END
+        scheduleEndDate:
+          type: string
+          format: date
+        scheduleStartDate:
+          type: string
+          format: date
+        scheduleStatus:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+        runNow:
+          type: boolean
+        export:
+          type: boolean
+        email:
+          type: boolean
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        orderBy:
+          type: string
+        orderByDirection:
+          type: string
+        totalRecordLimit:
+          type: integer
+          format: int32
+    ReportFilter:
+      type: object
+      properties:
+        adGroups:
+          type: array
+          items:
+            type: string
+        audiences:
+          type: array
+          items:
+            type: string
+        campaignIds:
+          type: array
+          items:
+            type: string
+        conversionWindow:
+          type: integer
+          format: int32
+        conversionWindowUnit:
+          type: string
+          enum:
+          - DAYS
+          - HOURS
+        creatives:
+          type: array
+          items:
+            type: string
+        dateRangeType:
+          type: string
+          enum:
+          - CUSTOM
+          - LAST_7_DAYS
+          - LAST_2_WEEKS
+          - LAST_30_DAYS
+          - CAMPAIGN_TO_DATE
+        dimensions:
+          type: array
+          items:
+            type: string
+        endDate:
+          type: string
+        interval:
+          type: string
+          enum:
+          - CUMULATIVE
+          - DAY
+          - HOURLY
+        keywords:
+          type: array
+          items:
+            type: string
+        mediaTypes:
+          type: array
+          items:
+            type: string
+        methodology:
+          type: string
+          enum:
+          - LAST_TOUCH
+          - FIRST_TOUCH
+          - LINEAR
+          - TIME_DECAY
+        pixelIds:
+          type: array
+          items:
+            type: string
+        presetTemplateName:
+          type: string
+        publisher:
+          type: array
+          items:
+            type: string
+        reportMetrics:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportMetrics'
+        showUniques:
+          type: boolean
+        startDate:
+          type: string
     ReportTemplate:
       type: object
       properties:
@@ -860,3 +837,26 @@ components:
           format: date-time
         updatedBy:
           type: string
+    PageResponseReportGenerationLog:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportGenerationLog'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32

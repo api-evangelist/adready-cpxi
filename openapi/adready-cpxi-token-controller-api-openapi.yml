@@ -198,7 +198,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiResponseTokenWrapper:
+    ApiResponseThoughtSpotToken:
       type: object
       properties:
         status:
@@ -207,7 +207,7 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/TokenWrapper'
+          $ref: '#/components/schemas/ThoughtSpotToken'
     TokenWrapper:
       type: object
       properties:
@@ -227,6 +227,16 @@ components:
           format: int64
         email:
           type: string
+    ApiResponseTokenWrapper:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/TokenWrapper'
     ThoughtSpotToken:
       type: object
       properties:
@@ -244,13 +254,3 @@ components:
           type: string
         result:
           type: string
-    ApiResponseThoughtSpotToken:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/ThoughtSpotToken'

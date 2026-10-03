@@ -557,6 +557,25 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    UserApplication:
+      type: object
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+    ApiResponseString:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: string
     UserDTO:
       type: object
       properties:
@@ -645,6 +664,15 @@ components:
           type: boolean
         inviteAccepted:
           type: boolean
+    UserAdvertiser:
+      type: object
+      properties:
+        advertiserId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
     Permission:
       type: object
       properties:
@@ -666,24 +694,6 @@ components:
           - Read
           - Create
           - Delete
-    UserApplication:
-      type: object
-      properties:
-        applicationId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-    UserAdvertiser:
-      type: object
-      properties:
-        advertiserId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
     ApiResponseListUserDTO:
       type: object
       properties:
@@ -696,7 +706,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserDTO'
-    ApiResponseString:
+    ApiResponse:
       type: object
       properties:
         status:
@@ -704,18 +714,7 @@ components:
           format: int32
         message:
           type: string
-        result:
-          type: string
-    ApiResponseUserDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/UserDTO'
+        result: {}
     User:
       type: object
       properties:
@@ -802,6 +801,15 @@ components:
           type: string
         verificationMailSent:
           type: boolean
+    UserAccount:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
     UserRole:
       type: object
       properties:
@@ -830,16 +838,7 @@ components:
           items:
             $ref: '#/components/schemas/Permission'
           uniqueItems: true
-    UserAccount:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
-    ApiResponse:
+    ApiResponseUserDTO:
       type: object
       properties:
         status:
@@ -847,4 +846,5 @@ components:
           format: int32
         message:
           type: string
-        result: {}
+        result:
+          $ref: '#/components/schemas/UserDTO'
