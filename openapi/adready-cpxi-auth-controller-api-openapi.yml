@@ -208,6 +208,28 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CreatePasswordRequest:
+      type: object
+      properties:
+        password:
+          type: string
+          minLength: 1
+        userId:
+          type: integer
+          format: int64
+        token:
+          type: string
+          minLength: 1
+        name:
+          type: string
+          minLength: 1
+        phone:
+          type: string
+      required:
+      - name
+      - password
+      - token
+      - userId
     ValidateResetPasswordTokenRequest:
       type: object
       properties:
@@ -233,28 +255,6 @@ components:
       required:
       - email
       - password
-    CreatePasswordRequest:
-      type: object
-      properties:
-        password:
-          type: string
-          minLength: 1
-        userId:
-          type: integer
-          format: int64
-        token:
-          type: string
-          minLength: 1
-        name:
-          type: string
-          minLength: 1
-        phone:
-          type: string
-      required:
-      - name
-      - password
-      - token
-      - userId
     ForgotPasswordRequest:
       type: object
       properties:

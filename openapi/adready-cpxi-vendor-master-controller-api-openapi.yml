@@ -44,18 +44,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiResponseListVendorMaster:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/VendorMaster'
     VendorMaster:
       type: object
       properties:
@@ -77,3 +65,15 @@ components:
           format: date-time
         updatedBy:
           type: string
+    ApiResponseListVendorMaster:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorMaster'

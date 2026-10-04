@@ -557,25 +557,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UserApplication:
-      type: object
-      properties:
-        applicationId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-    ApiResponseString:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: string
     UserDTO:
       type: object
       properties:
@@ -664,57 +645,6 @@ components:
           type: boolean
         inviteAccepted:
           type: boolean
-    UserAdvertiser:
-      type: object
-      properties:
-        advertiserId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
-    Permission:
-      type: object
-      properties:
-        entity:
-          type: string
-          enum:
-          - User
-          - Account
-          - Advertiser
-          - RateCard
-          - Organization
-        id:
-          type: integer
-          format: int32
-        privilege:
-          type: string
-          enum:
-          - All
-          - Read
-          - Create
-          - Delete
-    ApiResponseListUserDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDTO'
-    ApiResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result: {}
     User:
       type: object
       properties:
@@ -801,15 +731,18 @@ components:
           type: string
         verificationMailSent:
           type: boolean
-    UserAccount:
+    ApiResponseListUserDTO:
       type: object
       properties:
-        accountId:
+        status:
           type: integer
           format: int32
-        userId:
-          type: integer
-          format: int64
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDTO'
     UserRole:
       type: object
       properties:
@@ -821,6 +754,16 @@ components:
         userId:
           type: integer
           format: int64
+    ApiResponseUserDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/UserDTO'
     Role:
       type: object
       properties:
@@ -838,7 +781,37 @@ components:
           items:
             $ref: '#/components/schemas/Permission'
           uniqueItems: true
-    ApiResponseUserDTO:
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
+    Permission:
+      type: object
+      properties:
+        entity:
+          type: string
+          enum:
+          - User
+          - Account
+          - Advertiser
+          - RateCard
+          - Organization
+        id:
+          type: integer
+          format: int32
+        privilege:
+          type: string
+          enum:
+          - All
+          - Read
+          - Create
+          - Delete
+    ApiResponseString:
       type: object
       properties:
         status:
@@ -847,4 +820,31 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/UserDTO'
+          type: string
+    UserAccount:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    UserAdvertiser:
+      type: object
+      properties:
+        advertiserId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    UserApplication:
+      type: object
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32

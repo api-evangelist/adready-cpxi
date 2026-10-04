@@ -85,6 +85,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
     LoginRequest:
       type: object
       properties:
@@ -98,12 +107,3 @@ components:
       required:
       - email
       - password
-    ApiResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result: {}

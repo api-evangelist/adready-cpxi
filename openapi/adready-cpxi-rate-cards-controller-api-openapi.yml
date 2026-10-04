@@ -101,16 +101,15 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiResponseRateCardDTO:
+    RateCardDTO:
       type: object
       properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/RateCardDTO'
+        markup:
+          type: number
+        rateCardItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/RateCardItemDTO'
     RateCardItem:
       type: object
       properties:
@@ -170,16 +169,6 @@ components:
           format: date-time
         updatedBy:
           type: string
-    ApiResponseRateCardItemDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/RateCardItemDTO'
     RateCardItemDTO:
       type: object
       properties:
@@ -246,12 +235,23 @@ components:
           type: string
         productCategoryName:
           type: string
-    RateCardDTO:
+    ApiResponseRateCardDTO:
       type: object
       properties:
-        markup:
-          type: number
-        rateCardItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/RateCardItemDTO'
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/RateCardDTO'
+    ApiResponseRateCardItemDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/RateCardItemDTO'

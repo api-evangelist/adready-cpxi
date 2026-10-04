@@ -56,22 +56,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDailyPerformanceSummary'
 components:
   schemas:
-    KeyValuePerformanceSummary:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/PerformanceSummary'
-        extra:
-          type: string
-    DailyPerformanceSummary:
-      type: object
-      properties:
-        breakup:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValuePerformanceSummary'
     ComparisonDataLong:
       type: object
       properties:
@@ -81,6 +65,24 @@ components:
         compareValue:
           type: integer
           format: int64
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    ComparisonDataDouble:
+      type: object
+      properties:
+        currentValue:
+          type: number
+          format: double
+        compareValue:
+          type: number
+          format: double
         change:
           type: number
           format: double
@@ -117,6 +119,22 @@ components:
           $ref: '#/components/schemas/ComparisonDataLong'
         ctr:
           $ref: '#/components/schemas/ComparisonDataDouble'
+    KeyValuePerformanceSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/PerformanceSummary'
+        extra:
+          type: string
+    DailyPerformanceSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValuePerformanceSummary'
     ApiResponseDailyPerformanceSummary:
       type: object
       properties:
@@ -127,21 +145,3 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/DailyPerformanceSummary'
-    ComparisonDataDouble:
-      type: object
-      properties:
-        currentValue:
-          type: number
-          format: double
-        compareValue:
-          type: number
-          format: double
-        change:
-          type: number
-          format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean

@@ -145,19 +145,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ProductType:
-      type: object
-      properties:
-        canonicalProductId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-      required:
-      - name
     PublisherMediaTypeMapping:
       type: object
       properties:
@@ -173,6 +160,19 @@ components:
           $ref: '#/components/schemas/ProductType'
         siteDomain:
           type: string
+    ProductType:
+      type: object
+      properties:
+        canonicalProductId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      required:
+      - name
     ProductCategory:
       type: object
       properties:

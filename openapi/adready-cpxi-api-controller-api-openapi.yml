@@ -821,7 +821,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiResponseListWorkflowOption:
+    ApiResponseListRole:
       type: object
       properties:
         status:
@@ -832,8 +832,8 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/WorkflowOption'
-    ApiResponseListVerificationPartner:
+            $ref: '#/components/schemas/Role'
+    ApiResponseListIndustry:
       type: object
       properties:
         status:
@@ -844,92 +844,52 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/VerificationPartner'
-    TrackingPixel:
+            $ref: '#/components/schemas/Industry'
+    WorkflowOption:
       type: object
       properties:
+        displayOrder:
+          type: integer
+          format: int32
+        flagColorCode:
+          type: string
         id:
           type: integer
           format: int32
         name:
           type: string
-        value:
+        type:
           type: string
+          enum:
+          - LI
+          - IO
+          - IO_CHANGE
+          - LI_CHANGE
+    ApiResponseListApplication:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Application'
+    LoginRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
       required:
-      - name
-    ApiResponseListProductCategoryDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductCategoryDTO'
-    KpiOption:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-    MarketingObjective:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-      required:
-      - name
-    ApiResponseProductType:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/ProductType'
-    ApiResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result: {}
-    ApiResponseListOptionDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/OptionDTO'
-    ApiResponseListTrackingPixel:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrackingPixel'
+      - email
+      - password
     StatusOption:
       type: object
       properties:
@@ -948,6 +908,282 @@ components:
           - IO
           - IO_CHANGE
           - LI_CHANGE
+    ProductCategoryDTO:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        productTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductType'
+    ApiResponseListTrackingPixel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackingPixel'
+    MarketingObjective:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+      required:
+      - name
+    FlagOption:
+      type: object
+      properties:
+        icon:
+          type: string
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        value:
+          type: string
+    BudgetRange:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiResponseListFlagOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/FlagOption'
+    ApiResponseProductType:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ProductType'
+    ApiResponseListBudgetRange:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BudgetRange'
+    Industry:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiResponseListTaskTypeOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskTypeOption'
+    ApiResponseProductCategoryDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/ProductCategoryDTO'
+    ApiResponseListOptionDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/OptionDTO'
+    ReportLogStatusUpdateRequest:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+          minLength: 1
+        password:
+          type: string
+          minLength: 1
+        reportGenerationLogId:
+          type: integer
+          format: int32
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILED
+          - PROCESSING
+      required:
+      - email
+      - password
+      - reportGenerationLogId
+      - status
+    ApiResponseString:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: string
+    KpiOption:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiResponseListBrandSafetyLevel:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrandSafetyLevel'
+    ApiResponseListKpiOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KpiOption'
+    ApiResponseListLocation:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Location'
+    VerificationPartner:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    BrandSafetyLevel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        levelText:
+          type: string
+    Location:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    Application:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+    ApiResponseListStatusOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatusOption'
+    ApiResponseListKeyValue:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValue'
+    ApiResponseListVerificationPartner:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/VerificationPartner'
     ProductHierarchy:
       type: object
       properties:
@@ -985,43 +1221,14 @@ components:
           format: date-time
         updatedBy:
           type: string
-    ApiResponseListApplication:
+    KeyValue:
       type: object
       properties:
-        status:
-          type: integer
-          format: int32
-        message:
+        key:
           type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Application'
-    ApiResponseListLocation:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
+        value: {}
+        extra:
           type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Location'
-    LoginRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-          minLength: 1
-        password:
-          type: string
-          minLength: 1
-      required:
-      - email
-      - password
     ProductType:
       type: object
       properties:
@@ -1035,87 +1242,7 @@ components:
           type: string
       required:
       - name
-    BrandSafetyLevel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        levelText:
-          type: string
-    ApiResponseListBrandSafetyLevel:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/BrandSafetyLevel'
-    ApiResponseListStatusOption:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/StatusOption'
-    ApiResponseListIndustry:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Industry'
-    ApiResponseListFlagOption:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/FlagOption'
-    ApiResponseListMarketingObjective:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/MarketingObjective'
-    ApiResponseListKpiOption:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/KpiOption'
-    VerificationPartner:
+    TaskTypeOption:
       type: object
       properties:
         id:
@@ -1123,6 +1250,64 @@ components:
           format: int32
         name:
           type: string
+    ApiResponseListWorkflowOption:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkflowOption'
+    ApiResponseListTargetableElement:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/TargetableElement'
+    Option:
+      type: object
+      properties:
+        text:
+          type: string
+        none_of_the_above:
+          type: boolean
+    TargetableElement:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        level:
+          type: integer
+          format: int32
+        name:
+          type: string
+        targetingType:
+          type: string
+      required:
+      - name
+    TrackingPixel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        value:
+          type: string
+      required:
+      - name
     Role:
       type: object
       properties:
@@ -1140,7 +1325,7 @@ components:
           items:
             $ref: '#/components/schemas/Permission'
           uniqueItems: true
-    ApiResponseString:
+    ApiResponse:
       type: object
       properties:
         status:
@@ -1148,60 +1333,7 @@ components:
           format: int32
         message:
           type: string
-        result:
-          type: string
-    ApiResponseListTaskTypeOption:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskTypeOption'
-    ApiResponseListTargetableElement:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/TargetableElement'
-    Industry:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-    ProductCategoryDTO:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        productTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProductType'
-    KeyValue:
-      type: object
-      properties:
-        key:
-          type: string
-        value: {}
-        extra:
-          type: string
+        result: {}
     Permission:
       type: object
       properties:
@@ -1223,25 +1355,7 @@ components:
           - Read
           - Create
           - Delete
-    BudgetRange:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-    ApiResponseProductCategoryDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/ProductCategoryDTO'
-    ApiResponseListKeyValue:
+    ApiResponseListMarketingObjective:
       type: object
       properties:
         status:
@@ -1252,67 +1366,19 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/KeyValue'
-    WorkflowOption:
+            $ref: '#/components/schemas/MarketingObjective'
+    ApiResponseListProductCategoryDTO:
       type: object
       properties:
-        displayOrder:
-          type: integer
-          format: int32
-        flagColorCode:
-          type: string
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - LI
-          - IO
-          - IO_CHANGE
-          - LI_CHANGE
-    Application:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-    TaskTypeOption:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-    ReportLogStatusUpdateRequest:
-      type: object
-      properties:
-        email:
-          type: string
-          format: email
-          minLength: 1
-        password:
-          type: string
-          minLength: 1
-        reportGenerationLogId:
-          type: integer
-          format: int32
         status:
+          type: integer
+          format: int32
+        message:
           type: string
-          enum:
-          - SUCCESS
-          - FAILED
-          - PROCESSING
-      required:
-      - email
-      - password
-      - reportGenerationLogId
-      - status
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductCategoryDTO'
     OptionDTO:
       type: object
       properties:
@@ -1325,69 +1391,3 @@ components:
           type: array
           items:
             type: string
-    TargetableElement:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        level:
-          type: integer
-          format: int32
-        name:
-          type: string
-        targetingType:
-          type: string
-      required:
-      - name
-    ApiResponseListBudgetRange:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/BudgetRange'
-    ApiResponseListRole:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Role'
-    Option:
-      type: object
-      properties:
-        text:
-          type: string
-        none_of_the_above:
-          type: boolean
-    FlagOption:
-      type: object
-      properties:
-        icon:
-          type: string
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        value:
-          type: string
-    Location:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string

@@ -348,18 +348,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IncrementalLiftData'
-    ApiResponseListHaloEffectData:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/HaloEffectData'
     IncrementalLiftData:
       type: object
       properties:
@@ -393,6 +381,18 @@ components:
           format: double
         incrementalityInfinity:
           type: boolean
+    ApiResponseListHaloEffectData:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/HaloEffectData'
     HaloEffectData:
       type: object
       properties:

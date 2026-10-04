@@ -115,6 +115,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BudgetGroup'
+    ApiResponseBudgetGroup:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/BudgetGroup'
     BudgetGroup:
       type: object
       properties:
@@ -131,13 +141,3 @@ components:
         planId:
           type: integer
           format: int32
-    ApiResponseBudgetGroup:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/BudgetGroup'

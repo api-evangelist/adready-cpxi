@@ -85,16 +85,6 @@ paths:
                 $ref: '#/components/schemas/ApiResponseCTVReachAndOverlap'
 components:
   schemas:
-    ApiResponseCTVReachAndOverlap:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/CTVReachAndOverlap'
     CTVReachAndOverlap:
       type: object
       properties:
@@ -131,3 +121,13 @@ components:
         ctvCvr:
           type: number
           format: double
+    ApiResponseCTVReachAndOverlap:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/CTVReachAndOverlap'

@@ -85,6 +85,17 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    TableauView:
+      type: object
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+        createdAt:
+          type: string
+        id:
+          type: string
     ApiResponseListTableauView:
       type: object
       properties:
@@ -97,14 +108,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TableauView'
-    TableauView:
-      type: object
-      properties:
-        name:
-          type: string
-        url:
-          type: string
-        createdAt:
-          type: string
-        id:
-          type: string

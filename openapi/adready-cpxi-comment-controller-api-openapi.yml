@@ -182,6 +182,38 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    CommentNotification:
+      type: object
+      properties:
+        emails:
+          type: array
+          items:
+            type: string
+        mentionedUsers:
+          type: array
+          items:
+            type: string
+        comment:
+          $ref: '#/components/schemas/Comment'
+        lineItemName:
+          type: string
+        planId:
+          type: integer
+          format: int32
+        accountName:
+          type: string
+        accountId:
+          type: integer
+          format: int32
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
     Comment:
       type: object
       properties:
@@ -207,35 +239,3 @@ components:
           type: string
         value:
           type: string
-    ApiResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result: {}
-    CommentNotification:
-      type: object
-      properties:
-        emails:
-          type: array
-          items:
-            type: string
-        mentionedUsers:
-          type: array
-          items:
-            type: string
-        comment:
-          $ref: '#/components/schemas/Comment'
-        lineItemName:
-          type: string
-        planId:
-          type: integer
-          format: int32
-        accountName:
-          type: string
-        accountId:
-          type: integer
-          format: int32
