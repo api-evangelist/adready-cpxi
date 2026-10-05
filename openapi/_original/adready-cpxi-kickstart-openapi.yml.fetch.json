@@ -1,0 +1,12 @@
+{
+ "url": "https://platform.digitalremedy.com/v3/api-docs",
+ "requested_url": "https://platform.digitalremedy.com/v3/api-docs",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 396636,
+ "sha256": "44cd1c6258a1b4db22696c07ddbee20b58f5601f88754c6c905884c57d56bea9",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
