@@ -50,7 +50,7 @@ x-tier: profiled
 x-tier-reason: live OpenAPI harvested from the production platform host
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-09-16'
+modified: '2026-10-06'
 tags:
 - Company
 - Commerce
@@ -1073,6 +1073,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- url: https://www.digitalremedy.com/feed/
+  type: BlogRSS
 - type: CapabilityMap
   url: capabilities/adready-cpxi-capability-edges.yml
   name: AdReady (CPXi) Business Capability Map
