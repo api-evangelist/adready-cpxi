@@ -159,21 +159,49 @@ components:
         mediaPublisherId:
           type: integer
           format: int32
-    PublisherMediaTypeMapping:
+    DealPerformance:
+      type: object
+      properties:
+        cpm:
+          type: number
+        createdAt:
+          type: string
+          format: date-time
+        dealId:
+          type: integer
+          format: int32
+        dealName:
+          type: string
+        pctBadIp:
+          type: number
+        seller:
+          type: string
+        totalImpressionsLast30Days:
+          type: integer
+          format: int32
+    ProductCategory:
       type: object
       properties:
         id:
           type: integer
           format: int32
-        mediaPublisherId:
+        name:
+          type: string
+      required:
+      - name
+    ProductType:
+      type: object
+      properties:
+        canonicalProductId:
           type: integer
           format: int32
-        productCategory:
-          $ref: '#/components/schemas/ProductCategory'
-        productType:
-          $ref: '#/components/schemas/ProductType'
-        siteDomain:
+        id:
+          type: integer
+          format: int32
+        name:
           type: string
+      required:
+      - name
     MediaPublisherMaster:
       type: object
       properties:
@@ -232,46 +260,18 @@ components:
           format: date-time
         updatedBy:
           type: string
-    ProductCategory:
+    PublisherMediaTypeMapping:
       type: object
       properties:
         id:
           type: integer
           format: int32
-        name:
-          type: string
-      required:
-      - name
-    DealPerformance:
-      type: object
-      properties:
-        cpm:
-          type: number
-        createdAt:
-          type: string
-          format: date-time
-        dealId:
+        mediaPublisherId:
           type: integer
           format: int32
-        dealName:
+        productCategory:
+          $ref: '#/components/schemas/ProductCategory'
+        productType:
+          $ref: '#/components/schemas/ProductType'
+        siteDomain:
           type: string
-        pctBadIp:
-          type: number
-        seller:
-          type: string
-        totalImpressionsLast30Days:
-          type: integer
-          format: int32
-    ProductType:
-      type: object
-      properties:
-        canonicalProductId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-      required:
-      - name

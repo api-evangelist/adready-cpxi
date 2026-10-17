@@ -408,6 +408,13 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDailySummary'
 components:
   schemas:
+    DailySocialSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueSocialSummary'
     ApiResponseListKeyValueDouble:
       type: object
       properties:
@@ -420,6 +427,32 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/KeyValueDouble'
+    DailySummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
+    KeyValueSocialSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/SocialSummary'
+        extra:
+          type: string
+    ApiResponseDailySummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailySummary'
     SocialTopPerformer:
       type: object
       properties:
@@ -433,62 +466,6 @@ components:
         vcr: {}
         vcrInfinity:
           type: boolean
-    KeyValueComparisonDataNumber:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/ComparisonDataNumber'
-        extra:
-          type: string
-    KeyValueSocialSummary:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/SocialSummary'
-        extra:
-          type: string
-    DailySummary:
-      type: object
-      properties:
-        breakup:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
-    ComparisonData:
-      type: object
-      properties:
-        currentValue:
-          type: number
-          format: double
-        compareValue:
-          type: number
-          format: double
-        difference:
-          type: number
-          format: double
-        change:
-          type: number
-          format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean
-    ApiResponseDailySummary:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/DailySummary'
     ComparisonDataNumber:
       type: object
       properties:
@@ -505,13 +482,6 @@ components:
           type: boolean
         isChangeInfinity:
           type: boolean
-    DailySocialSummary:
-      type: object
-      properties:
-        breakup:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueSocialSummary'
     SocialSummary:
       type: object
       properties:
@@ -533,6 +503,15 @@ components:
           $ref: '#/components/schemas/ComparisonData'
         ctr:
           $ref: '#/components/schemas/ComparisonData'
+    KeyValueComparisonDataNumber:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ComparisonDataNumber'
+        extra:
+          type: string
     ApiResponseDailySocialSummary:
       type: object
       properties:
@@ -543,6 +522,37 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/DailySocialSummary'
+    ComparisonData:
+      type: object
+      properties:
+        currentValue:
+          type: number
+          format: double
+        compareValue:
+          type: number
+          format: double
+        difference:
+          type: number
+          format: double
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    KeyValueDouble:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: number
+          format: double
+        extra:
+          type: string
     ApiResponseListSocialTopPerformer:
       type: object
       properties:
@@ -555,13 +565,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SocialTopPerformer'
-    KeyValueDouble:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: number
-          format: double
-        extra:
-          type: string

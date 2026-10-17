@@ -1073,7 +1073,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseDailySummary'
 components:
   schemas:
-    ApiResponseDailyBrandSummary:
+    ApiResponseListKeyValueDouble:
       type: object
       properties:
         status:
@@ -1082,33 +1082,9 @@ components:
         message:
           type: string
         result:
-          $ref: '#/components/schemas/DailyBrandSummary'
-    BrandSummary:
-      type: object
-      properties:
-        spend:
-          $ref: '#/components/schemas/ComparisonData'
-        impressions:
-          $ref: '#/components/schemas/ComparisonData'
-        videoCompletions:
-          $ref: '#/components/schemas/ComparisonData'
-        videoImpressions:
-          $ref: '#/components/schemas/ComparisonData'
-        clicks:
-          $ref: '#/components/schemas/ComparisonData'
-        vcr:
-          $ref: '#/components/schemas/ComparisonData'
-        ctr:
-          $ref: '#/components/schemas/ComparisonData'
-    KeyValueComparisonDataNumber:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/ComparisonDataNumber'
-        extra:
-          type: string
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueDouble'
     ApiResponseListBrandMetricsByDimension:
       type: object
       properties:
@@ -1121,6 +1097,150 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BrandMetricsByDimension'
+    ComparisonDataNumber:
+      type: object
+      properties:
+        currentValue:
+          type: number
+        compareValue:
+          type: number
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    KeyValueComparisonDataNumber:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/ComparisonDataNumber'
+        extra:
+          type: string
+    StandardApiRequest:
+      type: object
+      properties:
+        solutionId:
+          type: integer
+          format: int32
+        client:
+          type: string
+        advertiser:
+          type: string
+        advertiserId:
+          type: integer
+          format: int32
+        xandrId:
+          type: string
+        campaignIds:
+          type: string
+        adGroups:
+          type: string
+        mediaTypes:
+          type: string
+        creatives:
+          type: string
+        audiences:
+          type: string
+        keywords:
+          type: string
+        pixelIds:
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        compareStartDate:
+          type: string
+        compareEndDate:
+          type: string
+        publisher:
+          type: string
+        offset:
+          type: integer
+          format: int32
+        limit:
+          type: integer
+          format: int32
+        conversionWindow:
+          type: integer
+          format: int32
+        keywordFilterApplied:
+          type: boolean
+        comparedDateRangeProvided:
+          type: boolean
+    ApiResponseListBrandTopPerformer:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrandTopPerformer'
+    DailySummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
+    BrandTopPerformer:
+      type: object
+      properties:
+        name:
+          type: string
+        dimension:
+          type: string
+        cpc: {}
+        ctr: {}
+        ctrInfinity:
+          type: boolean
+        vcr: {}
+        vcrInfinity:
+          type: boolean
+        roas: {}
+        roasInfinity:
+          type: boolean
+        impressions:
+          type: number
+          format: double
+    ApiResponseDailyBrandSummary:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/DailyBrandSummary'
+    SchedulingRequest:
+      type: object
+      properties:
+        onceNow:
+          type: boolean
+        emailIt:
+          type: boolean
+        emailAddr:
+          type: string
+    KeyValueBrandSummary:
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          $ref: '#/components/schemas/BrandSummary'
+        extra:
+          type: string
     ConversionApiRequest:
       type: object
       properties:
@@ -1181,85 +1301,6 @@ components:
       required:
       - category
       - pixel
-    DailyBrandSummary:
-      type: object
-      properties:
-        breakup:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueBrandSummary'
-    ApiResponseDailySummary:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/DailySummary'
-    StandardApiRequest:
-      type: object
-      properties:
-        solutionId:
-          type: integer
-          format: int32
-        client:
-          type: string
-        advertiser:
-          type: string
-        advertiserId:
-          type: integer
-          format: int32
-        xandrId:
-          type: string
-        campaignIds:
-          type: string
-        adGroups:
-          type: string
-        mediaTypes:
-          type: string
-        creatives:
-          type: string
-        audiences:
-          type: string
-        keywords:
-          type: string
-        pixelIds:
-          type: string
-        startDate:
-          type: string
-        endDate:
-          type: string
-        compareStartDate:
-          type: string
-        compareEndDate:
-          type: string
-        publisher:
-          type: string
-        offset:
-          type: integer
-          format: int32
-        limit:
-          type: integer
-          format: int32
-        conversionWindow:
-          type: integer
-          format: int32
-        keywordFilterApplied:
-          type: boolean
-        comparedDateRangeProvided:
-          type: boolean
-    KeyValueDouble:
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: number
-          format: double
-        extra:
-          type: string
     ApiResponseBrandSummary:
       type: object
       properties:
@@ -1270,60 +1311,17 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/BrandSummary'
-    SchedulingRequest:
+    KeyValueDouble:
       type: object
       properties:
-        onceNow:
-          type: boolean
-        emailIt:
-          type: boolean
-        emailAddr:
+        key:
           type: string
-    ComparisonData:
-      type: object
-      properties:
-        currentValue:
+        value:
           type: number
           format: double
-        compareValue:
-          type: number
-          format: double
-        difference:
-          type: number
-          format: double
-        change:
-          type: number
-          format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean
-    ComparisonDataNumber:
-      type: object
-      properties:
-        currentValue:
-          type: number
-        compareValue:
-          type: number
-        change:
-          type: number
-          format: double
-        isCurrentInfinity:
-          type: boolean
-        isCompareInfinity:
-          type: boolean
-        isChangeInfinity:
-          type: boolean
-    DailySummary:
-      type: object
-      properties:
-        breakup:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueComparisonDataNumber'
-    ApiResponseListBrandTopPerformer:
+        extra:
+          type: string
+    ApiResponseDailySummary:
       type: object
       properties:
         status:
@@ -1332,21 +1330,24 @@ components:
         message:
           type: string
         result:
-          type: array
-          items:
-            $ref: '#/components/schemas/BrandTopPerformer'
-    ApiResponseListKeyValueDouble:
+          $ref: '#/components/schemas/DailySummary'
+    BrandSummary:
       type: object
       properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/KeyValueDouble'
+        spend:
+          $ref: '#/components/schemas/ComparisonData'
+        impressions:
+          $ref: '#/components/schemas/ComparisonData'
+        videoCompletions:
+          $ref: '#/components/schemas/ComparisonData'
+        videoImpressions:
+          $ref: '#/components/schemas/ComparisonData'
+        clicks:
+          $ref: '#/components/schemas/ComparisonData'
+        vcr:
+          $ref: '#/components/schemas/ComparisonData'
+        ctr:
+          $ref: '#/components/schemas/ComparisonData'
     BrandMetricsByDimension:
       type: object
       properties:
@@ -1421,32 +1422,31 @@ components:
         vcr: {}
         vcrInfinity:
           type: boolean
-    KeyValueBrandSummary:
+    ComparisonData:
       type: object
       properties:
-        key:
-          type: string
-        value:
-          $ref: '#/components/schemas/BrandSummary'
-        extra:
-          type: string
-    BrandTopPerformer:
-      type: object
-      properties:
-        name:
-          type: string
-        dimension:
-          type: string
-        cpc: {}
-        ctr: {}
-        ctrInfinity:
-          type: boolean
-        vcr: {}
-        vcrInfinity:
-          type: boolean
-        roas: {}
-        roasInfinity:
-          type: boolean
-        impressions:
+        currentValue:
           type: number
           format: double
+        compareValue:
+          type: number
+          format: double
+        difference:
+          type: number
+          format: double
+        change:
+          type: number
+          format: double
+        isCurrentInfinity:
+          type: boolean
+        isCompareInfinity:
+          type: boolean
+        isChangeInfinity:
+          type: boolean
+    DailyBrandSummary:
+      type: object
+      properties:
+        breakup:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeyValueBrandSummary'

@@ -336,7 +336,7 @@ paths:
                 $ref: '#/components/schemas/ApiResponseListHaloEffectData'
 components:
   schemas:
-    ApiResponseListIncrementalLiftData:
+    ApiResponseListHaloEffectData:
       type: object
       properties:
         status:
@@ -347,7 +347,7 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/IncrementalLiftData'
+            $ref: '#/components/schemas/HaloEffectData'
     IncrementalLiftData:
       type: object
       properties:
@@ -381,7 +381,7 @@ components:
           format: double
         incrementalityInfinity:
           type: boolean
-    ApiResponseListHaloEffectData:
+    ApiResponseListIncrementalLiftData:
       type: object
       properties:
         status:
@@ -392,7 +392,7 @@ components:
         result:
           type: array
           items:
-            $ref: '#/components/schemas/HaloEffectData'
+            $ref: '#/components/schemas/IncrementalLiftData'
     HaloEffectData:
       type: object
       properties:

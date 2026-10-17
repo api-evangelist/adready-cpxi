@@ -278,40 +278,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiResponseListAdvertiserSolution:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/AdvertiserSolution'
-    ApiResponseListSolution:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Solution'
-    ApiResponseSolution:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/Solution'
     AdvertiserSolution:
       type: object
       properties:
@@ -332,16 +298,6 @@ components:
           - ACTIVE
           - DISCOVER
           - HIDDEN
-    ApiResponseAdvertiserSolution:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/AdvertiserSolution'
     ApiResponse:
       type: object
       properties:
@@ -351,6 +307,18 @@ components:
         message:
           type: string
         result: {}
+    ApiResponseListAdvertiserSolution:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/AdvertiserSolution'
     Solution:
       type: object
       properties:
@@ -398,3 +366,35 @@ components:
           format: date-time
         updatedBy:
           type: string
+    ApiResponseSolution:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/Solution'
+    ApiResponseAdvertiserSolution:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/AdvertiserSolution'
+    ApiResponseListSolution:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Solution'

@@ -376,6 +376,16 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiResponseFileData:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/FileData'
     FileData:
       type: object
       properties:
@@ -421,13 +431,3 @@ components:
           format: date-time
         updatedBy:
           type: string
-    ApiResponseFileData:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/FileData'

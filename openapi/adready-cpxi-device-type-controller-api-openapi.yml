@@ -44,14 +44,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    DeviceTypeMaster:
-      type: object
-      properties:
-        deviceType:
-          type: string
-        id:
-          type: integer
-          format: int32
     ApiResponseListDeviceTypeMaster:
       type: object
       properties:
@@ -64,3 +56,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DeviceTypeMaster'
+    DeviceTypeMaster:
+      type: object
+      properties:
+        deviceType:
+          type: string
+        id:
+          type: integer
+          format: int32

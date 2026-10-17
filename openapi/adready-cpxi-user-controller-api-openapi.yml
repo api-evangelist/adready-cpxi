@@ -557,6 +557,111 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    ApiResponseString:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: string
+    Permission:
+      type: object
+      properties:
+        entity:
+          type: string
+          enum:
+          - User
+          - Account
+          - Advertiser
+          - RateCard
+          - Organization
+        id:
+          type: integer
+          format: int32
+        privilege:
+          type: string
+          enum:
+          - All
+          - Read
+          - Create
+          - Delete
+    UserAdvertiser:
+      type: object
+      properties:
+        advertiserId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    Role:
+      type: object
+      properties:
+        canCreateRole:
+          type: array
+          items:
+            type: string
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Permission'
+          uniqueItems: true
+    ApiResponse:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result: {}
+    UserAccount:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    UserApplication:
+      type: object
+      properties:
+        applicationId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+    UserRole:
+      type: object
+      properties:
+        role:
+          $ref: '#/components/schemas/Role'
+        roleId:
+          type: integer
+          format: int32
+        userId:
+          type: integer
+          format: int64
+    ApiResponseUserDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/UserDTO'
     UserDTO:
       type: object
       properties:
@@ -645,6 +750,18 @@ components:
           type: boolean
         inviteAccepted:
           type: boolean
+    ApiResponseListUserDTO:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserDTO'
     User:
       type: object
       properties:
@@ -731,120 +848,3 @@ components:
           type: string
         verificationMailSent:
           type: boolean
-    ApiResponseListUserDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/UserDTO'
-    UserRole:
-      type: object
-      properties:
-        role:
-          $ref: '#/components/schemas/Role'
-        roleId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
-    ApiResponseUserDTO:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/UserDTO'
-    Role:
-      type: object
-      properties:
-        canCreateRole:
-          type: array
-          items:
-            type: string
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        permissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/Permission'
-          uniqueItems: true
-    ApiResponse:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result: {}
-    Permission:
-      type: object
-      properties:
-        entity:
-          type: string
-          enum:
-          - User
-          - Account
-          - Advertiser
-          - RateCard
-          - Organization
-        id:
-          type: integer
-          format: int32
-        privilege:
-          type: string
-          enum:
-          - All
-          - Read
-          - Create
-          - Delete
-    ApiResponseString:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: string
-    UserAccount:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
-    UserAdvertiser:
-      type: object
-      properties:
-        advertiserId:
-          type: integer
-          format: int32
-        userId:
-          type: integer
-          format: int64
-    UserApplication:
-      type: object
-      properties:
-        applicationId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32

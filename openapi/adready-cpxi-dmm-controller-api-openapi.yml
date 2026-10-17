@@ -2289,312 +2289,7 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SortObject:
-      type: object
-      properties:
-        empty:
-          type: boolean
-        sorted:
-          type: boolean
-        unsorted:
-          type: boolean
-    ApiResponsePageDmmIoCampaignFeedRaw:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/PageDmmIoCampaignFeedRaw'
-    DmmIoKeywordListFeedRawHistory:
-      type: object
-      properties:
-        campaignId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        ioCampaign:
-          type: string
-        keywordList:
-          type: string
-        keywordListName:
-          type: string
-        updatedOn:
-          type: string
-          format: date-time
-    ApiResponsePageDmmIoCampaignFeedRawHistory:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/PageDmmIoCampaignFeedRawHistory'
-    PageDmmIoPlacementFeedRawHistory:
-      type: object
-      properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/DmmIoPlacementFeedRawHistory'
-        empty:
-          type: boolean
-        first:
-          type: boolean
-        last:
-          type: boolean
-        number:
-          type: integer
-          format: int32
-        numberOfElements:
-          type: integer
-          format: int32
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
-        size:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/SortObject'
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-    DmmIoSiteListFeedRaw:
-      type: object
-      properties:
-        campaignId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        ioCampaign:
-          type: string
-        siteList:
-          type: string
-        siteListName:
-          type: string
-        updatedOn:
-          type: string
-          format: date-time
-    DmmIoMarketGroupsFeedRawHistory:
-      type: object
-      properties:
-        campaignId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        ioCampaign:
-          type: string
-        marketGroup:
-          type: string
-        marketGroupItems:
-          type: string
-        marketType:
-          type: string
-        updatedOn:
-          type: string
-          format: date-time
     DmmIoPackageFeedRawHistory:
-      type: object
-      properties:
-        adServer:
-          type: string
-        campaignId:
-          type: integer
-          format: int32
-        cntMarketFeed:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        ioPackageCost:
-          type: number
-        ioPackageCostStructure:
-          type: string
-        ioPackageEndDate:
-          type: string
-          format: date-time
-        ioPackageMottoClientCost:
-          type: number
-        ioPackageMottoClientRate:
-          type: number
-        ioPackageNotes:
-          type: string
-        ioPackageRate:
-          type: number
-        ioPackageRevisionNotes:
-          type: string
-        ioPackageStartDate:
-          type: string
-          format: date-time
-        ioPackageUnits:
-          type: integer
-          format: int32
-        packageId:
-          type: integer
-          format: int32
-        packageName:
-          type: string
-        placementDetails:
-          type: string
-        targettingTactics:
-          type: string
-        updatedOn:
-          type: string
-          format: date-time
-    DmmIoSiteListFeedRawHistory:
-      type: object
-      properties:
-        campaignId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        ioCampaign:
-          type: string
-        siteList:
-          type: string
-        siteListName:
-          type: string
-        updatedOn:
-          type: string
-          format: date-time
-    DmmIoKeywordListFeedRaw:
-      type: object
-      properties:
-        campaignId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        ioCampaign:
-          type: string
-        keywordList:
-          type: string
-        keywordListName:
-          type: string
-        updatedOn:
-          type: string
-          format: date-time
-    DmmIoAudienceDefinitionFeedRaw:
-      type: object
-      properties:
-        audienceDefinitionName:
-          type: string
-        campaignId:
-          type: integer
-          format: int32
-        header1:
-          type: string
-        header2:
-          type: string
-        header3:
-          type: string
-        header4:
-          type: string
-        header5:
-          type: string
-        id:
-          type: integer
-          format: int32
-        ioCampaign:
-          type: string
-        rowNum:
-          type: integer
-          format: int32
-        updatedOn:
-          type: string
-          format: date-time
-        value1:
-          type: string
-        value2:
-          type: string
-        value3:
-          type: string
-        value4:
-          type: string
-        value5:
-          type: string
-    PageDmmIoPackageFeedRaw:
-      type: object
-      properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/DmmIoPackageFeedRaw'
-        empty:
-          type: boolean
-        first:
-          type: boolean
-        last:
-          type: boolean
-        number:
-          type: integer
-          format: int32
-        numberOfElements:
-          type: integer
-          format: int32
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
-        size:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/SortObject'
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-    PageDmmIoCampaignFeedRawHistory:
-      type: object
-      properties:
-        content:
-          type: array
-          items:
-            $ref: '#/components/schemas/DmmIoCampaignFeedRawHistory'
-        empty:
-          type: boolean
-        first:
-          type: boolean
-        last:
-          type: boolean
-        number:
-          type: integer
-          format: int32
-        numberOfElements:
-          type: integer
-          format: int32
-        pageable:
-          $ref: '#/components/schemas/PageableObject'
-        size:
-          type: integer
-          format: int32
-        sort:
-          $ref: '#/components/schemas/SortObject'
-        totalElements:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int32
-    DmmIoPackageFeedRaw:
       type: object
       properties:
         adServer:
@@ -2675,17 +2370,7 @@ components:
         totalPages:
           type: integer
           format: int32
-    ApiResponsePageDmmIoPlacementFeedRawHistory:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/PageDmmIoPlacementFeedRawHistory'
-    DmmIoMarketsFeedRawHistory:
+    DmmIoKeywordListFeedRaw:
       type: object
       properties:
         campaignId:
@@ -2696,12 +2381,9 @@ components:
           format: int32
         ioCampaign:
           type: string
-        markets:
+        keywordList:
           type: string
-        packageId:
-          type: integer
-          format: int32
-        packageName:
+        keywordListName:
           type: string
         updatedOn:
           type: string
@@ -2727,13 +2409,41 @@ components:
         updatedOn:
           type: string
           format: date-time
-    PageDmmIoPackageFeedRawHistory:
+    ApiResponsePageDmmIoCampaignFeedRawHistory:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageDmmIoCampaignFeedRawHistory'
+    DmmIoKeywordListFeedRawHistory:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        keywordList:
+          type: string
+        keywordListName:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    PageDmmIoPlacementFeedRaw:
       type: object
       properties:
         content:
           type: array
           items:
-            $ref: '#/components/schemas/DmmIoPackageFeedRawHistory'
+            $ref: '#/components/schemas/DmmIoPlacementFeedRaw'
         empty:
           type: boolean
         first:
@@ -2759,126 +2469,6 @@ components:
         totalPages:
           type: integer
           format: int32
-    DmmIoMarketGroupsFeedRaw:
-      type: object
-      properties:
-        campaignId:
-          type: integer
-          format: int32
-        id:
-          type: integer
-          format: int32
-        ioCampaign:
-          type: string
-        marketGroup:
-          type: string
-        marketGroupItems:
-          type: string
-        marketType:
-          type: string
-        updatedOn:
-          type: string
-          format: date-time
-    DmmIoCampaignFeedRawHistory:
-      type: object
-      properties:
-        advertiser:
-          type: string
-        campaignId:
-          type: integer
-          format: int32
-        cntAudienceDefination:
-          type: integer
-          format: int32
-        cntKeywordList:
-          type: integer
-          format: int32
-        cntMarketGroup:
-          type: integer
-          format: int32
-        cntSiteList:
-          type: integer
-          format: int32
-        contact:
-          type: string
-        id:
-          type: integer
-          format: int32
-        ioCampaign:
-          type: string
-        ioDate:
-          type: string
-          format: date-time
-        ioEndDate:
-          type: string
-          format: date-time
-        ioStartDate:
-          type: string
-          format: date-time
-        ioStatus:
-          type: string
-        ioTotalCost:
-          type: number
-        ioTotalPackages:
-          type: integer
-          format: int32
-        ioTotalUnits:
-          type: integer
-          format: int32
-        mailingAddress:
-          type: string
-        updatedOn:
-          type: string
-          format: date-time
-    DmmIoPlacementFeedRawHistory:
-      type: object
-      properties:
-        campaignId:
-          type: integer
-          format: int32
-        creativeExecution:
-          type: string
-        creativeId:
-          type: integer
-          format: int32
-        creativeName:
-          type: string
-        device:
-          type: string
-        id:
-          type: integer
-          format: int32
-        ioPlacementName:
-          type: string
-        ioPlacementSize:
-          type: string
-        packageId:
-          type: integer
-          format: int32
-        placementId:
-          type: integer
-          format: int32
-        updatedOn:
-          type: string
-          format: date-time
-    PageableObject:
-      type: object
-      properties:
-        offset:
-          type: integer
-          format: int64
-        pageNumber:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        paged:
-          type: boolean
-        sort:
-          $ref: '#/components/schemas/SortObject'
-        unpaged:
-          type: boolean
     ApiResponsePageDmmIoPlacementFeedRaw:
       type: object
       properties:
@@ -2889,16 +2479,45 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/PageDmmIoPlacementFeedRaw'
-    ApiResponsePageDmmIoPackageFeedRaw:
+    DmmIoAudienceDefinitionFeedRawHistory:
       type: object
       properties:
-        status:
+        audienceDefinitionName:
+          type: string
+        campaignId:
           type: integer
           format: int32
-        message:
+        header1:
           type: string
-        result:
-          $ref: '#/components/schemas/PageDmmIoPackageFeedRaw'
+        header2:
+          type: string
+        header3:
+          type: string
+        header4:
+          type: string
+        header5:
+          type: string
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        rowNum:
+          type: integer
+          format: int32
+        updatedOn:
+          type: string
+          format: date-time
+        value1:
+          type: string
+        value2:
+          type: string
+        value3:
+          type: string
+        value4:
+          type: string
+        value5:
+          type: string
     ApiResponsePageDmmIoPackageFeedRawHistory:
       type: object
       properties:
@@ -2909,34 +2528,61 @@ components:
           type: string
         result:
           $ref: '#/components/schemas/PageDmmIoPackageFeedRawHistory'
-    DmmIoPlacementFeedRaw:
+    ApiResponsePageDmmIoPackageFeedRaw:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageDmmIoPackageFeedRaw'
+    SortObject:
+      type: object
+      properties:
+        empty:
+          type: boolean
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+    DmmIoMarketsFeedRawHistory:
       type: object
       properties:
         campaignId:
           type: integer
           format: int32
-        creativeExecution:
-          type: string
-        creativeId:
-          type: integer
-          format: int32
-        creativeName:
-          type: string
-        device:
-          type: string
         id:
           type: integer
           format: int32
-        ioPlacementName:
+        ioCampaign:
           type: string
-        ioPlacementSize:
+        markets:
           type: string
         packageId:
           type: integer
           format: int32
-        placementId:
+        packageName:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    DmmIoSiteListFeedRaw:
+      type: object
+      properties:
+        campaignId:
           type: integer
           format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        siteList:
+          type: string
+        siteListName:
+          type: string
         updatedOn:
           type: string
           format: date-time
@@ -2991,7 +2637,146 @@ components:
         updatedOn:
           type: string
           format: date-time
-    DmmIoAudienceDefinitionFeedRawHistory:
+    ApiResponsePageDmmIoPlacementFeedRawHistory:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageDmmIoPlacementFeedRawHistory'
+    DmmIoSiteListFeedRawHistory:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        siteList:
+          type: string
+        siteListName:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    DmmIoMarketGroupsFeedRawHistory:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        marketGroup:
+          type: string
+        marketGroupItems:
+          type: string
+        marketType:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    DmmIoPackageFeedRaw:
+      type: object
+      properties:
+        adServer:
+          type: string
+        campaignId:
+          type: integer
+          format: int32
+        cntMarketFeed:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioPackageCost:
+          type: number
+        ioPackageCostStructure:
+          type: string
+        ioPackageEndDate:
+          type: string
+          format: date-time
+        ioPackageMottoClientCost:
+          type: number
+        ioPackageMottoClientRate:
+          type: number
+        ioPackageNotes:
+          type: string
+        ioPackageRate:
+          type: number
+        ioPackageRevisionNotes:
+          type: string
+        ioPackageStartDate:
+          type: string
+          format: date-time
+        ioPackageUnits:
+          type: integer
+          format: int32
+        packageId:
+          type: integer
+          format: int32
+        packageName:
+          type: string
+        placementDetails:
+          type: string
+        targettingTactics:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    PageDmmIoCampaignFeedRawHistory:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DmmIoCampaignFeedRawHistory'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    ApiResponsePageDmmIoCampaignFeedRaw:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/PageDmmIoCampaignFeedRaw'
+    DmmIoAudienceDefinitionFeedRaw:
       type: object
       properties:
         audienceDefinitionName:
@@ -3030,13 +2815,44 @@ components:
           type: string
         value5:
           type: string
-    PageDmmIoPlacementFeedRaw:
+    DmmIoPlacementFeedRaw:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        creativeExecution:
+          type: string
+        creativeId:
+          type: integer
+          format: int32
+        creativeName:
+          type: string
+        device:
+          type: string
+        id:
+          type: integer
+          format: int32
+        ioPlacementName:
+          type: string
+        ioPlacementSize:
+          type: string
+        packageId:
+          type: integer
+          format: int32
+        placementId:
+          type: integer
+          format: int32
+        updatedOn:
+          type: string
+          format: date-time
+    PageDmmIoPackageFeedRawHistory:
       type: object
       properties:
         content:
           type: array
           items:
-            $ref: '#/components/schemas/DmmIoPlacementFeedRaw'
+            $ref: '#/components/schemas/DmmIoPackageFeedRawHistory'
         empty:
           type: boolean
         first:
@@ -3062,3 +2878,187 @@ components:
         totalPages:
           type: integer
           format: int32
+    DmmIoCampaignFeedRawHistory:
+      type: object
+      properties:
+        advertiser:
+          type: string
+        campaignId:
+          type: integer
+          format: int32
+        cntAudienceDefination:
+          type: integer
+          format: int32
+        cntKeywordList:
+          type: integer
+          format: int32
+        cntMarketGroup:
+          type: integer
+          format: int32
+        cntSiteList:
+          type: integer
+          format: int32
+        contact:
+          type: string
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        ioDate:
+          type: string
+          format: date-time
+        ioEndDate:
+          type: string
+          format: date-time
+        ioStartDate:
+          type: string
+          format: date-time
+        ioStatus:
+          type: string
+        ioTotalCost:
+          type: number
+        ioTotalPackages:
+          type: integer
+          format: int32
+        ioTotalUnits:
+          type: integer
+          format: int32
+        mailingAddress:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    PageDmmIoPlacementFeedRawHistory:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DmmIoPlacementFeedRawHistory'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    DmmIoMarketGroupsFeedRaw:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        id:
+          type: integer
+          format: int32
+        ioCampaign:
+          type: string
+        marketGroup:
+          type: string
+        marketGroupItems:
+          type: string
+        marketType:
+          type: string
+        updatedOn:
+          type: string
+          format: date-time
+    PageDmmIoPackageFeedRaw:
+      type: object
+      properties:
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/DmmIoPackageFeedRaw'
+        empty:
+          type: boolean
+        first:
+          type: boolean
+        last:
+          type: boolean
+        number:
+          type: integer
+          format: int32
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/PageableObject'
+        size:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+    PageableObject:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        pageNumber:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        paged:
+          type: boolean
+        sort:
+          $ref: '#/components/schemas/SortObject'
+        unpaged:
+          type: boolean
+    DmmIoPlacementFeedRawHistory:
+      type: object
+      properties:
+        campaignId:
+          type: integer
+          format: int32
+        creativeExecution:
+          type: string
+        creativeId:
+          type: integer
+          format: int32
+        creativeName:
+          type: string
+        device:
+          type: string
+        id:
+          type: integer
+          format: int32
+        ioPlacementName:
+          type: string
+        ioPlacementSize:
+          type: string
+        packageId:
+          type: integer
+          format: int32
+        placementId:
+          type: integer
+          format: int32
+        updatedOn:
+          type: string
+          format: date-time

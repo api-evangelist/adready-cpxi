@@ -490,16 +490,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    ApiResponseAccount:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          $ref: '#/components/schemas/Account'
     Advertiser:
       type: object
       properties:
@@ -616,18 +606,6 @@ components:
         userId:
           type: integer
           format: int64
-    ApiResponseListAccount:
-      type: object
-      properties:
-        status:
-          type: integer
-          format: int32
-        message:
-          type: string
-        result:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
     DashboardUrl:
       type: object
       properties:
@@ -640,79 +618,6 @@ components:
         link:
           type: string
         title:
-          type: string
-    Organization:
-      type: object
-      properties:
-        appConsoleLogoFile:
-          $ref: '#/components/schemas/FileData'
-        appConsoleSquareLogoFile:
-          $ref: '#/components/schemas/FileData'
-        emailBranding:
-          type: boolean
-        favIconLogoFile:
-          $ref: '#/components/schemas/FileData'
-        id:
-          type: integer
-          format: int32
-        loginEnabled:
-          type: boolean
-        logoFile:
-          $ref: '#/components/schemas/FileData'
-        name:
-          type: string
-        orgType:
-          type: string
-        subdomainConfig: {}
-        subdomainEnabled:
-          type: boolean
-        theme: {}
-        whitelabelEnabled:
-          type: boolean
-    FileData:
-      type: object
-      properties:
-        createdAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        deletedAt:
-          type: string
-          format: date-time
-        id:
-          type: integer
-          format: int32
-        name:
-          type: string
-        path:
-          type: string
-        size:
-          type: integer
-          format: int32
-        type:
-          type: string
-          enum:
-          - UPLOAD
-          - LINK
-          - ARTICLE_UPLOAD
-          - ARTICLE_LINK
-          - COMPANION_ASSET_UPLOAD
-          - COMPANION_ASSET_LINK
-          - CLOSED_CAPTIONING_UPLOAD
-          - ADVERTISER_LOGO
-          - IO_ATTACHMENT
-          - NOTES
-          - CREATIVE
-          - ARTICLE_CREATIVE
-          - COMPANION_ASSET
-          - CLOSED_CAPTIONING
-          - TRACKING_PIXEL
-          - ORGANIZATION_LOGO
-        updatedAt:
-          type: string
-          format: date-time
-        updatedBy:
           type: string
     UserAccount:
       type: object
@@ -736,6 +641,16 @@ components:
           items:
             type: integer
             format: int64
+    ApiResponseAccount:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/Account'
     Account:
       type: object
       properties:
@@ -804,3 +719,88 @@ components:
           format: date-time
         updatedBy:
           type: string
+    FileData:
+      type: object
+      properties:
+        createdAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        deletedAt:
+          type: string
+          format: date-time
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
+        path:
+          type: string
+        size:
+          type: integer
+          format: int32
+        type:
+          type: string
+          enum:
+          - UPLOAD
+          - LINK
+          - ARTICLE_UPLOAD
+          - ARTICLE_LINK
+          - COMPANION_ASSET_UPLOAD
+          - COMPANION_ASSET_LINK
+          - CLOSED_CAPTIONING_UPLOAD
+          - ADVERTISER_LOGO
+          - IO_ATTACHMENT
+          - NOTES
+          - CREATIVE
+          - ARTICLE_CREATIVE
+          - COMPANION_ASSET
+          - CLOSED_CAPTIONING
+          - TRACKING_PIXEL
+          - ORGANIZATION_LOGO
+        updatedAt:
+          type: string
+          format: date-time
+        updatedBy:
+          type: string
+    Organization:
+      type: object
+      properties:
+        appConsoleLogoFile:
+          $ref: '#/components/schemas/FileData'
+        appConsoleSquareLogoFile:
+          $ref: '#/components/schemas/FileData'
+        emailBranding:
+          type: boolean
+        favIconLogoFile:
+          $ref: '#/components/schemas/FileData'
+        id:
+          type: integer
+          format: int32
+        loginEnabled:
+          type: boolean
+        logoFile:
+          $ref: '#/components/schemas/FileData'
+        name:
+          type: string
+        orgType:
+          type: string
+        subdomainConfig: {}
+        subdomainEnabled:
+          type: boolean
+        theme: {}
+        whitelabelEnabled:
+          type: boolean
+    ApiResponseListAccount:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'

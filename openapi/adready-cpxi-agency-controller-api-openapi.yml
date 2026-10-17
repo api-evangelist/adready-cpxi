@@ -213,16 +213,29 @@ components:
         xandrAdvertiserId:
           type: integer
           format: int32
-    ApiResponseAgency:
+    Agency:
       type: object
       properties:
-        status:
+        accountId:
           type: integer
           format: int32
-        message:
+        advertisers:
+          type: array
+          items:
+            $ref: '#/components/schemas/Advertiser'
+          uniqueItems: true
+        deletedAt:
           type: string
-        result:
-          $ref: '#/components/schemas/Agency'
+          format: date-time
+        flags:
+          type: array
+          items:
+            type: string
+        id:
+          type: integer
+          format: int32
+        name:
+          type: string
     ApiResponseListAgency:
       type: object
       properties:
@@ -235,6 +248,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Agency'
+    ApiResponseAgency:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
+        result:
+          $ref: '#/components/schemas/Agency'
     FileData:
       type: object
       properties:
@@ -279,27 +302,4 @@ components:
           type: string
           format: date-time
         updatedBy:
-          type: string
-    Agency:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int32
-        advertisers:
-          type: array
-          items:
-            $ref: '#/components/schemas/Advertiser'
-          uniqueItems: true
-        deletedAt:
-          type: string
-          format: date-time
-        flags:
-          type: array
-          items:
-            type: string
-        id:
-          type: integer
-          format: int32
-        name:
           type: string
