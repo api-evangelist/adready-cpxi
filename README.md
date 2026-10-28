@@ -64,33 +64,174 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-AdReady is a digital advertising execution brand operated by **Digital Remedy** (formerly CPX
-Interactive / CPXi), which runs an omnichannel advertising management platform for independent
-agencies, brands and media companies — media planning, insertion orders and line items, programmatic /
-CTV / DOOH / social execution, Flip pixel attribution, incrementality and brand-lift measurement, and
-white-label reporting.
+AdReady is a digital advertising execution brand operated by Digital Remedy (formerly CPX Interactive / CPXi). Digital Remedy runs an omnichannel advertising management platform - marketed as the Digital Remedy Platform and historically as AdReady+ - for independent agencies, brands and media companies, covering media planning, RFPs, insertion-order and line-item management, programmatic / CTV / DOOH / social execution, pixel-based attribution (Flip), incrementality and brand-lift measurement, white-label reporting and a RemyAI assistant, on top of 100+ martech integrations and 300+ inventory and data sources. AdReady originated as a Seattle self-serve ad-building tool and was acquired by CPXi in 2013; the brand and platform are today part of Digital Remedy, which has since combined with Compulse. The platform is powered by an internally-named Kickstart API - a Spring Boot / springdoc REST service whose OpenAPI 3.1 description is served anonymously at platform.digitalremedy.com/v3/api-docs with a browsable Swagger UI - but Digital Remedy publishes no public developer portal, no onboarding, and no partner API documentation, and every business operation on that API is authenticated (HTTP 401 without a session JWT). This company profile is independently maintained in the API Evangelist network.
 
-Sector: commerce. Surfaced as a portfolio company of bain-capital-ventures.
+**Areas:** Company · Commerce · Advertising · AdTech · Marketing · Programmatic · Media · Media Planning · Campaign Management · Attribution · Connected TV · Ad Operations
 
-## What this profile found
+## AdReady (CPXi) on APIs.io
 
-Digital Remedy publishes **no developer portal, no documentation, no pricing and no sign-up** — but
-the platform's REST API does serve a **live, current OpenAPI 3.1 description anonymously**:
+Everything profiled for AdReady (CPXi) is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/adready-cpxi/](https://apis.io/providers/adready-cpxi/)** — or go straight to one of the APIs or properties below.
 
-| | |
+### APIs (48)
+
+- [AdReady (CPXi) Account Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-account-controller-api/) — The account-controller API from AdReady (CPXi) — 16 operation(s) for account-controller.
+- [AdReady (CPXi) Advertiser API](https://apis.io/apis/adready-cpxi/adready-cpxi-advertiser-api/) — The advertiser API from AdReady (CPXi) — 2 operation(s) for advertiser.
+- [AdReady (CPXi) Advertiser Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-advertiser-controller-api/) — The advertiser-controller API from AdReady (CPXi) — 10 operation(s) for advertiser-controller.
+- [AdReady (CPXi) Agency Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-agency-controller-api/) — The agency-controller API from AdReady (CPXi) — 3 operation(s) for agency-controller.
+- [AdReady (CPXi) API Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-api-controller-api/) — The api-controller API from AdReady (CPXi) — 33 operation(s) for api-controller.
+- [AdReady (CPXi) App Console API](https://apis.io/apis/adready-cpxi/adready-cpxi-app-console-api/) — App Console
+- [AdReady (CPXi) App Console: Brand API](https://apis.io/apis/adready-cpxi/adready-cpxi-app-console-brand-api/) — This contains API endpoints related to Performance Brand solution in App Console
+- [AdReady (CPXi) App Console: Converged TV API](https://apis.io/apis/adready-cpxi/adready-cpxi-app-console-converged-tv-api/) — The App Console: Converged TV API from AdReady (CPXi) — 1 operation(s) for app console: converged tv.
+- [AdReady (CPXi) App Console Helper API](https://apis.io/apis/adready-cpxi/adready-cpxi-app-console-helper-api/) — The App Console Helper API from AdReady (CPXi) — 3 operation(s) for app console helper.
+- [AdReady (CPXi) App Console: Report Template Management API](https://apis.io/apis/adready-cpxi/adready-cpxi-app-console-report-template-management-api/) — The App Console: Report Template Management API from AdReady (CPXi) — 6 operation(s) for app console: report template management.
+- [AdReady (CPXi) App Console: Search API](https://apis.io/apis/adready-cpxi/adready-cpxi-app-console-search-api/) — This contains API endpoints related to Google Search solution in App Console
+- [AdReady (CPXi) App Console: Social API](https://apis.io/apis/adready-cpxi/adready-cpxi-app-console-social-api/) — This contains API endpoints related to Meta solution in App Console
+- [AdReady (CPXi) App Console: Solution Management API](https://apis.io/apis/adready-cpxi/adready-cpxi-app-console-solution-management-api/) — This contains API endpoints related to solution management
+- [AdReady (CPXi) Auth Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-auth-controller-api/) — The auth-controller API from AdReady (CPXi) — 7 operation(s) for auth-controller.
+- [AdReady (CPXi) Available Features Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-available-features-controller-api/) — The available-features-controller API from AdReady (CPXi) — 1 operation(s) for available-features-controller.
+- [AdReady (CPXi) Budget Group Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-budget-group-controller-api/) — The budget-group-controller API from AdReady (CPXi) — 3 operation(s) for budget-group-controller.
+- [AdReady (CPXi) Comment Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-comment-controller-api/) — The comment-controller API from AdReady (CPXi) — 3 operation(s) for comment-controller.
+- [AdReady (CPXi) Config Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-config-controller-api/) — The config-controller API from AdReady (CPXi) — 3 operation(s) for config-controller.
+- [AdReady (CPXi) Deal Performance Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-deal-performance-controller-api/) — The deal-performance-controller API from AdReady (CPXi) — 2 operation(s) for deal-performance-controller.
+- [AdReady (CPXi) Demo Advertiser Mapping Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-demo-advertiser-mapping-controller-api/) — The demo-advertiser-mapping-controller API from AdReady (CPXi) — 1 operation(s) for demo-advertiser-mapping-controller.
+- [AdReady (CPXi) Device Type Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-device-type-controller-api/) — The device-type-controller API from AdReady (CPXi) — 1 operation(s) for device-type-controller.
+- [AdReady (CPXi) Dmm Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-dmm-controller-api/) — The dmm-controller API from AdReady (CPXi) — 16 operation(s) for dmm-controller.
+- [AdReady (CPXi) Errors Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-errors-controller-api/) — The errors-controller API from AdReady (CPXi) — 1 operation(s) for errors-controller.
+- [AdReady (CPXi) File Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-file-controller-api/) — The file-controller API from AdReady (CPXi) — 10 operation(s) for file-controller.
+- [AdReady (CPXi) Flip Dashboard API](https://apis.io/apis/adready-cpxi/adready-cpxi-flip-dashboard-api/) — APIs related to Flip Dashboard
+- [AdReady (CPXi) Flip PixelFile API](https://apis.io/apis/adready-cpxi/adready-cpxi-flip-pixelfile-api/) — The Flip PixelFile API from AdReady (CPXi) — 2 operation(s) for flip pixelfile.
+- [AdReady (CPXi) Health Check API](https://apis.io/apis/adready-cpxi/adready-cpxi-health-check-api/) — The health-check API from AdReady (CPXi) — 1 operation(s) for health-check.
+- [AdReady (CPXi) Incrementality API](https://apis.io/apis/adready-cpxi/adready-cpxi-incrementality-api/) — The Incrementality API from AdReady (CPXi) — 2 operation(s) for incrementality.
+- [AdReady (CPXi) Line Item History Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-line-item-history-controller-api/) — The line-item-history-controller API from AdReady (CPXi) — 1 operation(s) for line-item-history-controller.
+- [AdReady (CPXi) Line Items Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-line-items-controller-api/) — The line-items-controller API from AdReady (CPXi) — 17 operation(s) for line-items-controller.
+- [AdReady (CPXi) Media Publisher Master Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-media-publisher-master-controller-api/) — The media-publisher-master-controller API from AdReady (CPXi) — 2 operation(s) for media-publisher-master-controller.
+- [AdReady (CPXi) Organization Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-organization-controller-api/) — The organization-controller API from AdReady (CPXi) — 2 operation(s) for organization-controller.
+- [AdReady (CPXi) Performance API](https://apis.io/apis/adready-cpxi/adready-cpxi-performance-api/) — The Performance API from AdReady (CPXi) — 1 operation(s) for performance.
+- [AdReady (CPXi) Pixel Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-pixel-controller-api/) — The pixel-controller API from AdReady (CPXi) — 3 operation(s) for pixel-controller.
+- [AdReady (CPXi) Plans Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-plans-controller-api/) — The plans-controller API from AdReady (CPXi) — 14 operation(s) for plans-controller.
+- [AdReady (CPXi) Publisher Deal Mapping Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-publisher-deal-mapping-controller-api/) — The publisher-deal-mapping-controller API from AdReady (CPXi) — 2 operation(s) for publisher-deal-mapping-controller.
+- [AdReady (CPXi) Publisher Media Type Mapping Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-publisher-media-type-mapping-controller-api/) — The publisher-media-type-mapping-controller API from AdReady (CPXi) — 2 operation(s) for publisher-media-type-mapping-controller.
+- [AdReady (CPXi) Rate Cards Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-rate-cards-controller-api/) — The rate-cards-controller API from AdReady (CPXi) — 3 operation(s) for rate-cards-controller.
+- [AdReady (CPXi) Segment Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-segment-controller-api/) — The segment-controller API from AdReady (CPXi) — 3 operation(s) for segment-controller.
+- [AdReady (CPXi) Sign Up Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-sign-up-controller-api/) — The sign-up-controller API from AdReady (CPXi) — 1 operation(s) for sign-up-controller.
+- [AdReady (CPXi) Social Solution API](https://apis.io/apis/adready-cpxi/adready-cpxi-social-solution-api/) — The Social Solution API from AdReady (CPXi) — 5 operation(s) for social solution.
+- [AdReady (CPXi) Tableau Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-tableau-controller-api/) — The tableau-controller API from AdReady (CPXi) — 2 operation(s) for tableau-controller.
+- [AdReady (CPXi) Tableau Views API](https://apis.io/apis/adready-cpxi/adready-cpxi-tableau-views-api/) — The Tableau Views API from AdReady (CPXi) — 1 operation(s) for tableau views.
+- [AdReady (CPXi) Token Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-token-controller-api/) — The token-controller API from AdReady (CPXi) — 8 operation(s) for token-controller.
+- [AdReady (CPXi) User Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-user-controller-api/) — The user-controller API from AdReady (CPXi) — 14 operation(s) for user-controller.
+- [AdReady (CPXi) Vendor Master Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-vendor-master-controller-api/) — The vendor-master-controller API from AdReady (CPXi) — 1 operation(s) for vendor-master-controller.
+- [AdReady (CPXi) Version Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-version-controller-api/) — The version-controller API from AdReady (CPXi) — 3 operation(s) for version-controller.
+- [AdReady (CPXi) Whitelabel Domain Controller API](https://apis.io/apis/adready-cpxi/adready-cpxi-whitelabel-domain-controller-api/) — The whitelabel-domain-controller API from AdReady (CPXi) — 3 operation(s) for whitelabel-domain-controller.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [adready-cpxi](https://apis.io/servers/adready-cpxi/adready-cpxi/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Adready Cpxi Agentic Access](https://apis.io/agentic-access/adready-cpxi/adready-cpxi-agentic-access/)
+
+#### Collections (1)
+
+Postman and Open Collection request collections.
+
+- [Kickstart API](https://apis.io/collections/adready-cpxi/open-adready-cpxi-kickstart/)
+
+#### Overlays (1)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Adready Cpxi Kickstart Overlay](https://apis.io/overlays/adready-cpxi/adready-cpxi-kickstart-overlay/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Adready Cpxi Authentication](https://apis.io/security/adready-cpxi/adready-cpxi-authentication/)
+- [Adready Cpxi Domain Security](https://apis.io/security/adready-cpxi/adready-cpxi-domain-security/)
+- [Adready Cpxi Trust Center](https://apis.io/security/adready-cpxi/adready-cpxi-trust-center/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Adready Cpxi Plans Pricing](https://apis.io/plans/adready-cpxi/adready-cpxi-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Adready Cpxi Rate Limits](https://apis.io/rate-limits/adready-cpxi/adready-cpxi-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.digitalremedy.com/platform/)
+- [API reference](https://platform.digitalremedy.com/swagger-ui.html)
+- [Support](https://www.digitalremedy.com/contact-us/)
+- [Blog](https://www.digitalremedy.com/blog/)
+- [Compliance](https://trust.digitalremedy.com/)
+- [Terms of service](https://www.digitalremedy.com/terms-and-conditions/)
+- [Privacy policy](https://www.digitalremedy.com/privacy-policy/)
+
+## API Evangelist rating
+
+**Kin Score 36.9** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
 |---|---|
-| Spec | `https://platform.digitalremedy.com/v3/api-docs` (HTTP 200, OpenAPI 3.1.0) |
-| Reference | `https://platform.digitalremedy.com/swagger-ui.html` |
-| Size | 285 paths, 355 operations, 285 schemas |
-| Running build | `kickstart-api` 3.5.6, built 2026-08-04 (from `GET /version`) |
-| Access | Every business operation returns **HTTP 401** without a session JWT |
+| Discoverability | 71.4 |
+| Contract quality | 45.7 |
+| Contract governance | 4.5 |
+| Operational transparency | 15.8 |
+| Developer ergonomics | 28.0 |
+| Access clarity | 43.4 |
 
-The API is the first-party backend of Digital Remedy's own web application, not a product sold to
-developers. The contract is readable; the API is not open. It also has none of the runtime semantics
-that make an API safe to automate against — no idempotency keys, no rate-limit signalling, no RFC 9457
-problem details, no deprecation policy, no status page, and no `securitySchemes` declared at all
-despite enforcing authentication on everything.
+**Agent readiness 29.0** — agent-ready
 
-Artifacts in this repo are derived from that spec and from live probes; see `llms/` for the map.
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-Backed by: bain-capital-ventures — https://www.digitalremedy.com/platform/
+**Regulatory alignment 29.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/adready-cpxi/](https://apis.io/providers/adready-cpxi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for AdReady (CPXi): the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/adready-cpxi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
